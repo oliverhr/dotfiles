@@ -1,0 +1,49 @@
+# Compiled Python files
+*.pyc
+
+# Binary files
+*.xlsx
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+*.swp
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# File Editor generated files
+*.swp
+
+# Visual studio code
+jsconfig.json
+
+# IDE Files and Folders
+.idea
+
+# Sass cache
+.sass-cache/
+*.map
+
+# Conflict generated files
+*.org
+
+# SSH Keys
+*.pem
+*.crt
+*.key
+
+# Ruby
+/.bundle/
+
+# Node
+node_modules
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
