@@ -1,0 +1,16 @@
+# --------------------------------------------------
+# My Custom Alias
+# --------------------------------------------------
+
+# Edit cofigs
+alias zshconfig="vim ~/.zshrc"
+alias vimconfig="vim ~/.vim/vimrc"
+alias aliasesrc="vim ~/.my_aliases.rc"
+
+# Commands
+alias cd..="cd .."
+
+# Composed commands
+alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+alias git_clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
+
