@@ -49,7 +49,7 @@ filetype indent on
 let NERDTreeIgnore = ['\.pyc$']
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|node_nodules)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules)$',
   \ 'file': '\v\.(exe|so|dll|DS_Store)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
