@@ -24,6 +24,19 @@ Plugin 'editorconfig/editorconfig-vim'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'kamwitsta/nordisk'
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'tyrannicaltoucan/vim-deep-space'
+Plugin 'kocakosm/hilal'
+Plugin 'joshdick/onedark.vim'
+Plugin 'jscappini/material.vim'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'ratazzi/blackboard.vim'
+Plugin 'trusktr/seti.vim'
+Plugin 'croaky/vim-colors-github'
+Plugin 'croaker/mustang-vim'
+Plugin 'cocopon/iceberg.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
