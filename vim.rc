@@ -36,7 +36,10 @@ Plugin 'trusktr/seti.vim'
 Plugin 'croaky/vim-colors-github'
 Plugin 'croaker/mustang-vim'
 Plugin 'cocopon/iceberg.vim'
-
+Plugin 'crater2150/vim-theme-chroma'
+Plugin 'atelierbram/vim-colors_duotones'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'stephanedemotte/beekai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -183,7 +186,7 @@ else
     set background=dark
     "let g:solarized_termtrans=1
     "let g:solarized_termcolors=16
-    colorscheme desert
+    colorscheme nordisk
 endif
 
 " Powerline settings
