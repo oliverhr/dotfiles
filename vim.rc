@@ -101,7 +101,8 @@ set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
 set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
+set wildignore+=vendor/rails/**
+set wildignore+=node_modules/**
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
@@ -180,6 +181,7 @@ if has("gui_running")
     "set guioptions-=e " Set gui-tabs as terminal
     "set guitablabel=%M\ %t
     set lines=45 columns=100
+    let g:airline_theme='serene'
 else
     set mouse=a
     set t_Co=256
@@ -187,6 +189,7 @@ else
     "let g:solarized_termtrans=1
     "let g:solarized_termcolors=16
     colorscheme nordisk
+    let g:airline_theme='simple'
 endif
 
 " Powerline settings
@@ -303,7 +306,7 @@ map <leader>bt :tabnew<cr>
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <silent><leader>ba :%bd!<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
