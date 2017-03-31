@@ -5,13 +5,18 @@
 # Edit cofigs
 alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vim/vimrc"
-alias aliasesrc="vim ~/.my_aliases.rc"
+alias aliasesconfig="vim ~/.my_aliases.rc"
 alias sshconfig="vim ~/.ssh/config"
 
 # Commands
+# alias ls='ls --color=auto'
 alias cd..="cd .."
+alias lsd="ls -ld */"
+alias lsh="ls -d .*"
 
 # Composed commands
+alias docker-clean-volumes="docker volume rm $(docker volume ls -q -f 'dangling=true')"
+alias docker-clean-images="docker rmi $(docker images -q -f 'dangling=true')"
 alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 alias git_clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
-
+alias git_log="git --no-pager log"
