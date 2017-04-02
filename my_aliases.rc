@@ -15,8 +15,9 @@ alias lsd="ls -ld */"
 alias lsh="ls -d .*"
 
 # Composed commands
-alias docker-clean-volumes="docker volume rm $(docker volume ls -q -f 'dangling=true')"
-alias docker-clean-images="docker rmi $(docker images -q -f 'dangling=true')"
-alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 alias git_clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
 alias git_log="git --no-pager log"
+
+alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+alias docker-clean-volumes="docker volume ls -q -f 'dangling=true' | docker volume rm"
+alias docker-clean-images="docker images -q -f 'dangling=true' | docker rmi"
