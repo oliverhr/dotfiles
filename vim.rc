@@ -37,7 +37,6 @@ Plugin 'croaky/vim-colors-github'
 Plugin 'croaker/mustang-vim'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'crater2150/vim-theme-chroma'
-Plugin 'atelierbram/vim-colors_duotones'
 Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'stephanedemotte/beekai'
 
@@ -62,7 +61,7 @@ filetype indent on
 " -------------------------------------------------------------------
 " Plugins Settings
 " -------------------------------------------------------------------
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]']
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_custom_ignore = {
@@ -80,13 +79,16 @@ set history=1000
 set autoread
 
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nnoremap <silent> <leader>wq :wqa<CR>
 
+" Nerdtree
+nnoremap <silent> <leader>f :NERDTreeToggle<Enter>
+nnoremap <silent> <leader>v :NERDTreeFind<CR>
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -102,6 +104,7 @@ set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
 set wildignore+=node_modules/**
+set wildignore+=bower_components/**
 set wildignore+=vendor/rails/**
 set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
@@ -206,7 +209,8 @@ highlight clear FoldColumn
 highlight clear Folded
 highlight clear LineNr
 highlight clear SignColumn
-" Set Tabbar color background to translucid and line to black
+
+" Set Tabi bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black ctermbg=none
 
 " Disable color backgroud for tabs on text
