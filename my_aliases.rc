@@ -7,6 +7,7 @@ alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vim/vimrc"
 alias aliasesconfig="vim ~/.my_aliases.rc"
 alias sshconfig="vim ~/.ssh/config"
+alias gitconfig="vim ~/.gitconfig"
 
 # Commands
 # alias ls='ls --color=auto'
@@ -14,10 +15,30 @@ alias cd..="cd .."
 alias lsd="ls -ld */"
 alias lsh="ls -d .*"
 
-# Composed commands
-alias git_clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
-alias git_log="git --no-pager log"
+# Overrides
+alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
 
+### Composed commands ###
+
+# GIT
+alias git-clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
+alias git-log="git --no-pager log --no-merges --stat --oneline"
+alias gfl="git flow"
+
+git-remove-tag() {
+    TAG=$1
+    git tag -d $TAG
+    git push origin :refs/tags/$TAG
+}
+
+# DOCKER
 alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
-alias docker-clean-volumes="docker volume ls -q -f 'dangling=true' | docker volume rm"
-alias docker-clean-images="docker images -q -f 'dangling=true' | docker rmi"
+
+docker-clean-volumes() {
+    docker volume rm $(docker volume ls --quiet --filter "dangling=true")
+}
+
+docker-clean-images() {
+    docker rmi $(docker images --quiet --filter "dangling=true")
+}
+

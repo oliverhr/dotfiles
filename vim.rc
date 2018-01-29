@@ -15,12 +15,15 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'mattn/emmet-vim'
 "Plugin 'pearofducks/ansible-vim'
 Plugin 'editorconfig/editorconfig-vim'
+"Plugin 'vim-syntastic/syntastic'
+Plugin 'elixir-lang/vim-elixir'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -38,7 +41,6 @@ Plugin 'croaker/mustang-vim'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'crater2150/vim-theme-chroma'
 Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'stephanedemotte/beekai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,6 +71,28 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|DS_Store)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+" syntactic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+
+" let g:syntastic_error_symbol = '❌'
+" let g:syntastic_style_error_symbol = '⁉️'
+" let g:syntastic_warning_symbol = '⚠️'
+" let g:syntastic_style_warning_symbol = '💩'
+
+" highlight link SyntasticErrorSign SignColumn
+" highlight link SyntasticWarningSign SignColumn
+" highlight link SyntasticStyleErrorSign SignColumn
+" highlight link SyntasticStyleWarningSign SignColumn
 " -------------------------------------------------------------------
 
 " ========================= General Settings ========================
@@ -180,15 +204,15 @@ highlight! link FoldColumn Normal
 if has("gui_running")
     set background=dark
     colorscheme deep-space
+    let g:airline_theme='tomorrow'
+    set lines=45 columns=100
     "set gfn=Menlo:h12
     "set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-    set gfn=Monaco\ for\ Powerline:h12
+    set gfn=Monaco\ for\ Powerline:h14
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
-    "set guioptions-=e " Set gui-tabs as terminal
-    "set guitablabel=%M\ %t
-    set lines=45 columns=100
-    let g:airline_theme='serene'
+    set guioptions-=e " Set gui-tabs as terminal
+    set guitablabel=%M\ %t
 else
     set mouse=a
     set t_Co=256
@@ -196,13 +220,17 @@ else
     "let g:solarized_termtrans=1
     "let g:solarized_termcolors=16
     colorscheme nordisk
-    let g:airline_theme='simple'
+    let g:airline_theme='serene'
+
+    " Set Tab bar color background to translucid and line to black
+    " highlight TabLineFill ctermfg=Black ctermbg=none
+
+    " Disable color backgroud for tabs on text
+    " highlight SpecialKey guibg=none ctermbg=none
 endif
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
-let g:airline_theme='serene'
-
 
 " Set translucid left vim columns (number and fold) by reseting value
 highlight clear FoldColumn
@@ -210,11 +238,6 @@ highlight clear Folded
 highlight clear LineNr
 highlight clear SignColumn
 
-" Set Tabi bar color background to translucid and line to black
-highlight TabLineFill ctermfg=Black ctermbg=none
-
-" Disable color backgroud for tabs on text
-highlight SpecialKey guibg=none ctermbg=none
 " Colorize extra white tabs or spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -402,7 +425,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
+"   <leader>gc
 "
 " To go to the next search result do:
 "   <leader>n
@@ -410,8 +433,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>gb :botright cope<cr>
+map <leader>go ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
