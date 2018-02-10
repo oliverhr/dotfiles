@@ -217,10 +217,10 @@ else
     set mouse=a
     set t_Co=256
     set background=dark
-    "let g:solarized_termtrans=1
-    "let g:solarized_termcolors=16
-    colorscheme nordisk
-    let g:airline_theme='serene'
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=16
+    colorscheme solarized
+    "let g:airline_theme='serene'
 
     " Set Tab bar color background to translucid and line to black
     " highlight TabLineFill ctermfg=Black ctermbg=none
