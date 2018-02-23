@@ -7,7 +7,7 @@
 * Aliases
 * Git ignore
 
-### Geekster - a zsh theme
+### Zsh theme Geekster - a zsh theme
 
 A minimal theme that shows git information for current dir.
 
