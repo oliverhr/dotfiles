@@ -19,32 +19,32 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'pearofducks/ansible-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'leafgarland/typescript-vim'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'pearofducks/ansible-vim'
+"Plugin 'vim-syntastic/syntastic'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'kamwitsta/nordisk'
-Plugin 'whatyouhide/vim-gotham'
 Plugin 'tyrannicaltoucan/vim-deep-space'
-Plugin 'kocakosm/hilal'
+"Plugin 'whatyouhide/vim-gotham'
+"Plugin 'kocakosm/hilal'
 Plugin 'joshdick/onedark.vim'
-Plugin 'jscappini/material.vim'
+"Plugin 'jscappini/material.vim'
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'ratazzi/blackboard.vim'
-Plugin 'trusktr/seti.vim'
-Plugin 'croaky/vim-colors-github'
+"Plugin 'ratazzi/blackboard.vim'
+"Plugin 'trusktr/seti.vim'
+"Plugin 'croaky/vim-colors-github'
 Plugin 'croaker/mustang-vim'
-Plugin 'cocopon/iceberg.vim'
-Plugin 'crater2150/vim-theme-chroma'
-Plugin 'kristijanhusak/vim-hybrid-material'
+"Plugin 'cocopon/iceberg.vim'
+"Plugin 'crater2150/vim-theme-chroma'
+"Plugin 'kristijanhusak/vim-hybrid-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -74,31 +74,33 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " syntactic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "active_filetypes": ["javascript"],
-    \ "passive_filetypes": ["html"] }
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_error_symbol = '❌'
+" let g:syntastic_style_error_symbol = '⁉️'
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_warning_symbol = '⚠️'
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_style_warning_symbol = '💩'
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+" let g:syntastic_error_symbol = '❌'
+" let g:syntastic_style_error_symbol = '⁉️'
+" let g:syntastic_warning_symbol = '⚠️'
+" let g:syntastic_style_warning_symbol = '💩'
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+" highlight link SyntasticErrorSign SignColumn
+" highlight link SyntasticWarningSign SignColumn
+" highlight link SyntasticStyleErrorSign SignColumn
+" highlight link SyntasticStyleWarningSign SignColumn
 " -------------------------------------------------------------------
 
 " ========================= General Settings ========================
@@ -147,35 +149,25 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 "Always show current position
 set ruler
-
 " Height of the command bar
 set cmdheight=2
-
 " A buffer becomes hidden when it is abandoned
 set hid
-
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
 " Ignore case when searching
 set ignorecase
-
 " When searching try to be smart about cases
 set smartcase
-
 " Highlight search results
 set hlsearch
-
 " Makes search act like search in modern browsers
 set incsearch
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
-
 " For regular expressions turn magic on
 set magic
-
 " Show matching brackets when text indicator is over them
 set showmatch
 " How many tenths of a second to blink when matching brackets
@@ -209,13 +201,10 @@ highlight! link FoldColumn Normal
 " Set extra options when running in GUI mode
 if has("gui_running")
     set background=dark
-    "colorscheme deep-space
-    "let g:airline_theme='tomorrow'
-    colorscheme solarized
-    set lines=50 columns=100
-    set gfn=Menlo\ for\ Powerline:h12
-    "set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-    "set gfn=Monaco\ for\ Powerline:h14
+    colorscheme deep-space
+    let g:airline_theme='tomorrow'
+    set lines=50 columns=95
+    set gfn=Menlo\ for\ Powerline:h14
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
@@ -227,7 +216,7 @@ else
     let g:solarized_termtrans=1
     let g:solarized_termcolors=16
     colorscheme solarized
-    "let g:airline_theme='serene'
+    let g:airline_theme='serene'
 
     " Set Tab bar color background to translucid and line to black
     " highlight TabLineFill ctermfg=Black ctermbg=none
@@ -279,7 +268,7 @@ set undofile
 " Use spaces instead of tabs
 set expandtab
 if has('autocmd')
-  autocmd filetype python,ruby,json set expandtab sw=4 ts=4
+  autocmd filetype python,ruby,php,json set expandtab sw=4 ts=4
   autocmd filetype javascript,html,xml,yml,yaml set expandtab sw=2 ts=2
 endif
 
@@ -410,7 +399,7 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.rb :call DeleteTrailingWS()
 autocmd BufWrite *.js :call DeleteTrailingWS()
 
 
