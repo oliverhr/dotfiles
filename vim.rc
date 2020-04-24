@@ -22,8 +22,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'mattn/emmet-vim'
 "Plugin 'pearofducks/ansible-vim'
 Plugin 'editorconfig/editorconfig-vim'
-"Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'leafgarland/typescript-vim'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -73,26 +74,31 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " syntactic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": ["javascript"],
+    \ "passive_filetypes": ["html"] }
 
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 " -------------------------------------------------------------------
 
 " ========================= General Settings ========================
@@ -203,12 +209,13 @@ highlight! link FoldColumn Normal
 " Set extra options when running in GUI mode
 if has("gui_running")
     set background=dark
-    colorscheme deep-space
-    let g:airline_theme='tomorrow'
-    set lines=45 columns=100
-    "set gfn=Menlo:h12
-    "set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-    set gfn=Monaco\ for\ Powerline:h14
+    "colorscheme deep-space
+    "let g:airline_theme='tomorrow'
+    colorscheme solarized
+    set lines=50 columns=100
+    set gfn=Menlo\ for\ Powerline:h12
+    "set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    "set gfn=Monaco\ for\ Powerline:h14
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
