@@ -19,31 +19,33 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'elixir-lang/vim-elixir'
 "Plugin 'mattn/emmet-vim'
 "Plugin 'pearofducks/ansible-vim'
-Plugin 'editorconfig/editorconfig-vim'
+"Plugin 'leafgarland/typescript-vim'
 "Plugin 'vim-syntastic/syntastic'
-Plugin 'elixir-lang/vim-elixir'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'kamwitsta/nordisk'
-Plugin 'whatyouhide/vim-gotham'
-Plugin 'tyrannicaltoucan/vim-deep-space'
-Plugin 'kocakosm/hilal'
-Plugin 'joshdick/onedark.vim'
-Plugin 'jscappini/material.vim'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'ratazzi/blackboard.vim'
-Plugin 'trusktr/seti.vim'
-Plugin 'croaky/vim-colors-github'
-Plugin 'croaker/mustang-vim'
-Plugin 'cocopon/iceberg.vim'
-Plugin 'crater2150/vim-theme-chroma'
-Plugin 'kristijanhusak/vim-hybrid-material'
+"Plugin 'whatyouhide/vim-gotham'
+"Plugin 'tyrannicaltoucan/vim-deep-space'
+"Plugin 'kocakosm/hilal'
+"Plugin 'joshdick/onedark.vim'
+"Plugin 'jscappini/material.vim'
+"Plugin 'NLKNguyen/papercolor-theme'
+"Plugin 'ratazzi/blackboard.vim'
+"Plugin 'trusktr/seti.vim'
+"Plugin 'croaky/vim-colors-github'
+"Plugin 'croaker/mustang-vim'
+"Plugin 'cocopon/iceberg.vim'
+"Plugin 'crater2150/vim-theme-chroma'
+"Plugin 'kristijanhusak/vim-hybrid-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
@@ -108,6 +110,7 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>q :q!<cr>
 nnoremap <silent> <leader>wq :wqa<CR>
 
 " Nerdtree
@@ -208,7 +211,7 @@ if has("gui_running")
     set lines=45 columns=100
     "set gfn=Menlo:h12
     "set gfn=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-    set gfn=Monaco\ for\ Powerline:h14
+    set gfn=Monaco\ for\ Powerline:h12
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
@@ -216,11 +219,14 @@ if has("gui_running")
 else
     set mouse=a
     set t_Co=256
+    set term=xterm-256color
     set background=dark
-    let g:solarized_termtrans=1
-    let g:solarized_termcolors=16
-    colorscheme solarized
+    "let g:solarized_termtrans=1
+    "let g:solarized_termcolors=256
+    "colorscheme solarized
     "let g:airline_theme='serene'
+    colorscheme nordisk
+    let g:airline_theme='atomic'
 
     " Set Tab bar color background to translucid and line to black
     " highlight TabLineFill ctermfg=Black ctermbg=none
