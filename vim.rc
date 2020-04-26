@@ -24,7 +24,6 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'leafgarland/typescript-vim'
 "Plugin 'mattn/emmet-vim'
 "Plugin 'pearofducks/ansible-vim'
-"Plugin 'vim-syntastic/syntastic'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -32,15 +31,6 @@ Plugin 'tyrannicaltoucan/vim-deep-space'
 Plugin 'joshdick/onedark.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'croaker/mustang-vim'
-"Plugin 'whatyouhide/vim-gotham'
-"Plugin 'kocakosm/hilal'
-"Plugin 'jscappini/material.vim'
-"Plugin 'ratazzi/blackboard.vim'
-"Plugin 'trusktr/seti.vim'
-"Plugin 'croaky/vim-colors-github'
-"Plugin 'cocopon/iceberg.vim'
-"Plugin 'crater2150/vim-theme-chroma'
-"Plugin 'kristijanhusak/vim-hybrid-material'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,6 +55,7 @@ filetype indent on
 " Plugins Settings
 " -------------------------------------------------------------------
 let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]']
+let NERDTreeQuitOpen = 1    " Hide NERDTree when opening a file
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 let g:ctrlp_custom_ignore = {
@@ -73,34 +64,6 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
-" syntactic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_loc_list_height = 5
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_javascript_checkers = ['eslint']
-
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_style_warning_symbol = '💩'
-
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_style_warning_symbol = '💩'
-
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
 " -------------------------------------------------------------------
 
 " ========================= General Settings ========================
@@ -115,8 +78,8 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
-nnoremap <silent> <leader>wq :wqa<CR>
+nnoremap <leader>w :w!<cr>
+nnoremap <silent> <leader>wx :xa<CR>
 
 " Nerdtree
 nnoremap <silent> <leader>f :NERDTreeToggle<Enter>
@@ -206,7 +169,7 @@ if has("gui_running")
     set background=dark
     colorscheme deep-space
     let g:airline_theme='tomorrow'
-    set lines=50 columns=85
+    set lines=50 columns=90
     set gfn=Menlo\ for\ Powerline:h13
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
@@ -220,7 +183,7 @@ else
     let g:solarized_termtrans=1
     let g:solarized_termcolors=16
     colorscheme solarized
-    let g:airline_theme='serene'
+    "let g:airline_theme='serene'
 
     " Set Tab bar color background to translucid and line to black
     " highlight TabLineFill ctermfg=Black ctermbg=none
@@ -299,16 +262,6 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,6 +300,10 @@ map <leader>tm :tabmove<cr>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+" Shift+ arrow -> <-
+nnoremap <S-RIGHT> :tabnext<cr>
+nnoremap <S-LEFT> :tabprevious<cr>
+
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -378,23 +335,14 @@ set viminfo^=%
 " Clear search higlight pressing enter
 :nnoremap <CR> :nohlsearch<CR><CR>
 
-" Mappings for save with ctrl+s
-"if has("gui_running")
-"  inoremap <C-S> <ESC>:w<CR>a
-"  nnoremap <C-S> <ESC>:w<CR>
-"endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
 " Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()
@@ -422,45 +370,28 @@ map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><r
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>gc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>gb :botright cope<cr>
-map <leader>go ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
+" Pressing ,sl will toggle and urn toggle spell checking
+map <leader>sl :setlocal spell!<cr>
+" Move between errors
 map <leader>sn ]s
 map <leader>sp [s
+" Add word to dictionary
 map <leader>sa zg
-map <leader>s? z=
+" Suggest correction
+map <leader>ss z=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 
 " ================ Helper Functions ==================
 function! CmdLine(str)
