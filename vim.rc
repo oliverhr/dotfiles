@@ -79,6 +79,7 @@ let g:mapleader = ","
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
+nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<CR>
 
 " Nerdtree
@@ -153,7 +154,6 @@ set sidescroll=1
 " Show status line
 set laststatus=2
 
-
 " ========================= Font & Color's ===========================
 " Enable syntax highlighting
 syntax enable
@@ -185,12 +185,12 @@ else
     colorscheme solarized
     "let g:airline_theme='serene'
 
-    " Set Tab bar color background to translucid and line to black
-    " highlight TabLineFill ctermfg=Black ctermbg=none
-
     " Disable color backgroud for tabs on text
-    " highlight SpecialKey guibg=none ctermbg=none
+    "highlight SpecialKey guibg=none ctermbg=none
 endif
+
+" Set Tab bar color background to translucid and line to black
+" highlight TabLineFill ctermfg=Black ctermbg=none
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
@@ -240,7 +240,6 @@ if has('autocmd')
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.rb :call DeleteTrailingWS()
   autocmd BufWrite *.js :call DeleteTrailingWS()
-
 
   " Return to last edit position when opening files (You want this!)
   autocmd BufReadPost *
@@ -316,7 +315,6 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
 
-
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
@@ -356,6 +354,28 @@ func! DeleteTrailingWS()
 endfunc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,sl will toggle and urn toggle spell checking
+map <leader>sl :setlocal spell!<cr>
+" Move between errors
+map <leader>sn ]s
+map <leader>sp [s
+" Add word to dictionary
+map <leader>sa zg
+" Suggest correction
+map <leader>ss z=
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press gv you vimgrep after the selected text
@@ -369,29 +389,6 @@ map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><r
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,sl will toggle and urn toggle spell checking
-map <leader>sl :setlocal spell!<cr>
-" Move between errors
-map <leader>sn ]s
-map <leader>sp [s
-" Add word to dictionary
-map <leader>sa zg
-" Suggest correction
-map <leader>ss z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
 
 " ================ Helper Functions ==================
 function! CmdLine(str)
@@ -421,7 +418,6 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
@@ -450,3 +446,4 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
