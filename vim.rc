@@ -80,11 +80,13 @@ let g:mapleader = ","
 " Fast saving
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<CR>
+nnoremap <silent> <leader>wx :xa<cr>
+" Fast quit
+nnoremap <leader>q :q!<cr>
 
 " Nerdtree
 nnoremap <silent> <leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <leader>v :NERDTreeFind<CR>
+nnoremap <silent> <leader>v :NERDTreeFind<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
@@ -331,20 +333,20 @@ set viminfo^=%
 " ================ Custom Mappings ==================
 
 " Insert date time pressing <f7> key
-:nnoremap <F7> "=strftime("%c")<CR>P
-:inoremap <F7> <C-R>=strftime("%c")<CR>
+:nnoremap <F7> "=strftime("%c")<cr>P
+:inoremap <F7> <C-R>=strftime("%c")<cr>
 
 " Clear search higlight pressing enter
-:nnoremap <CR> :nohlsearch<CR><CR>
+:nnoremap <CR> :nohlsearch<cr><cr>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
 " Move a line of text using ALT+[jk]
-nnoremap <S-Up> :m-2<CR>
-nnoremap <S-Down> :m+<CR>
-inoremap <S-Up> <Esc>:m-2<CR>
-inoremap <S-Down> <Esc>:m+<CR>
+nnoremap <S-Up> :m-2<cr>
+nnoremap <S-Down> :m+<cr>
+inoremap <S-Up> <Esc>:m-2<cr>
+inoremap <S-Down> <Esc>:m+<cr>
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()
@@ -379,7 +381,7 @@ map <leader>pp :setlocal paste!<cr>
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
+vnoremap <silent> gv :call VisualSelection('gv')<cr>
 
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
