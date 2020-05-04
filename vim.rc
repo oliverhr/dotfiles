@@ -55,7 +55,8 @@ filetype indent on
 " Plugins Settings
 " -------------------------------------------------------------------
 let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]']
-let NERDTreeQuitOpen = 1    " Hide NERDTree when opening a file
+" Hide NERDTree when opening a file
+let NERDTreeQuitOpen = 3
 
 " CtrlP ignored git files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -85,8 +86,8 @@ nnoremap <silent> <leader>wx :xa<cr>
 nnoremap <leader>q :q!<cr>
 
 " Nerdtree
-nnoremap <silent> <leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <leader>v :NERDTreeFind<cr>
+nnoremap <silent> <leader>m :NERDTreeToggle<Enter>
+nnoremap <silent> <leader>f :NERDTreeFind<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
@@ -187,8 +188,8 @@ else
     colorscheme solarized
     "let g:airline_theme='serene'
 
-    " Disable color backgroud for tabs on text
-    "highlight SpecialKey guibg=none ctermbg=none
+	" Disable color backgroud for tabs on text
+	highlight SpecialKey guibg=none ctermbg=none
 endif
 
 " Set Tab bar color background to translucid and line to black
@@ -236,9 +237,10 @@ set undofile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
+
 if has('autocmd')
   autocmd filetype python,ruby,php,json set expandtab sw=4 ts=4
-  autocmd filetype javascript,html,xml,yml,yaml set expandtab sw=2 ts=2
+  autocmd filetype javascript,html,xml,yaml set expandtab sw=2 ts=2
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.rb :call DeleteTrailingWS()
   autocmd BufWrite *.js :call DeleteTrailingWS()
@@ -254,9 +256,9 @@ endif
 
 " Be smart when using tabs ;)
 set smarttab
-
-" 1 tab == 4 spaces
+" 1 tab 4 spaces for auto-identation and <<>> ==
 set shiftwidth=4
+" width of the TAB character
 set tabstop=4
 
 " Linebreak on 500 characters
