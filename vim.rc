@@ -43,8 +43,9 @@ filetype indent on
 " -------------------------------------------------------------------
 " Plugins Settings
 " -------------------------------------------------------------------
-let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]', '__pycache__']
+let NERDTreeIgnore = ['.git$[[dir]]']
 let g:NERDTreeQuitOnOpen=3
+let NERDTreeRespectWildIgnore=1
 
 " CtrlP ignored git files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -89,7 +90,8 @@ set wildmode=list:longest
 set wildmenu        "enable ctrl-n and ctrl-p to scroll thru matches
 
 " ========================= Completion ==============================
-set wildignore=*.o,*.obj,*~,*.pyc   "stuff to ignore when tab completing
+" stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~,*.pyc
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
@@ -98,6 +100,7 @@ set wildignore+=bower_components/**
 set wildignore+=vendor/rails/**
 set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
+set wildignore+=__pycache__
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
