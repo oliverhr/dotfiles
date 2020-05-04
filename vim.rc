@@ -13,17 +13,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub repo
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'leafgarland/typescript-vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'pearofducks/ansible-vim'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -54,9 +43,8 @@ filetype indent on
 " -------------------------------------------------------------------
 " Plugins Settings
 " -------------------------------------------------------------------
-let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]']
-" Hide NERDTree when opening a file
-let NERDTreeQuitOpen = 3
+let NERDTreeIgnore = ['\.pyc$', '.git$[[dir]]', '__pycache__']
+let g:NERDTreeQuitOnOpen=3
 
 " CtrlP ignored git files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -171,22 +159,22 @@ highlight! link FoldColumn Normal
 if has("gui_running")
     set background=dark
     colorscheme deep-space
-    let g:airline_theme='tomorrow'
+    let g:airline_theme = 'tomorrow'
     set lines=50 columns=90
     set gfn=Menlo\ for\ Powerline:h13
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
     set guitablabel=%M\ %t
-    let g:solarized_menu=0 " Disable Solarized menu on GUI
+    let g:solarized_menu = 0 " Disable Solarized menu on GUI
 else
     set mouse=a
     set t_Co=256
     set background=dark
-    let g:solarized_termtrans=1
-    let g:solarized_termcolors=16
+    let g:solarized_termtrans = 1
+    let g:solarized_termcolors = 16
     colorscheme solarized
-    "let g:airline_theme='serene'
+    "let g:airline_theme = 'serene'
 
 	" Disable color backgroud for tabs on text
 	highlight SpecialKey guibg=none ctermbg=none
