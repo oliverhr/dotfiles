@@ -244,8 +244,8 @@ set undofile
 set expandtab
 
 if has('autocmd')
-  autocmd filetype python,ruby,php,json set expandtab sw=4 ts=4
-  autocmd filetype javascript,html,xml,yaml,typescript set expandtab sw=2 ts=2
+  autocmd filetype python,ruby,php set expandtab sw=4 ts=4
+  autocmd filetype json,javascript,typescript,html,xml,yaml set expandtab sw=2 ts=2
   autocmd BufWrite *.py :call DeleteTrailingWS()
   autocmd BufWrite *.rb :call DeleteTrailingWS()
   autocmd BufWrite *.js :call DeleteTrailingWS()
