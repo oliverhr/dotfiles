@@ -182,7 +182,10 @@ if has("gui_running")
     set guitablabel=%M\ %t
     let g:solarized_menu = 0 " Disable Solarized menu on GUI
 else
+    " Enable yanked to system clipboard
+    set clipboard=unnamed
     set mouse=a
+
     set t_Co=256
     set background=dark
     let g:solarized_termtrans = 1
