@@ -244,6 +244,7 @@ set undofile
 set expandtab
 
 if has('autocmd')
+  autocmd FileType gitcommit setlocal spell
   autocmd filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd filetype json,javascript,typescript,html,xml,yaml set expandtab sw=2 ts=2
   autocmd BufWrite *.py :call DeleteTrailingWS()
@@ -318,11 +319,13 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 " Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
+
+" Open a vertical split with the current buffer's path
+map <leader>sv :vsplit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
