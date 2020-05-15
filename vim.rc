@@ -202,6 +202,11 @@ endif
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
+" Powerline customization
+" if !exists('g:airline_symbols')
+"  let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.dirty='⇋'
 
 " Set translucid left vim columns (number and fold) by reseting value
 highlight clear FoldColumn
