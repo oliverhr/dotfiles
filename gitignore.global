@@ -125,3 +125,8 @@ bower_components
 # Editor/IDE Files and Folders
 .vscode
 jsconfig.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
