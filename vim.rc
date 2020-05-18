@@ -256,7 +256,7 @@ if has('autocmd')
   autocmd BufWrite *.rb :call DeleteTrailingWS()
   autocmd BufWrite *.js :call DeleteTrailingWS()
 
-  " Return to last edit position when opening files (You want this!)
+  " Return to last edit position when opening files
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
@@ -323,14 +323,17 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
-" Opens a new tab with the current buffer's path
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+" Opens a new tab with the current buffer's relative path
+map <leader>te :tabedit <c-r>=expand("%:~:.:h")<cr>/
 " Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
 
-" Open a vertical split with the current buffer's path
-map <leader>sv :vsplit <c-r>=expand("%:p:h")<cr>/
+" Splits prefer to the right and below
+set splitright
+set splitbelow
+" Open a vertical split with the current buffer's relative path
+map <leader>sv :vsplit <c-r>=expand("%:~:.:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
