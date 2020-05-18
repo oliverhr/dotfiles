@@ -314,7 +314,7 @@ map <leader>bh :new<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+map <silent><leader>bd :Bclose<cr>
 " Close all the buffers
 map <silent><leader>ba :%bd!<cr>
 
