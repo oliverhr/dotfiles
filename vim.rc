@@ -169,6 +169,15 @@ set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
+
+" Set Solarized as colorscheme
+function! LetSolarize()
+    set background=dark
+    let g:solarized_termtrans = 1
+    let g:solarized_termcolors = 16
+    color Solarized
+endfunction
+
 " Set extra options when running in GUI mode
 if has("gui_running")
     set background=dark
@@ -185,20 +194,34 @@ else
     " Enable yanked to system clipboard
     set clipboard=unnamed
     set mouse=a
-
     set t_Co=256
-    set background=dark
-    let g:solarized_termtrans = 1
-    let g:solarized_termcolors = 16
-    colorscheme solarized
-    "let g:airline_theme = 'serene'
 
-	" Disable color backgroud for tabs on text
+    if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+        set background=dark
+        color desert
+        let g:airline_theme = 'serene'
+        " Set Tab bar color background to translucid and line to black
+        highlight TabLineFill ctermfg=Black
+    endif
+
+    if match($TERM_PROGRAM,'\ciTerm') != -1
+        " For Solarized and derivatives
+        if match($ITERM_PROFILE,'\cIzed') != -1
+            call LetSolarize()
+        else
+            if match($ITERM_PROFILE,'\cDark') != -1
+                set background=dark
+                color PaperColor
+            else
+                set background=light
+                color Mustang
+            endif
+        endif
+    endif
+
+	" Disable color backgroud for tab character on text
 	highlight SpecialKey guibg=none ctermbg=none
 endif
-
-" Set Tab bar color background to translucid and line to black
-" highlight TabLineFill ctermfg=Black ctermbg=none
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
@@ -208,13 +231,13 @@ let g:airline_powerline_fonts = 1
 " endif
 " let g:airline_symbols.dirty='⇋'
 
-" Set translucid left vim columns (number and fold) by reseting value
+" Set Gutter column translucid - only work at start
 highlight clear FoldColumn
 highlight clear Folded
 highlight clear LineNr
 highlight clear SignColumn
 
-" Colorize extra white tabs or spaces
+" Colorize right extra white tab or space chars
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
@@ -355,7 +378,7 @@ set viminfo^=%
 :inoremap <F7> <C-R>=strftime("%c")<cr>
 
 " Clear search higlight pressing enter
-:nnoremap <CR> :nohlsearch<cr><cr>
+:nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
@@ -438,14 +461,6 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -466,4 +481,3 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
