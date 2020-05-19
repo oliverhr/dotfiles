@@ -27,11 +27,12 @@ Plugin 'leafgarland/typescript-vim'
 "Plugin 'mattn/emmet-vim'
 "Plugin 'pearofducks/ansible-vim'
 
-" Color schemes
+" Color schemes/themes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tyrannicaltoucan/vim-deep-space'
 Plugin 'joshdick/onedark.vim'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'cormacrelf/vim-colors-github'
 Plugin 'croaker/mustang-vim'
 
 " All of your Plugins must be added before the following line
@@ -214,9 +215,10 @@ else
             if match($ITERM_PROFILE,'\cDark') != -1
                 set background=dark
                 color PaperColor
+                highlight Normal ctermbg=none
             else
                 set background=light
-                color Mustang
+                color github
             endif
         endif
     endif
