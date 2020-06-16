@@ -2,7 +2,7 @@
 
 ### Dot files
 
-* Vim
+* Vim (mac)
 * Zsh
 * Aliases
 * Git ignore
