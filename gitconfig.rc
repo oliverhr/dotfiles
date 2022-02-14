@@ -1,0 +1,59 @@
+[user]
+	name = Oliver
+	email = @OliverHR
+[core]
+    excludesfile = /Users/oliver.rangel/.git/ignore.rc
+    editor = vim
+[commit]
+    gpgSign = false
+    template = /Users/oliver.rangel/.stCommitMsg
+[pull]
+    rebase = false
+
+[includeIf "gitdir:~/Documents/Projects/Personal/"]
+  path = ~/Documents/Projects/Personal/.gitconfig
+[includeIf "gitdir:~/Documents/Projects/Work/"]
+  path = ~/Documents/Projects/Work/.gitconfig
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[merge]
+    tool = kaleidoscope
+[mergetool]
+    prompt = false
+[mergetool "kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+[mergetool "sourcetree"]
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+
+[diff]
+[difftool]
+    tool = kaleidoscope
+    prompt = false
+[difftool "kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+
+[alias]
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
+    parent-branch = "!f() { \
+            git show-branch \
+                | grep '\\*' \
+                | grep -v `git rev-parse --abbrev-ref HEAD` \
+                | head -n1 \
+                | sed 's/.*\\[\\(.*\\)\\].*/\\1/' \
+                | sed 's/[\\^~].*//'; \
+        }; f"
+    worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
+    branches = !git --no-pager branch
+    commits = !git --no-pager log --no-merges --stat --oneline
+    delmerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+
