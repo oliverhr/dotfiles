@@ -7,40 +7,48 @@ filetype off
 
 " ======================= Vundle Settings =========================
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin()
 
 " Plugins on GitHub repo
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'leafgarland/typescript-vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'pearofducks/ansible-vim'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'machakann/vim-sandwich'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jiangmiao/auto-pairs'
+
+" Syntax and tools plugins
+" Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'hashivim/vim-terraform'
+Plug 'rescript-lang/vim-rescript'
+"Plug 'elixir-lang/vim-elixir'
+"Plug 'mattn/emmet-vim'
+"Plug 'pearofducks/ansible-vim'
 
 " Color schemes/themes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tyrannicaltoucan/vim-deep-space'
-Plugin 'joshdick/onedark.vim'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'cormacrelf/vim-colors-github'
-Plugin 'croaker/mustang-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'cormacrelf/vim-colors-github'
+Plug 'croaker/mustang-vim'
+Plug 'whatyouhide/vim-gotham'
+Plug 'jnurmine/Zenburn'
+Plug 'jacoborus/tender.vim'
+Plug 'crucerucalin/peaksea.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'joshdick/onedark.vim'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+" filetype plugin on
+" filetype indent on
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -69,6 +77,9 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|DS_Store)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+" Format Terraform file on save
+let g:terraform_fmt_on_save=0
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
@@ -186,27 +197,29 @@ if has("gui_running")
     set background=dark
     colorscheme deep-space
     let g:airline_theme = 'tomorrow'
-    set lines=50 columns=90
-    set gfn=Menlo\ for\ Powerline:h13
+    set lines=45 columns=100
+    set gfn=Monaco\ for\ Powerline:h14
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
     set guitablabel=%M\ %t
     let g:solarized_menu = 0 " Disable Solarized menu on GUI
-else
+else " RUNNING ON A TERMINAL
     " Enable yanked to system clipboard
     set clipboard=unnamed
     set mouse=a
     set t_Co=256
 
+    " MacOS Terminal
     if match($TERM_PROGRAM,'\cApple_Terminal') != -1
         set background=dark
-        color desert
+        color onedark
         let g:airline_theme = 'serene'
         " Set Tab bar color background to translucid and line to black
         highlight TabLineFill ctermfg=Black
     endif
 
+    " iTerm
     if match($TERM_PROGRAM,'\ciTerm') != -1
         " For Solarized and derivatives
         if match($ITERM_PROFILE,'\cIzed') != -1
@@ -217,14 +230,21 @@ else
                 color PaperColor
                 highlight Normal ctermbg=none
             else
-                set background=light
-                color github
+                set background=dark
+                color onedark
             endif
         endif
     endif
 
-	" Disable color backgroud for tab character on text
-	highlight SpecialKey guibg=none ctermbg=none
+    " Alacritty
+    if match($TERM_PROGRAM,'\cAlacritty') != -1
+        set termguicolors
+        set background=dark
+        color base16-outrun-dark
+        " highlight Comment cterm=italic gui=italic
+    endif
+
+    highlight SpecialKey guibg=bg ctermbg=none
 endif
 
 " Powerline settings
@@ -244,6 +264,9 @@ highlight clear SignColumn
 " Colorize right extra white tab or space chars
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+" Display tabs and trailing spaces visually
+set list listchars=tab:\|\ ,trail:·
+
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -277,11 +300,18 @@ set expandtab
 
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
-  autocmd filetype python,ruby,php set expandtab sw=4 ts=4
-  autocmd filetype json,javascript,typescript,html,xml,yaml set expandtab sw=2 ts=2
-  autocmd BufWrite *.py :call DeleteTrailingWS()
-  autocmd BufWrite *.rb :call DeleteTrailingWS()
-  autocmd BufWrite *.js :call DeleteTrailingWS()
+  autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
+  autocmd Filetype json,javascript,typescript,html,xml,yaml set expandtab sw=2 ts=2
+  autocmd Filetype json,html,xml,yaml,markdown set expandtab sw=2 ts=2 wrap
+
+  " Shell files Indent with tabs, align with spaces
+  autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
+
+  " Go files Indent with tabs, align with spaces
+  autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
+
+  " Remove all whitespace at buffer saving
+  autocmd BufWrite * :call DeleteTrailingWS()
 
   " Return to last edit position when opening files
   autocmd BufReadPost *
@@ -307,9 +337,6 @@ set ai "Auto indent
 set si "Smart indent
 set nowrap "Wrap lines
 
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
-
 " Folds
 set foldmethod=indent   "fold based on indent
 set foldnestmax=3       "deepest fold is 3 levels
@@ -323,8 +350,8 @@ map j gj
 map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+" map <space> /
+" map <C-space> ?
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -361,6 +388,8 @@ set splitright
 set splitbelow
 " Open a vertical split with the current buffer's relative path
 map <leader>sv :vsplit <c-r>=expand("%:~:.:h")<cr>/
+" Open a horizontal split with the current buffer's relative path
+map <leader>sh :split <c-r>=expand("%:~:.:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
