@@ -103,8 +103,8 @@ bower_components
 .grunt
 
 # Direnv stuff
-.direnv
 .envrc
+.env
 
 # --- Python ---
 *.pyc
