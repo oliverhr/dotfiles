@@ -102,9 +102,10 @@ node_modules
 bower_components
 .grunt
 
-# Direnv stuff
+# Local environment tools(Direnv, Shadowenv)
 .envrc
 .env
+.shadowenv.d
 
 # --- Python ---
 *.pyc
