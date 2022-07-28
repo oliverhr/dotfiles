@@ -6,6 +6,7 @@
 * Zsh
 * Aliases
 * Git ignore
+* Tmux
 
 ### Zsh theme Geekster - a zsh theme
 

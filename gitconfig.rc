@@ -1,6 +1,6 @@
 [user]
-	name = Oliver
-	email = @OliverHR
+    name = Oliver
+    email = @OliverHR
 [core]
     excludesfile = /Users/oliver.rangel/.git/ignore.rc
     editor = vim
@@ -9,11 +9,6 @@
     template = /Users/oliver.rangel/.stCommitMsg
 [pull]
     rebase = false
-
-[includeIf "gitdir:~/Documents/Projects/Personal/"]
-  path = ~/Documents/Projects/Personal/.gitconfig
-[includeIf "gitdir:~/Documents/Projects/Work/"]
-  path = ~/Documents/Projects/Work/.gitconfig
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -28,7 +23,7 @@
 [mergetool "kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
     trustExitCode = true
-[mergetool "sourcetree"]
+[mergetool "Vsourcetree"]
     cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
 
@@ -56,4 +51,13 @@
     branches = !git --no-pager branch
     commits = !git --no-pager log --no-merges --stat --oneline
     delmerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+    root = !git rev-parse --show-toplevel
+
+; ------------------------------------------------------------------------------
+; include for all repositories inside /path/to/group
+; ------------------------------------------------------------------------------
+[includeIf "gitdir:~/Documents/Projects/Personal/"]
+  path = ~/Documents/Projects/Personal/.gitconfig
+[includeIf "gitdir:~/Documents/Projects/Work/"]
+  path = ~/Documents/Projects/Work/.gitconfig
 
