@@ -19,13 +19,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'yasuhiroki/github-actions-yaml.vim'
 
 " Syntax and tools plugins
 " Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'rescript-lang/vim-rescript'
-"Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 "Plug 'mattn/emmet-vim'
 "Plug 'pearofducks/ansible-vim'
 
@@ -96,6 +97,7 @@ let g:mapleader = ","
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
+
 " Fast quit
 nnoremap <leader>q :q!<cr>
 
@@ -198,7 +200,7 @@ if has("gui_running")
     colorscheme deep-space
     let g:airline_theme = 'tomorrow'
     set lines=45 columns=100
-    set gfn=Monaco\ for\ Powerline:h14
+    set gfn=Hack\ Nerd\ Font\ Mono:h14
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
@@ -210,17 +212,16 @@ else " RUNNING ON A TERMINAL
     set mouse=a
     set t_Co=256
 
-    " MacOS Terminal
+    " Set colorscheme based on TERM_PROGRAM used
     if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+    " MacOS Terminal
         set background=dark
         color onedark
         let g:airline_theme = 'serene'
         " Set Tab bar color background to translucid and line to black
         highlight TabLineFill ctermfg=Black
-    endif
-
+    elseif match($TERM_PROGRAM,'\ciTerm') != -1
     " iTerm
-    if match($TERM_PROGRAM,'\ciTerm') != -1
         " For Solarized and derivatives
         if match($ITERM_PROFILE,'\cIzed') != -1
             call LetSolarize()
@@ -234,26 +235,37 @@ else " RUNNING ON A TERMINAL
                 color onedark
             endif
         endif
-    endif
-
+    elseif match($TERM_PROGRAM,'\cAlacritty') != -1
     " Alacritty
-    if match($TERM_PROGRAM,'\cAlacritty') != -1
         set termguicolors
         set background=dark
         color base16-outrun-dark
         " highlight Comment cterm=italic gui=italic
+    else
+    " Tmux
+        set background=dark
+        color gruvbox
+        " Set Tab bar color background to translucid and line to black
+        highlight TabLineFill ctermfg=Black
     endif
 
     highlight SpecialKey guibg=bg ctermbg=none
+
+    " Spelling mistakes will be colored up red.
+    hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+    hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+    hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+    hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endif
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
 " Powerline customization
-" if !exists('g:airline_symbols')
-"  let g:airline_symbols = {}
-" endif
-" let g:airline_symbols.dirty='⇋'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+    " let g:airline_symbols.dirty='⇋'
+    " let g:airline_symbols.colnr = "\u33c7"
 
 " Set Gutter column translucid - only work at start
 highlight clear FoldColumn
@@ -301,14 +313,17 @@ set expandtab
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
-  autocmd Filetype json,javascript,typescript,html,xml,yaml set expandtab sw=2 ts=2
-  autocmd Filetype json,html,xml,yaml,markdown set expandtab sw=2 ts=2 wrap
+  autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
+  autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
 
   " Shell files Indent with tabs, align with spaces
   autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
 
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
+
+  " XML files Indent with tabs, align with spaces
+  autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
   " Remove all whitespace at buffer saving
   autocmd BufWrite * :call DeleteTrailingWS()
@@ -362,7 +377,7 @@ map <C-l> <C-W>l
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Quick open new buffers
+" Quick open blank/new buffers
 map <leader>bn :enew<cr>
 map <leader>bh :new<cr>
 map <leader>bv :vnew<cr>
@@ -514,3 +529,4 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
