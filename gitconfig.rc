@@ -1,9 +1,11 @@
-[user]
-    name = Oliver
-    email = @OliverHR
 [core]
     excludesfile = /Users/oliver.rangel/.git/ignore.rc
     editor = vim
+[init]
+    defaultBranch = main
+[user]
+    name = Oliver
+    email = @OliverHR
 [commit]
     gpgSign = false
     template = /Users/oliver.rangel/.stCommitMsg
@@ -49,9 +51,10 @@
         }; f"
     worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
     branches = !git --no-pager branch
+    tags = !git --no-pager tag
+    logs = !git --no-pager log --no-merges --stat --oneline
     commits = !git --no-pager log --no-merges --stat --oneline
     delmerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
-    root = !git rev-parse --show-toplevel
 
 ; ------------------------------------------------------------------------------
 ; include for all repositories inside /path/to/group
