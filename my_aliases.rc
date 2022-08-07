@@ -5,9 +5,10 @@
 MY_EDITOR="mvim"
 
 # Edit cofigs
+alias bashconfig="${MY_EDITOR} ~/.bash_profile"
 alias zshconfig="${MY_EDITOR} ~/.zshrc"
 alias vimconfig="${MY_EDITOR} ~/.vim/vimrc"
-alias aliasesconfig="${MY_EDITOR} ~/.my_aliases.rc"
+alias aliases="${MY_EDITOR} ~/.my_aliases.rc"
 alias historyview="${MY_EDITOR} -R ~/.zsh_history"
 alias sshconfig="${MY_EDITOR} ~/.ssh/config"
 alias gitconfig="${MY_EDITOR} ~/.gitconfig"
@@ -18,16 +19,19 @@ alias cd..="cd .."
 alias lsd="ls -ld */"
 alias lsh="ls -d .*"
 alias v="vim"
+alias tg="terragrunt"
+alias tgra="terragrunt run-all --terragrunt-include-external-dependencies"
 
 # Overrides
-alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
+# alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
 
 ### Composed commands ###
 
 # GIT
 alias git-clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
-alias git-log="git --no-pager log --no-merges --stat --oneline"
 alias gfl="git flow"
+alias gs="git switch"
+alias gcd="git switch dev"
 
 git-remove-tag() {
     TAG=$1
@@ -36,7 +40,7 @@ git-remove-tag() {
 }
 
 # DOCKER
-alias docker-list="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
+alias docker-containers="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 
 docker-clean-volumes() {
     docker volume rm $(docker volume ls --quiet --filter "dangling=true")
