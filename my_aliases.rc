@@ -33,6 +33,10 @@ alias gfl="git flow"
 alias gs="git switch"
 alias gcd="git switch dev"
 
+cdr() {
+    cd $(git root)
+}
+
 git-remove-tag() {
     TAG=$1
     git tag -d $TAG
