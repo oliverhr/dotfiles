@@ -9,7 +9,7 @@ filetype off
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
-" Plugins on GitHub repo
+" Plugins: utils
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -21,7 +21,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'yasuhiroki/github-actions-yaml.vim'
 
-" Syntax and tools plugins
+" Plugins: syntax
 " Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
@@ -30,7 +30,7 @@ Plug 'elixir-editors/vim-elixir'
 "Plug 'mattn/emmet-vim'
 "Plug 'pearofducks/ansible-vim'
 
-" Color schemes/themes
+" Plugins: Color schemes/themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'tyrannicaltoucan/vim-deep-space'
@@ -79,8 +79,9 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
-" Format Terraform file on save
-let g:terraform_fmt_on_save=0
+" Format Terraform
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember

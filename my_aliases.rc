@@ -2,16 +2,16 @@
 # My Custom Alias
 # --------------------------------------------------
 
-MY_EDITOR="mvim"
+ALIAS_EDITOR="mvim"
 
 # Edit cofigs
-alias bashconfig="${MY_EDITOR} ~/.bash_profile"
-alias zshconfig="${MY_EDITOR} ~/.zshrc"
-alias vimconfig="${MY_EDITOR} ~/.vim/vimrc"
-alias aliases="${MY_EDITOR} ~/.my_aliases.rc"
-alias historyview="${MY_EDITOR} -R ~/.zsh_history"
-alias sshconfig="${MY_EDITOR} ~/.ssh/config"
-alias gitconfig="${MY_EDITOR} ~/.gitconfig"
+alias bashconfig="$ALIAS_EDITOR ~/.bash_profile"
+alias zshconfig="$ALIAS_EDITOR ~/.zshrc"
+alias vimconfig="$ALIAS_EDITOR ~/.vim/vimrc"
+alias aliases="$ALIAS_EDITOR ~/.my_aliases.rc"
+alias historyview="$ALIAS_EDITOR -R ~/.zsh_history"
+alias sshconfig="$ALIAS_EDITOR ~/.ssh/config"
+alias gitconfig="$ALIAS_EDITOR ~/.gitconfig"
 
 # Commands
 # alias ls='ls --color=auto'
@@ -32,10 +32,6 @@ alias git-clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
 alias gfl="git flow"
 alias gs="git switch"
 alias gcd="git switch dev"
-
-cdr() {
-    cd $(git root)
-}
 
 git-remove-tag() {
     TAG=$1
