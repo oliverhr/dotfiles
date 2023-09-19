@@ -27,6 +27,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'rescript-lang/vim-rescript'
 Plug 'elixir-editors/vim-elixir'
+Plug 'Tetralux/odin.vim'
 "Plug 'mattn/emmet-vim'
 "Plug 'pearofducks/ansible-vim'
 
@@ -43,6 +44,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'crucerucalin/peaksea.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -242,8 +244,12 @@ else " RUNNING ON A TERMINAL
         set background=dark
         color base16-outrun-dark
         " highlight Comment cterm=italic gui=italic
-    else
+    elseif match($TERM_PROGRAM,'\cTmux') != -1
     " Tmux
+        set background=dark
+        color catppuccin_mocha
+        let g:airline_theme = 'base16_shell'
+    else
         set background=dark
         color gruvbox
         " Set Tab bar color background to translucid and line to black
