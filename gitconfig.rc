@@ -1,5 +1,5 @@
 [core]
-    excludesfile = /Users/oliver.rangel/.git/ignore.rc
+    excludesfile = ~/.git/ignore.rc
     editor = vim
 [init]
     defaultBranch = main
