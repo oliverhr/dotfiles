@@ -4,7 +4,7 @@
 [init]
     defaultBranch = main
 [user]
-    name = Oliver
+    name = OliverHR
     email = @OliverHR
 [commit]
     gpgSign = false
