@@ -247,8 +247,8 @@ else " RUNNING ON A TERMINAL
     elseif match($TERM_PROGRAM,'\cTmux') != -1
     " Tmux
         set background=dark
-        color catppuccin_mocha
-        let g:airline_theme = 'base16_shell'
+        color PaperColor
+        let g:airline_theme = 'zenburn'
     else
         set background=dark
         color gruvbox
