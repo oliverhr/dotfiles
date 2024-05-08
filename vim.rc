@@ -34,15 +34,12 @@ Plug 'Tetralux/odin.vim'
 " Plugins: Color schemes/themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'crusoexia/vim-monokai'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'croaker/mustang-vim'
-Plug 'whatyouhide/vim-gotham'
-Plug 'jnurmine/Zenburn'
-Plug 'jacoborus/tender.vim'
 Plug 'crucerucalin/peaksea.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
@@ -98,11 +95,13 @@ let g:mapleader = ","
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
-nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>wa :wa<cr>
 
 " Fast quit
 nnoremap <leader>q :q!<cr>
+nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
 nnoremap <silent> <leader>m :NERDTreeToggle<Enter>
@@ -247,11 +246,16 @@ else " RUNNING ON A TERMINAL
     elseif match($TERM_PROGRAM,'\cTmux') != -1
     " Tmux
         set background=dark
-        color PaperColor
+        color onedark
         let g:airline_theme = 'zenburn'
+    elseif match($TERM_PROGRAM,'\cRio') != -1
+    " Rio
+        set background=dark
+        color sorbet
+        let g:airline_theme = 'biogoo'
     else
         set background=dark
-        color gruvbox
+        color quiet
         " Set Tab bar color background to translucid and line to black
         highlight TabLineFill ctermfg=Black
     endif
@@ -319,6 +323,7 @@ set expandtab
 
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
+  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
@@ -385,14 +390,16 @@ map <C-l> <C-W>l
 map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
-map <leader>bn :enew<cr>
-map <leader>bh :new<cr>
+map <leader>bh :enew<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 " Close the current buffer
 map <silent><leader>bd :Bclose<cr>
 " Close all the buffers
 map <silent><leader>ba :%bd!<cr>
+" Move between bufferrs
+map <leader>bn :bnext<cr>
+map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -438,7 +445,7 @@ set viminfo^=%
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Move a line of text using ALT+[jk]
+" Move a line of text using SHIFT+[jk]
 nnoremap <S-Up> :m-2<cr>
 nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>

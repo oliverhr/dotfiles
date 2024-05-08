@@ -40,7 +40,7 @@ Plug 'cormacrelf/vim-colors-github'
 Plug 'croaker/mustang-vim'
 Plug 'crucerucalin/peaksea.vim'
 Plug 'joshdick/onedark.vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin'  }
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
