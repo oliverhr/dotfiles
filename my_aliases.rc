@@ -19,6 +19,8 @@ alias cd..="cd .."
 alias lsd="ls -ld */"
 alias lsh="ls -d .*"
 alias v="vim"
+alias emc="emacs"
+alias e="emacs"
 alias tg="terragrunt"
 alias tgra="terragrunt run-all --terragrunt-include-external-dependencies"
 
