@@ -9,7 +9,7 @@ filetype off
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
-" Plugins: utils
+" - - - Utilities - - -
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -20,7 +20,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 
-" Plugins: syntax
+" - - - Syntax - - -
 " Plug 'fatih/vim-go'
 " Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
@@ -28,9 +28,10 @@ Plug 'hashivim/vim-terraform'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'mattn/emmet-vim'
 " Plug 'pearofducks/ansible-vim'
-Plug 'yasuhiroki/github-actions-yaml.vim'
+" Plug 'yasuhiroki/github-actions-yaml.vim'
+" Plug 'Tetralux/odin.vim'
 
-" Plugins: Color schemes/themes
+" - - - Colorschemes - - -
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'crusoexia/vim-monokai'
@@ -267,6 +268,7 @@ set noswapfile
 "silent !mkdir ~/.vim/backups > /dev/null 2>&1
 set undodir=~/vimfiles/undodir
 set undofile
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -387,6 +389,7 @@ set viminfo^=%
 
 " ================ Custom Mappings ==================
 " Additional way to go to toggle from insert and nomal mode
+" Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
 

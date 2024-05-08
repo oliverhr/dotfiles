@@ -435,7 +435,7 @@ set viminfo^=%
 
 " ================ Custom Mappings ==================
 " Additional way to go to toggle from insert and nomal mode
-" This does only works with GUI in macos
+" Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
 
