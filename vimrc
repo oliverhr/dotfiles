@@ -23,7 +23,7 @@ Plug 'jiangmiao/auto-pairs'
 " - - - Syntax - - -
 " Plug 'fatih/vim-go'
 " Plug 'leafgarland/typescript-vim'
-Plug 'hashivim/vim-terraform'
+" Plug 'hashivim/vim-terraform'
 " Plug 'rescript-lang/vim-rescript'
 " Plug 'elixir-editors/vim-elixir'
 " Plug 'mattn/emmet-vim'
@@ -38,7 +38,6 @@ Plug 'crusoexia/vim-monokai'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'croaker/mustang-vim'
 Plug 'crucerucalin/peaksea.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
@@ -116,7 +115,8 @@ set so=7
 
 " Turn on the WiLd menu
 set wildmode=list:longest
-set wildmenu        "enable ctrl-n and ctrl-p to scroll thru matches
+" enable ctrl-n and ctrl-p to scroll thru matches
+set wildmenu
 
 " ========================= Completion ==============================
 " stuff to ignore when tab completing
