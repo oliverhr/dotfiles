@@ -73,7 +73,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " Exclude files and directories using Vim's wildignore and CtrlP's own custome ignore
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|DS_Store)$',
+  \ 'file': '\v\.(exe|pdb|so|dll|DS_Store)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
@@ -135,7 +135,7 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
 
 "Always show current position
 set ruler
