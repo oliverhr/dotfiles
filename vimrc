@@ -5,6 +5,15 @@
 set nocompatible
 filetype off
 
+"==================================================================
+" Windows OS
+" instead of: !clear && python %
+" do: !clear; python %
+"set shell=powershell
+"set shellcmdflag=-command
+"set shellquote=\"
+"set shellxquote=
+
 " ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
@@ -22,7 +31,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " - - - Syntax - - -
 " Plug 'fatih/vim-go'
-" Plug 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 " Plug 'hashivim/vim-terraform'
 " Plug 'rescript-lang/vim-rescript'
 " Plug 'elixir-editors/vim-elixir'
@@ -111,7 +120,7 @@ set path+=**
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set scrolloff=7
 
 " Turn on the WiLd menu
 set wildmode=list:longest
@@ -134,15 +143,15 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip           " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pdb  " Windows
 
 "Always show current position
 set ruler
 " Height of the command bar
 set cmdheight=2
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -193,7 +202,7 @@ if has("gui_running")
     colorscheme deep-space
     let g:airline_theme = 'tomorrow'
     set lines=45 columns=100
-    set gfn=Agave\ Nerd\ Font\ Mono:h12
+    set gfn=Agave\ Nerd\ Font\ Mono:h13
     set guioptions-=T " Hide toolbar
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
@@ -246,17 +255,18 @@ set list listchars=tab:\|\ ,trail:·
 
 
 " Set utf8 as standard encoding and en_US as the standard language
+scriptencoding utf-8
 set encoding=utf8
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -274,6 +284,12 @@ set undofile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
+" Be smart when using tabs ;)
+set smarttab
+" 1 tab 4 spaces for auto-identation and <<>> ==
+set shiftwidth=4
+" width of the TAB character
+set tabstop=4
 
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
@@ -303,19 +319,12 @@ if has('autocmd')
   au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 endif
 
-" Be smart when using tabs ;)
-set smarttab
-" 1 tab 4 spaces for auto-identation and <<>> ==
-set shiftwidth=4
-" width of the TAB character
-set tabstop=4
-
 " Linebreak on 500 characters
-set lbr
-set tw=500
+set linebreak
+set textwidth=500
 
-set ai "Auto indent
-set si "Smart indent
+set autoindent "Auto indent
+set smartindent "Smart indent
 set nowrap "Wrap lines
 
 " Folds

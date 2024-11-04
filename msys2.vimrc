@@ -5,6 +5,12 @@
 set nocompatible
 filetype off
 
+"==================================================================
+" Windows OS:
+" - Git bash
+" - Cygwin
+" - msys2
+
 " ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
@@ -38,7 +44,6 @@ Plug 'crusoexia/vim-monokai'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'croaker/mustang-vim'
 Plug 'crucerucalin/peaksea.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
@@ -188,87 +193,25 @@ set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
+" Enable yanked to system clipboard
+set clipboard=unnamed
+set mouse=a
+set t_Co=256
 
-" Set Solarized as colorscheme
-function! LetSolarize()
-    set background=dark
-    let g:solarized_termtrans = 1
-    let g:solarized_termcolors = 16
-    color Solarized
-endfunction
+set background=light
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 16
+color solarized
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set background=dark
-    colorscheme deep-space
-    let g:airline_theme = 'tomorrow'
-    set lines=45 columns=100
-    set gfn=Hack\ Nerd\ Font\ Mono:h14
-    set guioptions-=r " Hide rigth scrollbar
-    set guioptions-=L " Hide left scrollbar
-    set guioptions-=e " Set gui-tabs as terminal
-    set guitablabel=%M\ %t
-    let g:solarized_menu = 0 " Disable Solarized menu on GUI
-else " RUNNING ON A TERMINAL
-    " Enable yanked to system clipboard
-    set clipboard=unnamed
-    set mouse=a
-    set t_Co=256
+" Set Tab bar color background to translucid and line to black
+highlight TabLineFill ctermfg=Black
+highlight SpecialKey guibg=bg ctermbg=none
 
-    " Set colorscheme based on TERM_PROGRAM used
-    if match($TERM_PROGRAM,'\cApple_Terminal') != -1
-    " MacOS Terminal
-        set background=dark
-        color onedark
-        let g:airline_theme = 'serene'
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
-    elseif match($TERM_PROGRAM,'\ciTerm') != -1
-    " iTerm
-        " For Solarized and derivatives
-        if match($ITERM_PROFILE,'\cIzed') != -1
-            call LetSolarize()
-        else
-            if match($ITERM_PROFILE,'\cDark') != -1
-                set background=dark
-                color PaperColor
-                highlight Normal ctermbg=none
-            else
-                set background=dark
-                color onedark
-            endif
-        endif
-    elseif match($TERM_PROGRAM,'\cAlacritty') != -1
-    " Alacritty
-        set termguicolors
-        set background=dark
-        color base16-outrun-dark
-        " highlight Comment cterm=italic gui=italic
-    elseif match($TERM_PROGRAM,'\cTmux') != -1
-    " Tmux
-        set background=dark
-        color onedark
-        let g:airline_theme = 'zenburn'
-    elseif match($TERM_PROGRAM,'\cRio') != -1
-    " Rio
-        set background=dark
-        color sorbet
-        let g:airline_theme = 'biogoo'
-    else
-        set background=dark
-        color quiet
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
-    endif
-
-    highlight SpecialKey guibg=bg ctermbg=none
-
-    " Spelling mistakes will be colored up red.
-    hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
-endif
+" Spelling mistakes will be colored up red.
+hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " Powerline settings
 let g:airline_powerline_fonts = 1
