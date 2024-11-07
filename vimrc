@@ -49,6 +49,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'crucerucalin/peaksea.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
@@ -199,7 +200,7 @@ highlight! link FoldColumn Normal
 " Set extra options when running in GUI mode
 if has("gui_running")
     set background=dark
-    colorscheme deep-space
+    color deep-space
     let g:airline_theme = 'tomorrow'
     set lines=45 columns=100
     set gfn=Agave\ Nerd\ Font\ Mono:h13
@@ -215,11 +216,16 @@ else " RUNNING ON A TERMINAL
     " Enable yanked to system clipboard
     set clipboard=unnamed
     set mouse=a
-    set t_Co=256
+
+    " set t_Co=256
+    set termguicolors
 
     " Set colorscheme based on TERM_PROGRAM used
-    set background=dark
-    color monokai
+    " set background=dark
+    let g:tokyonight_style = 'night' " options: night, storm
+    let g:tokyonight_enable_italic = 1
+    colorscheme tokyonight
+
     " Set Tab bar color background to translucid and line to black
     highlight TabLineFill ctermfg=Black
 
