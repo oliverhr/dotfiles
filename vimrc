@@ -30,7 +30,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 
 " - - - Syntax - - -
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
 " Plug 'hashivim/vim-terraform'
 " Plug 'rescript-lang/vim-rescript'
@@ -197,21 +197,29 @@ set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
+" Set Gutter column translucid - only work at start
+highlight clear FoldColumn
+highlight clear Folded
+highlight clear LineNr
+highlight clear SignColumn
+
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set background=dark
+    set relativenumber
+    highlight LineNr guifg=#333D60
+
     color deep-space
     let g:airline_theme = 'tomorrow'
+
     set lines=45 columns=100
-    set gfn=Agave\ Nerd\ Font\ Mono:h13
+    set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
     set guioptions-=T " Hide toolbar
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
     set guitablabel=%M\ %t
+
     let g:solarized_menu = 0 " Disable Solarized menu on GUI
-    " set relativenumber
-    " highlight LineNr guifg=#333D50
 else " RUNNING ON A TERMINAL
     " Enable yanked to system clipboard
     set clipboard=unnamed
@@ -238,20 +246,12 @@ else " RUNNING ON A TERMINAL
     hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endif
 
-" Powerline settings
+" Airline settings
 let g:airline_powerline_fonts = 1
-" Powerline customization
+" Airline customization
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-    " let g:airline_symbols.dirty='⇋'
-    " let g:airline_symbols.colnr = "\u33c7"
-
-" Set Gutter column translucid - only work at start
-highlight clear FoldColumn
-highlight clear Folded
-highlight clear LineNr
-highlight clear SignColumn
 
 " Colorize right extra white tab or space chars
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -397,6 +397,7 @@ try
   set switchbuf=useopen,usetab,newtab
   set stal=2
 catch
+    " nothing for the moment
 endtry
 
 " Remember info about open buffers on close
