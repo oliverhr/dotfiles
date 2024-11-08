@@ -19,9 +19,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " - - - Syntax - - -
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 " Plug 'leafgarland/typescript-vim'
 Plug 'hashivim/vim-terraform'
 " Plug 'rescript-lang/vim-rescript'
@@ -214,6 +216,7 @@ else " RUNNING ON A TERMINAL
     set clipboard=unnamed
     set mouse=a
     set t_Co=256
+    set termguicolors
 
     " Set colorscheme based on TERM_PROGRAM used
     if match($TERM_PROGRAM,'\cApple_Terminal') != -1
@@ -229,21 +232,19 @@ else " RUNNING ON A TERMINAL
         if match($ITERM_PROFILE,'\cIzed') != -1
             call LetSolarize()
         else
-            if match($ITERM_PROFILE,'\cDark') != -1
-                set background=dark
-                color PaperColor
+            set background=dark
+            if match($ITERM_PROFILE,'\cCatpuccino') != -1
+                color catppuccin_mocha
+                let g:airline_theme = 'catppuccin_mocha'
                 highlight Normal ctermbg=none
             else
-                set background=dark
-                color onedark
+                set background=light
+                color morning
             endif
         endif
-    elseif match($TERM_PROGRAM,'\cAlacritty') != -1
-    " Alacritty
-        set termguicolors
-        set background=dark
-        color base16-outrun-dark
-        " highlight Comment cterm=italic gui=italic
+    elseif match($TERM_PROGRAM,'\cWezterm') != -1
+    " WezTerm
+        color sorbet
     elseif match($TERM_PROGRAM,'\cTmux') != -1
     " Tmux
         set background=dark
@@ -331,7 +332,7 @@ set tabstop=4
 
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
-  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4
+  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
@@ -466,7 +467,7 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,sl will toggle and urn toggle spell checking
+" Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
 map <leader>sn ]s
