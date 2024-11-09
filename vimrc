@@ -27,7 +27,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs'
 
 " - - - Syntax - - -
 Plug 'fatih/vim-go'
