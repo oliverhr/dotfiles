@@ -1,6 +1,17 @@
 " vim: set ft=vim:
 
 "==================================================================
+" Windows macOS
+"
+" Apple terminal specific issues with color
+" require to set t_Co=16 for some color schemes
+"
+" Since in macOS the $TERM_PROGRAM env var is set
+" we can customize by application, iterm also set
+" a variable with the inicial profile name.
+"==================================================================
+
+"==================================================================
 " VIMproved
 set nocompatible
 filetype off
