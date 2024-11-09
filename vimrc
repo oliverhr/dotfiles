@@ -75,8 +75,9 @@ call plug#end()            " required
 " Plugins Settings
 " -------------------------------------------------------------------
 let NERDTreeIgnore = ['.git$[[dir]]']
-let g:NERDTreeQuitOnOpen=3
-let NERDTreeRespectWildIgnore=1
+let g:NERDTreeQuitOnOpen = 3
+let g:NERDTreeWinPos = 'right'
+let NERDTreeRespectWildIgnore = 1
 
 " CtrlP ignored git files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -191,21 +192,25 @@ set laststatus=2
 " Enable syntax highlighting
 syntax enable
 
+" Absolute number on view mode relative on insert mode
+set number " nonumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
+
 " Set more space on the left
-set nonumber
 set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
-" Set Gutter column translucid - only work at start
-highlight clear FoldColumn
-highlight clear Folded
+" Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
-highlight clear SignColumn
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set relativenumber
     highlight LineNr guifg=#333D60
 
     color deep-space
@@ -220,6 +225,7 @@ if has("gui_running")
     set guitablabel=%M\ %t
 
     let g:solarized_menu = 0 " Disable Solarized menu on GUI
+
 else " RUNNING ON A TERMINAL
     " Enable yanked to system clipboard
     set clipboard=unnamed
@@ -252,6 +258,11 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+" Set Gutter column translucid
+highlight clear FoldColumn
+highlight clear Folded
+highlight clear SignColumn
 
 " Colorize right extra white tab or space chars
 highlight ExtraWhitespace ctermbg=red guibg=red
