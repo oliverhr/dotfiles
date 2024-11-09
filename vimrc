@@ -5,70 +5,53 @@
 set nocompatible
 filetype off
 
-"==================================================================
-" Windows OS
-" instead of: !clear && python %
-" do: !clear; python %
-"set shell=powershell
-"set shellcmdflag=-command
-"set shellquote=\"
-"set shellxquote=
-
 " ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
 " - - - Utilities - - -
-Plug 'preservim/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-fugitive'
-Plug 'machakann/vim-sandwich'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'LunarWatcher/auto-pairs'
+    Plug 'preservim/nerdtree'
+    Plug 'preservim/nerdcommenter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'machakann/vim-sandwich'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'LunarWatcher/auto-pairs'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
-" - - - Syntax - - -
-Plug 'fatih/vim-go'
-Plug 'leafgarland/typescript-vim'
-" Plug 'hashivim/vim-terraform'
-" Plug 'rescript-lang/vim-rescript'
-" Plug 'elixir-editors/vim-elixir'
-" Plug 'mattn/emmet-vim'
-" Plug 'pearofducks/ansible-vim'
-" Plug 'yasuhiroki/github-actions-yaml.vim'
-" Plug 'Tetralux/odin.vim'
+    " - - - Syntax - - -
+    Plug 'fatih/vim-go'
+    " Plug 'leafgarland/typescript-vim'
+    Plug 'hashivim/vim-terraform'
+    " Plug 'rescript-lang/vim-rescript'
+    " Plug 'elixir-editors/vim-elixir'
+    " Plug 'mattn/emmet-vim'
+    " Plug 'pearofducks/ansible-vim'
+    " Plug 'yasuhiroki/github-actions-yaml.vim'
+    " Plug 'Tetralux/odin.vim'
 
-" - - - Colorschemes - - -
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'crusoexia/vim-monokai'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'cormacrelf/vim-colors-github'
-Plug 'crucerucalin/peaksea.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+    " - - - Colorschemes - - -
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'morhetz/gruvbox'
+    Plug 'crusoexia/vim-monokai'
+    Plug 'tyrannicaltoucan/vim-deep-space'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'cormacrelf/vim-colors-github'
+    Plug 'crucerucalin/peaksea.vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'ghifarit53/tokyonight-vim'
+    Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
-" Enable filetype plugins
-" filetype plugin on
-" filetype indent on
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 "
-" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
 " -------------------------------------------------------------------
@@ -81,7 +64,7 @@ let NERDTreeRespectWildIgnore = 1
 
 " CtrlP ignored git files
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-" Exclude files and directories using Vim's wildignore and CtrlP's own custome ignore
+" Exclude files and directories using Vim's wildignore and CtrlP's own custom ignore
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|pdb|so|dll|DS_Store)$',
@@ -145,8 +128,8 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip           " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pdb  " Windows
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
 
 "Always show current position
 set ruler
@@ -259,7 +242,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" Set Gutter column translucid
+" Set Gutter column translucid - only work at start
 highlight clear FoldColumn
 highlight clear Folded
 highlight clear SignColumn
@@ -310,7 +293,7 @@ set tabstop=4
 
 if has('autocmd')
   autocmd FileType gitcommit setlocal spell
-  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4
+  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
@@ -355,10 +338,7 @@ set nofoldenable        "dont fold by default
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-" map <space> /
-" map <C-space> ?
+nnoremap <S-LEFT> :tabprevious<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -427,7 +407,7 @@ nmap <S-Space> i
 " Clear search higlight pressing enter
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
-" Remap VIM 0 to first non-blank character
+" Remap VIM 0 to first non-blank character instead to start fo line
 map 0 ^
 
 " Move a line of text using SHIFT+[jk]
@@ -446,7 +426,7 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,sl will toggle and urn toggle spell checking
+" Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
 map <leader>sn ]s
@@ -465,49 +445,7 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<cr>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
 " ================ Helper Functions ==================
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
