@@ -1,5 +1,3 @@
-" vim: set ft=vim:
-
 "==================================================================
 " Windows Msys2
 "
@@ -14,7 +12,9 @@
 "==================================================================
 " VIMproved
 set nocompatible
-filetype off
+filetype plugin on
+set modeline
+set modelines=10
 
 " ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
@@ -180,15 +180,15 @@ set laststatus=2
 syntax enable
 
 " Absolute number on view mode relative on insert mode
-set number " nonumber
+" This is activated after 'set number'
 augroup numbertoggle
     autocmd!
-    autocmd BufEnter,FocusLost,InsertEnter,WinLeave * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu                | set nornu | endif
+    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
 " Set more space on the left
-set nonumber
+set nonumber     " Avoid gutter clutter if not necessary
 set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
@@ -242,7 +242,7 @@ set encoding=utf8
 set fileformats=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
+" => File backups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
@@ -253,8 +253,6 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-" Only works all the time.
-
 "silent !mkdir ~/.vim/backups > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
@@ -444,3 +442,4 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+" vim: set ft=vim:
