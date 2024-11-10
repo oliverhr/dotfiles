@@ -457,9 +457,6 @@ nmap <S-Space> i
 " Clear search higlight pressing enter
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
-" Remap VIM 0 to first non-blank character instead to start fo line
-map 0 ^
-
 " Move a line of text using SHIFT+[jk]
 nnoremap <S-Up> :m-2<cr>
 nnoremap <S-Down> :m+<cr>
