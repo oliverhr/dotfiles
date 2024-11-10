@@ -1,6 +1,17 @@
 " vim: set ft=vim:
 
 "==================================================================
+" Windows OS
+"
+" instead of: !clear && python %
+" do: !clear; python %
+" set shell=powershell
+" set shellcmdflag=-command
+" set shellquote=\"
+" set shellxoquote=
+"==================================================================
+
+"==================================================================
 " VIMproved
 set nocompatible
 filetype off
