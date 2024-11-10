@@ -1,14 +1,14 @@
 " vim: set ft=vim:
 
 "==================================================================
-" Windows macOS
+" Windows OS
 "
-" Apple terminal specific issues with color
-" require to set t_Co=16 for some color schemes
-"
-" Since in macOS the $TERM_PROGRAM env var is set
-" we can customize by application, iterm also set
-" a variable with the inicial profile name.
+" instead of: !clear && python %
+" do: !clear; python %
+" set shell=powershell
+" set shellcmdflag=-command
+" set shellquote=\"
+" set shellxoquote=
 "==================================================================
 
 "==================================================================
@@ -44,17 +44,17 @@ call plug#begin()
     " Plug 'yasuhiroki/github-actions-yaml.vim'
     " Plug 'Tetralux/odin.vim'
 
-" - - - Colorschemes - - -
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'crusoexia/vim-monokai'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'cormacrelf/vim-colors-github'
-Plug 'crucerucalin/peaksea.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+    " - - - Colorschemes - - -
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'morhetz/gruvbox'
+    Plug 'crusoexia/vim-monokai'
+    Plug 'tyrannicaltoucan/vim-deep-space'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'cormacrelf/vim-colors-github'
+    Plug 'crucerucalin/peaksea.vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'ghifarit53/tokyonight-vim'
+    Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -202,78 +202,39 @@ highlight! link FoldColumn Normal
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
 
-" Set Solarized as colorscheme
-function! LetSolarize()
-    set background=dark
-    let g:solarized_termtrans = 1
-    let g:solarized_termcolors = 16
-    color Solarized
-endfunction
-
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set background=dark
-    colorscheme deep-space
+    highlight LineNr guifg=#333D60
 
+    color deep-space
     let g:airline_theme = 'tomorrow'
-    set lines=45 columns=90
-    set gfn=Hack\ Nerd\ Font\ Mono:h18
 
+    set lines=45 columns=100
+    set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
+    set guioptions-=T " Hide toolbar
     set guioptions-=r " Hide rigth scrollbar
     set guioptions-=L " Hide left scrollbar
     set guioptions-=e " Set gui-tabs as terminal
     set guitablabel=%M\ %t
+
     let g:solarized_menu = 0 " Disable Solarized menu on GUI
 
 else " RUNNING ON A TERMINAL
     " Enable yanked to system clipboard
     set clipboard=unnamed
     set mouse=a
+
+    " set t_Co=256
     set termguicolors
 
     " Set colorscheme based on TERM_PROGRAM used
-    if match($TERM_PROGRAM,'\cApple_Terminal') != -1
-    " MacOS Terminal
-        set notermguicolors
-        set t_Co=16
-        " For Solarized and derivatives
-        call LetSolarize()
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
+    " set background=dark
+    let g:tokyonight_style = 'night' " options: night, storm
+    let g:tokyonight_enable_italic = 1
+    colorscheme tokyonight
 
-    elseif match($TERM_PROGRAM,'\ciTerm') != -1
-    " iTerm
-        if match($ITERM_PROFILE,'\cCatpuccino') != -1
-            color catppuccin_mocha
-            let g:airline_theme = 'catppuccin_mocha'
-            highlight Normal ctermbg=none
-        elseif match($ITERM_PROFILE,'\cTokyonight') != -1
-            let g:tokyonight_style = 'night' " available: night, storm
-            let g:tokyonight_enable_italic = 1
-            colorscheme tokyonight
-        else
-            set background=light
-            color morning
-        endif
-    elseif match($TERM_PROGRAM,'\cWezterm') != -1
-    " WezTerm
-        color sorbet
-    elseif match($TERM_PROGRAM,'\cTmux') != -1
-    " Tmux
-        set background=dark
-        color onedark
-        let g:airline_theme = 'zenburn'
-    elseif match($TERM_PROGRAM,'\cRio') != -1
-    " Rio
-        set background=dark
-        color sorbet
-        let g:airline_theme = 'biogoo'
-    else
-        set background=dark
-        color quiet
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
-    endif
+    " Set Tab bar color background to translucid and line to black
+    highlight TabLineFill ctermfg=Black
 
     highlight SpecialKey guibg=bg ctermbg=none
 
@@ -325,7 +286,7 @@ set noswapfile
 " Only works all the time.
 
 "silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/undodir
+set undodir=~/vimfiles/undodir
 set undofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
