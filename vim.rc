@@ -190,10 +190,9 @@ syntax enable
 set number " nonumber
 augroup numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+    autocmd BufEnter,FocusLost,InsertEnter,WinLeave * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu                | set nornu | endif
 augroup END
-
 
 " Set more space on the left
 set foldcolumn=4 "max 12
