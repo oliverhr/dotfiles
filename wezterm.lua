@@ -3,6 +3,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.adjust_window_size_when_changing_font_size = false
+config.hide_tab_bar_if_only_one_tab = false
 
 --[[
 Windows:
@@ -13,13 +14,17 @@ macOS [Intel, Apple Silicon]:
 Linux:
         x86_64-unknown-linux-gnu - Linux
 --]]
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+local os = wezterm.target_triple
+if os == 'x86_64-pc-windows-msvc' then
+    config.window_decorations = "RESIZE" -- RESIZE | TITLE | NONE
     config.default_prog = { "pwsh", "-Login" }
+    config.font = wezterm.font("Agave Nerd Font Mono")
+    config.font_size = 12
+elseif os == 'x86_64-apple-darwin' then
+    config.window_decorations = "RESIZE | TITLE" -- RESIZE | TITLE | NONE
+    config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+    config.font_size = 18
 end
--- config.default_cwd = '$env:HOMEPATH/Documents'
-
-config.font = wezterm.font("Agave Nerd Font Mono")
-config.font_size = 12
 
 -- config.color_scheme = 'Sea Shells (Gogh)'
 config.color_scheme = "Tokyo Night"
@@ -39,8 +44,6 @@ config.foreground_text_hsb = {
 }
 --]]
 
--- Window settigs
-config.window_decorations = "RESIZE" -- RESIZE | TITLE | NONE
 -- Tab bar
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = true
