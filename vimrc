@@ -1,7 +1,7 @@
 " vim: set ft=vim:
 
 "==================================================================
-" Windows macOS
+" macOS
 "
 " Apple terminal specific issues with color
 " require to set t_Co=16 for some color schemes
@@ -21,7 +21,7 @@ filetype off
 call plug#begin()
 
 " - - - Utilities - - -
-    Plug 'preservim/nerdtree'
+    Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'preservim/nerdcommenter'
     Plug 'tpope/vim-fugitive'
     Plug 'machakann/vim-sandwich'
@@ -195,6 +195,7 @@ augroup numbertoggle
 augroup END
 
 " Set more space on the left
+set nonumber
 set foldcolumn=4 "max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
