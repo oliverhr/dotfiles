@@ -7,7 +7,7 @@ config.hide_tab_bar_if_only_one_tab = false
 
 --[[
 Windows:
-        sx86_64-pc-windows-msvc
+        x86_64-pc-windows-msvc
 macOS [Intel, Apple Silicon]:
         x86_64-apple-darwin
         aarch64-apple-darwin
