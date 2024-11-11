@@ -19,7 +19,6 @@ set modelines=10
 " ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
-
 " - - - Utilities - - -
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'preservim/nerdcommenter'
@@ -189,9 +188,9 @@ syntax enable
 " Absolute number on view mode relative on insert mode
 " This is activated after 'set number'
 augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
+  autocmd!
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
 " Set more space on the left
@@ -213,83 +212,83 @@ endfunction
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set background=dark
-    colorscheme deep-space
+  set background=dark
+  colorscheme deep-space
 
-    let g:airline_theme = 'tomorrow'
-    set lines=45 columns=90
-    set gfn=Hack\ Nerd\ Font\ Mono:h18
+  let g:airline_theme = 'tomorrow'
+  set lines=45 columns=90
+  set gfn=Hack\ Nerd\ Font\ Mono:h18
 
-    set guioptions-=r " Hide rigth scrollbar
-    set guioptions-=L " Hide left scrollbar
-    set guioptions-=e " Set gui-tabs as terminal
-    set guitablabel=%M\ %t
-    let g:solarized_menu = 0 " Disable Solarized menu on GUI
+  set guioptions-=r " Hide rigth scrollbar
+  set guioptions-=L " Hide left scrollbar
+  set guioptions-=e " Set gui-tabs as terminal
+  set guitablabel=%M\ %t
+  let g:solarized_menu = 0 " Disable Solarized menu on GUI
 
 else " RUNNING ON A TERMINAL
-    " Enable yanked to system clipboard
-    set clipboard=unnamed
-    set mouse=a
-    set termguicolors
+  " Enable yanked to system clipboard
+  set clipboard=unnamed
+  set mouse=a
+  set termguicolors
 
-    " Set colorscheme based on TERM_PROGRAM used
-    if match($TERM_PROGRAM,'\cApple_Terminal') != -1
-    " MacOS Terminal
-        set notermguicolors
-        set t_Co=16
-        " For Solarized and derivatives
-        call LetSolarize()
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
+  " Set colorscheme based on TERM_PROGRAM used
+  if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+  " MacOS Terminal
+    set notermguicolors
+    set t_Co=16
+    " For Solarized and derivatives
+    call LetSolarize()
+    " Set Tab bar color background to translucid and line to black
+    highlight TabLineFill ctermfg=Black
 
-    elseif match($TERM_PROGRAM,'\ciTerm') != -1
-    " iTerm
-        if match($ITERM_PROFILE,'\cCatpuccino') != -1
-            color catppuccin_mocha
-            let g:airline_theme = 'catppuccin_mocha'
-            highlight Normal ctermbg=none
-        elseif match($ITERM_PROFILE,'\cTokyonight') != -1
-            let g:tokyonight_style = 'night' " available: night, storm
-            let g:tokyonight_enable_italic = 1
-            colorscheme tokyonight
-        else
-            set background=light
-            color morning
-        endif
-    elseif match($TERM_PROGRAM,'\cWezterm') != -1
-    " WezTerm
-        color sorbet
-    elseif match($TERM_PROGRAM,'\cTmux') != -1
-    " Tmux
-        set background=dark
-        color onedark
-        let g:airline_theme = 'zenburn'
-    elseif match($TERM_PROGRAM,'\cRio') != -1
-    " Rio
-        set background=dark
-        color sorbet
-        let g:airline_theme = 'biogoo'
+  elseif match($TERM_PROGRAM,'\ciTerm') != -1
+  " iTerm
+    if match($ITERM_PROFILE,'\cCatpuccino') != -1
+        color catppuccin_mocha
+        let g:airline_theme = 'catppuccin_mocha'
+        highlight Normal ctermbg=none
+    elseif match($ITERM_PROFILE,'\cTokyonight') != -1
+        let g:tokyonight_style = 'night' " available: night, storm
+        let g:tokyonight_enable_italic = 1
+        colorscheme tokyonight
     else
-        set background=dark
-        color quiet
-        " Set Tab bar color background to translucid and line to black
-        highlight TabLineFill ctermfg=Black
+        set background=light
+        color morning
     endif
+  elseif match($TERM_PROGRAM,'\cWezterm') != -1
+  " WezTerm
+    color sorbet
+  elseif match($TERM_PROGRAM,'\cTmux') != -1
+  " Tmux
+    set background=dark
+    color onedark
+    let g:airline_theme = 'zenburn'
+  elseif match($TERM_PROGRAM,'\cRio') != -1
+  " Rio
+    set background=dark
+    color sorbet
+    let g:airline_theme = 'biogoo'
+  else
+    set background=dark
+    color quiet
+    " Set Tab bar color background to translucid and line to black
+    highlight TabLineFill ctermfg=Black
+  endif
 
-    highlight SpecialKey guibg=bg ctermbg=none
+  highlight SpecialKey guibg=bg ctermbg=none
 
-    " Spelling mistakes will be colored up red.
-    hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+  " Spelling mistakes will be colored up red.
+  hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endif
 
 " Airline settings
 let g:airline_powerline_fonts = 1
 " Airline customization
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " Set Gutter column translucid - only work at start
@@ -436,7 +435,7 @@ try
   set switchbuf=useopen,usetab,newtab
   set stal=2
 catch
-    " nothing for the moment
+  " nothing for the moment
 endtry
 
 " Remember info about open buffers on close
@@ -494,22 +493,22 @@ map <leader>pp :setlocal paste!<cr>
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 
 " vim: set ft=vim ts=2 sw=2 et :

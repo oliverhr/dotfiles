@@ -182,9 +182,9 @@ syntax enable
 " Absolute number on view mode relative on insert mode
 " This is activated after 'set number'
 augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
+  autocmd!
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
 " Set more space on the left
@@ -219,7 +219,7 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 let g:airline_powerline_fonts = 1
 " Airline customization
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " Set Gutter column translucid - only work at start
@@ -366,7 +366,7 @@ try
   set switchbuf=useopen,usetab,newtab
   set stal=2
 catch
-    " nothing for the moment
+  " nothing for the moment
 endtry
 
 " Remember info about open buffers on close
@@ -424,22 +424,22 @@ map <leader>pp :setlocal paste!<cr>
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 
 " vim: set ft=vim ts=2 sw=2 et :

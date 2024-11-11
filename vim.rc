@@ -31,7 +31,6 @@ endif
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
-
 " - - - Utilities - - -
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'preservim/nerdcommenter'
@@ -201,9 +200,9 @@ syntax enable
 " Absolute number on view mode relative on insert mode
 " This is activated after 'set number'
 augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
-    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
+  autocmd!
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
 " Set more space on the left
@@ -217,52 +216,52 @@ highlight clear LineNr
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    highlight LineNr guifg=#333D60
+  highlight LineNr guifg=#333D60
 
-    color deep-space
-    let g:airline_theme = 'tomorrow'
+  color deep-space
+  let g:airline_theme = 'tomorrow'
 
-    set lines=45 columns=100
-    set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
-    set guioptions-=T " Hide toolbar
-    set guioptions-=r " Hide rigth scrollbar
-    set guioptions-=L " Hide left scrollbar
-    set guioptions-=e " Set gui-tabs as terminal
-    set guitablabel=%M\ %t
+  set lines=45 columns=100
+  set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
+  set guioptions-=T " Hide toolbar
+  set guioptions-=r " Hide rigth scrollbar
+  set guioptions-=L " Hide left scrollbar
+  set guioptions-=e " Set gui-tabs as terminal
+  set guitablabel=%M\ %t
 
-    let g:solarized_menu = 0 " Disable Solarized menu on GUI
+  let g:solarized_menu = 0 " Disable Solarized menu on GUI
 
 else " RUNNING ON A TERMINAL
-    " Enable yanked to system clipboard
-    set clipboard=unnamed
-    set mouse=a
+  " Enable yanked to system clipboard
+  set clipboard=unnamed
+  set mouse=a
 
-    " set t_Co=256
-    set termguicolors
+  " set t_Co=256
+  set termguicolors
 
-    " Set colorscheme based on TERM_PROGRAM used
-    " set background=dark
-    let g:tokyonight_style = 'night' " options: night, storm
-    let g:tokyonight_enable_italic = 1
-    colorscheme tokyonight
+  " Set colorscheme based on TERM_PROGRAM used
+  " set background=dark
+  let g:tokyonight_style = 'night' " options: night, storm
+  let g:tokyonight_enable_italic = 1
+  colorscheme tokyonight
 
-    " Set Tab bar color background to translucid and line to black
-    highlight TabLineFill ctermfg=Black
+  " Set Tab bar color background to translucid and line to black
+  highlight TabLineFill ctermfg=Black
 
-    highlight SpecialKey guibg=bg ctermbg=none
+  highlight SpecialKey guibg=bg ctermbg=none
 
-    " Spelling mistakes will be colored up red.
-    hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-    hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+  " Spelling mistakes will be colored up red.
+  hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+  hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endif
 
 " Airline settings
 let g:airline_powerline_fonts = 1
 " Airline customization
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " Set Gutter column translucid - only work at start
@@ -409,7 +408,7 @@ try
   set switchbuf=useopen,usetab,newtab
   set stal=2
 catch
-    " nothing for the moment
+  " nothing for the moment
 endtry
 
 " Remember info about open buffers on close
@@ -467,22 +466,22 @@ map <leader>pp :setlocal paste!<cr>
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 
 " vim: set ft=vim ts=2 sw=2 et :
