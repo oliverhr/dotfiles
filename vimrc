@@ -16,7 +16,12 @@ filetype plugin on
 set modeline
 set modelines=10
 
-" ======================= Plug Settings =========================
+"==================================================================
+if has("osx")
+  " TODO: check modularization for vimrc configuration
+endif
+
+" ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 " - - - Utilities - - -

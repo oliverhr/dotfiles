@@ -16,7 +16,12 @@ filetype plugin on
 set modeline
 set modelines=10
 
-" ======================= Plug Settings =========================
+"================= Shell from MS-Dos to PowerShell ================
+if has("win32unix")
+  " TODO: check about vim config modularization
+endif
+
+" ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
