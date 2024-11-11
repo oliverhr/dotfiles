@@ -1,12 +1,12 @@
 "==================================================================
-" Windows OS
+" Windows Linux (WSL)
 "
-" instead of: !clear && python %
-" do: !clear; python %
-" set shell=powershell
-" set shellcmdflag=-command
-" set shellquote=\"
-" set shellxoquote=
+" Msys2 terminal has specific issues with color
+" require to set t_Co=256 for some color schemes
+"
+" Since in msysw the $TERM_PROGRAM env var is set
+" we can customize not like mac or linux since
+" still some extra configuration is achivable
 "==================================================================
 
 "==================================================================
@@ -17,23 +17,14 @@ set modeline
 set modelines=10
 
 "================= Shell from MS-Dos to PowerShell ================
-if has("win32")
-  " !!! if enabled with vim-go and gopls !!!
-  " Error detected while processing CursorHold Autcomands for *.go
-  " --@@!!!
-  " set shell=powershell
-  " set shellcmdflag=-Command
-  " set shellpipe=|
-  " shelltype
-  " shellslash
-  " shellredir
-  " shellquote
-  " shellxquote
+if has("linux")
+  " TODO: check about vim config modularization
 endif
 
-" ======================= Plug Settings ===========================
+" ======================= Plug Settings =========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
+
 " - - - Utilities - - -
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'preservim/nerdcommenter'
@@ -46,29 +37,28 @@ call plug#begin()
   Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Syntax - - -
-  Plug 'fatih/vim-go'
-  " Plug 'leafgarland/typescript-vim'
+    Plug 'fatih/vim-go'
   " Plug 'hashivim/vim-terraform'
+    Plug 'pearofducks/ansible-vim'
+  " Plug 'leafgarland/typescript-vim'
   " Plug 'rescript-lang/vim-rescript'
   " Plug 'elixir-editors/vim-elixir'
   " Plug 'mattn/emmet-vim'
-  " Plug 'pearofducks/ansible-vim'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
-  " Plug 'Tetralux/odin.vim'
 
   " - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'morhetz/gruvbox'
-  Plug 'crusoexia/vim-monokai'
-  Plug 'tyrannicaltoucan/vim-deep-space'
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'cormacrelf/vim-colors-github'
-  Plug 'crucerucalin/peaksea.vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'ghifarit53/tokyonight-vim'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+  Plug 'crucerucalin/peaksea.vim'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'jacoborus/tender.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -216,49 +206,27 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+" Enable yanked to system clipboard
+set clipboard=unnamed
+set mouse=a
 
-" Set extra options when running in GUI mode
-if has("gui_running")
-  highlight LineNr guifg=#333D60
+" == Color terminal related stuff == "
+set t_Co=256
+" set termguicolors
 
-  color deep-space
-  let g:airline_theme = 'tomorrow'
+" == ColorScheme
+"set background=dark
+color monokai
 
-  set lines=45 columns=100
-  set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
-  set guioptions-=T " Hide toolbar
-  set guioptions-=r " Hide rigth scrollbar
-  set guioptions-=L " Hide left scrollbar
-  set guioptions-=e " Set gui-tabs as terminal
-  set guitablabel=%M\ %t
+" Set Tab bar color background to translucid and line to black
+highlight TabLineFill ctermfg=Black
+highlight SpecialKey guibg=bg ctermbg=none
 
-  let g:solarized_menu = 0 " Disable Solarized menu on GUI
-
-else " RUNNING ON A TERMINAL
-  " Enable yanked to system clipboard
-  set clipboard=unnamed
-  set mouse=a
-
-  " set t_Co=256
-  set termguicolors
-
-  " Set colorscheme based on TERM_PROGRAM used
-  " set background=dark
-  let g:tokyonight_style = 'night' " options: night, storm
-  let g:tokyonight_enable_italic = 1
-  colorscheme tokyonight
-
-  " Set Tab bar color background to translucid and line to black
-  highlight TabLineFill ctermfg=Black
-
-  highlight SpecialKey guibg=bg ctermbg=none
-
-  " Spelling mistakes will be colored up red.
-  hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
-endif
+" Spelling mistakes will be colored up red.
+hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " Airline settings
 let g:airline_powerline_fonts = 1
@@ -299,7 +267,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
 "silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/vimfiles/undodir
+set undodir=~/.vim/undodir
 set undofile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
