@@ -21,40 +21,40 @@ set modelines=10
 call plug#begin()
 
 " - - - Utilities - - -
-    Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-    Plug 'preservim/nerdcommenter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'machakann/vim-sandwich'
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'LunarWatcher/auto-pairs'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'preservim/nerdcommenter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'machakann/vim-sandwich'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-    " - - - Syntax - - -
-    Plug 'fatih/vim-go'
-    " Plug 'leafgarland/typescript-vim'
-    " Plug 'hashivim/vim-terraform'
-    " Plug 'rescript-lang/vim-rescript'
-    " Plug 'elixir-editors/vim-elixir'
-    " Plug 'mattn/emmet-vim'
-    " Plug 'pearofducks/ansible-vim'
-    " Plug 'yasuhiroki/github-actions-yaml.vim'
-    " Plug 'Tetralux/odin.vim'
+  " - - - Syntax - - -
+  Plug 'fatih/vim-go'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'hashivim/vim-terraform'
+  " Plug 'rescript-lang/vim-rescript'
+  " Plug 'elixir-editors/vim-elixir'
+  " Plug 'mattn/emmet-vim'
+  " Plug 'pearofducks/ansible-vim'
+  " Plug 'yasuhiroki/github-actions-yaml.vim'
+  " Plug 'Tetralux/odin.vim'
 
-    " - - - Colorschemes - - -
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'morhetz/gruvbox'
-    Plug 'crusoexia/vim-monokai'
-    Plug 'tyrannicaltoucan/vim-deep-space'
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'cormacrelf/vim-colors-github'
-    Plug 'crucerucalin/peaksea.vim'
-    Plug 'joshdick/onedark.vim'
-    Plug 'ghifarit53/tokyonight-vim'
-    Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+  " - - - Colorschemes - - -
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'morhetz/gruvbox'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'cormacrelf/vim-colors-github'
+  Plug 'crucerucalin/peaksea.vim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -512,4 +512,4 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" vim: set ft=vim:
+" vim: set ft=vim ts=2 sw=2 et :

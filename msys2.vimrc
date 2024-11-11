@@ -21,33 +21,33 @@ set modelines=10
 call plug#begin()
 
 " - - - Utilities - - -
-    Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-    Plug 'preservim/nerdcommenter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'machakann/vim-sandwich'
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'LunarWatcher/auto-pairs'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'preservim/nerdcommenter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'machakann/vim-sandwich'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-    " - - - Syntax - - -
-    " Plug 'hashivim/vim-terraform'
-    " Plug 'pearofducks/ansible-vim'
+  " - - - Syntax - - -
+  " Plug 'hashivim/vim-terraform'
+  " Plug 'pearofducks/ansible-vim'
 
-    " - - - Colorschemes - - -
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-    Plug 'cormacrelf/vim-colors-github'
-    Plug 'crucerucalin/peaksea.vim'
-    Plug 'crusoexia/vim-monokai'
-    Plug 'ghifarit53/tokyonight-vim'
-    Plug 'joshdick/onedark.vim'
-    Plug 'morhetz/gruvbox'
-    Plug 'tyrannicaltoucan/vim-deep-space'
+  " - - - Colorschemes - - -
+  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+  Plug 'cormacrelf/vim-colors-github'
+  Plug 'crucerucalin/peaksea.vim'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'joshdick/onedark.vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'tyrannicaltoucan/vim-deep-space'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -442,4 +442,4 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-" vim: set ft=vim:
+" vim: set ft=vim ts=2 sw=2 et :
