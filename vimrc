@@ -406,9 +406,9 @@ map <leader>bh :enew<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 " Close the current buffer
-map <silent><leader>bd :Bclose<cr>
+map <silent><leader>bd :bdel<cr>
 " Close all the buffers
-map <silent><leader>ba :%bd!<cr>
+map <silent><leader>ba :%bdelete<cr>
 " Move between bufferrs
 map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
