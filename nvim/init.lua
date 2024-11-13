@@ -313,8 +313,10 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
+        { '<leader>b', group = '[B]uffer Actions' },
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
+        { '<leader>l', group = '[L]LSP' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
@@ -386,11 +388,13 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+        },
+        pickers = {
+          colorscheme = { enable_preview = true },
         },
       }
 
@@ -524,23 +528,23 @@ require('lazy').setup({
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>lds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('<leader>lca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -830,24 +834,6 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   { -- Highlight todo, notes, etc in comments
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -937,6 +923,7 @@ require('lazy').setup({
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
+  { import = 'custom.config' },
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
   --
