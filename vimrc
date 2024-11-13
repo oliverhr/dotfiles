@@ -50,14 +50,14 @@ call plug#begin()
   " Plug 'Tetralux/odin.vim'
 
   " - - - Colorschemes - - -
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'altercation/vim-colors-solarized'
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+  Plug 'cormacrelf/vim-colors-github'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'cormacrelf/vim-colors-github'
-  Plug 'joshdick/onedark.vim'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required

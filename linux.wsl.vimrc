@@ -55,10 +55,11 @@ call plug#begin()
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
   Plug 'ghifarit53/tokyonight-vim'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'jacoborus/tender.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -227,7 +228,7 @@ set t_Co=256
 
 " == ColorScheme
 "set background=dark
-color monokai
+color tokyonight
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
