@@ -21,18 +21,19 @@ if has("linux")
   " TODO: check about vim config modularization
 endif
 
-" ======================= Plug Settings =========================
+" ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
 " - - - Utilities - - -
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'preservim/nerdcommenter'
-  Plug 'tpope/vim-fugitive'
-  Plug 'machakann/vim-sandwich'
-  Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'preservim/nerdcommenter'
+  Plug 'machakann/vim-sandwich'
+  Plug 'tpope/vim-fugitive'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -52,8 +53,7 @@ call plug#begin()
   " - - - Colorschemes - - -
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'crucerucalin/peaksea.vim'
-  Plug 'crusoexia/vim-monokai'
+  Plug 'cormacrelf/vim-colors-github'
   Plug 'ghifarit53/tokyonight-vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
@@ -103,17 +103,28 @@ let g:mapleader = ","
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
-nnoremap <silent> <leader>wx :xa<cr>
-nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wa :wa<cr>
+nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>wx :xa<cr>
 
 " Fast quit
 nnoremap <leader>q :q!<cr>
 nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
-nnoremap <silent> <leader>m :NERDTreeToggle<Enter>
-nnoremap <silent> <leader>f :NERDTreeFind<cr>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+
+" Fuzzy finder
+nnoremap <silent> <leader>fz :FZ<cr>
+nnoremap <silent> <leader>fa :Ag<cr>
+nnoremap <silent> <leader>fr :RG<cr>
+nnoremap <silent> <leader>fb :Buffers<cr>
+nnoremap <silent> <leader>fw :Windows<cr>
+nnoremap <silent> <leader>fg :GitFiles?<cr>
+nnoremap <silent> <leader>fl :Lines<cr>
+nnoremap <silent> <leader>fs :BLines<cr>
+nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
@@ -329,7 +340,6 @@ set nofoldenable        "dont fold by default
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
-nnoremap <S-LEFT> :tabprevious<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -349,8 +359,8 @@ map <silent><leader>bd :bdel<cr>
 " Close all the buffers
 map <silent><leader>ba :%bdelete<cr>
 " Move between bufferrs
-map <leader>bn :bnext<cr>
-map <leader>bp :bprevious<cr>
+map <silent><leader>bn :bnext<cr>
+map <silent><leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
