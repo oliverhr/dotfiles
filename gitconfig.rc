@@ -1,6 +1,7 @@
 [core]
     excludesfile = ~/.git/ignore.rc
     editor = vim
+    pager = delta
 [init]
     defaultBranch = main
 [user]
@@ -12,14 +13,22 @@
 [pull]
     rebase = false
 
+[interactive]
+    diffFilter = delta --color-only
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
 
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
 [merge]
     tool = kaleidoscope
+    conflictstyle = zdiff3
 [mergetool]
     prompt = false
 [mergetool "kaleidoscope"]
@@ -64,3 +73,4 @@
 [includeIf "gitdir:~/Documents/Projects/Work/"]
   path = ~/Documents/Projects/Work/.gitconfig
 
+# vim: set ft=gitconfig ts=4 sw=4 et :
