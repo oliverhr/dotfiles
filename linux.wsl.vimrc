@@ -60,6 +60,7 @@ call plug#begin()
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'foxoman/vim-helix'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
