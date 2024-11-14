@@ -85,7 +85,5 @@ PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Alias file
 if [ -f ~/.my_aliases.rc ]; then
-    . ~/.my_aliases.rc
+  . ~/.my_aliases.rc
 fi
-
-

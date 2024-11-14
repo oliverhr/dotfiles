@@ -37,19 +37,20 @@ alias gs="git switch"
 alias gcd="git switch dev"
 
 git-remove-tag() {
-    TAG=$1
-    git tag -d $TAG
-    git push origin :refs/tags/$TAG
+  TAG=$1
+  git tag -d $TAG
+  git push origin :refs/tags/$TAG
 }
 
 # DOCKER
 alias docker-containers="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 
 docker-clean-volumes() {
-    docker volume rm $(docker volume ls --quiet --filter "dangling=true")
+  docker volume rm $(docker volume ls --quiet --filter "dangling=true")
 }
 
 docker-clean-images() {
-    docker rmi $(docker images --quiet --filter "dangling=true")
+  docker rmi $(docker images --quiet --filter "dangling=true")
 }
 
+# vim: ft=bash :
