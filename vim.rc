@@ -46,6 +46,8 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'LunarWatcher/auto-pairs'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
   " - - - Syntax - - -
   Plug 'fatih/vim-go'
@@ -120,8 +122,23 @@ nnoremap <leader>q :q!<cr>
 nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
+nnoremap <silent> <Bslash> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+
+" Fuzzy finder
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
+
+nnoremap <silent> <leader>fz :FZ<cr>
+nnoremap <silent> <leader>fa :Ag<cr>
+nnoremap <silent> <leader>fr :RG<cr>
+nnoremap <silent> <leader>fb :Buffers<cr>
+nnoremap <silent> <leader>fw :Windows<cr>
+nnoremap <silent> <leader>fg :GitFiles?<cr>
+nnoremap <silent> <leader>fl :Lines<cr>
+nnoremap <silent> <leader>fs :BLines<cr>
+nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**

@@ -113,6 +113,7 @@ nnoremap <leader>q :q!<cr>
 nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
+nnoremap <silent> <Bslash> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
