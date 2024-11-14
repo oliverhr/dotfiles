@@ -1,5 +1,13 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
 
+#------------------------------------------------------------------------------
+# IMPORT POWERSHELL MODULES
+#------------------------------------------------------------------------------
+# https://www.powershellgallery.com
+#------------------------------------------------------------------------------
+
+# ---------------------------
+# Choco completions
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
 # Be aware that if you are missing these lines from your profile, tab completion
@@ -10,7 +18,21 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
-# Set alias
+# ---------------------------
+# Git module
+# https://github.com/gluons/powershell-git-aliases
+Import-Module git-aliases -DisableNameChecking
+
+# ---------------------------
+# Docker completions
+# https://github.com/matt9ucci/DockerCompletion
+Import-Module DockerCompletion
+
+#------------------------------------------------------------------------------
+# My Custom Stuff
+#------------------------------------------------------------------------------
+
+# Set alias for touch, since now is not a default alias included in pwsh
 Function _touch {
   New-Item -ItemType "File" -Path ($args[0])
 }
@@ -18,8 +40,5 @@ Set-Alias -Name touch -Value _touch
 
 # Alias for start to open like macos
 Set-Alias -Name open -Value Start-Process
-
-# Git module
-Import-Module git-aliases -DisableNameChecking
 
 
