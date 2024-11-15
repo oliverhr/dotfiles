@@ -54,13 +54,14 @@ call plug#begin()
   Plug 'NLKNguyen/papercolor-theme'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'foxoman/vim-helix'
   Plug 'ghifarit53/tokyonight-vim'
   Plug 'ghifarit53/tokyonight-vim'
   Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'foxoman/vim-helix'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required

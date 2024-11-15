@@ -48,6 +48,7 @@ call plug#begin()
   Plug 'altercation/vim-colors-solarized'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
+  Plug 'crusoexia/vim-monokai'
   Plug 'ghifarit53/tokyonight-vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
