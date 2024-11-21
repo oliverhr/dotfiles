@@ -234,7 +234,7 @@ set mouse=a
 
 set t_Co=256
 set background=light
-let g:solarized_termtrans=0
+let g:solarized_termtrans=1 "trans to play nice when invoked outside git-shell
 let g:solarized_termcolors=16
 color solarized
 
