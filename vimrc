@@ -228,6 +228,8 @@ highlight clear LineNr
 
 " Set Solarized as colorscheme
 function! LetSolarize()
+    set notermguicolors
+    set t_Co=16
     set background=dark
     let g:solarized_termtrans = 1
     let g:solarized_termcolors = 16
@@ -259,11 +261,9 @@ else " RUNNING ON A TERMINAL
   if match($TERM_PROGRAM,'\cApple_Terminal') != -1
   " MacOS Terminal
     set notermguicolors
-    set t_Co=16
-    " For Solarized and derivatives
-    call LetSolarize()
-    " Set Tab bar color background to translucid and line to black
-    highlight TabLineFill ctermfg=Black
+    set t_Co=256
+    set background=dark
+    colorscheme retrobox
 
   elseif match($TERM_PROGRAM,'\ciTerm') != -1
   " iTerm
@@ -279,19 +279,23 @@ else " RUNNING ON A TERMINAL
         set background=light
         color morning
     endif
+
   elseif match($TERM_PROGRAM,'\cWezterm') != -1
   " WezTerm
     color sorbet
+
   elseif match($TERM_PROGRAM,'\cTmux') != -1
   " Tmux
     set background=dark
     color onedark
     let g:airline_theme = 'zenburn'
+
   elseif match($TERM_PROGRAM,'\cRio') != -1
   " Rio
     set background=dark
     color sorbet
     let g:airline_theme = 'biogoo'
+
   else
     set background=dark
     color quiet
@@ -299,6 +303,7 @@ else " RUNNING ON A TERMINAL
     highlight TabLineFill ctermfg=Black
   endif
 
+  " --
   highlight SpecialKey guibg=bg ctermbg=none
 
   " Spelling mistakes will be colored up red.

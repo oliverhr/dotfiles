@@ -266,7 +266,7 @@ highlight clear SignColumn
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:.
+set list listchars=tab:\|\ ,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File backups

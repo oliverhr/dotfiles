@@ -15,7 +15,8 @@ alias sshconfig="$ALIAS_EDITOR ~/.ssh/config"
 alias gitconfig="$ALIAS_EDITOR ~/.gitconfig"
 
 # Commands
-# alias ls='ls --color=auto'
+alias ls='ls --color=always'
+alias ll="ls -la"
 alias cd..="cd .."
 alias lsd="ls -ld */"
 alias lsh="ls -d .*"
