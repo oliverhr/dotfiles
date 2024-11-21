@@ -1,8 +1,8 @@
 "==================================================================
-" Windows Msys2
+" Windows Msys2 and Git shell
 "
-" Msys2 terminal has specific issues with color
-" require to set t_Co=256 for some color schemes
+" Msys2 and Git on terminal has specific issues with
+" color require to set t_Co=256 for some color schemes
 "
 " Since in msysw the $TERM_PROGRAM env var is set
 " we can customize not like mac or linux since
@@ -15,6 +15,13 @@ set nocompatible
 filetype plugin on
 set modeline
 set modelines=10
+
+" Set utf8 as standard encoding and en_US as the standard language
+scriptencoding utf-8
+set encoding=utf8
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
 
 "================= Shell from MS-Dos to PowerShell ================
 if has("win32unix")
@@ -38,10 +45,16 @@ call plug#begin()
   Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Syntax - - -
   " Plug 'hashivim/vim-terraform'
-  " Plug 'pearofducks/ansible-vim'
+    Plug 'pearofducks/ansible-vim'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'rescript-lang/vim-rescript'
+  " Plug 'elixir-editors/vim-elixir'
+  " Plug 'mattn/emmet-vim'
+  " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
   Plug 'NLKNguyen/papercolor-theme'
@@ -49,7 +62,10 @@ call plug#begin()
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
   Plug 'crusoexia/vim-monokai'
+  Plug 'foxoman/vim-helix'
   Plug 'ghifarit53/tokyonight-vim'
+  Plug 'ghifarit53/tokyonight-vim'
+  Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
@@ -215,11 +231,11 @@ highlight clear LineNr
 " Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
-set t_Co=256
 
+set t_Co=256
 set background=light
-let g:solarized_termtrans = 1
-let g:solarized_termcolors = 16
+let g:solarized_termtrans=0
+let g:solarized_termcolors=16
 color solarized
 
 " Set Tab bar color background to translucid and line to black
@@ -248,15 +264,7 @@ highlight clear SignColumn
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
-
-
-" Set utf8 as standard encoding and en_US as the standard language
-scriptencoding utf-8
-set encoding=utf8
-
-" Use Unix as the standard file type
-set fileformats=unix,dos,mac
+set list listchars=tab:\|\ ,trail:.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File backups

@@ -16,6 +16,13 @@ filetype plugin on
 set modeline
 set modelines=10
 
+" Set utf8 as standard encoding and en_US as the standard language
+scriptencoding utf-8
+set encoding=utf8
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
+
 "================= Shell from MS-Dos to PowerShell ================
 if has("linux")
   " TODO: check about vim config modularization
@@ -231,7 +238,7 @@ set t_Co=256
 
 " == ColorScheme
 "set background=dark
-color tokyonight
+color monokai
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -259,15 +266,7 @@ highlight clear SignColumn
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
-
-
-" Set utf8 as standard encoding and en_US as the standard language
-scriptencoding utf-8
-set encoding=utf8
-
-" Use Unix as the standard file type
-set fileformats=unix,dos,mac
+set list listchars=tab:\|\ ,trail:.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File backups

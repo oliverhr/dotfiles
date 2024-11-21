@@ -4,6 +4,8 @@ local config = wezterm.config_builder()
 
 config.adjust_window_size_when_changing_font_size = false
 config.hide_tab_bar_if_only_one_tab = false
+config.initial_rows = 30
+config.initial_cols = 110
 
 --[[
 Windows:
@@ -18,7 +20,7 @@ local os = wezterm.target_triple
 if os == 'x86_64-pc-windows-msvc' then
     config.window_decorations = "RESIZE" -- RESIZE | TITLE | NONE
     config.default_prog = { "pwsh", "-Login" }
-    config.font = wezterm.font("Agave Nerd Font Mono")
+    config.font = wezterm.font("Agave Nerd Font")
     config.font_size = 12
 elseif os == 'x86_64-apple-darwin' then
     config.window_decorations = "RESIZE | TITLE" -- RESIZE | TITLE | NONE

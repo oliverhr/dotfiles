@@ -16,6 +16,13 @@ filetype plugin on
 set modeline
 set modelines=10
 
+" Set utf8 as standard encoding and en_US as the standard language
+scriptencoding utf-8
+set encoding=utf8
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
+
 "================= Shell from MS-Dos to PowerShell ================
 if has("win32")
   " !!! if enabled with vim-go and gopls !!!
@@ -241,7 +248,7 @@ if has("gui_running")
   let g:airline_theme = 'tomorrow'
 
   set lines=45 columns=100
-  set gfn=FantasqueSansM\ Nerd\ Font\ Mono:h12
+  set gfn=Agave\ Nerd\ Font:h12
   set guioptions-=T " Hide toolbar
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
@@ -293,14 +300,6 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
-
-
-" Set utf8 as standard encoding and en_US as the standard language
-scriptencoding utf-8
-set encoding=utf8
-
-" Use Unix as the standard file type
-set fileformats=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File backups
