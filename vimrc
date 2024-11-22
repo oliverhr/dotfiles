@@ -48,13 +48,15 @@ call plug#begin()
   " - - - Syntax - - -
   Plug 'fatih/vim-go'
   " Plug 'leafgarland/typescript-vim'
-  " Plug 'hashivim/vim-terraform'
+  Plug 'hashivim/vim-terraform'
+  Plug 'hashivim/vim-vagrant'
   " Plug 'rescript-lang/vim-rescript'
   " Plug 'elixir-editors/vim-elixir'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
   " Plug 'Tetralux/odin.vim'
+  Plug 'elkasztano/nushell-syntax-vim'
 
   " - - - Colorschemes - - -
   Plug 'NLKNguyen/papercolor-theme'
@@ -63,8 +65,11 @@ call plug#begin()
   Plug 'cormacrelf/vim-colors-github'
   Plug 'crusoexia/vim-monokai'
   Plug 'ghifarit53/tokyonight-vim'
+  Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
+  Plug 'rakr/vim-two-firewatch'
+  Plug 'sonph/onehalf'
   Plug 'tyrannicaltoucan/vim-deep-space'
 
 " All of your Plugins must be added before the following line
@@ -282,7 +287,9 @@ else " RUNNING ON A TERMINAL
 
   elseif match($TERM_PROGRAM,'\cWezterm') != -1
   " WezTerm
-    color sorbet
+    set background=dark
+    color tender
+    let g:airline_theme = 'tenderplus'
 
   elseif match($TERM_PROGRAM,'\cTmux') != -1
   " Tmux

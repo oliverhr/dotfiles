@@ -18,11 +18,12 @@ Linux:
 --]]
 local os = wezterm.target_triple
 if os == 'x86_64-pc-windows-msvc' then
-    config.window_decorations = "RESIZE" -- RESIZE | TITLE | NONE
     config.default_prog = { "pwsh", "-Login" }
+    config.window_decorations = "RESIZE" -- RESIZE | TITLE | NONE
     config.font = wezterm.font("Agave Nerd Font")
     config.font_size = 12
 elseif os == 'x86_64-apple-darwin' then
+    config.default_prog = { "/usr/local/bin/nu" }
     config.window_decorations = "RESIZE | TITLE" -- RESIZE | TITLE | NONE
     config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
     config.font_size = 18
@@ -36,7 +37,7 @@ config.color_scheme = "Tokyo Night"
   - SteadyUnderline, BlinkingUnderline,
   - SteadyBar, BlinkingBar
 ]]
-config.default_cursor_style = "BlinkingUnderline"
+config.default_cursor_style = "BlinkingBlock"
 
 --[[ Foground text brighter than the background
 config.foreground_text_hsb = {
@@ -53,6 +54,5 @@ config.use_fancy_tab_bar = true
 config.keys = {
 	{ key = "F9", mods = "ALT", action = wezterm.action.ShowTabNavigator },
 }
-
 
 return config
