@@ -269,7 +269,7 @@ else " RUNNING ON A TERMINAL
     set notermguicolors
     set t_Co=256
     set background=dark
-    colorscheme retrobox
+    colorscheme monokai
 
   elseif match($TERM_PROGRAM,'\ciTerm') != -1
   " iTerm
@@ -393,6 +393,14 @@ if has('autocmd')
     \ endif
   " But don't remember the cursor position in git commits
   au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+endif
+
+" Templates for new buffers
+if has('autocmd')
+  augroup templates
+    autocmd BufNewFile *.sh 0 read <sfile>:h/skeletons/bash.sh
+    autocmd BufNewFile *.py 0 read <sfile>:h/skeletons/python.py
+  augroup END
 endif
 
 " Linebreak on 500 characters
