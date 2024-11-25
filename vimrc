@@ -43,7 +43,6 @@ call plug#begin()
   Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'ryanoasis/vim-devicons'
 
   " - - - Syntax - - -
   Plug 'fatih/vim-go'
@@ -72,6 +71,8 @@ call plug#begin()
   Plug 'sonph/onehalf'
   Plug 'tyrannicaltoucan/vim-deep-space'
 
+  " - - - Loaded last - - -
+  Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 

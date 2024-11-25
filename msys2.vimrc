@@ -45,7 +45,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'yasuhiroki/github-actions-yaml.vim'
-  Plug 'ryanoasis/vim-devicons'
 
   " - - - Syntax - - -
   " Plug 'hashivim/vim-terraform'
@@ -70,6 +69,8 @@ call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
 
+  " - - - Loaded last - - -
+  Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 

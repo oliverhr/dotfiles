@@ -45,7 +45,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'yasuhiroki/github-actions-yaml.vim'
-  Plug 'ryanoasis/vim-devicons'
 
   " - - - Syntax - - -
     Plug 'fatih/vim-go'
@@ -70,6 +69,8 @@ call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
 
+  " - - - Loaded last - - -
+  Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -236,8 +237,13 @@ set mouse=a
 set t_Co=256
 " set termguicolors
 
+" Enable this only when terminal dislay weird chars
+" becuase of an issue with devicons & airline this
+" error mostly happen on Linux and WSL
+set t_RV=
+
 " == ColorScheme
-"set background=dark
+set background=dark
 color monokai
 
 " Set Tab bar color background to translucid and line to black
@@ -252,7 +258,6 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " Airline settings
 let g:airline_powerline_fonts = 1
-" Airline customization
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
