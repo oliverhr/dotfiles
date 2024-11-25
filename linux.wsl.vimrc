@@ -44,12 +44,12 @@ call plug#begin()
   Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Syntax - - -
-    Plug 'fatih/vim-go'
+  Plug 'fatih/vim-go'
   " Plug 'hashivim/vim-terraform'
-    Plug 'pearofducks/ansible-vim'
+  Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'pearofducks/ansible-vim'
   " Plug 'leafgarland/typescript-vim'
   " Plug 'rescript-lang/vim-rescript'
   " Plug 'elixir-editors/vim-elixir'
