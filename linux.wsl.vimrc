@@ -36,7 +36,6 @@ call plug#begin()
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'ryanoasis/vim-devicons'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'preservim/nerdcommenter'
   Plug 'machakann/vim-sandwich'
@@ -46,6 +45,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'ryanoasis/vim-devicons'
 
   " - - - Syntax - - -
     Plug 'fatih/vim-go'
