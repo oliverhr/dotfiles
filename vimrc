@@ -244,11 +244,12 @@ endfunction
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-  set background=dark
-  colorscheme deep-space
+  set cursorline
+  set background=light
+  colorscheme two-firewatch
 
   let g:airline_theme = 'tomorrow'
-  set lines=45 columns=90
+  set lines=60 columns=86
   set gfn=Hack\ Nerd\ Font\ Mono:h18
 
   set guioptions-=r " Hide rigth scrollbar
@@ -301,7 +302,7 @@ else " RUNNING ON A TERMINAL
   elseif match($TERM_PROGRAM,'\cRio') != -1
   " Rio
     set background=dark
-    color sorbet
+    color onedark
     let g:airline_theme = 'biogoo'
 
   else
@@ -433,9 +434,9 @@ map <C-l> <C-W>l
 map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
-map <leader>bh :enew<cr>
-map <leader>bv :vnew<cr>
-map <leader>bt :tabnew<cr>
+map <leader>bh :new ./
+map <leader>bv :vnew ./
+map <leader>bt :tabnew ./
 " Close the current buffer
 map <silent><leader>bd :bdel<cr>
 " Close all the buffers
