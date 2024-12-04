@@ -240,6 +240,8 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+" Highlight current line
+set cursorline
 
 " Set extra options when running in GUI mode
 if has("gui_running")
