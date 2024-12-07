@@ -46,7 +46,6 @@ call plug#begin()
 
   " - - - Syntax - - -
   Plug 'fatih/vim-go'
-  " Plug 'leafgarland/typescript-vim'
   Plug 'hashivim/vim-terraform'
   Plug 'hashivim/vim-vagrant'
   " Plug 'rescript-lang/vim-rescript'
