@@ -48,7 +48,8 @@ call plug#begin()
   Plug 'fatih/vim-go'
   Plug 'hashivim/vim-terraform'
   Plug 'hashivim/vim-vagrant'
-  " Plug 'rescript-lang/vim-rescript'
+  Plug 'rescript-lang/vim-rescript'
+  Plug 'leafgarland/typescript-vim'
   " Plug 'elixir-editors/vim-elixir'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
@@ -73,6 +74,7 @@ call plug#begin()
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
+
 call plug#end()            " required
 
 " You can revert the settings after the call like so:
@@ -80,7 +82,6 @@ call plug#end()            " required
 "   syntax off            " Disable syntax highlighting
 "
 " Put your non-Plugin stuff after this line
-
 " -------------------------------------------------------------------
 " Plugins Settings
 " -------------------------------------------------------------------
@@ -101,6 +102,9 @@ let g:ctrlp_custom_ignore = {
 " Format Terraform
 let g:terraform_fmt_on_save=1
 let g:terraform_align=1
+
+" Ocaml
+set rtp^='/Users/oliver/.opam/default/share/ocp-indent/vim'
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
@@ -230,6 +234,8 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+" Highlight current line
+set cursorline
 
 " Set Solarized as colorscheme
 function! LetSolarize()
@@ -243,7 +249,6 @@ endfunction
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-  set cursorline
   set background=light
   colorscheme two-firewatch
 
