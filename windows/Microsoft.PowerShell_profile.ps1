@@ -3,11 +3,20 @@
 ###########################################################
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
 
-# $PSReadLineOptions = @{
-#     HistoryNoDuplicates = $true
-#     HistorySearchCursorMovesToEnd = $true
-# }
-# Set-PSReadLineOption @PSReadLineOptions
+#------------------------------------------------------------------------------
+# Control how the history is being managed
+#------------------------------------------------------------------------------
+$PSReadLineHistoryHandler = {
+    Param([string]$line)
+    $patterns = '^git\s|^ls|^cd\s|^rm\s|^touch\s|^vim\s|^clear|^gst|^gsw|^g[acfldp]$'
+    return !($line -match $patterns)
+}
+$PSReadLineOptions = @{
+    HistoryNoDuplicates = $false
+    HistorySearchCursorMovesToEnd = $true
+}
+Set-PSReadLineOption @PSReadLineOptions `
+    -AddToHistoryHandler $PSReadLineHistoryHandler
 
 #------------------------------------------------------------------------------
 # IMPORT POWERSHELL MODULES
