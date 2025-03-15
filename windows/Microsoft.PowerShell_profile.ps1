@@ -1,3 +1,6 @@
+###########################################################
+# Powershell profile
+###########################################################
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | Invoke-Expression
 
 # $PSReadLineOptions = @{
@@ -21,8 +24,14 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | In
 # See https://ch0.co/tab-completion for details.
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+    Import-Module "$ChocolateyProfile"
 }
+
+#------------------------------------------------------------------------------
+# IMPORT POWERSHELL MODULES
+#------------------------------------------------------------------------------
+# https://www.powershellgallery.com
+#------------------------------------------------------------------------------
 
 # ---------------------------
 # Git module
@@ -34,17 +43,48 @@ Import-Module git-aliases -DisableNameChecking
 # https://github.com/matt9ucci/DockerCompletion
 Import-Module DockerCompletion
 
-#------------------------------------------------------------------------------
-# My Custom Stuff
-#------------------------------------------------------------------------------
+# ---------------------------
+# Fuzzyfinder fzf
+Set-PsFzfOption `
+    -PSReadlineChordProvider 'Ctrl+t' <# keyboard shortcut to start a search #>`
+    -PSReadlineChordReverseHistory 'Ctrl+r' <# shortcut to search on history #>`
+    -EnableAliasFuzzySetLocation <# enable command: fd #>`
+    -EnableAliasFuzzyEdit <# Enable command: fe #>
 
-# Set alias for touch, since now is not a default alias included in pwsh
-Function _touch {
-  New-Item -ItemType "File" -Path ($args[0])
-}
-Set-Alias -Name touch -Value _touch
-
+#------------------------------------------------------------------------------
+# Custom Stuff
+#------------------------------------------------------------------------------
+# Set alias for some used unix commands
 # Alias for start to open like macos
 Set-Alias -Name open -Value Start-Process
 
+# Touch, since now is not a default alias included in pwsh
+Function _touch {
+    New-Item -ItemType "File" -Path ($args[0])
+}
+Set-Alias -Name touch -Value _touch
 
+# which
+Function _which {
+    Get-Command -Name ($args[0]) | Format-Table -Autosize -Property Version, Source
+}
+Set-Alias -Name which -Value _which
+
+Function _ll {
+    get-ChildItem ($args[0]) | Format-Wide -Column 5
+}
+Set-Alias -Name ll -Value _ll
+
+# Search with Fuzzy finder -> Vim
+Function _vim_fzf {
+    Get-ChildItem . -Recurse -Attributes !Directory | Invoke-Fzf | % { vim $_  }
+}
+Set-Alias -Name edit -Value _vim_fzf
+
+#Jetbrains IDE (eg. pycharm)
+Function _pycharm {
+    Start-Process `
+        -FilePath 'C:\Program Files\JetBrains\PyCharm 2024.3.4\bin\pycharm64.exe' `
+        -ArgumentList "nosplash","dontReopenProjects", ($args[0])
+}
+Set-Alias -Name pycharm -Value _pycharm
