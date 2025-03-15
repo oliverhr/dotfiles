@@ -8,15 +8,26 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | In
 #------------------------------------------------------------------------------
 $PSReadLineHistoryHandler = {
     Param([string]$line)
-    $patterns = '^git\s|^ls|^cd\s|^rm\s|^touch\s|^vim\s|^clear|^gst|^gsw|^g[acfldp]$'
-    return !($line -match $patterns)
+    $patterns = @(
+        '^git\s',
+        '^ls'
+        '^cd\s'
+        '^rm\s',
+        '^touch\s',
+        '^vim\s',
+        'clear',
+        'gst',
+        '^gsw',
+        '^g[acfldp]$'
+    )
+    return !($line -match ($patterns -join '|'))
 }
 $PSReadLineOptions = @{
     HistoryNoDuplicates = $false
     HistorySearchCursorMovesToEnd = $true
+    AddToHistoryHandler = $PSReadLineHistoryHandler
 }
-Set-PSReadLineOption @PSReadLineOptions `
-    -AddToHistoryHandler $PSReadLineHistoryHandler
+Set-PSReadLineOption @PSReadLineOptions
 
 #------------------------------------------------------------------------------
 # IMPORT POWERSHELL MODULES
