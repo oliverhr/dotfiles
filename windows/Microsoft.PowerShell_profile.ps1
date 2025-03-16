@@ -9,14 +9,15 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\robbyrussell.omp.json" | In
 $PSReadLineHistoryHandler = {
     Param([string]$line)
     $patterns = @(
-        '^git\s',
-        '^ls'
+        'clear',
+        'exit',
+        '^ls',
         '^cd\s'
         '^rm\s',
         '^touch\s',
         '^vim\s',
-        'clear',
-        'gst',
+        '^git\s',
+        '^g[sa][ta]$',
         '^gsw',
         '^g[acfldp]$'
     )
