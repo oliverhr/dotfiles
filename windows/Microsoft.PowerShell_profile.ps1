@@ -111,4 +111,4 @@ Function _pycharm {
 Set-Alias -Name pycharm -Value _pycharm
 
 # https://poshcode.gitbook.io/powershell-practice-and-style/style-guide/code-layout-and-formatting
-# vim: set ft=ps1 ts=4 sts=4 sw=4 et
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :
