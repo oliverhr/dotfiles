@@ -11,8 +11,8 @@ $PSReadLineHistoryHandler = {
     $patterns = @(
         'clear'
         'exit'
-        '^ls'
-        '^cd\s'
+        '^ls[\s]*'
+        '^cd[\s]*'
         '^rm\s'
         '^touch\s'
         '^vim\s'
