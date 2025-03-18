@@ -80,12 +80,14 @@
 	tags = !git --no-pager tag
 	logs = !git --no-pager log --no-merges --stat --oneline
 	commits = !git --no-pager log --no-merges --stat --oneline
-	delmerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
+	delmerged = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 
 # ------------------------------------------------------------------------------
 # ---          Include custom local configuration based on paths             ---
 # ------------------------------------------------------------------------------
-# This is useful to set custom configurations like:
+# This is useful to set configurations for all local repositories per path
+# For specific values on a repo still can be set with: `git --local config...`
+# ------------------------------------------------------------------------------
 # - user.{name,email,signingkey}
 # - commit.gpgsign = [true|false]
 # - gpg.{format,program}
