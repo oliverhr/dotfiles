@@ -79,7 +79,7 @@
 	branches = !git --no-pager branch
 	tags = !git --no-pager tag
 	commits = !git --no-pager log --no-merges --stat --oneline
-	delmerged = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
+	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 
 # ------------------------------------------------------------------------------
 # ---          Include custom local configuration based on paths             ---
