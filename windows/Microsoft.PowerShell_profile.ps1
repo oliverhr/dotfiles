@@ -114,10 +114,10 @@ Function _which {
 }
 Set-Alias -Name which -Value _which
 
-Function _ll {
-    get-ChildItem ($args[0]) | Format-Wide -Column 5
+Function _lw {
+    get-ChildItem ($args[0]) | Format-Wide -Autosize
 }
-Set-Alias -Name ll -Value _ll
+Set-Alias -Name lw -Value _lw
 
 # Search with Fuzzy finder -> Vim
 Function _vim_fzf {
