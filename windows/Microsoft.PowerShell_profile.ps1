@@ -86,6 +86,14 @@ Set-PsFzfOption `
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 #------------------------------------------------------------------------------
+# Get-ChildItemColor
+# https://github.com/joonro/Get-ChildItemColor
+#------------------------------------------------------------------------------
+Import-Module Get-ChildItemColor
+Set-Alias ll Get-ChildItemColor -option AllScope
+Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
+
+#------------------------------------------------------------------------------
 # Custom Stuff
 #------------------------------------------------------------------------------
 # Set alias for some used unix commands
