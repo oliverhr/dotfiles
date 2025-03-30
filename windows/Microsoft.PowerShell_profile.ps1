@@ -146,15 +146,25 @@ Set-Alias -Name edit -Value _vim_fzf
 #------------------------------------------------------------------------------
 # Aliases to promote laziness XD
 #------------------------------------------------------------------------------
-Function _edit_profile {
-    vim $PROFILE
-}
-Set-Alias -Name psprofile -Value _edit_profile
-
 Function _source_profile {
     . $PROFILE
 }
 Set-Alias -Name src -Value _source_profile
+
+# Alias to commonly used files to open with prefered editor like *nix
+$env:EDITOR = 'vim'
+Function _open_with_editor {
+    $target = @{
+        'configpwsh' = $PROFILE
+        'configvim' = "~/vimfiles/vimrc"
+        'checkhistory' = ((Get-PSReadLineOption).HistorySavePath)
+    }
+    $exp = "$($env:EDITOR) ""$($target[$MyInvocation.InvocationName])"""
+    Invoke-Expression $exp
+}
+Set-Alias -Value _open_with_editor -Name configpwsh
+Set-Alias -value _open_with_editor -Name configvim
+Set-Alias -value _open_with_editor -Name checkhistory
 
 ###############################################################################
 # Local stuff
