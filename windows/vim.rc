@@ -28,14 +28,17 @@ if has("win32")
   " !!! if enabled with vim-go and gopls !!!
   " Error detected while processing CursorHold Autcomands for *.go
   " --@@!!!
-  " set shell=powershell
-  " set shellcmdflag=-Command
-  " set shellpipe=|
-  " shelltype
-  " shellslash
-  " shellredir
-  " shellquote
-  " shellxquote
+  set shell=pwsh
+  set shellcmdflag=-Command
+  set shellpipe=|
+  " Some other commands to set (check h %command%):
+  " This is useful to set if 'set shell' value is a fullpath
+  " or set to a terminal different to cmd and powershell
+  "  set shellslash
+  "  set shelltype
+  "  set shellquote
+  "  set shellxquote
+  "  set shellredir
 endif
 
 " ======================= Plug Settings ===========================
@@ -50,28 +53,26 @@ call plug#begin()
   Plug 'preservim/nerdcommenter'
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-fugitive'
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'LunarWatcher/auto-pairs'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'nanotee/zoxide.vim'
 
   " - - - Syntax - - -
-  Plug 'fatih/vim-go'
+  " Plug 'fatih/vim-go'
   " Plug 'hashivim/vim-terraform'
   " Plug 'rescript-lang/vim-rescript'
   " Plug 'elixir-editors/vim-elixir'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
-  " Plug 'Tetralux/odin.vim'
 
   " - - - Colorschemes - - -
-  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'NLKNguyen/papercolor-theme', { 'as': 'papercolor' }
   Plug 'altercation/vim-colors-solarized'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
   Plug 'crusoexia/vim-monokai'
-  Plug 'ghifarit53/tokyonight-vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
@@ -95,18 +96,9 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
-" CtrlP ignored git files
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-" Exclude files and directories using Vim's wildignore and CtrlP's own custom ignore
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|pdb|so|dll|DS_Store)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-
 " Format Terraform
-let g:terraform_fmt_on_save=1
-let g:terraform_align=1
+" let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
@@ -135,8 +127,9 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 " Fuzzy finder
-let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
+map <silent> <C-p> :FZF!<cr>
 
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
@@ -242,47 +235,47 @@ highlight clear LineNr
 " Highlight current line
 set cursorline
 
+" ---------------------------------------------------------
+" Configuration for colors for terminal
+" ---------------------------------------------------------
+" Enable yanked to system clipboard
+set clipboard=unnamed
+set mouse=a
+
+" set t_Co=256
+set termguicolors
+
+" Set Tab bar color background to translucid and line to black
+highlight TabLineFill ctermfg=Black
+
+highlight SpecialKey guibg=bg ctermbg=none
+
+" Spelling mistakes will be colored up red.
+hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+
+" Set colorscheme based on operating system detected
+if has("win32")
+  set background=dark
+  colorscheme PaperColor
+  let g:airline_theme = 'transparent'
+endif
+
 " Set extra options when running in GUI mode
 if has("gui_running")
   highlight LineNr guifg=#333D60
-
-  color deep-space
-  let g:airline_theme = 'tomorrow'
-
-  set lines=45 columns=100
-  set gfn=Agave\ Nerd\ Font:h12
+  colorscheme onedark
+  let g:airline_theme = 'deus'
+  set gfn=Agave\ Nerd\ Font:h16
+  set lines=35 columns=120
+  set guioptions-=m " Hide menu
   set guioptions-=T " Hide toolbar
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
   set guioptions-=e " Set gui-tabs as terminal
   set guitablabel=%M\ %t
-
-  let g:solarized_menu = 0 " Disable Solarized menu on GUI
-
-else " RUNNING ON A TERMINAL
-  " Enable yanked to system clipboard
-  set clipboard=unnamed
-  set mouse=a
-
-  " set t_Co=256
-  set termguicolors
-
-  " Set colorscheme based on TERM_PROGRAM used
-  " set background=dark
-  let g:tokyonight_style = 'night' " options: night, storm
-  let g:tokyonight_enable_italic = 1
-  colorscheme tokyonight
-
-  " Set Tab bar color background to translucid and line to black
-  highlight TabLineFill ctermfg=Black
-
-  highlight SpecialKey guibg=bg ctermbg=none
-
-  " Spelling mistakes will be colored up red.
-  hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-  hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 endif
 
 " Airline settings
@@ -339,7 +332,7 @@ if has('autocmd')
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
 
   " Shell files Indent with tabs, align with spaces
-  autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
+  autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
 
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
@@ -384,9 +377,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
 map <leader>bh :enew<cr>
@@ -443,7 +433,7 @@ nmap <S-Space> i
 :nnoremap <F7> "=strftime("%c")<cr>P
 :inoremap <F7> <C-R>=strftime("%c")<cr>
 
-" Clear search higlight pressing enter
+" Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Move a line of text using SHIFT+[jk]
