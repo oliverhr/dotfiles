@@ -1,10 +1,12 @@
 # vim: set ft=ps1 ts=4 sts=4 sw=4 et :
 
-###########################################################
-# Custom Powershell profile
-###########################################################
+#------------------------------------------------------------------------------
 # https://poshcode.gitbook.io/powershell-practice-and-style/style-guide/code-layout-and-formatting
-###########################################################
+#------------------------------------------------------------------------------
+
+###############################################################################
+# Custom Powershell profile
+###############################################################################
 
 $omptheme = 'robbyrussell'
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\$omptheme.omp.json" | Invoke-Expression
@@ -40,8 +42,14 @@ $PSReadLineOptions = @{
 Set-PSReadLineOption @PSReadLineOptions
 
 #------------------------------------------------------------------------------
-# IMPORT POWERSHELL MODULES
+# Zoxide
+# https://github.com/ajeetdsouza/zoxide
 #------------------------------------------------------------------------------
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+###############################################################################
+# POWERSHELL MODULES
+###############################################################################
 # https://www.powershellgallery.com
 #------------------------------------------------------------------------------
 
@@ -80,12 +88,6 @@ Set-PsFzfOption `
     #-EnableAliasFuzzySetLocation <# diasbled since got installed fd from scoop #>
 
 #------------------------------------------------------------------------------
-# Zoxide
-# https://github.com/ajeetdsouza/zoxide
-#------------------------------------------------------------------------------
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
-#------------------------------------------------------------------------------
 # Get-ChildItemColor
 # https://github.com/joonro/Get-ChildItemColor
 #------------------------------------------------------------------------------
@@ -93,9 +95,9 @@ Import-Module Get-ChildItemColor
 Set-Alias ll Get-ChildItemColor -option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
 
-#------------------------------------------------------------------------------
+###############################################################################
 # Custom Stuff
-#------------------------------------------------------------------------------
+###############################################################################
 # Set alias for some used unix commands
 # Alias for start to open like macos
 Set-Alias -Name open -Value Start-Process
@@ -154,9 +156,9 @@ Function _source_profile {
 }
 Set-Alias -Name src -Value _source_profile
 
-#----------------------------------------------------------
+###############################################################################
 # Local stuff
-#----------------------------------------------------------
+###############################################################################
 Function _cd_projects_root {
     $path = '~/Projects/'
     if ($args[0]) {
