@@ -103,30 +103,30 @@ Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
 Set-Alias -Name open -Value Start-Process
 
 # Touch, since now is not a default alias included in pwsh
-Function _touch {
+function _touch {
     New-Item -ItemType "File" -Path ($args[0])
 }
 Set-Alias -Name touch -Value _touch
 
 # which
-Function _which {
+function _which {
     Get-Command -Name ($args[0]) | Format-Table -Autosize -Property Version, Source
 }
 Set-Alias -Name which -Value _which
 
-Function _lw {
+function _lw {
     get-ChildItem ($args[0]) | Format-Wide -Autosize
 }
 Set-Alias -Name lw -Value _lw
 
 # Search with Fuzzy finder -> Vim
-Function _vim_fzf {
+function _vim_fzf {
     Get-ChildItem . -Recurse -Attributes !Directory | Invoke-Fzf | % { vim $_  }
 }
 Set-Alias -Name edit -Value _vim_fzf
 
 # Jetbrains IDE (eg. pycharm)
-Function pycharm {
+function pycharm {
     param ([string]$File)
     $filename = ($File) ? $File : ($args[0]) ? $args[0] : '.'
     Start-Process `
@@ -138,7 +138,7 @@ Function pycharm {
 Set-Alias -Name npp -Value "C:\Program Files\Notepad++\notepad++.exe"
 
 # Search with Fuzzy finder -> Vim
-Function _vim_fzf {
+function _vim_fzf {
     Get-ChildItem . -Recurse -Attributes !Directory | Invoke-Fzf | % { vim $_  }
 }
 Set-Alias -Name edit -Value _vim_fzf
@@ -146,14 +146,14 @@ Set-Alias -Name edit -Value _vim_fzf
 #------------------------------------------------------------------------------
 # Aliases to promote laziness XD
 #------------------------------------------------------------------------------
-Function _source_profile {
+function _source_profile {
     . $PROFILE
 }
 Set-Alias -Name src -Value _source_profile
 
 # Alias to commonly used files to open with prefered editor like *nix
 $env:EDITOR = 'vim'
-Function _open_with_editor {
+function _open_with_editor {
     $target = switch ($MyInvocation.InvocationName) {
         'configpwsh'   { $PROFILE }
         'configvim'    { "~/vimfiles/vimrc" }
@@ -169,7 +169,7 @@ Set-Alias -value _open_with_editor -Name checkhistory
 ###############################################################################
 # Local stuff
 ###############################################################################
-Function _cd_projects_root {
+function _cd_projects_root {
     $path = '~/Projects/'
     if ($args[0]) {
         $npath = $path + ($args[0])
@@ -181,14 +181,14 @@ Function _cd_projects_root {
 }
 Set-Alias -Value _cd_projects_root -Name projects
 
-Function _cd_project_type_by_name {
+function _cd_project_type_by_name {
     $sub = ($args[0]) ? '/' + $args[0] : ''
     _cd_projects_root ($MyInvocation.InvocationName + $sub)
 }
 Set-Alias -Value _cd_project_type_by_name -Name personal
 Set-Alias -Value _cd_project_type_by_name -Name work
 
-Function _cd_work_project_by_alias {
+function _cd_work_project_by_alias {
     # $Myinvocation.myCommand.name return the function name
     # $Myinvocation.InvocationName return the caller/alias name
     $path = switch ($MyInvocation.InvocationName) {
