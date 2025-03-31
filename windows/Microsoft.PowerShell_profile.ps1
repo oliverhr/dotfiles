@@ -155,15 +155,17 @@ Set-Alias -Name src -Value _source_profile
 $env:EDITOR = 'vim'
 function _open_with_editor {
     $target = switch ($MyInvocation.InvocationName) {
-        'configpwsh'   { $PROFILE }
-        'configvim'    { "~/vimfiles/vimrc" }
-        'checkhistory' { (Get-PSReadLineOption).HistorySavePath }
+        confpsh { $PROFILE }
+        confvim { "~/vimfiles/vimrc" }
+        confgit { "~/.gitconfig" }
+        checkhistory { (Get-PSReadLineOption).HistorySavePath }
     }
     $exp = "$($env:EDITOR) ""$($target)"""
     Invoke-Expression $exp
 }
-Set-Alias -Value _open_with_editor -Name configpwsh
-Set-Alias -value _open_with_editor -Name configvim
+Set-Alias -Value _open_with_editor -Name confpwsh
+Set-Alias -value _open_with_editor -Name confvim
+Set-Alias -value _open_with_editor -Name confgit
 Set-Alias -value _open_with_editor -Name checkhistory
 
 ###############################################################################
