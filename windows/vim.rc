@@ -23,17 +23,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-"================= Shell from MS-Dos to PowerShell ================
-if has("win32")
-  " !!! if enabled with vim-go and gopls !!!
-  " Error detected while processing CursorHold Autcomands for *.go
-  " Error with Plug commands
-  " --@@!!!
-  " set shell=pwsh
-  " set shellcmdflag=-NoProfile\ -NoLogo\ -NoProfileLoadTime\ -NonInteractive\ -Command
-  " set shellpipe=\|
-endif
-
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
@@ -92,6 +81,17 @@ let NERDTreeRespectWildIgnore = 1
 " Format Terraform
 " let g:terraform_fmt_on_save=1
 " let g:terraform_align=1
+
+"================= Shell from MS-Dos to PowerShell ================
+if has("win32")
+  " !!! if enabled with vim-go and gopls !!!
+  " Error detected while processing CursorHold Autcomands for *.go
+  " Error with Plug commands
+  " --@@!!!
+  " set shell=pwsh
+  " set shellcmdflag=-NoProfile\ -NoLogo\ -NoProfileLoadTime\ -NonInteractive\ -Command
+  " set shellpipe=\|
+endif
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
