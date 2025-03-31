@@ -229,7 +229,7 @@ highlight clear LineNr
 set cursorline
 
 " ---------------------------------------------------------
-" Configuration for colors for terminal
+" Style and visuals configuration
 " ---------------------------------------------------------
 " Enable yanked to system clipboard
 set clipboard=unnamed
@@ -249,13 +249,6 @@ hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
-" Set colorscheme based on operating system detected
-if has("win32")
-  set background=dark
-  colorscheme PaperColor
-  let g:airline_theme = 'transparent'
-endif
-
 " Set extra options when running in GUI mode
 if has("gui_running")
   highlight LineNr guifg=#333D60
@@ -269,6 +262,10 @@ if has("gui_running")
   set guioptions-=L " Hide left scrollbar
   set guioptions-=e " Set gui-tabs as terminal
   set guitablabel=%M\ %t
+else
+  set background=dark
+  colorscheme PaperColor
+  let g:airline_theme = 'transparent'
 endif
 
 " Airline settings
