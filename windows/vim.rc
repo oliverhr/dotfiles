@@ -27,18 +27,11 @@ set fileformats=unix,dos,mac
 if has("win32")
   " !!! if enabled with vim-go and gopls !!!
   " Error detected while processing CursorHold Autcomands for *.go
+  " Error with Plug commands
   " --@@!!!
-  set shell=pwsh
-  set shellcmdflag=-Command
-  set shellpipe=|
-  " Some other commands to set (check h %command%):
-  " This is useful to set if 'set shell' value is a fullpath
-  " or set to a terminal different to cmd and powershell
-  "  set shellslash
-  "  set shelltype
-  "  set shellquote
-  "  set shellxquote
-  "  set shellredir
+  " set shell=pwsh
+  " set shellcmdflag=-NoProfile\ -NoLogo\ -NoProfileLoadTime\ -NonInteractive\ -Command
+  " set shellpipe=\|
 endif
 
 " ======================= Plug Settings ===========================
