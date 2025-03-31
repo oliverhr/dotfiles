@@ -154,12 +154,12 @@ Set-Alias -Name src -Value _source_profile
 # Alias to commonly used files to open with prefered editor like *nix
 $env:EDITOR = 'vim'
 Function _open_with_editor {
-    $target = @{
-        'configpwsh' = $PROFILE
-        'configvim' = "~/vimfiles/vimrc"
-        'checkhistory' = ((Get-PSReadLineOption).HistorySavePath)
+    $target = switch ($MyInvocation.InvocationName) {
+        'configpwsh'   { $PROFILE }
+        'configvim'    { "~/vimfiles/vimrc" }
+        'checkhistory' { (Get-PSReadLineOption).HistorySavePath }
     }
-    $exp = "$($env:EDITOR) ""$($target[$MyInvocation.InvocationName])"""
+    $exp = "$($env:EDITOR) ""$($target)"""
     Invoke-Expression $exp
 }
 Set-Alias -Value _open_with_editor -Name configpwsh
@@ -191,12 +191,11 @@ Set-Alias -Value _cd_project_type_by_name -Name work
 Function _cd_work_project_by_alias {
     # $Myinvocation.myCommand.name return the function name
     # $Myinvocation.InvocationName return the caller/alias name
-    $projects = @{
-        'back'   = 'directory-name-for-backend'
-        'front'  = 'directory-name-for-frontend'
-        'lambda' = 'directory-name-for-microservices'
+    $path = switch ($MyInvocation.InvocationName) {
+        'back'   { 'directory-name-for-backend' }
+        'front'  { 'directory-name-for-frontend' }
+        'lambda' { 'directory-name-for-microservices' }
     }
-    $path = $projects[$MyInvocation.InvocationName]
     if ($args[0]) { $path += '/' + $args[0] }
     # Invocation of "_cd_project_type_by_name" using alias "work"
     work $path
