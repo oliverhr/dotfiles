@@ -90,8 +90,8 @@ let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
 " Format Terraform
-let g:terraform_fmt_on_save=1
-let g:terraform_align=1
+" let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
 
 " Ocaml
 set rtp^='/Users/oliver/.opam/default/share/ocp-indent/vim'
@@ -428,9 +428,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quick open blank/new buffers
-map <leader>bh :new ./
-map <leader>bv :vnew ./
-map <leader>bt :tabnew ./
+map <leader>bh :new<cr>
+map <leader>bv :vnew<cr>
+map <leader>bt :tabnew<cr>
 " Close the current buffer
 map <silent><leader>bd :bdel<cr>
 " Close all the buffers
@@ -482,7 +482,7 @@ nmap <S-Space> i
 :nnoremap <F7> "=strftime("%c")<cr>P
 :inoremap <F7> <C-R>=strftime("%c")<cr>
 
-" Clear search higlight pressing enter
+" Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Move a line of text using SHIFT+[jk]
