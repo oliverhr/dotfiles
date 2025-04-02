@@ -1,5 +1,5 @@
 "==================================================================
-" Windows Msys2 and Git shell
+" Windows OS
 "
 " Msys2 and Git on terminal has specific issues with
 " color require to set t_Co=256 for some color schemes
@@ -24,48 +24,43 @@ set encoding=utf8
 set fileformats=unix,dos,mac
 
 "================= Shell from MS-Dos to PowerShell ================
-if has("win32unix")
+"if has("win32unix")
   " TODO: check about vim config modularization
-endif
+"endif
 
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
 " - - - Utilities - - -
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'machakann/vim-sandwich'
+  Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'machakann/vim-sandwich'
-  Plug 'tpope/vim-fugitive'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'LunarWatcher/auto-pairs'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
   Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Syntax - - -
-  " Plug 'hashivim/vim-terraform'
-    Plug 'pearofducks/ansible-vim'
-  " Plug 'rescript-lang/vim-rescript'
   " Plug 'elixir-editors/vim-elixir'
+  " Plug 'hashivim/vim-terraform'
   " Plug 'mattn/emmet-vim'
+  " Plug 'pearofducks/ansible-vim'
+  " Plug 'rescript-lang/vim-rescript'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'altercation/vim-colors-solarized'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'cormacrelf/vim-colors-github'
   Plug 'crusoexia/vim-monokai'
-  Plug 'foxoman/vim-helix'
-  Plug 'ghifarit53/tokyonight-vim'
   Plug 'ghifarit53/tokyonight-vim'
   Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'tyrannicaltoucan/vim-deep-space'
 
   " - - - Loaded last - - -
@@ -87,18 +82,9 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
-" CtrlP ignored git files
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-" Exclude files and directories using Vim's wildignore and CtrlP's own custom ignore
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|pdb|so|dll|DS_Store)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-
 " Format Terraform
-let g:terraform_fmt_on_save=1
-let g:terraform_align=1
+" let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
@@ -107,9 +93,13 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
+
+" Look at vim config since we live here XD
+nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
@@ -127,6 +117,10 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 " Fuzzy finder
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
+map <silent> <C-p> :FZF!<cr>
+
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :RG<cr>
@@ -136,6 +130,8 @@ nnoremap <silent> <leader>fg :GitFiles?<cr>
 nnoremap <silent> <leader>fl :Lines<cr>
 nnoremap <silent> <leader>fs :BLines<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
+
+nnoremap <silent> <leader>t :ter<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
@@ -228,18 +224,22 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+" Highlight current line
+set cursorline
+
+" ------------------------------------------
+" RUNNING ON A TERMINAL
+" ------------------------------------------
 " Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
 
-set t_Co=256
-set background=light
-let g:solarized_termtrans=1 "trans to play nice when invoked outside git-shell
-let g:solarized_termcolors=16
-color solarized
+" set t_Co=256
+set termguicolors
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
+
 highlight SpecialKey guibg=bg ctermbg=none
 
 " Spelling mistakes will be colored up red.
@@ -247,6 +247,15 @@ hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+
+"================= Color and Style ================
+" MSYS2 detects the env as 'unix' and 'win32unix'
+" Cygwin as 'win32unix' only
+if has('win32unix')
+  set background=dark
+  colorscheme onedark
+  let g:airline_theme = 'lucius'
+endif
 
 " Airline settings
 let g:airline_powerline_fonts = 1
@@ -302,7 +311,7 @@ if has('autocmd')
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
 
   " Shell files Indent with tabs, align with spaces
-  autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
+  autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
 
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
@@ -347,9 +356,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
 map <leader>bh :enew<cr>
@@ -406,7 +412,7 @@ nmap <S-Space> i
 :nnoremap <F7> "=strftime("%c")<cr>P
 :inoremap <F7> <C-R>=strftime("%c")<cr>
 
-" Clear search higlight pressing enter
+" Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Move a line of text using SHIFT+[jk]
