@@ -32,33 +32,31 @@ endif
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 " - - - Utilities - - -
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'junegunn/fzf',
+  Plug 'junegunn/fzf.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'machakann/vim-sandwich'
+  Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'machakann/vim-sandwich'
-  Plug 'tpope/vim-fugitive'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'LunarWatcher/auto-pairs'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
 
   " - - - Syntax - - -
-  Plug 'fatih/vim-go'
-  Plug 'hashivim/vim-terraform'
-  Plug 'hashivim/vim-vagrant'
-  Plug 'rescript-lang/vim-rescript'
-  Plug 'leafgarland/typescript-vim'
   " Plug 'elixir-editors/vim-elixir'
+  " Plug 'elkasztano/nushell-syntax-vim'
+  " Plug 'fatih/vim-go'
+  " Plug 'hashivim/vim-terraform'
+  Plug 'hashivim/vim-vagrant'
+  " Plug 'leafgarland/typescript-vim'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
-  " Plug 'yasuhiroki/github-actions-yaml.vim'
+  " Plug 'rescript-lang/vim-rescript'
   " Plug 'Tetralux/odin.vim'
-  Plug 'elkasztano/nushell-syntax-vim'
+  " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'NLKNguyen/papercolor-theme'
   Plug 'altercation/vim-colors-solarized'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
@@ -67,6 +65,7 @@ call plug#begin()
   Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'rakr/vim-two-firewatch'
   Plug 'sonph/onehalf'
   Plug 'tyrannicaltoucan/vim-deep-space'
@@ -89,15 +88,6 @@ let NERDTreeIgnore = ['.git$[[dir]]']
 let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
-
-" CtrlP ignored git files
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-" Exclude files and directories using Vim's wildignore and CtrlP's own custom ignore
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|pdb|so|dll|DS_Store)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
 
 " Format Terraform
 let g:terraform_fmt_on_save=1
@@ -286,6 +276,11 @@ else " RUNNING ON A TERMINAL
         let g:tokyonight_style = 'night' " available: night, storm
         let g:tokyonight_enable_italic = 1
         colorscheme tokyonight
+    elseif match($ITERM_PROFILE,'\cMonokai') != -1
+        colorscheme monokai
+    elseif match($ITERM_PROFILE,'\cDark') != -1
+        colorscheme PaperColor
+        let g:airline_theme = 'minimalist'
     else
         set background=light
         color morning
@@ -373,18 +368,16 @@ set shiftwidth=4
 set tabstop=4
 
 if has('autocmd')
+  " Preferences based on the file type
   autocmd FileType gitcommit setlocal spell
   autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
-
   " Shell files Indent with tabs, align with spaces
-  autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
-
+  autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
-
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
@@ -433,9 +426,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
 map <leader>bh :new ./
