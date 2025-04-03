@@ -108,7 +108,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nnoremap <leader>w :w!<cr>
+nnoremap <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
