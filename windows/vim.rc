@@ -4,9 +4,7 @@
 " instead of: !clear && python %
 " do: !clear; python %
 " set shell=powershell
-" set shellcmdflag=-command
-" set shellquote=\"
-" set shellxoquote=
+" :help powershell
 "==================================================================
 
 "==================================================================
@@ -58,6 +56,7 @@ call plug#begin()
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'croaker/mustang-vim'
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -100,9 +99,13 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
+
+" Look at vim config since we live here XD
+nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 " Fast saving
 nnoremap <leader>w :w<cr>
@@ -136,6 +139,21 @@ nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
+
+"================= Shell from MS-DOS to PowerShell ================
+if has("win64")
+  "let g:setpwsh_shell = 'pwsh'
+  "let g:setpwsh_netrw_viewer = 0
+  "let g:setpwsh_enabled = 1
+
+  "set shell=pwsh
+  "let &shellcmdflag = '-nol -nop -noni -ep Bypass -Command'
+  "let &shellpipe = '2>&1 | Out-File -Encoding Defualt %s; exit $LastExitCode'
+  "let &shellredir = '>%s'
+  "let &shellxquote = ''
+  "let &shellxescape= ''
+  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
+endif
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -210,8 +228,8 @@ set laststatus=2
 syntax enable
 
 " Absolute number on view mode relative on insert mode
-" This is activated after 'set number'
 augroup numbertoggle
+  " This is activated after 'set number'
   autocmd!
   autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
@@ -240,7 +258,7 @@ set termguicolors
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
-
+" Set translucid background on term for special
 highlight SpecialKey guibg=bg ctermbg=none
 
 " Spelling mistakes will be colored up red.
@@ -252,11 +270,11 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " Set extra options when running in GUI mode
 if has("gui_running")
   highlight LineNr guifg=#333D60
-  colorscheme onedark
-  let g:airline_theme = 'deus'
-  set gfn=Agave\ Nerd\ Font:h16
-  set lines=35 columns=120
-  set guioptions-=m " Hide menu
+  colorscheme retrobox
+  let g:airline_theme = 'base16'
+  set gfn=JetBrainsMono_NFM:h14
+  set lines=25 columns=100
+  " set guioptions-=m " Hide menu
   set guioptions-=T " Hide toolbar
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
@@ -298,7 +316,7 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.vim/backups > /dev/null 2>&1
+"silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/vimfiles/undodir
 set undofile
 
