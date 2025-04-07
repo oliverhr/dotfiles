@@ -17,7 +17,7 @@
 	defaultBranch = main
 [commit]
 	gpgSign = false
-	template = ~/.stCommitMsg
+	;template = ~/.stCommitMsg
 [pull]
 	rebase = false
 

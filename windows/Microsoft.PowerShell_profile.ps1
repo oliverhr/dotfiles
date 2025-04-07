@@ -65,7 +65,7 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 #------------------------------------------------------------------------------
 #$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 #if (Test-Path($ChocolateyProfile)) {
-    #Import-Module "$ChocolateyProfile"
+#    Import-Module "$ChocolateyProfile"
 #}
 
 #------------------------------------------------------------------------------
@@ -181,9 +181,9 @@ Set-Alias -value _open_with_editor -Name checkhistory
 # Local stuff
 ###############################################################################
 function _cd_projects {
-    $path = '~/Projects/'
+    $path = "~/Documents/Projects"
     if ($args[0]) {
-        $npath = $path + ($args[0])
+        $npath = $path + '/' + ($args[0])
         if (Test-Path -Path $npath) {
             $path = $npath
         }
@@ -199,19 +199,20 @@ function _cd_proj_by_name {
 Set-Alias -Value _cd_proj_by_name -Name personal
 Set-Alias -Value _cd_proj_by_name -Name work
 
-function _cd_work_project_by_alias {
-    # $Myinvocation.myCommand.name return the function name
-    # $Myinvocation.InvocationName return the caller/alias name
-    $path = switch ($MyInvocation.InvocationName) {
-        'back'   { 'directory-name-for-backend' }
-        'front'  { 'directory-name-for-frontend' }
-        'lambda' { 'directory-name-for-microservices' }
-    }
-    if ($args[0]) { $path += '/' + $args[0] }
-    # Invocation of "_cd_project_type_by_name" using alias "work"
-    work $path
-}
-Set-Alias -Value _cd_work_project_by_alias -Name api
-Set-Alias -Value _cd_work_project_by_alias -Name ui
-Set-Alias -Value _cd_work_project_by_alias -Name svc
+#------------------------------------------------------------------------------
+#function _cd_work_project_by_alias {
+    ## $Myinvocation.myCommand.name return the function name
+    ## $Myinvocation.InvocationName return the caller/alias name
+    #$path = switch ($MyInvocation.InvocationName) {
+        #'back'   { 'directory-name-for-backend' }
+        #'front'  { 'directory-name-for-frontend' }
+        #'lambda' { 'directory-name-for-microservices' }
+    #}
+    #if ($args[0]) { $path += '/' + $args[0] }
+    ## Invocation of "_cd_project_type_by_name" using alias "work"
+    #work $path
+#}
+#Set-Alias -Value _cd_work_project_by_alias -Name api
+#Set-Alias -Value _cd_work_project_by_alias -Name ui
+#Set-Alias -Value _cd_work_project_by_alias -Name svc
 
