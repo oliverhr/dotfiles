@@ -23,9 +23,10 @@ $PSReadLineHistoryHandler = {
         '^mkdir\s'
         '^cd[\s]*'
         '^rm\s'
+        '^cat\s'
         '^touch\s'
         'exit'
-        '^vim', '^gvim', '^pycharm', '^code', '^npp'
+        '^[g]?vi[m]?', '^pycharm', '^code', '^npp'
         'clear', 'celar', 'claer'
         '^git\s', '^g[sa][ta]$', '^gsw', '^g[acfldp]$'
         '^:'
@@ -62,10 +63,10 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # for `choco` will not function.
 # See https://ch0.co/tab-completion for details.
 #------------------------------------------------------------------------------
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
-}
+#$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+#if (Test-Path($ChocolateyProfile)) {
+    #Import-Module "$ChocolateyProfile"
+#}
 
 #------------------------------------------------------------------------------
 # Git module
@@ -75,7 +76,7 @@ Import-Module git-aliases -DisableNameChecking
 #------------------------------------------------------------------------------
 # Docker completions
 # https://github.com/matt9ucci/DockerCompletion
-Import-Module DockerCompletion
+#Import-Module DockerCompletion
 
 #------------------------------------------------------------------------------
 # Fuzzyfinder fzf
@@ -94,6 +95,13 @@ Set-PsFzfOption `
 Import-Module Get-ChildItemColor
 Set-Alias ll Get-ChildItemColor -option AllScope
 Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
+
+#------------------------------------------------------------------------------
+# CommandNotFound
+# This module is installed by Microsfoft PowerToys or manually from:
+# https://www.powershellgallery.com/packages/Microsoft.WinGet.CommandNotFound
+#------------------------------------------------------------------------------
+Import-Module -Name Microsoft.WinGet.CommandNotFound
 
 ###############################################################################
 # Custom Stuff
@@ -155,15 +163,15 @@ Set-Alias -Name src -Value _source_profile
 $env:EDITOR = 'vim'
 function _open_with_editor {
     $target = switch ($MyInvocation.InvocationName) {
-        confpsh { $PROFILE }
-        confvim { "~/vimfiles/vimrc" }
-        confgit { "~/.gitconfig" }
+        confshell { $PROFILE }
+        confvim   { "~/vimfiles/vimrc" }
+        confgit   { "~/.gitconfig" }
         checkhistory { (Get-PSReadLineOption).HistorySavePath }
     }
     $exp = "$($env:EDITOR) ""$($target)"""
     Invoke-Expression $exp
 }
-Set-Alias -Value _open_with_editor -Name confpwsh
+Set-Alias -Value _open_with_editor -Name confshell
 Set-Alias -value _open_with_editor -Name confvim
 Set-Alias -value _open_with_editor -Name confgit
 Set-Alias -value _open_with_editor -Name checkhistory
@@ -171,7 +179,7 @@ Set-Alias -value _open_with_editor -Name checkhistory
 ###############################################################################
 # Local stuff
 ###############################################################################
-function _cd_projects_root {
+function _cd_projects {
     $path = '~/Projects/'
     if ($args[0]) {
         $npath = $path + ($args[0])
@@ -181,14 +189,14 @@ function _cd_projects_root {
     }
     Set-Location -Path $path
 }
-Set-Alias -Value _cd_projects_root -Name projects
+Set-Alias -Value _cd_projects -Name pro
 
-function _cd_project_type_by_name {
+function _cd_proj_by_name {
     $sub = ($args[0]) ? '/' + $args[0] : ''
-    _cd_projects_root ($MyInvocation.InvocationName + $sub)
+    _cd_projects ($MyInvocation.InvocationName + $sub)
 }
-Set-Alias -Value _cd_project_type_by_name -Name personal
-Set-Alias -Value _cd_project_type_by_name -Name work
+Set-Alias -Value _cd_proj_by_name -Name personal
+Set-Alias -Value _cd_proj_by_name -Name work
 
 function _cd_work_project_by_alias {
     # $Myinvocation.myCommand.name return the function name
@@ -206,6 +214,3 @@ Set-Alias -Value _cd_work_project_by_alias -Name api
 Set-Alias -Value _cd_work_project_by_alias -Name ui
 Set-Alias -Value _cd_work_project_by_alias -Name svc
 
-########-####-####-####-############ PowerToys CommandNotFound module
-Import-Module -Name Microsoft.WinGet.CommandNotFound
-########-####-####-####-############
