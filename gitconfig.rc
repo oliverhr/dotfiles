@@ -1,3 +1,4 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
 # ------------------------------------------------------------------------------
 # Base configuration
 # https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
@@ -7,11 +8,11 @@
 ;	name = OliverHR
 ;	email = @OliverHR
 [core]
-	excludesfile = ~/.gitconfig/ignore.global.rc
 	editor = vim
 	pager = delta
-    # windows:true, unix: input
+	# windows:true, unix: input
 	autocrlf = true
+	excludesfile = ~/.git_config/ignore.global.rc
 [init]
 	defaultBranch = main
 [commit]
@@ -82,6 +83,7 @@
 	worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
 	branches = !git --no-pager branch
 	tags = !git --no-pager tag
+	logs = !git --no-pager log --no-merges --stat --oneline
 	commits = !git --no-pager log --no-merges --stat --oneline
 	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 
@@ -101,4 +103,3 @@
 [includeIf "gitdir:~/Documents/Projects/Work/"]
 	path = ~/.gitconfig/config.work.rc
 
-# vim: set ft=gitconfig ts=4 sw=4 noet :
