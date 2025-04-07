@@ -12,7 +12,7 @@
 	defaultBranch = main
 [commit]
 	gpgSign = false
-	template = /Users/oliver.rangel/.stCommitMsg
+	template = ~/.stCommitMsg
 [pull]
 	rebase = false
 
