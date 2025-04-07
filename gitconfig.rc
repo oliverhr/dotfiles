@@ -1,5 +1,7 @@
 # ------------------------------------------------------------------------------
 # Base configuration
+# https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+# https://docs.github.com/es/get-started/git-basics/configuring-git-to-handle-line-endings
 # ------------------------------------------------------------------------------
 ;[user]
 ;	name = OliverHR
@@ -8,6 +10,8 @@
 	excludesfile = ~/.gitconfig/ignore.global.rc
 	editor = vim
 	pager = delta
+    # windows:true, unix: input
+	autocrlf = true
 [init]
 	defaultBranch = main
 [commit]
