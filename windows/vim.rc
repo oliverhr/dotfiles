@@ -26,17 +26,17 @@ set fileformats=unix,dos,mac
 call plug#begin()
 
 " - - - Utilities - - -
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'machakann/vim-sandwich'
-  Plug 'tpope/vim-fugitive'
-  Plug 'LunarWatcher/auto-pairs'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'machakann/vim-sandwich'
   Plug 'nanotee/zoxide.vim'
+  Plug 'preservim/nerdcommenter'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'tpope/vim-fugitive'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
   " - - - Syntax - - -
   " Plug 'fatih/vim-go'
@@ -48,15 +48,15 @@ call plug#begin()
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'NLKNguyen/papercolor-theme', { 'as': 'papercolor' }
   Plug 'altercation/vim-colors-solarized'
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'cormacrelf/vim-colors-github'
+  Plug 'croaker/mustang-vim'
   Plug 'crusoexia/vim-monokai'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
+  Plug 'NLKNguyen/papercolor-theme', { 'as': 'papercolor' }
   Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'croaker/mustang-vim'
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -82,14 +82,8 @@ let NERDTreeRespectWildIgnore = 1
 " let g:terraform_align=1
 
 "================= Shell from MS-Dos to PowerShell ================
-if has("win32")
-  " !!! if enabled with vim-go and gopls !!!
-  " Error detected while processing CursorHold Autcomands for *.go
-  " Error with Plug commands
-  " --@@!!!
-  " set shell=pwsh
-  " set shellcmdflag=-NoProfile\ -NoLogo\ -NoProfileLoadTime\ -NonInteractive\ -Command
-  " set shellpipe=\|
+if has("win64")
+  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
 endif
 
 " ========================= General Settings ========================
@@ -139,21 +133,6 @@ nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
-
-"================= Shell from MS-DOS to PowerShell ================
-if has("win64")
-  "let g:setpwsh_shell = 'pwsh'
-  "let g:setpwsh_netrw_viewer = 0
-  "let g:setpwsh_enabled = 1
-
-  "set shell=pwsh
-  "let &shellcmdflag = '-nol -nop -noni -ep Bypass -Command'
-  "let &shellpipe = '2>&1 | Out-File -Encoding Defualt %s; exit $LastExitCode'
-  "let &shellredir = '>%s'
-  "let &shellxquote = ''
-  "let &shellxescape= ''
-  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
-endif
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
