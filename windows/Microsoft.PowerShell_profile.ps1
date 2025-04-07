@@ -81,6 +81,7 @@ Import-Module git-aliases -DisableNameChecking
 #------------------------------------------------------------------------------
 # Fuzzyfinder fzf
 # https://github.com/junegunn/fzf
+# https://www.powershellgallery.com/packages/PSFzf
 #------------------------------------------------------------------------------
 Set-PsFzfOption `
     -PSReadlineChordProvider 'Ctrl+t' <# keyboard shortcut to start a search #>`
@@ -143,7 +144,7 @@ function pycharm {
 }
 
 # Notepad++ simple alias to allow pass args to npp
-Set-Alias -Name npp -Value "C:\Program Files\Notepad++\notepad++.exe"
+Set-Alias -Name npp -Value "$env:HOMEPATH\scoop\shims\notepad++.exe"
 
 # Search with Fuzzy finder -> Vim
 function _vim_fzf {
