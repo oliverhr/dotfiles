@@ -252,8 +252,8 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " MSYS2 detects the env as 'unix' and 'win32unix'
 " Cygwin as 'win32unix' only
 if has('win32unix')
-  set background=light
-  colorscheme quiet
+  set background=dark
+  colorscheme retrobox
   let g:airline_theme = 'lucius'
 endif
 
