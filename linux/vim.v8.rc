@@ -102,6 +102,9 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
+" Look at vim config since we live here XD
+nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
+
 " Fast saving
 nnoremap <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
