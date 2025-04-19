@@ -30,6 +30,7 @@ endif
 
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
+" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
 
 " - - - Utilities - - -
@@ -41,28 +42,18 @@ call plug#begin()
   Plug 'machakann/vim-sandwich'
   Plug 'tpope/vim-fugitive'
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'LunarWatcher/auto-pairs'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
+  Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
 
   " - - - Syntax - - -
-  Plug 'fatih/vim-go'
-  " Plug 'hashivim/vim-terraform'
-  Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'hashivim/vim-terraform'
   Plug 'pearofducks/ansible-vim'
-  " Plug 'rescript-lang/vim-rescript'
-  " Plug 'elixir-editors/vim-elixir'
-  " Plug 'mattn/emmet-vim'
-  " Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'cormacrelf/vim-colors-github'
   Plug 'crusoexia/vim-monokai'
-  Plug 'foxoman/vim-helix'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'ghifarit53/tokyonight-vim'
   Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
@@ -139,6 +130,9 @@ nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
+
+"================ Shell buffet stay opened after exit ===============
+nnoremap <silent> <leader>t :ter ++noclose<cr>
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -305,10 +299,11 @@ if has('autocmd')
   autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-  autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
+  autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
+  autocmd Filetype yaml set expandtab sw=4 ts=4 wrap
 
   " Shell files Indent with tabs, align with spaces
-  autocmd FileType sh set noet ci pi sts=0 sw=8 ts=8
+  autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
 
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
@@ -353,9 +348,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
 
 " Quick open blank/new buffers
 map <leader>bh :enew<cr>
