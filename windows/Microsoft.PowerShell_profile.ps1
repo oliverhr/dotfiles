@@ -166,7 +166,7 @@ function _open_with_editor {
     $target = switch ($MyInvocation.InvocationName) {
         confshell { $PROFILE }
         confvim   { "~/vimfiles/vimrc" }
-        confgit   { "~/.gitconfig" }
+        confgit   { "~/.config/git/config" }
         checkhistory { (Get-PSReadLineOption).HistorySavePath }
     }
     $exp = "$($env:EDITOR) ""$($target)"""
