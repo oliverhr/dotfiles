@@ -2,56 +2,59 @@
 # My Custom Alias
 # --------------------------------------------------
 
-ALIAS_EDITOR="mvim"
+if [[ ! -f /usr/bin/view ]]; then
+	alias view="vim -R"
+fi
+
+if [[ $0 == '-bash' ]]; then
+	alias confshell='view ~/.bashrc'
+	alias checkhistory='view ~/.bash_history'
+else # assuming zsh
+	alias confshell='view ~/.zshrc'
+	alias checkhistory='view ~/.zsh_history'
+fi
 
 # Edit cofigs
-alias bashconfig="$ALIAS_EDITOR ~/.bash_profile"
-alias zshconfig="$ALIAS_EDITOR ~/.zshrc"
-alias vimconfig="$ALIAS_EDITOR ~/.vim/vimrc"
-alias nvimconfig="nvim ~/.config/nvim/init.lua"
-alias aliases="$ALIAS_EDITOR ~/.my_aliases.rc"
-alias historyview="$ALIAS_EDITOR -R ~/.zsh_history"
-alias sshconfig="$ALIAS_EDITOR ~/.ssh/config"
-alias gitconfig="$ALIAS_EDITOR ~/.gitconfig"
+alias confalias='view ~/.my_aliases.rc'
+alias confvim='view ~/.config/vim/vimrc'
+alias confssh='view ~/.ssh/config'
+alias confgit='view ~/.gitconfig'
+alias confnvim='nvim ~/.config/nvim/init.lua'
 
 # Commands
 alias ls='ls --color=always'
-alias ll="ls -la"
-alias cd..="cd .."
-alias lsd="ls -ld */"
-alias lsh="ls -d .*"
-alias v="vim"
-alias emc="emacs"
-alias e="emacs"
-alias tg="terragrunt"
-alias tgra="terragrunt run-all --terragrunt-include-external-dependencies"
-
-# Overrides
-# alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
+alias ll='ls -la'
+alias cd..='cd ..'
+alias lsd='ls -ld */'
+alias lsh='ls -d .*'
+alias v='vim'
+alias emc='emacs'
+alias e='emacs'
+alias tg='terragrunt'
+alias tgra='terragrunt run-all --terragrunt-include-external-dependencies'
 
 ### Composed commands ###
-
 # GIT
-alias git-clean_tags="git fetch --prune origin '+refs/tags/*:refs/tags/*'"
-alias gfl="git flow"
-alias gs="git switch"
-alias gcd="git switch dev"
-
+alias git-clean_tags='git fetch --prune origin "+refs/tags/*:refs/tags/*r"'
+alias gfl='git flow'
 git-remove-tag() {
-  TAG=$1
-  git tag -d $TAG
-  git push origin :refs/tags/$TAG
+	TAG=$1
+	git tag -d $TAG
+	git push origin :refs/tags/$TAG
 }
 
 # DOCKER
-alias docker-containers="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
-
+docker-containers() {
+	docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+}
 docker-clean-volumes() {
-  docker volume rm $(docker volume ls --quiet --filter "dangling=true")
+	docker volume rm $(docker volume ls --quiet --filter 'dangling=true')
+}
+docker-clean-images() {
+	docker rmi $(docker images --quiet --filter 'dangling=true')
 }
 
-docker-clean-images() {
-  docker rmi $(docker images --quiet --filter "dangling=true")
-}
+# Overrides
+# alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
 
 # vim: ft=bash :
