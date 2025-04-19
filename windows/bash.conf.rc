@@ -1,22 +1,32 @@
-# vim: set ft=bash :
 
-# history control
+# ---------------------------------------------------------
+# History Control
+# ---------------------------------------------------------
 HISTSIZE=2000
 HISTFILESIZE=2000
 HISTTIMEFORMAT="%m/%d/%y %T "
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
 
-# Commands
+# ---------------------------------------------------------
+# Alias
+# ---------------------------------------------------------
 alias ls='ls --color=always'
-alias ll='ls -la'
+alias ll='ls -l'
+alias la='ls -la'
 alias cd..='cd ..'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
-alias confvim='vim -R ./.vim/vimrc'
-alias confshell='vim -R ./.bash_profile'
 
-# apps initialization
+# Common task alias
+alias confvim='vim -R ~/.vim/vimrc'
+alias confshell='vim -R ~/.bashrc'
+
+# ---------------------------------------------------------
+# Appliction Initialization
+# ---------------------------------------------------------
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
+# ---------------------------------------------------------
+cd ~/Documents
