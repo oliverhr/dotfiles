@@ -11,19 +11,14 @@
 	editor = vim
 	pager = delta
 	# windows:true, unix: input
-	autocrlf = true
-	excludesfile = ~/.git_config/ignore.global.rc
+	autocrlf = false
+	excludesfile = ~/.config/git/ignore.global.rc
 [init]
 	defaultBranch = main
 [commit]
 	gpgSign = false
-	;template = ~/.stCommitMsg
 [pull]
 	rebase = false
-
-[interactive]
-	diffFilter = delta --color-only
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -38,6 +33,10 @@
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	dark = true      # or light = true, or omit for auto-detection
+	line-numbers = true
+	true-color = always
+[interactive]
+	diffFilter = delta --color-only
 
 # ------------------------------------------------------------------------------
 # Merge configuration
@@ -50,9 +49,6 @@
 [mergetool "kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
-[mergetool "Vsourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 
 # ------------------------------------------------------------------------------
 # Diff configuration
@@ -63,9 +59,6 @@
 	prompt = false
 [difftool "kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
 
 # ------------------------------------------------------------------------------
 # Custom aliases
@@ -99,7 +92,7 @@
 # - tag.pgpSign
 # ------------------------------------------------------------------------------
 [includeIf "gitdir:~/Documents/Projects/Personal/"]
-	path = ~/.gitconfig/config.personal.rc
+	path = ~/.config/git/personal.config.rc
 [includeIf "gitdir:~/Documents/Projects/Work/"]
-	path = ~/.gitconfig/config.work.rc
+	path = ~/.config/git/work.config.rc
 
