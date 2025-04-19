@@ -34,6 +34,7 @@ call plug#begin()
 
 " - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs'
@@ -43,7 +44,6 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Syntax - - -
   " Plug 'elixir-editors/vim-elixir'
@@ -190,11 +190,12 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" No beep on errors on terminal still visual
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+set timeoutlen=500
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
@@ -253,7 +254,7 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " Cygwin as 'win32unix' only
 if has('win32unix')
   set background=dark
-  colorscheme retrobox
+  colorscheme gruvbox
   let g:airline_theme = 'lucius'
 endif
 
@@ -287,7 +288,7 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.vim/backups > /dev/null 2>&1
+"silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 

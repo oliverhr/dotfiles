@@ -27,6 +27,7 @@ call plug#begin()
 
 " - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs'
@@ -41,8 +42,6 @@ call plug#begin()
   " - - - Syntax - - -
   " Plug 'fatih/vim-go'
   " Plug 'hashivim/vim-terraform'
-  " Plug 'rescript-lang/vim-rescript'
-  " Plug 'elixir-editors/vim-elixir'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
@@ -77,15 +76,6 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
-" Format Terraform
-" let g:terraform_fmt_on_save=1
-" let g:terraform_align=1
-
-"================= Shell from MS-Dos to PowerShell ================
-if has("win64")
-  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
-endif
-
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -117,7 +107,7 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 " Fuzzy finder
-let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case'
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
 map <silent> <C-p> :FZF!<cr>
 
@@ -133,6 +123,11 @@ nnoremap <silent> <leader>fc :Commits<cr>
 
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
+
+"================= Shell from MS-DOS to PowerShell ================
+if has("win64")
+  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
+endif
 
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -188,11 +183,12 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" No beep on errors on terminal still visual
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+  autocmd GUIEnter * set visualbell t_vb=
+endif
+set timeoutlen=500
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
@@ -235,6 +231,10 @@ set mouse=a
 " set t_Co=256
 set termguicolors
 
+set background=dark
+colorscheme PaperColor
+let g:airline_theme = 'transparent'
+
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
 " Set translucid background on term for special
@@ -249,20 +249,20 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " Set extra options when running in GUI mode
 if has("gui_running")
   highlight LineNr guifg=#333D60
-  colorscheme retrobox
+
+  set background=dark
+  colorscheme Gruvbox
   let g:airline_theme = 'base16'
+
   set gfn=JetBrainsMono_NFM:h14
   set lines=25 columns=100
+
   " set guioptions-=m " Hide menu
   set guioptions-=T " Hide toolbar
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
   set guioptions-=e " Set gui-tabs as terminal
   set guitablabel=%M\ %t
-else
-  set background=dark
-  colorscheme PaperColor
-  let g:airline_theme = 'transparent'
 endif
 
 " Airline settings
