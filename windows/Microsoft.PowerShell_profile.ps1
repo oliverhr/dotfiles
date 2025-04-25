@@ -126,11 +126,8 @@ Set-Alias -Name which -Value _which
 # `rm` function that accepts -r -f -rf like in unix
 function _rm {
     Param(
-        [Parameter()]
         [switch]$r,
-        [Parameter()]
         [switch]$f,
-        [Parameter()]
         [switch]$rf,
         [Parameter(Mandatory=$true, Position=1)]
         [string[]]$target
