@@ -123,6 +123,39 @@ function _which {
 }
 Set-Alias -Name which -Value _which
 
+# `rm` function that accepts -r -f -rf like in unix
+function _rm {
+    Param(
+        [Parameter()]
+        [switch]$r,
+        [Parameter()]
+        [switch]$f,
+        [Parameter()]
+        [switch]$rf,
+        [Parameter(Mandatory=$true, Position=1)]
+        [string[]]$target
+    )
+    $help_msg =
+        "Usage:`t" +
+        "rm [-rf] | [-r] | [-f] path"
+
+    if ($PSBoundParameters.Count -gt 2) {
+        Write-Error 'Error: Too many parameters.'
+        echo $help_msg
+        return
+    }
+
+    $flags = switch (@($PSBoundParameters.Keys)[0]) {
+        'r'  { '-Recurse' }
+        'f'  { '-Force' }
+        'rf' { '-Recurse -Force' }
+        default { '-Confirm' }
+    }
+    echo "Remove-Item $flags $target"
+    Invoke-Expression "Remove-Item $flags $target"
+}
+Set-Alias -Name rm -Value _rm
+
 function _lw {
     get-ChildItem ($args[0]) | Format-Wide -Autosize
 }
