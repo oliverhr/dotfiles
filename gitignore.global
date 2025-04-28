@@ -1,5 +1,5 @@
 # --- My Custom files ---
-_build.sh
+#_build.sh
 
 # --- Secrets ---
 *.pem

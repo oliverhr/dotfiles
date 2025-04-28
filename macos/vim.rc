@@ -23,11 +23,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-"==================================================================
-if has("osx")
-  " TODO: check modularization for vimrc configuration
-endif
-
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
@@ -136,6 +131,11 @@ nnoremap <silent> <leader>fc :Commits<cr>
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
 
+" ====== Open a shell (stays opened after session is closed) ========
+if has("osx")
+  nnoremap <silent> <leader>t :ter ++noclose<cr>
+endif
+
 " ========================= User interface ==========================
 " Set 7 lines to the cursor - when moving vertically using j/k
 set scrolloff=7
@@ -227,16 +227,6 @@ highlight clear LineNr
 " Highlight current line
 set cursorline
 
-" Set Solarized as colorscheme
-function! LetSolarize()
-    set notermguicolors
-    set t_Co=16
-    set background=dark
-    let g:solarized_termtrans = 1
-    let g:solarized_termcolors = 16
-    color Solarized
-endfunction
-
 " Set extra options when running in GUI mode
 if has("gui_running")
   set background=light
@@ -250,7 +240,6 @@ if has("gui_running")
   set guioptions-=L " Hide left scrollbar
   set guioptions-=e " Set gui-tabs as terminal
   set guitablabel=%M\ %t
-  let g:solarized_menu = 0 " Disable Solarized menu on GUI
 
 else " RUNNING ON A TERMINAL
   " Enable yanked to system clipboard
@@ -258,19 +247,26 @@ else " RUNNING ON A TERMINAL
   set mouse=a
   set termguicolors
 
-  " Set colorscheme based on TERM_PROGRAM used
-  if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+  "--------------------------------------------------------
+  " Set colorscheme based on TERM_PROGRAM
+  "--------------------------------------------------------
+
   " MacOS Terminal
+  if match($TERM_PROGRAM,'\cApple_Terminal') != -1
     set notermguicolors
     set t_Co=256
     set background=dark
-    colorscheme monokai
+    if !empty($VIM_COLOR)
+      colorscheme $VIM_COLOR
+    else
+      colorscheme onedark
+    endif
 
-  elseif match($TERM_PROGRAM,'\ciTerm') != -1
   " iTerm
+  elseif match($TERM_PROGRAM,'\ciTerm') != -1
     if match($ITERM_PROFILE,'\cCatpuccino') != -1
-        color catppuccin_mocha
-        let g:airline_theme = 'catppuccin_mocha'
+        color catppuccin_macchiato
+        let g:airline_theme = 'catppuccin_macchiato'
         highlight Normal ctermbg=none
     elseif match($ITERM_PROFILE,'\cTokyonight') != -1
         let g:tokyonight_style = 'night' " available: night, storm
@@ -286,8 +282,8 @@ else " RUNNING ON A TERMINAL
         color morning
     endif
 
-  elseif match($TERM_PROGRAM,'\cWezterm') != -1
   " WezTerm
+  elseif match($TERM_PROGRAM,'\cWezterm') != -1
     set background=dark
     color tender
     let g:airline_theme = 'tenderplus'
@@ -309,6 +305,11 @@ else " RUNNING ON A TERMINAL
     color quiet
     " Set Tab bar color background to translucid and line to black
     highlight TabLineFill ctermfg=Black
+  endif
+
+  " Override all and set color dynamically
+  if !empty($VIM_COLOR)
+    colorscheme $VIM_COLOR
   endif
 
   " --

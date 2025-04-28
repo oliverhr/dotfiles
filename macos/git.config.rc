@@ -89,7 +89,7 @@
 # - user.{name,email,signingkey}
 # - commit.gpgsign = [true|false]
 # - gpg.{format,program}
-# - tag.pgpSign
+# - tag.gpgSign
 # ------------------------------------------------------------------------------
 [includeIf "gitdir:~/Documents/Projects/Personal/"]
 	path = ~/.config/git/personal.config.rc
