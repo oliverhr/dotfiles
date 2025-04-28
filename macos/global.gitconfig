@@ -12,7 +12,7 @@
 	pager = delta
 	# windows:true, unix: input
 	autocrlf = false
-	excludesfile = ~/.config/git/ignore.global.rc
+	excludesfile = ~/.config/git/global.gitignore
 [init]
 	defaultBranch = main
 [commit]
@@ -86,13 +86,13 @@
 # This is useful to set configurations for all local repositories per path
 # For specific values on a repo still can be set with: `git --local config...`
 # ------------------------------------------------------------------------------
-# - user.{name,email,signingkey}
-# - commit.gpgsign = [true|false]
-# - gpg.{format,program}
-# - tag.gpgSign
+# - [user]:   {name, email, signingkey}
+# - [gpg]:    {format, program}
+# - [commit]: gpgsign = [true|false]
+# - [tag]:    gpgsign = [true|false]
 # ------------------------------------------------------------------------------
 [includeIf "gitdir:~/Documents/Projects/Personal/"]
-	path = ~/.config/git/personal.config.rc
+	path = ~/.config/git/personal.gitconfig
 [includeIf "gitdir:~/Documents/Projects/Work/"]
-	path = ~/.config/git/work.config.rc
+	path = ~/.config/git/work.gitconfig
 
