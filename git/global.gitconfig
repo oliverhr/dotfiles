@@ -4,15 +4,14 @@
 # https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
 # https://docs.github.com/es/get-started/git-basics/configuring-git-to-handle-line-endings
 # ------------------------------------------------------------------------------
-;[user]
-;	name = OliverHR
-;	email = @OliverHR
+[include]
+	path = ./global.gitconfig
 [core]
 	editor = vim
 	pager = delta
 	# windows:true, unix: input
 	autocrlf = false
-	excludesfile = ~/.config/git/global.gitignore
+	excludesfile = ~/global.gitignore
 [init]
 	defaultBranch = main
 [commit]
@@ -80,19 +79,4 @@
 	commits = !git --no-pager log --no-merges --stat --oneline
 	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 
-# ------------------------------------------------------------------------------
-# ---          Include custom local configuration based on paths             ---
-# ------------------------------------------------------------------------------
-# This is useful to set configurations for all local repositories per path
-# For specific values on a repo still can be set with: `git --local config...`
-# ------------------------------------------------------------------------------
-# - [user]:   {name, email, signingkey}
-# - [gpg]:    {format, program}
-# - [commit]: gpgsign = [true|false]
-# - [tag]:    gpgsign = [true|false]
-# ------------------------------------------------------------------------------
-[includeIf "gitdir:~/Documents/Projects/Personal/"]
-	path = ~/.config/git/personal.gitconfig
-[includeIf "gitdir:~/Documents/Projects/Work/"]
-	path = ~/.config/git/work.gitconfig
 

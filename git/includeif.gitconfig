@@ -1,0 +1,25 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
+# ------------------------------------------------------------------------------
+# ---          Include custom local configuration based on paths             ---
+# ------------------------------------------------------------------------------
+# This is useful to set configurations for all local repositories per path
+# For specific values on a repo still can be set with: `git --local config...`
+# ------------------------------------------------------------------------------
+# - [user]:   {name, email, signingkey}
+# - [gpg]:    {format, program}
+# - [commit]: gpgsign = [true|false]
+# - [tag]:    gpgsign = [true|false]
+# ------------------------------------------------------------------------------
+
+# Personal projects just for fun
+[includeIf "gitdir:~/Documents/Projects/Personal/"]
+	path = ./personal.gitconfig
+
+# Work projects aka Freelance
+[includeIf "gitdir:~/Documents/Projects/Work/"]
+	path = ~/Projects/Work/.work.gitconfig
+
+# Things for my job at a corporation
+[includeIf "hasconfig:remote.*.url:git@git.umbrella.evil:raccoon-city/**"]
+	path = /home/curtis.miller/Encrypted/Tyrant/.inc.profile.gitconfig
+
