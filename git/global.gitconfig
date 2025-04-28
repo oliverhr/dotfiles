@@ -11,7 +11,7 @@
 	pager = delta
 	# windows:true, unix: input
 	autocrlf = false
-	excludesfile = ~/global.gitignore
+	excludesfile = ./global.gitignore
 [init]
 	defaultBranch = main
 [commit]
