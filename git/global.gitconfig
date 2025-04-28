@@ -5,7 +5,7 @@
 # https://docs.github.com/es/get-started/git-basics/configuring-git-to-handle-line-endings
 # ------------------------------------------------------------------------------
 [include]
-	path = ./global.gitconfig
+	path = ./includeif.gitconfig
 [core]
 	editor = vim
 	pager = delta

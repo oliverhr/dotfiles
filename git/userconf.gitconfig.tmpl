@@ -1,0 +1,31 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
+
+#----------------------------------------------------------
+# Uset git configuration
+#
+# user.signinkey value change dependeing of the
+# value for gpg.format.
+# - https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work
+# - https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification
+# - https://docs.gitlab.com/user/project/repository/signed_commits/ssh/
+#----------------------------------------------------------
+
+[user]
+	name =
+	email =
+	signingkey =
+
+[commit]
+	gpgSign = false
+
+[tag]
+	gpgSign = false
+
+# Default: openpgp; Options: [openpgp, ssh, x509]
+;[gpg]
+;	format = openpgp
+
+# only when gpg.format = ssh
+;[gpg "ssh"]
+;	allowedSignersFile = ~/.ssh/allowed_signers
+

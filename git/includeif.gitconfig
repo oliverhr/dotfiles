@@ -19,7 +19,7 @@
 [includeIf "gitdir:~/Documents/Projects/Work/"]
 	path = ~/Projects/Work/.work.gitconfig
 
-# Things for my job at a corporation
+# Things for my job at a umbrella corporation ;)
 [includeIf "hasconfig:remote.*.url:git@git.umbrella.evil:raccoon-city/**"]
 	path = /home/curtis.miller/Encrypted/Tyrant/.inc.profile.gitconfig
 
