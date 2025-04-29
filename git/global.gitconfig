@@ -1,11 +1,8 @@
-# vim: set ft=gitconfig ts=4 sw=4 noet :
 # ------------------------------------------------------------------------------
 # Base configuration
 # https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
 # https://docs.github.com/es/get-started/git-basics/configuring-git-to-handle-line-endings
 # ------------------------------------------------------------------------------
-[include]
-	path = ./includeif.gitconfig
 [core]
 	editor = vim
 	pager = delta
@@ -14,10 +11,12 @@
 	excludesfile = ./global.gitignore
 [init]
 	defaultBranch = main
-[commit]
-	gpgSign = false
 [pull]
 	rebase = false
+[commit]
+	gpgSign = false
+[tag]
+	gpgSign = false
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -80,3 +79,11 @@
 	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 
 
+# ------------------------------------------------------------------------------
+# First part of this file before this is to replafe git defaults
+# The include files overrides any config defined before (if exists)
+# ------------------------------------------------------------------------------
+[include]
+	path = ./includeif.gitconfig
+
+# vim: set ft=gitconfig ts=4 sw=4 noet :
