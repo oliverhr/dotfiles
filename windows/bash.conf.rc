@@ -1,3 +1,4 @@
+# vim: ft=bash :
 
 # ---------------------------------------------------------
 # History Control
@@ -9,18 +10,55 @@ HISTTIMEFORMAT="%m/%d/%y %T "
 export HISTCONTROL=ignoredups:erasedups
 
 # ---------------------------------------------------------
-# Alias
+# My Custom Alias
 # ---------------------------------------------------------
+
+if [[ ! -f /usr/bin/view ]]; then
+	alias view="vim -R"
+fi
+
+# Edit cofigs
+alias confshell='view ~/.bashrc'
+alias checkhistory='view ~/.bash_history'
+alias confalias='view ~/.my_aliases.rc'
+alias confvim='view ~/.vim/vimrc'
+alias confssh='view ~/.ssh/config'
+alias confgit='view ~/.config/git/config'
+
+# Commands
 alias ls='ls --color=always'
 alias ll='ls -l'
 alias la='ls -la'
 alias cd..='cd ..'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
+alias v='vim'
 
-# Common task alias
-alias confvim='vim -R ~/.vim/vimrc'
-alias confshell='vim -R ~/.bashrc'
+# Git alias
+alias g='git'
+alias gst='git status'
+alias gc='git commit -v'
+alias ga='git add'
+alias gaa='git add --all'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gb='git branch'
+alias gsw='git switch'
+alias gd='git diff'
+
+# ---------------------------------------------------------
+# Composed commands ###
+# ---------------------------------------------------------
+git-remove-tag() {
+	TAG=$1
+	git tag -d $TAG
+	git push origin :refs/tags/$TAG
+}
+
+container-list() {
+	docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+}
 
 # ---------------------------------------------------------
 # Appliction Initialization
@@ -29,4 +67,7 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
 # ---------------------------------------------------------
-cd ~/Documents
+cd ~/Projects
+# ---------------------------------------------------------
+
+
