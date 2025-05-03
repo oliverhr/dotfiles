@@ -1,0 +1,64 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+export PATH=$PATH:/usr/local/bin
+
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
+
+# -----------------------------------------------------------------------------
+# OH-MY_BASH
+# -----------------------------------------------------------------------------
+source $HOME/.config/ohmb/conf.rc
+
+# -----------------------------------------------------------------------------
+# User configuration
+# -----------------------------------------------------------------------------
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# -----------------------------------------------------------------------------
+# ALIAS
+# Set personal aliases, overriding those provided by oh-my-bash libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-bash
+# users are encouraged to define aliases within the OSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+# -----------------------------------------------------------------------------
+alias confshell='vim ~/.bashrc'
+alias confvim='vim ~/.vim/vimrc'
+alias confgit='vim ~/.config/git/'
+alias confomb='vim ~/.config/ohmb/conf.rc'
+
+# Always prefix dnf/yum with sudo
+alias yum='sudo yum'
+alias dnf='sudo dnf'
+alias yum-config-manager='sudo yum-config-manager'
+
+# -----------------------------------------------------------------------------
+# Tools initialization
+# -----------------------------------------------------------------------------
+
+# -- Fuzzy finder competion and key bindings
+eval "$(fzf --bash)"
+
+# -- PyEnv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# Load pyenv-virtualenv automatically by adding
+eval "$(pyenv virtualenv-init -)"
+
+
