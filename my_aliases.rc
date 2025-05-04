@@ -14,11 +14,12 @@ else # assuming zsh
 	alias checkhistory='view ~/.zsh_history'
 fi
 
-# Edit cofigs
+# Edit Configs Alias
 alias confalias='view ~/.my_aliases.rc'
 alias confvim='view ~/.config/vim/vimrc'
 alias confssh='view ~/.ssh/config'
 alias confgit='view ~/.config/git/config'
+alias confignore='view ~/.config/git/ignore.global.rc`'
 alias confnvim='nvim ~/.config/nvim/init.lua'
 
 # Commands
