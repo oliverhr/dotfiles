@@ -15,7 +15,7 @@ esac
 # -----------------------------------------------------------------------------
 # OH-MY_BASH
 # -----------------------------------------------------------------------------
-source $HOME/.config/ohmb/conf.rc
+source $HOME/.config/omb/conf.rc
 
 # -----------------------------------------------------------------------------
 # User configuration
@@ -39,7 +39,7 @@ export LANG=en_US.UTF-8
 alias confshell='vim ~/.bashrc'
 alias confvim='vim ~/.vim/vimrc'
 alias confgit='vim ~/.config/git/'
-alias confomb='vim ~/.config/ohmb/conf.rc'
+alias confomb='vim ~/.config/omb/conf.rc'
 
 # Always prefix dnf/yum with sudo
 alias yum='sudo yum'
