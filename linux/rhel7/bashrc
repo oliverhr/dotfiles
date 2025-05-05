@@ -4,7 +4,6 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-export PATH=$PATH:/usr/local/bin
 
 # Enable the subsequent settings only in interactive sessions
 case $- in
