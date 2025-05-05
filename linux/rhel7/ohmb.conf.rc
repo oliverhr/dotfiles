@@ -119,3 +119,6 @@ plugins=(
 
 # Load oh-my-bash
 source "$OSH"/oh-my-bash.sh
+
+# I don't like the history time format set from omb
+unset HISTTIMEFORMAT
