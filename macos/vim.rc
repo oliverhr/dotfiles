@@ -118,6 +118,10 @@ nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 " Fuzzy finder
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
+map <silent> <C-p> :FZF!<cr>
+
+" Fuzzy finder
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :RG<cr>
@@ -227,21 +231,23 @@ highlight clear LineNr
 " Highlight current line
 set cursorline
 
-" Set extra options when running in GUI mode
+" Set options only for GUI
 if has("gui_running")
   set background=light
-  colorscheme two-firewatch
+  colorscheme tokyonight
 
   let g:airline_theme = 'tomorrow'
-  set lines=60 columns=86
+  set lines=40 columns=85
   set gfn=Hack\ Nerd\ Font\ Mono:h18
 
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
   set guioptions-=e " Set gui-tabs as terminal
   set guitablabel=%M\ %t
+endif
 
-else " RUNNING ON A TERMINAL
+" RUNNING ON A TERMINAL
+if ! has("gui_running")
   " Enable yanked to system clipboard
   set clipboard=unnamed
   set mouse=a
@@ -252,7 +258,7 @@ else " RUNNING ON A TERMINAL
   "--------------------------------------------------------
 
   " MacOS Terminal
-  if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+if match($TERM_PROGRAM,'\cApple_Terminal') != -1
     set notermguicolors
     set t_Co=256
     set background=dark
@@ -352,7 +358,7 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.config/vim/undodir > /dev/null 2>&1
+" silent !mkdir ~/.config/vim/undodir > /dev/null 2>&1
 set undodir=~/.config/vim/undodir
 set undofile
 
@@ -375,7 +381,6 @@ if has('autocmd')
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
   autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
-  " Shell files Indent with tabs, align with spaces
   autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
