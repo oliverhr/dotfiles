@@ -1,15 +1,17 @@
 # .bash_profile
 
-# This since manually openssh upgrade
-export PATH=$PATH:/usr/local/bin
-
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
 # User specific environment and startup programs
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$PATH:$HOME/bin
 
-# Ignore commands starting with space and dups
-export HISTCONTROL=ignoreboth
+# -----------------------------------------------------------------------------
+# TMUX (just login shells)
+# -----------------------------------------------------------------------------
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+	 exec tmux
+fi
+
