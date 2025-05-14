@@ -103,8 +103,7 @@ nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
 nnoremap <silent> <Bslash> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 " Fuzzy finder
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
@@ -335,6 +334,9 @@ set nofoldenable        "dont fold by default
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
+" Toggle line numbers on/off
+map <silent><leader>n :set number!<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
