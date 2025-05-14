@@ -56,7 +56,7 @@ call plug#begin()
   Plug 'jacoborus/tender.vim'
   Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
-  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'sainnhe/sonokai'
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -224,16 +224,16 @@ set mouse=a
 
 " == Color terminal related stuff == "
 set t_Co=256
-" set termguicolors
+set termguicolors
 
 " Enable this only when terminal dislay weird chars
-" becuase of an issue with devicons & airline this
+" because of an issue with devicons & airline this
 " error mostly happen on Linux and WSL
 set t_RV=
 
 " == ColorScheme
 set background=dark
-color monokai
+colorscheme sonokai
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
