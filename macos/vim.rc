@@ -32,6 +32,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs'
   Plug 'machakann/vim-sandwich'
+  Plug 'nanotee/zoxide.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
@@ -98,9 +99,13 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
+" -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
+
+" Look at vim config since we live here XD
+nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 " Fast saving
 nnoremap <leader>w :w<cr>
@@ -114,8 +119,7 @@ nnoremap <silent> <leader>qa :qa!<cr>
 
 " Nerdtree
 nnoremap <silent> <Bslash> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 " Fuzzy finder
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
@@ -125,6 +129,7 @@ map <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :RG<cr>
+nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fw :Windows<cr>
 nnoremap <silent> <leader>fg :GitFiles?<cr>
@@ -213,8 +218,8 @@ set laststatus=2
 syntax enable
 
 " Absolute number on view mode relative on insert mode
-" This is activated after 'set number'
 augroup numbertoggle
+  " This is activated after 'set number'
   autocmd!
   autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
@@ -358,7 +363,7 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-" silent !mkdir ~/.config/vim/undodir > /dev/null 2>&1
+"silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/.config/vim/undodir
 set undofile
 
@@ -375,15 +380,19 @@ set shiftwidth=4
 set tabstop=4
 
 if has('autocmd')
-  " Preferences based on the file type
   autocmd FileType gitcommit setlocal spell
   autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-  autocmd Filetype yaml,markdown set expandtab sw=2 ts=2 wrap
+  autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
+  autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap
+
+  " Shell files Indent with tabs, align with spaces
   autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
+
   " Go files Indent with tabs, align with spaces
   autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
+
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
@@ -427,6 +436,9 @@ set nofoldenable        "dont fold by default
 map j gj
 map k gk
 
+" Toggle line numbers on/off
+map <silent><leader>n :set number!<cr>
+
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -434,7 +446,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quick open blank/new buffers
-map <leader>bh :new<cr>
+map <leader>bh :enew<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 " Close the current buffer

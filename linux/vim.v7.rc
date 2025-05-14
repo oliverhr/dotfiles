@@ -198,8 +198,8 @@ set laststatus=2
 syntax enable
 
 " Absolute number on view mode relative on insert mode
-" This is activated after 'set number'
 augroup numbertoggle
+  " This is activated after 'set number'
   autocmd!
   autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
@@ -220,7 +220,7 @@ set clipboard=unnamed
 set mouse=a
 
 " == Color terminal related stuff == "
-set t_Co=256
+t t_Co=256
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
@@ -270,7 +270,7 @@ set noswapfile
 " => Persistent Undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.vim/backups > /dev/null 2>&1
+"silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
@@ -402,7 +402,7 @@ nnoremap <leader>vb <c-v>
 :nnoremap <F7> "=strftime("%c")<cr>P
 :inoremap <F7> <C-R>=strftime("%c")<cr>
 
-" Clear search higlight pressing enter
+" Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Move a line of text using SHIFT+[jk]
