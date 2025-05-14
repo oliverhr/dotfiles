@@ -12,12 +12,16 @@ case $- in
 esac
 
 # -----------------------------------------------------------------------------
-# OH-MY_BASH
+# Oh My Bash configuration
 # -----------------------------------------------------------------------------
 source $HOME/.config/omb/conf.rc
 
-# -----------------------------------------------------------------------------
+# #############################################################################
 # User configuration
+# #############################################################################
+
+# -----------------------------------------------------------------------------
+# Environment Variables
 # -----------------------------------------------------------------------------
 # export MANPATH="/usr/local/man:$MANPATH"
 export HISTCONTROL=ignoreboth
@@ -27,7 +31,9 @@ export PATH=$PATH:/usr/local/bin:$HOME/.local/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# -----------------------------------------------------------------------------
 # Compilation flags
+# -----------------------------------------------------------------------------
 # export ARCHFLAGS="-arch x86_64"
 
 # -----------------------------------------------------------------------------
@@ -37,11 +43,12 @@ export LANG=en_US.UTF-8
 # users are encouraged to define aliases within the OSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 # -----------------------------------------------------------------------------
-alias confshell='vim ~/.bashrc'
-alias confvim='vim ~/.vim/vimrc'
-alias confgit='vim ~/.config/git/global.gitconfig'
-alias confomb='vim ~/.config/omb/conf.rc'
-
+alias edit='vim $(fzf)'
+# change configs
+alias confshell='vim -R ~/.bashrc'
+alias confvim='vim -R ~/.vim/vimrc'
+alias confgit='vim -R ~/.config/git/global.gitconfig'
+alias confomb='vim -R ~/.config/omb/config.rc'
 # Always prefix dnf/yum with sudo
 alias yum='sudo yum'
 alias dnf='sudo dnf'
@@ -56,8 +63,8 @@ alias images='docker image ls'
 # export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
 
 # Direnv
+# Load direnv to be able to use .envrc files
 eval "$(direnv hook bash)"
-
-# -- Fuzzy finder competion and key bindings
+# Fuzzy finder fzf
 eval "$(fzf --bash)"
 
