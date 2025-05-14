@@ -222,7 +222,6 @@ set mouse=a
 
 " == Color terminal related stuff == "
 set t_Co=256
-" set termguicolors
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
