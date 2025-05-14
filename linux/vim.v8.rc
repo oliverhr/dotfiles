@@ -218,6 +218,8 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+" Highlight current line
+set cursorline
 " Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
