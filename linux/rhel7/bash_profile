@@ -12,6 +12,6 @@ export PATH=$PATH:$HOME/bin
 # TMUX (just login shells)
 # -----------------------------------------------------------------------------
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-	 exec tmux
+	tmux -2u new -As0 && exit
 fi
 
