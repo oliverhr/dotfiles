@@ -90,6 +90,8 @@ OMB_USE_SUDO=false
 completions=(
   git
   ssh
+  docker
+  docker-compose
 )
 
 # which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
