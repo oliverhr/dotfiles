@@ -61,23 +61,8 @@
 # ------------------------------------------------------------------------------
 # Custom aliases
 # ------------------------------------------------------------------------------
-[alias]
-	ignored = !git ls-files -v | grep "^[[:lower:]]"
-	parent-branch = "!f() { \
-		git show-branch \
-			| grep '\\*' \
-			| grep -v `git rev-parse --abbrev-ref HEAD` \
-			| head -n1 \
-			| sed 's/.*\\[\\(.*\\)\\].*/\\1/' \
-			| sed 's/[\\^~].*//'; \
-		}; f"
-	worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
-	branches = !git --no-pager branch
-	tags = !git --no-pager tag
-	logs = !git --no-pager log --no-merges --stat --oneline
-	commits = !git --no-pager log --no-merges --stat --oneline
-	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
-
+[include]
+	path = ./alias.gitconfig
 
 # ------------------------------------------------------------------------------
 # First part of this file before this is to replafe git defaults

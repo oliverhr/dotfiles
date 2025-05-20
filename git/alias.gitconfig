@@ -1,0 +1,28 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
+# ------------------------------------------------------------------------------
+# Custom aliases
+# ------------------------------------------------------------------------------
+[alias]
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
+	parent-branch = "!f() { \
+		git show-branch \
+			| grep '\\*' \
+			| grep -v `git rev-parse --abbrev-ref HEAD` \
+			| head -n1 \
+			| sed 's/.*\\[\\(.*\\)\\].*/\\1/' \
+			| sed 's/[\\^~].*//'; \
+		}; f"
+	worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
+	logs = !git --no-pager log --no-merges --stat --oneline
+	commits = !git --no-pager log --no-merges --stat --oneline
+	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
+	clsp = "!f() { \
+			git clone --no-checkout --sparse ${1} ${2} && cd ${2}; \
+			git config core.sparseCheckout true; \
+			git config core.sparseCheckoutCone true; \
+			printf '\nNext do:\n'; \
+			printf '\tcd %s\n' ${2}; \
+			printf '\tgit checkout <branch>\n'; \
+			printf '\tgit sparse-checkout set <path_to_working_dir>\n'; \
+		}; f"
+
