@@ -2,11 +2,11 @@
 
 ### Dot files
 
-* Vim (mac)
+* Vim (mac | windows | MSys | Vim[7|8])
 * Zsh
-* Aliases
-* Git ignore
-* Tmux
+* Aliases [zsh |bash]
+* Git global [config | ignore | alias]
+* Tmux with plugins
 
 ### Zsh theme Geekster - a zsh theme
 
