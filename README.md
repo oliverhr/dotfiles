@@ -3,7 +3,7 @@
 ### Dot files
 
 * Vim (mac | windows | MSys | Vim[7|8])
-* Zsh
+* Zsh | Bash | Powershell
 * Aliases [zsh |bash]
 * Git global [config | ignore | alias]
 * Tmux with plugins
