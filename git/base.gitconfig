@@ -4,10 +4,7 @@
 # https://docs.github.com/es/get-started/git-basics/configuring-git-to-handle-line-endings
 # ------------------------------------------------------------------------------
 [core]
-	editor = vim
 	pager = delta
-	# windows:true, unix: input
-	autocrlf = false
 	excludesfile = ./global.gitignore
 [init]
 	defaultBranch = main
@@ -35,28 +32,6 @@
 	true-color = always
 [interactive]
 	diffFilter = delta --color-only
-
-# ------------------------------------------------------------------------------
-# Merge configuration
-# ------------------------------------------------------------------------------
-[merge]
-	tool = kaleidoscope
-	conflictstyle = zdiff3
-[mergetool]
-	prompt = false
-[mergetool "kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-
-# ------------------------------------------------------------------------------
-# Diff configuration
-# ------------------------------------------------------------------------------
-[diff]
-[difftool]
-	tool = kaleidoscope
-	prompt = false
-[difftool "kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 # ------------------------------------------------------------------------------
 # Custom aliases

@@ -1,0 +1,28 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
+[core]
+	editor = vim
+	# windows:true, unix: input
+	autocrlf = false
+
+# ------------------------------------------------------------------------------
+# Merge configuration
+# ------------------------------------------------------------------------------
+[merge]
+	tool = kaleidoscope
+	conflictstyle = zdiff3
+[mergetool]
+	prompt = false
+[mergetool "kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+
+# ------------------------------------------------------------------------------
+# Diff configuration
+# ------------------------------------------------------------------------------
+[diff]
+[difftool]
+	tool = kaleidoscope
+	prompt = false
+[difftool "kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+

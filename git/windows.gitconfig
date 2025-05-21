@@ -1,0 +1,29 @@
+# vim: set ft=gitconfig ts=4 sw=4 noet :
+[core]
+	editor = vim
+	# windows:true, unix: input
+	autocrlf = true
+
+http]
+	# openssl | schannel <- windows specially on corporate networks
+	sslBackend = schannel
+
+# ------------------------------------------------------------------------------
+# Merge configuration
+# ------------------------------------------------------------------------------
+[merge]
+	tool = vimdiff
+	conflictstyle = zdiff3
+[mergetool]
+	prompt = false
+	trustExitCode = true
+
+# ------------------------------------------------------------------------------
+# Diff configuration
+# ------------------------------------------------------------------------------
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+	trustExitCode = true
+
