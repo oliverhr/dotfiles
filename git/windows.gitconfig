@@ -4,7 +4,7 @@
 	# windows:true, unix: input
 	autocrlf = true
 
-http]
+[http]
 	# openssl | schannel <- windows specially on corporate networks
 	sslBackend = schannel
 

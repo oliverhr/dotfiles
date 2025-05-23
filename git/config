@@ -5,7 +5,6 @@
 [include]
 	path = ./base.gitconfig
 
-
 ;[include]
 	;path = ./[linux|macos|windows].gitconfig
 
