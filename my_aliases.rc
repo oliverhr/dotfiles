@@ -45,8 +45,11 @@ git-remove-tag() {
 }
 
 # DOCKER
-alias containers='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
-alias images='docker image ls'
+alias boxps='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
+alias boxpc='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}"'
+alias boxim='docker image ls'
+alias boxic='docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
+
 alias docker-clean-volumes='docker volume rm $(docker volume ls --quiet --filter "dangling=true")'
 alias docker-clean-images='docker image rm $(docker image ls --quiet --filter "dangling=true")'
 
