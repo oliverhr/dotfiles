@@ -69,9 +69,12 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 #}
 
 #------------------------------------------------------------------------------
-# Git module
+# Git modules
+#------------------------------------------------------------------------------
 # https://github.com/gluons/powershell-git-aliases
 Import-Module git-aliases -DisableNameChecking
+# https://github.com/kzrnm/git-completion-pwsh
+Import-Module git-completion
 
 #------------------------------------------------------------------------------
 # Docker completions
