@@ -48,6 +48,12 @@ Set-PSReadLineOption @PSReadLineOptions
 #------------------------------------------------------------------------------
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
+#------------------------------------------------------------------------------
+# Mise
+# https://mise.jdx.dev/getting-started.html#activate-mise
+#------------------------------------------------------------------------------
+Invoke-Expression (& { (mise activate pwsh | Out-String) })
+
 ###############################################################################
 # POWERSHELL MODULES
 ###############################################################################
@@ -199,7 +205,7 @@ function _open_with_editor {
     $target = switch ($MyInvocation.InvocationName) {
         confshell { $PROFILE }
         confvim   { "~/vimfiles/vimrc" }
-        confgit   { "~/.config/git/config" }
+        confgit   { "~/.config/git/" }
         checkhistory { (Get-PSReadLineOption).HistorySavePath }
     }
     $exp = "$($env:EDITOR) ""$($target)"""
