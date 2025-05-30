@@ -133,12 +133,12 @@ nnoremap <silent> <leader>t :ter ++noclose<cr>
 " Set 7 lines to the cursor - when moving vertically using j/k
 set scrolloff=7
 
+" ========================= WildOptions ==============================
 " Turn on the WiLd menu
 set wildmode=list:longest
 " enable ctrl-n and ctrl-p to scroll thru matches
 set wildmenu
 
-" ========================= Completion ==============================
 " stuff to ignore when tab completing
 set wildignore=*.o,*.obj,*~,*.pyc
 set wildignore+=*vim/backups*
