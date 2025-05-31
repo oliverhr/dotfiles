@@ -220,7 +220,7 @@ set clipboard=unnamed
 set mouse=a
 
 " == Color terminal related stuff == "
-t t_Co=256
+set t_Co=256
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
