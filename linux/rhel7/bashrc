@@ -63,8 +63,11 @@ alias images='docker image ls'
 # export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
 
 # Direnv
-# Load direnv to be able to use .envrc files
 eval "$(direnv hook bash)"
+
 # Fuzzy finder fzf
 eval "$(fzf --bash)"
+
+# Zoxide
+eval "$(zoxide init bash)"
 

@@ -9,30 +9,23 @@ fi
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
 	alias checkhistory='view ~/.bash_history'
+	alias confombsh="vim -R ~/.config/omb/conf.rc"
 else # assuming zsh
 	alias confshell='view ~/.zshrc'
 	alias checkhistory='view ~/.zsh_history'
+	alias confomzsh="vim -R ~/.config/omz/conf.zsh"
 fi
 
 # Edit Configs Alias
-alias confalias='view ~/.my_aliases.rc'
+alias confalias='view ~/.alias.rc'
 alias confvim='view ~/.config/vim/vimrc'
 alias confssh='view ~/.ssh/config'
-alias confgit='view ~/.config/git/config'
-alias confignore='view ~/.config/git/ignore.global.rc`'
-alias confnvim='nvim ~/.config/nvim/init.lua'
+alias confgit='view ~/.config/git'
+alias confignore='view ~/.config/git/excludes.gitconfig'
 
 # Commands
-alias ls='ls --color=always'
-alias ll='ls -la'
-alias cd..='cd ..'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
-alias v='vim'
-alias emc='emacs'
-alias e='emacs'
-alias tg='terragrunt'
-alias tgra='terragrunt run-all --terragrunt-include-external-dependencies'
 
 ### Composed commands ###
 # GIT
@@ -53,7 +46,4 @@ alias boxic='docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\
 alias docker-clean-volumes='docker volume rm $(docker volume ls --quiet --filter "dangling=true")'
 alias docker-clean-images='docker image rm $(docker image ls --quiet --filter "dangling=true")'
 
-# Overrides
-# alias openssl='/usr/local/opt/openssl@1.1/bin/openssl'
-
-# vim: ft=bash :
+# vim: ft=sh :
