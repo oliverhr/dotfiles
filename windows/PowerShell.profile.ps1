@@ -61,7 +61,8 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # Mise
 # https://mise.jdx.dev/getting-started.html#activate-mise
 #------------------------------------------------------------------------------
-Invoke-Expression (& { (mise activate pwsh | Out-String) })
+# Invoke-Expression (mise activate pwsh | Out-String)
+
 
 ###############################################################################
 # POWERSHELL MODULES
