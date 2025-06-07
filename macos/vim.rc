@@ -242,8 +242,8 @@ if has("gui_running")
   colorscheme tokyonight
 
   let g:airline_theme = 'tomorrow'
-  set lines=40 columns=85
-  set gfn=Hack\ Nerd\ Font\ Mono:h18
+  set lines=40 columns=110
+  set gfn=Hack\ Nerd\ Font\ Mono:h16
 
   set guioptions-=r " Hide rigth scrollbar
   set guioptions-=L " Hide left scrollbar
@@ -276,7 +276,7 @@ if ! has("gui_running")
   " iTerm
   elseif match($TERM_PROGRAM,'\ciTerm') != -1
     if match($ITERM_PROFILE,'\cCatpuccino') != -1
-        color catppuccin_macchiato
+        colorscheme catppuccin_macchiato
         let g:airline_theme = 'catppuccin_macchiato'
         highlight Normal ctermbg=none
     elseif match($ITERM_PROFILE,'\cTokyonight') != -1
@@ -288,9 +288,13 @@ if ! has("gui_running")
     elseif match($ITERM_PROFILE,'\cDark') != -1
         colorscheme PaperColor
         let g:airline_theme = 'minimalist'
+    elseif match($ITERM_PROFILE,'\cLight') != -1
+        set notermguicolors
+        set background=light
+        colorscheme Solarized
     else
         set background=light
-        color morning
+        colorscheme quiet
     endif
 
   " WezTerm
@@ -299,17 +303,17 @@ if ! has("gui_running")
     color tender
     let g:airline_theme = 'tenderplus'
 
-  elseif match($TERM_PROGRAM,'\cTmux') != -1
-  " Tmux
-    set background=dark
-    color onedark
-    let g:airline_theme = 'zenburn'
-
-  elseif match($TERM_PROGRAM,'\cRio') != -1
   " Rio
+  elseif match($TERM_PROGRAM,'\cRio') != -1
     set background=dark
     color onedark
     let g:airline_theme = 'biogoo'
+
+  " Tmux
+  elseif match($TERM_PROGRAM,'\cTmux') != -1
+    set background=dark
+    color onedark
+    let g:airline_theme = 'zenburn'
 
   else
     set background=dark
