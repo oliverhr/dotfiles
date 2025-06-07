@@ -109,14 +109,6 @@ Set-PsFzfOption `
     #-EnableAliasFuzzySetLocation <# diasbled since got installed fd from scoop #>
 
 #------------------------------------------------------------------------------
-# Get-ChildItemColor
-# https://github.com/joonro/Get-ChildItemColor
-#------------------------------------------------------------------------------
-Import-Module Get-ChildItemColor
-Set-Alias ll Get-ChildItemColor -option AllScope
-Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
-
-#------------------------------------------------------------------------------
 # CommandNotFound
 # This module is installed by Microsfoft PowerToys or manually from:
 # https://www.powershellgallery.com/packages/Microsoft.WinGet.CommandNotFound
@@ -124,11 +116,25 @@ Set-Alias ls Get-ChildItemColorFormatWide -option AllScope <# -HideHeader #>
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 
 ###############################################################################
-# Custom Stuff
+# Custom Alias
 ###############################################################################
-# Set alias for some used unix commands
+
 # Alias for start to open like macos
 Set-Alias -Name open -Value Start-Process
+
+# LazyGit
+Set-Alias -Value lazygit -Name lg
+
+# Alias ls's alias
+Set-Alias -Value eza -Name ls
+function _eza {
+    switch ($MyInvocation.InvocationName) {
+        ll { eza -l }
+        la { eza -a }
+    }
+}
+Set-Alias -Value _eza -Name ll
+Set-Alias -Value _eza -Name la
 
 # Touch, since now is not a default alias included in pwsh
 function _touch {
@@ -172,11 +178,6 @@ function _rm {
 }
 Set-Alias -Name rm -Value _rm
 
-function _lw {
-    get-ChildItem ($args[0]) | Format-Wide -Autosize
-}
-Set-Alias -Name lw -Value _lw
-
 # Search with Fuzzy finder -> Vim
 function _vim_fzf {
     Get-ChildItem . -Recurse -Attributes !Directory | Invoke-Fzf | % { vim $_  }
@@ -194,12 +195,6 @@ function pycharm {
 
 # Notepad++ simple alias to allow pass args to npp
 Set-Alias -Name npp -Value "$env:HOMEPATH\scoop\shims\notepad++.exe"
-
-# Search with Fuzzy finder -> Vim
-function _vim_fzf {
-    Get-ChildItem . -Recurse -Attributes !Directory | Invoke-Fzf | % { vim $_  }
-}
-Set-Alias -Name edit -Value _vim_fzf
 
 #------------------------------------------------------------------------------
 # Aliases to promote laziness XD
