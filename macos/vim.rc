@@ -90,7 +90,7 @@ let NERDTreeRespectWildIgnore = 1
 " let g:terraform_align=1
 
 " Ocaml
-set rtp^='/Users/oliver/.opam/default/share/ocp-indent/vim'
+" set rtp^='/Users/oliver/.opam/default/share/ocp-indent/vim'
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
@@ -263,7 +263,7 @@ if ! has("gui_running")
   "--------------------------------------------------------
 
   " MacOS Terminal
-if match($TERM_PROGRAM,'\cApple_Terminal') != -1
+  if match($TERM_PROGRAM,'\cApple_Terminal') != -1
     set notermguicolors
     set t_Co=256
     set background=dark
