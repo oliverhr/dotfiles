@@ -1,5 +1,9 @@
-# vim: set ft=ps1 ts=4 sts=4 sw=4 et :
-
+<#
+# Add this to the system $PROFILE file
+$PWSH_CONFIG_DIR = "~/.config/pwsh"
+$PROFILE="~/.config/pwsh/pwshrc.ps1"
+. $PROFILE
+#>
 #------------------------------------------------------------------------------
 # https://poshcode.gitbook.io/powershell-practice-and-style/style-guide/code-layout-and-formatting
 #------------------------------------------------------------------------------
@@ -199,10 +203,6 @@ Set-Alias -Name npp -Value "$env:HOMEPATH\scoop\shims\notepad++.exe"
 #------------------------------------------------------------------------------
 # Aliases to promote laziness XD
 #------------------------------------------------------------------------------
-function _source_profile {
-    . $PROFILE
-}
-Set-Alias -Name src -Value _source_profile
 
 # Alias to commonly used files to open with prefered editor like *nix
 $env:EDITOR = 'vim'
@@ -213,7 +213,7 @@ function _open_with_editor {
         confgit   { "~/.config/git/" }
         checkhistory { (Get-PSReadLineOption).HistorySavePath }
     }
-    $exp = "$($env:EDITOR) ""$($target)"""
+    $exp = "$($env:EDITOR) -R ""$($target)"""
     Invoke-Expression $exp
 }
 Set-Alias -Value _open_with_editor -Name confshell
@@ -243,20 +243,12 @@ function _cd_proj_by_name {
 Set-Alias -Value _cd_proj_by_name -Name personal
 Set-Alias -Value _cd_proj_by_name -Name work
 
-#------------------------------------------------------------------------------
-#function _cd_work_project_by_alias {
-    ## $Myinvocation.myCommand.name return the function name
-    ## $Myinvocation.InvocationName return the caller/alias name
-    #$path = switch ($MyInvocation.InvocationName) {
-        #'back'   { 'directory-name-for-backend' }
-        #'front'  { 'directory-name-for-frontend' }
-        #'lambda' { 'directory-name-for-microservices' }
-    #}
-    #if ($args[0]) { $path += '/' + $args[0] }
-    ## Invocation of "_cd_project_type_by_name" using alias "work"
-    #work $path
-#}
-#Set-Alias -Value _cd_work_project_by_alias -Name api
-#Set-Alias -Value _cd_work_project_by_alias -Name ui
-#Set-Alias -Value _cd_work_project_by_alias -Name svc
+###############################################################################
+# Local stuff
+###############################################################################
+$PWSH_CONFIG_DIR = "~/.config/pwsh"
+if (Test-Path -Path $PWSH_CONFIG_DIR -PathType Container) {
+    . "$PWSH_CONF_DIR/local.ps1"
+}
 
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :
