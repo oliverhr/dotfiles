@@ -18,6 +18,9 @@ $PROFILE="~/.config/pwsh/pwshrc.ps1"
 
 ###############################################################################
 # Custom Powershell profile
+# -----------------------------------------------------------------------------
+# More about powershell:
+# https://poshcode.gitbook.io/powershell-practice-and-style/style-guide/code-layout-and-formatting
 ###############################################################################
 
 $omptheme = 'robbyrussell'
@@ -29,13 +32,13 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\$omptheme.omp.json" | Invok
 $PSReadLineHistoryHandler = {
     Param([string]$line)
     $patterns = @(
-        '^ls[\s]*'
+        '^ls[\s]*', '^la[\s]*', '^ll[\s]*'
         '^cp[\s]'
         '^mv[\s]'
         '^mkdir[\s]'
         '^cd[\s]*'
         '^rm\s'
-        '^cat[\s]'
+        '^cat[\s]', '^caet[\s]'
         '^touch[\s]'
         '^conf*', '^checkhistory'
         'exit', 'exot'
@@ -66,7 +69,6 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # https://mise.jdx.dev/getting-started.html#activate-mise
 #------------------------------------------------------------------------------
 # Invoke-Expression (mise activate pwsh | Out-String)
-
 
 ###############################################################################
 # POWERSHELL MODULES
