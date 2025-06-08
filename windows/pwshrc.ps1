@@ -129,8 +129,7 @@ Set-Alias -Name open -Value Start-Process
 # LazyGit
 Set-Alias -Value lazygit -Name lg
 
-# Alias ls's alias
-Set-Alias -Value eza -Name ls
+# Alias for ls's with eza
 function _eza {
     switch ($MyInvocation.InvocationName) {
         ls { eza -G }
