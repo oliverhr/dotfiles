@@ -222,9 +222,6 @@ Set-Alias -value _open_with_editor -Name confvim
 Set-Alias -value _open_with_editor -Name confgit
 Set-Alias -value _open_with_editor -Name checkhistory
 
-###############################################################################
-# Local stuff
-###############################################################################
 function _cd_projects {
     $path = "~/Documents/Projects"
     if ($args[0]) {
