@@ -131,10 +131,16 @@ Set-Alias -Value lazygit -Name lg
 
 # Alias for ls's with eza
 function _eza {
+    if ($args.Count -gt 0) {
+        $path = $args[-1].ToString()
+        if ($path.StartsWith('~')) {
+            $args[-1] = $path.replace('~', $HOME)
+        }
+    }
     switch ($MyInvocation.InvocationName) {
-        ls { eza -G }
-        ll { eza -l }
-        la { eza -a }
+        ls { eza $args }
+        ll { eza -l $args }
+        la { eza -a $args }
     }
 }
 Set-Alias -Value _eza -Name ls
