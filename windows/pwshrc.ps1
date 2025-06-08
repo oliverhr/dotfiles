@@ -133,10 +133,12 @@ Set-Alias -Value lazygit -Name lg
 Set-Alias -Value eza -Name ls
 function _eza {
     switch ($MyInvocation.InvocationName) {
+        ls { eza -G }
         ll { eza -l }
         la { eza -a }
     }
 }
+Set-Alias -Value _eza -Name ls
 Set-Alias -Value _eza -Name ll
 Set-Alias -Value _eza -Name la
 
