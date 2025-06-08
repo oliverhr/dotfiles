@@ -248,7 +248,7 @@ Set-Alias -Value _cd_proj_by_name -Name work
 ###############################################################################
 $PWSH_CONFIG_DIR = "~/.config/pwsh"
 if (Test-Path -Path $PWSH_CONFIG_DIR -PathType Container) {
-    . "$PWSH_CONF_DIR/local.ps1"
+    . "$PWSH_CONFIG_DIR/local.ps1"
 }
 
 # vim: set ft=ps1 ts=4 sts=4 sw=4 et :
