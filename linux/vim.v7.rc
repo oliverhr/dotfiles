@@ -303,9 +303,6 @@ if has('autocmd')
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
-  " Remove all whitespace at buffer saving
-  autocmd BufWrite * :call DeleteTrailingWS()
-
   " Return to last edit position when opening files
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -313,6 +310,9 @@ if has('autocmd')
     \ endif
   " But don't remember the cursor position in git commits
   au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+  " Remove all traling whitespace at buffer saving
+  autocmd BufWrite * :%s/\s\+$//ge
 endif
 
 " Linebreak on 500 characters
@@ -410,13 +410,6 @@ nnoremap <S-Up> :m-2<cr>
 nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
-
-" Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking

@@ -400,9 +400,6 @@ if has('autocmd')
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
-  " Remove all whitespace at buffer saving
-  autocmd BufWrite * :call DeleteTrailingWS()
-
   " Return to last edit position when opening files
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -410,6 +407,9 @@ if has('autocmd')
     \ endif
   " But don't remember the cursor position in git commits
   au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+  " Remove all traling whitespace at buffer saving
+  autocmd BufWrite * :%s/\s\+$//ge
 endif
 
 " Templates for new buffers
@@ -513,13 +513,6 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-" Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -545,7 +538,7 @@ map <leader>pp :setlocal paste!<cr>
 " ================ Helper Functions ==================
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
+def <SID>BufcloseCloseIt()
   let l:currentBufNum = bufnr("%")
   let l:alternateBufNum = bufnr("#")
 
@@ -562,6 +555,6 @@ function! <SID>BufcloseCloseIt()
   if buflisted(l:currentBufNum)
     execute("bdelete! ".l:currentBufNum)
   endif
-endfunction
+enddef
 
 " vim: set ft=vim ts=2 sw=2 et :
