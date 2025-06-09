@@ -19,3 +19,17 @@ A minimal theme that shows git information for current dir.
 - Darkerized is a solarized theme clone with a darkest background and black color light because some problems
 on non ips displays.
 
+
+## Manually installed vim stuff
+
+- Coloschemes
+- Airline Themes
+
+Example:
+```
+$ns_dir=~/.vim/pack/theming
+mkdir -p $ns_dir/{start,opt}
+git clone https://github.com/vim-airline/vim-airline-themes.git $ns_dir/start/airline-themes
+git clone https://github.com/ryanoasis/vim-devicons $ns_dir/start/devicons
+git clone https://github.com/nordtheme/vim.git $ns_dir/opt/nord
+```

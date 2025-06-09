@@ -47,16 +47,16 @@ call plug#begin()
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'cormacrelf/vim-colors-github'
-  Plug 'croaker/mustang-vim'
-  Plug 'crusoexia/vim-monokai'
-  Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'NLKNguyen/papercolor-theme', { 'as': 'papercolor' }
-  Plug 'tyrannicaltoucan/vim-deep-space'
-  Plug 'nordtheme/vim'
+  Plug 'altercation/vim-colors-solarized', { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim', { 'as': 'colors/catppuccin' }
+  Plug 'cormacrelf/vim-colors-github', { 'as': 'colors/github'}
+  Plug 'croaker/mustang-vim', { 'as': 'colors/mustang'}
+  Plug 'crusoexia/vim-monokai', { 'as': 'colors/monokai'}
+  Plug 'joshdick/onedark.vim', { 'as': 'colors/onedark' }
+  Plug 'morhetz/gruvbox', { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme', { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim', { 'as': 'colors/nord' }
+  Plug 'tyrannicaltoucan/vim-deep-space', { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -329,7 +329,7 @@ if has('autocmd')
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
 
-  " Remove all whitespace at buffer saving
+  " Remove all traling whitespace at buffer saving
   autocmd BufWrite * :call DeleteTrailingWS()
 
   " Return to last edit position when opening files
