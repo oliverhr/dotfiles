@@ -462,7 +462,7 @@ map <leader>pp :setlocal paste!<cr>
 " ================ Helper Functions ==================
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
-def <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
   let l:currentBufNum = bufnr("%")
   let l:alternateBufNum = bufnr("#")
 
@@ -472,13 +472,13 @@ def <SID>BufcloseCloseIt()
     bnext
   endif
 
-  if bufnr("%") == l:currentBufNum
+  if bufnr('%') == l:currentBufNum
     new
   endif
 
   if buflisted(l:currentBufNum)
     execute("bdelete! ".l:currentBufNum)
   endif
-enddef
+endfunction
 
 " vim: set ft=vim ts=2 sw=2 et :
