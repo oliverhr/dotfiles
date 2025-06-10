@@ -1,4 +1,4 @@
-"==================================================================
+" ==============================================================================
 " macOS
 "
 " Apple terminal specific issues with color
@@ -7,7 +7,7 @@
 " Since in macOS the $TERM_PROGRAM env var is set
 " we can customize by application, iterm also set
 " a variable with the inicial profile name.
-"==================================================================
+" ==============================================================================
 
 "==================================================================
 " VIMproved
@@ -53,23 +53,24 @@ call plug#begin()
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'cormacrelf/vim-colors-github'
-  Plug 'crusoexia/vim-monokai'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'jacoborus/tender.vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'rakr/vim-two-firewatch'
-  Plug 'sonph/onehalf'
-  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github'}
+  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang'}
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'}
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'}
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'rakr/vim-two-firewatch',            { 'as': 'colors/two-fire-watch'}
+  Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf'}
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
-
 call plug#end()            " required
 
 " You can revert the settings after the call like so:
@@ -77,6 +78,7 @@ call plug#end()            " required
 "   syntax off            " Disable syntax highlighting
 "
 " Put your non-Plugin stuff after this line
+
 " -------------------------------------------------------------------
 " Plugins Settings
 " -------------------------------------------------------------------
@@ -141,7 +143,7 @@ nnoremap <silent> <leader>fc :Commits<cr>
 set path+=**
 
 " ====== Open a shell (stays opened after session is closed) ========
-if has("osx")
+if has('osx')
   nnoremap <silent> <leader>t :ter ++noclose<cr>
 endif
 
@@ -221,7 +223,7 @@ syntax enable
 augroup numbertoggle
   " This is activated after 'set number'
   autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
@@ -237,7 +239,7 @@ highlight clear LineNr
 set cursorline
 
 " Set options only for GUI
-if has("gui_running")
+if has('gui_running')
   set background=light
   colorscheme tokyonight
 
@@ -252,7 +254,7 @@ if has("gui_running")
 endif
 
 " RUNNING ON A TERMINAL
-if ! has("gui_running")
+if ! has('gui_running')
   " Enable yanked to system clipboard
   set clipboard=unnamed
   set mouse=a
@@ -355,25 +357,25 @@ match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => File backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Persistent Undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
 "silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/.config/vim/undodir
 set undofile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
@@ -424,18 +426,18 @@ endif
 set linebreak
 set textwidth=500
 
-set autoindent "Auto indent
-set smartindent "Smart indent
-set nowrap "Wrap lines
+set autoindent   " Auto indent
+set smartindent  " Smart indent
+set nowrap       " Wrap lines
 
 " Folds
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent   " fold based on indent
+set foldnestmax=3       " deepest fold is 3 levels
+set nofoldenable        " dont fold by default
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -513,9 +515,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
@@ -526,9 +528,9 @@ map <leader>sa zg
 " Suggest correction
 map <leader>ss z=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 

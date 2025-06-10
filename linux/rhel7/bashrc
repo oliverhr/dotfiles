@@ -71,3 +71,4 @@ eval "$(fzf --bash)"
 # Zoxide
 eval "$(zoxide init bash)"
 
+# vim: set ft=bash ts=4 sw=4 noet :
