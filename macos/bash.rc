@@ -1,0 +1,67 @@
+# .bashrc
+
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
+
+# -----------------------------------------------------------------------------
+# Oh My Bash configuration
+# -----------------------------------------------------------------------------
+source $HOME/.config/omb/conf.rc
+
+# #############################################################################
+# User configuration
+# #############################################################################
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+set completion-display-width 1
+
+# Tab complete case unsensitive
+bind 'set completion-ignore-case on'
+bind 'TAB:menu-complete'
+# And Shift-Tab should cycle backwards
+bind '"\e[Z": menu-complete-backward'
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+# Cycle through history based on characters already typed on the line
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+# Keep Ctrl-Left and Ctrl-Right working when the above are used
+bind '"\e[1;5C":forward-word'
+bind '"\e[1;5D":backward-word'
+
+# -----------------------------------------------------------------------------
+# Environment Variables
+# -----------------------------------------------------------------------------
+
+export HISTCONTROL=ignoreboth
+export PATH=$PATH:$HOME/.local/bin
+
+# -----------------------------------------------------------------------------
+# ALIAS
+# For a full list of active aliases, run `alias`.
+test -s ~/.alias.rc && . ~/.alias.rc || true
+
+# -----------------------------------------------------------------------------
+# Tools initialization
+# -----------------------------------------------------------------------------
+# export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
+
+# Direnv
+eval "$(direnv hook bash)"
+
+# Fuzzy finder fzf
+eval "$(fzf --bash)"
+
+# Zoxide
+eval "$(zoxide init bash)"
+
+# Closer to the action
+cd $HOME/Documents/Projects
+
+# vim: set ft=bash ts=4 sw=4 noet :
