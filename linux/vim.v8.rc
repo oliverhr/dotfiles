@@ -1,4 +1,4 @@
-"==================================================================
+" =============================================================================
 " Windows Linux (WSL)
 "
 " Msys2 terminal has specific issues with color
@@ -7,7 +7,7 @@
 " Since in msysw the $TERM_PROGRAM env var is set
 " we can customize not like mac or linux since
 " still some extra configuration is achivable
-"==================================================================
+" =============================================================================
 
 "==================================================================
 " VIMproved
@@ -24,7 +24,7 @@ set encoding=utf8
 set fileformats=unix,dos,mac
 
 "================= Shell from MS-Dos to PowerShell ================
-if has("linux")
+if has('linux')
   " TODO: check about vim config modularization
 endif
 
@@ -34,16 +34,23 @@ endif
 call plug#begin()
 
 " - - - Utilities - - -
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'machakann/vim-sandwich'
-  Plug 'tpope/vim-fugitive'
-  Plug 'LunarWatcher/auto-pairs'
+  Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'LunarWatcher/auto-pairs'
+  Plug 'machakann/vim-sandwich'
+  Plug 'preservim/nerdcommenter'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'tpope/vim-fugitive'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
+  # LSP and Lint, Autocompletion and Formatting
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   " - - - Syntax - - -
   Plug 'hashivim/vim-terraform'
@@ -51,22 +58,27 @@ call plug#begin()
   Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'crusoexia/vim-monokai'
-  Plug 'jacoborus/tender.vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'sainnhe/sonokai'
+  " Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  " Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  " Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
+  " Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
+  " Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
+  " Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
+  " Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  " Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  " Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  " Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  " Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  " Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
-call plug#end()            " required
+call plug#end()           " required
 
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
-"
 " Put your non-Plugin stuff after this line
 
 " -------------------------------------------------------------------
@@ -77,10 +89,6 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
-" Format Terraform
-let g:terraform_fmt_on_save=1
-let g:terraform_align=1
-
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -88,9 +96,10 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
+# -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = ','
+let g:mapleader = ','
 
 " Look at vim config since we live here XD
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
@@ -126,7 +135,7 @@ nnoremap <silent> <leader>fc :Commits<cr>
 " Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-"================ Shell buffet stay opened after exit ===============
+" ================ Shell buffet stay opened after exit ===============
 nnoremap <silent> <leader>t :ter ++noclose<cr>
 
 " ========================= User interface ==========================
@@ -157,7 +166,7 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
 
-"Always show current position
+" Always show current position
 set ruler
 " Height of the command bar
 set cmdheight=2
@@ -190,7 +199,7 @@ set t_vb=
 set tm=500
 
 " Scrolling
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -205,13 +214,13 @@ syntax enable
 augroup numbertoggle
   " This is activated after 'set number'
   autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
 " Set more space on the left
-set nonumber     " Avoid gutter clutter if not necessary
-set foldcolumn=4 "max 12
+set nonumber      " Avoid gutter clutter if not necessary
+set foldcolumn=4  " max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
@@ -223,7 +232,7 @@ set cursorline
 set clipboard=unnamed
 set mouse=a
 
-" == Color terminal related stuff == "
+" == Color terminal related stuff ==
 set t_Co=256
 set termguicolors
 
@@ -263,25 +272,25 @@ match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " => File backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " => Persistent Undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.vim/undodir > /dev/null 2>&1
+" silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
@@ -324,18 +333,18 @@ endif
 set linebreak
 set textwidth=500
 
-set autoindent "Auto indent
-set smartindent "Smart indent
-set nowrap "Wrap lines
+set autoindent    " Auto indent
+set smartindent   " Smart indent
+set nowrap        " Wrap lines
 
 " Folds
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent   " fold based on indent
+set foldnestmax=3       " deepest fold is 3 levels
+set nofoldenable        " dont fold by default
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -367,7 +376,7 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 " Opens a new tab with the current buffer's relative path
-map <leader>te :tabedit <c-r>=expand("%:~:.:h")<cr>/
+map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
 " Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
@@ -376,9 +385,9 @@ nnoremap <S-LEFT> :tabprevious<cr>
 set splitright
 set splitbelow
 " Open a vertical split with the current buffer's relative path
-map <leader>sv :vsplit <c-r>=expand("%:~:.:h")<cr>/
+map <leader>sv :vsplit <c-r>=expand('%:~:.:h')<cr>/
 " Open a horizontal split with the current buffer's relative path
-map <leader>sh :split <c-r>=expand("%:~:.:h")<cr>/
+map <leader>sh :split <c-r>=expand('%:~:.:h')<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -401,8 +410,8 @@ imap <S-Space> <Esc>
 nmap <S-Space> i
 
 " Insert date time pressing <f7> key
-:nnoremap <F7> "=strftime("%c")<cr>P
-:inoremap <F7> <C-R>=strftime("%c")<cr>
+:nnoremap <F7> "=strftime('%c')<cr>P
+:inoremap <F7> <C-R>=strftime('%c')<cr>
 
 " Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
@@ -413,9 +422,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
@@ -426,9 +435,9 @@ map <leader>sa zg
 " Suggest correction
 map <leader>ss z=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -439,8 +448,8 @@ map <leader>pp :setlocal paste!<cr>
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr('%')
+  let l:alternateBufNum = bufnr('#')
 
   if buflisted(l:alternateBufNum)
     buffer #
@@ -448,12 +457,12 @@ function! <SID>BufcloseCloseIt()
     bnext
   endif
 
-  if bufnr("%") == l:currentBufNum
+  if bufnr('%') == l:currentBufNum
     new
   endif
 
   if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
+    execute('bdelete! '.l:currentBufNum)
   endif
 endfunction
 

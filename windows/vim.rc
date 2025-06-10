@@ -1,13 +1,13 @@
-"==================================================================
+
+" ==================================================================
 " Windows OS
-"
 " instead of: !clear && python %
 " do: !clear; python %
 " set shell=powershell
 " :help powershell
-"==================================================================
+" ==================================================================
 
-"==================================================================
+" ==================================================================
 " VIMproved
 set nocompatible
 filetype plugin on
@@ -47,16 +47,16 @@ call plug#begin()
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized', { 'as': 'colors/solarized' }
-  Plug 'catppuccin/vim', { 'as': 'colors/catppuccin' }
-  Plug 'cormacrelf/vim-colors-github', { 'as': 'colors/github'}
-  Plug 'croaker/mustang-vim', { 'as': 'colors/mustang'}
-  Plug 'crusoexia/vim-monokai', { 'as': 'colors/monokai'}
-  Plug 'joshdick/onedark.vim', { 'as': 'colors/onedark' }
-  Plug 'morhetz/gruvbox', { 'as': 'colors/gruvbox' }
-  Plug 'NLKNguyen/papercolor-theme', { 'as': 'colors/papercolor' }
-  Plug 'nordtheme/vim', { 'as': 'colors/nord' }
-  Plug 'tyrannicaltoucan/vim-deep-space', { 'as': 'colors/deepspace'}
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github'}
+  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang'}
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'}
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -192,7 +192,7 @@ endif
 set timeoutlen=500
 
 " Scrolling
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -207,7 +207,7 @@ syntax enable
 augroup numbertoggle
   " This is activated after 'set number'
   autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
@@ -258,11 +258,11 @@ if has("gui_running")
   set gfn=JetBrainsMono_NFM:h12
   set lines=25 columns=100
 
-  " set guioptions-=m " Hide menu
-  set guioptions-=T " Hide toolbar
-  set guioptions-=r " Hide rigth scrollbar
-  set guioptions-=L " Hide left scrollbar
-  set guioptions-=e " Set gui-tabs as terminal
+  " set guioptions-=m    " Hide menu
+  set guioptions-=T      " Hide toolbar
+  set guioptions-=r      " Hide rigth scrollbar
+  set guioptions-=L      " Hide left scrollbar
+  set guioptions-=e      " Set gui-tabs as terminal
   set guitablabel=%M\ %t
 endif
 
@@ -284,25 +284,25 @@ match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => File backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Persistent Undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
+" silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/vimfiles/undodir
 set undofile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
@@ -345,18 +345,18 @@ endif
 set linebreak
 set textwidth=500
 
-set autoindent "Auto indent
-set smartindent "Smart indent
-set nowrap "Wrap lines
+set autoindent   " Auto indent
+set smartindent  " Smart indent
+set nowrap       " Wrap lines
 
 " Folds
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent   " fold based on indent
+set foldnestmax=3       " deepest fold is 3 levels
+set nofoldenable        " dont fold by default
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -434,9 +434,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
@@ -447,9 +447,9 @@ map <leader>sa zg
 " Suggest correction
 map <leader>ss z=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
