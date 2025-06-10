@@ -1,4 +1,4 @@
-"==================================================================
+" ==================================================================
 " Windows OS
 "
 " Msys2 and Git on terminal has specific issues with
@@ -7,9 +7,9 @@
 " Since in msysw the $TERM_PROGRAM env var is set
 " we can customize not like mac or linux since
 " still some extra configuration is achivable
-"==================================================================
+" ==================================================================
 
-"==================================================================
+" ==================================================================
 " VIMproved
 set nocompatible
 filetype plugin on
@@ -23,12 +23,12 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-"================= Shell from MS-Dos to PowerShell ================
+" ================= Shell from MS-Dos to PowerShell ==================
 "if has("win32unix")
   " TODO: check about vim config modularization
 "endif
 
-" ======================= Plug Settings ===========================
+" ======================= Plug Settings ==============================
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
@@ -39,6 +39,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs'
   Plug 'machakann/vim-sandwich'
+  Plug 'nanotee/zoxide.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
@@ -46,22 +47,19 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
 
   " - - - Syntax - - -
-  " Plug 'elixir-editors/vim-elixir'
-  " Plug 'hashivim/vim-terraform'
   " Plug 'mattn/emmet-vim'
   " Plug 'pearofducks/ansible-vim'
-  " Plug 'rescript-lang/vim-rescript'
   " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-  Plug 'crusoexia/vim-monokai'
-  Plug 'ghifarit53/tokyonight-vim'
-  Plug 'jacoborus/tender.vim'
-  Plug 'joshdick/onedark.vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -198,7 +196,7 @@ endif
 set timeoutlen=500
 
 " Scrolling
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=8         " Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -213,7 +211,7 @@ syntax enable
 augroup numbertoggle
   " This is activated after 'set number'
   autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
   autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
 augroup END
 
@@ -228,9 +226,9 @@ highlight clear LineNr
 " Highlight current line
 set cursorline
 
-" ------------------------------------------
+" ---------------------------------------------------------
 " RUNNING ON A TERMINAL
-" ------------------------------------------
+" ---------------------------------------------------------
 " Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
@@ -249,7 +247,7 @@ hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
-"================= Color and Style ================
+" ================= Color and Style ================
 " MSYS2 detects the env as 'unix' and 'win32unix'
 " Cygwin as 'win32unix' only
 if has('win32unix')
@@ -284,17 +282,17 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Persistent Undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
-"silent !mkdir ~/.vim/undodir > /dev/null 2>&1
+" silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
@@ -337,18 +335,18 @@ endif
 set linebreak
 set textwidth=500
 
-set autoindent "Auto indent
-set smartindent "Smart indent
-set nowrap "Wrap lines
+set autoindent   " Auto indent
+set smartindent  " Smart indent
+set nowrap       " Wrap lines
 
 " Folds
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent   " fold based on indent
+set foldnestmax=3       " deepest fold is 3 levels
+set nofoldenable        " dont fold by default
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -426,9 +424,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
@@ -439,9 +437,9 @@ map <leader>sa zg
 " Suggest correction
 map <leader>ss z=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
