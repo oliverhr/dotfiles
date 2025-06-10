@@ -1,5 +1,5 @@
 " =============================================================================
-" Msys2
+" Msys2 / Git Bash
 "
 " Msys2 and Git on terminal has specific issues with
 " color require to set t_Co=256 for some color schemes
@@ -53,14 +53,18 @@ call plug#begin()
   Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
   Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
-  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
-  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
-  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github'}
+  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang'}
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'}
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'}
   Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
   Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
   Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
-  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -184,6 +188,7 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" No beep on errors on terminal still visual
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
@@ -247,7 +252,7 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 " Cygwin as 'win32unix' only
 if has('win32unix')
   set background=dark
-  colorscheme gruvbox
+  colorscheme onedark
   let g:airline_theme = 'lucius'
 endif
 
