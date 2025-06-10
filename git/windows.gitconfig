@@ -17,6 +17,9 @@
 [mergetool]
 	prompt = false
 	trustExitCode = true
+[mergetool "winmerge"]
+	cmd = winmergeu -u -e -dl 'Local' -dr 'Remote' $LOCAL $REMOTE $MERGED
+	trustExitCode = true
 
 # ------------------------------------------------------------------------------
 # Diff configuration
@@ -26,4 +29,8 @@
 [difftool]
 	prompt = false
 	trustExitCode = true
+[difftool "winmerge"]
+	cmd = winmergeu -u -e -dl $LOCAL $REMOTE
+	trustExitCode = true
+
 
