@@ -1,13 +1,9 @@
 vim9script
-# =============================================================================
-# Windows OS
-# instead of: !clear && python %
-# do: !clear; python %
-# set shell=powershell
-# :help powershell
-# =============================================================================
+# ==============================================================================
+# Linux (WSL)
+# ==============================================================================
 
-# ===================================================================
+# ==============================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -114,7 +110,6 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 # Fuzzy finder
 $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
-g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
 map <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
@@ -130,10 +125,8 @@ nnoremap <silent> <leader>fc :Commits<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-# ================= Shell from MS-DOS to PowerShell =================
-if has('win64')
-  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
-endif
+# ================ Shell buffet stay opened after exit ===============
+nnoremap <silent> <leader>t :ter ++noclose<cr>
 
 # ========================= User interface ===========================
 # Set 7 lines to the cursor - when moving vertically using j/k
@@ -235,12 +228,17 @@ set clipboard=unnamed
 set mouse=a
 
 # == Color terminal related stuff ==
-# set t_Co=256
+set t_Co=256
 set termguicolors
 
-set background=dark
-colorscheme PaperColor
-g:airline_theme = 'transparent'
+# Enable this only when terminal dislay weird chars
+# because of an issue with devicons & airline this
+# error mostly happen on Linux and WSL
+# set t_RV=
+
+# == ColorScheme
+set background=light
+colorscheme quiet
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -302,8 +300,8 @@ set noswapfile
 # => Persistent Undo
 # -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
-# silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
-set undodir=~/vimfiles/undodir
+# silent !mkdir -p ~/.config/vim/{undodir,autoload} > /dev/null 2>&1
+set undodir=~/.config/vim/undodir
 set undofile
 
 # -------------------------------------------------------------------

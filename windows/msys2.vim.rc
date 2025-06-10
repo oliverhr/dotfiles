@@ -25,7 +25,7 @@ set fileformats=unix,dos,mac
 
 " ================= Shell from MS-Dos to PowerShell ==================
 " if has("win32unix")
-  " TODO: check about vim config modularization
+"   TODO: check about vim config modularization
 " endif
 
 " ======================= Plug Settings ===========================
@@ -184,7 +184,6 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" No beep on errors on terminal still visual
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
@@ -444,9 +443,9 @@ map <leader>pp :setlocal paste!<cr>
 " ================ Helper Functions ==================
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
-def <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
+function! <SID>BufcloseCloseIt()
+  let l:currentBufNum = bufnr('%')
+  let l:alternateBufNum = bufnr('#')
 
   if buflisted(l:alternateBufNum)
     buffer #
@@ -454,13 +453,13 @@ def <SID>BufcloseCloseIt()
     bnext
   endif
 
-  if bufnr("%") == l:currentBufNum
+  if bufnr('%') == l:currentBufNum
     new
   endif
 
   if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
+    execute('bdelete! '.l:currentBufNum)
   endif
-enddef
+endfunction
 
 " vim: set ft=vim ts=2 sw=2 et :
