@@ -1,8 +1,8 @@
-" =============================================================================
+" ==============================================================================
 " Linux (WSL)
-" =============================================================================
+" ==============================================================================
 
-" ==================================================================
+" ==============================================================================
 " VIMproved
 set nocompatible
 filetype plugin on
@@ -16,12 +16,7 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-" ================= Shell from MS-Dos to PowerShell ==================
-" if has("win32unix")
-  " TODO: check about vim config modularization
-" endif
-
-" ======================= Plug Settings ===========================
+" =========================    Plug Settings    ================================
 " set the runtime path to include Vundle and initialize
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
@@ -41,9 +36,9 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
 
   " - - - Syntax - - -
-  Plug 'hashivim/vim-terraform'
-  Plug 'pearofducks/ansible-vim'
-  Plug 'yasuhiroki/github-actions-yaml.vim'
+  " Plug 'hashivim/vim-terraform'
+  " Plug 'pearofducks/ansible-vim'
+  " Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
@@ -57,6 +52,7 @@ call plug#begin()
   Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
   Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
   Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'sainnhe/sonokai',                   { 'as': 'colors/sonokai'}
   Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   " - - - Loaded last - - -
@@ -67,6 +63,7 @@ call plug#end()           " required
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
+"
 " Put your non-Plugin stuff after this line
 
 " -------------------------------------------------------------------
@@ -76,6 +73,10 @@ let NERDTreeIgnore = ['.git$[[dir]]']
 let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
+
+" Format Terraform
+" let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
 
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
