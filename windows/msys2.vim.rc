@@ -1,5 +1,5 @@
-" ==================================================================
-" Windows OS
+" =============================================================================
+" Msys2
 "
 " Msys2 and Git on terminal has specific issues with
 " color require to set t_Co=256 for some color schemes
@@ -7,7 +7,7 @@
 " Since in msysw the $TERM_PROGRAM env var is set
 " we can customize not like mac or linux since
 " still some extra configuration is achivable
-" ==================================================================
+" =============================================================================
 
 " ==================================================================
 " VIMproved
@@ -24,12 +24,13 @@ set encoding=utf8
 set fileformats=unix,dos,mac
 
 " ================= Shell from MS-Dos to PowerShell ==================
-"if has("win32unix")
+" if has("win32unix")
   " TODO: check about vim config modularization
-"endif
+" endif
 
-" ======================= Plug Settings ==============================
+" ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
+" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
 
 " - - - Utilities - - -
@@ -47,9 +48,9 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
 
   " - - - Syntax - - -
-  " Plug 'mattn/emmet-vim'
-  " Plug 'pearofducks/ansible-vim'
-  " Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'hashivim/vim-terraform'
+  Plug 'pearofducks/ansible-vim'
+  Plug 'yasuhiroki/github-actions-yaml.vim'
 
   " - - - Colorschemes - - -
   Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
@@ -64,12 +65,11 @@ call plug#begin()
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
 " All of your Plugins must be added before the following line
-call plug#end()            " required
+call plug#end()           " required
 
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
-"
 " Put your non-Plugin stuff after this line
 
 " -------------------------------------------------------------------
@@ -80,10 +80,6 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let NERDTreeRespectWildIgnore = 1
 
-" Format Terraform
-" let g:terraform_fmt_on_save=1
-" let g:terraform_align=1
-
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -93,8 +89,8 @@ set autoread
 
 " -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = ','
+let g:mapleader = ','
 
 " Look at vim config since we live here XD
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
@@ -162,7 +158,7 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
 
-"Always show current position
+" Always show current position
 set ruler
 " Height of the command bar
 set cmdheight=2
@@ -216,8 +212,8 @@ augroup numbertoggle
 augroup END
 
 " Set more space on the left
-set nonumber     " Avoid gutter clutter if not necessary
-set foldcolumn=4 "max 12
+set nonumber      " Avoid gutter clutter if not necessary
+set foldcolumn=4  " max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
@@ -258,7 +254,6 @@ endif
 
 " Airline settings
 let g:airline_powerline_fonts = 1
-" Airline customization
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -274,25 +269,25 @@ match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " => File backups
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -------------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-" --------------------------------------------------------------
+" -------------------------------------------------------------------
 " => Persistent Undo
-" --------------------------------------------------------------
+" -------------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
 " silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
-" --------------------------------------------------------------
+" -------------------------------------------------------------------
 " => Text, tab and indent related
-" --------------------------------------------------------------
+" -------------------------------------------------------------------
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
@@ -335,9 +330,9 @@ endif
 set linebreak
 set textwidth=500
 
-set autoindent   " Auto indent
-set smartindent  " Smart indent
-set nowrap       " Wrap lines
+set autoindent    " Auto indent
+set smartindent   " Smart indent
+set nowrap        " Wrap lines
 
 " Folds
 set foldmethod=indent   " fold based on indent
@@ -378,7 +373,7 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 " Opens a new tab with the current buffer's relative path
-map <leader>te :tabedit <c-r>=expand("%:~:.:h")<cr>/
+map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
 " Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
@@ -387,9 +382,9 @@ nnoremap <S-LEFT> :tabprevious<cr>
 set splitright
 set splitbelow
 " Open a vertical split with the current buffer's relative path
-map <leader>sv :vsplit <c-r>=expand("%:~:.:h")<cr>/
+map <leader>sv :vsplit <c-r>=expand('%:~:.:h')<cr>/
 " Open a horizontal split with the current buffer's relative path
-map <leader>sh :split <c-r>=expand("%:~:.:h")<cr>/
+map <leader>sh :split <c-r>=expand('%:~:.:h')<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -412,8 +407,8 @@ imap <S-Space> <Esc>
 nmap <S-Space> i
 
 " Insert date time pressing <f7> key
-:nnoremap <F7> "=strftime("%c")<cr>P
-:inoremap <F7> <C-R>=strftime("%c")<cr>
+:nnoremap <F7> "=strftime('%c')<cr>P
+:inoremap <F7> <C-R>=strftime('%c')<cr>
 
 " Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>

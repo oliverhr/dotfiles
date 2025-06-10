@@ -1,15 +1,8 @@
 " =============================================================================
-" Windows Linux (WSL)
-"
-" Msys2 terminal has specific issues with color
-" require to set t_Co=256 for some color schemes
-"
-" Since in msysw the $TERM_PROGRAM env var is set
-" we can customize not like mac or linux since
-" still some extra configuration is achivable
+" Linux (WSL)
 " =============================================================================
 
-"==================================================================
+" ==================================================================
 " VIMproved
 set nocompatible
 filetype plugin on
@@ -23,10 +16,10 @@ set encoding=utf8
 " Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-"================= Shell from MS-Dos to PowerShell ================
-if has('linux')
+" ================= Shell from MS-Dos to PowerShell ==================
+" if has("win32unix")
   " TODO: check about vim config modularization
-endif
+" endif
 
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
@@ -40,6 +33,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
   Plug 'machakann/vim-sandwich'
+  Plug 'nanotee/zoxide.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
@@ -87,7 +81,7 @@ set history=1000
 " Set to auto read when a file is changed from the outside
 set autoread
 
-# -------------------------- Mappings -------------------------------
+" -------------------------- Mappings -------------------------------
 " With a map leader it's possible to do extra key combinations
 let mapleader = ','
 let g:mapleader = ','
@@ -396,7 +390,7 @@ set viminfo^=%
 imap <S-Space> <Esc>
 nmap <S-Space> i
 
-" WSL hack for block mode
+" WSL hack for block mode when ctrl-q does not work
 nnoremap <leader>vb <c-v>
 
 " Insert date time pressing <f7> key
