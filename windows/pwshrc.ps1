@@ -64,12 +64,6 @@ Set-PSReadLineOption @PSReadLineOptions
 #------------------------------------------------------------------------------
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
-#------------------------------------------------------------------------------
-# Mise
-# https://mise.jdx.dev/getting-started.html#activate-mise
-#------------------------------------------------------------------------------
-# Invoke-Expression (mise activate pwsh | Out-String)
-
 ###############################################################################
 # POWERSHELL MODULES
 ###############################################################################
@@ -96,12 +90,12 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # https://github.com/gluons/powershell-git-aliases
 Import-Module git-aliases -DisableNameChecking
 # https://github.com/kzrnm/git-completion-pwsh
-Import-Module git-completion
+# Import-Module git-completion
 
 #------------------------------------------------------------------------------
 # Docker completions
 # https://github.com/matt9ucci/DockerCompletion
-#Import-Module DockerCompletion
+# Import-Module DockerCompletion
 
 #------------------------------------------------------------------------------
 # Fuzzyfinder fzf
@@ -202,7 +196,7 @@ function pycharm {
     param ([string]$File)
     $filename = ($File) ? $File : ($args[0]) ? $args[0] : '.'
     Start-Process `
-        -FilePath 'C:\Program Files\JetBrains\PyCharm 2024.3.4\bin\pycharm64.exe' `
+        -FilePath "$env:HOMEPATH\scoop\apps\pycharm-professional\current\IDE\bin\pycharm64.exe" `
         -ArgumentList "nosplash", "dontReopenProjects", "'$filename'"
 }
 
@@ -257,4 +251,4 @@ if (Test-Path -Path $PWSH_CONFIG_DIR -PathType Container) {
     . "$PWSH_CONFIG_DIR/local.ps1"
 }
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 et :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
