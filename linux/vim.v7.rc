@@ -33,13 +33,12 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
   Plug 'machakann/vim-sandwich'
-  Plug 'nanotee/zoxide.vim'
+  " Plug 'nanotee/zoxide.vim'     # NOT COMPATIBLE WITH VIM7
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-
   " - - - Syntax - - -
   Plug 'hashivim/vim-terraform'
   Plug 'pearofducks/ansible-vim'
