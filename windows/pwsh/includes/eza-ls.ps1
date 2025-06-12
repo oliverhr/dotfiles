@@ -22,4 +22,4 @@ Set-Alias -Value _eza -Name ls
 Set-Alias -Value _eza -Name ll
 Set-Alias -Value _eza -Name la
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :

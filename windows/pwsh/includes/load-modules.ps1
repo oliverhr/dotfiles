@@ -38,4 +38,4 @@ Import-Module git-aliases -DisableNameChecking
 #------------------------------------------------------------------------------
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :

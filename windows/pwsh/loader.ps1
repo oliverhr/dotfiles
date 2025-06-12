@@ -3,9 +3,18 @@
 # -----------------------------------------------------------------------------
 # Load other powershell configuration files
 # -----------------------------------------------------------------------------
-$INC_DIR = "$HOME/.config/pwsh/includes"
-$items = Get-ChildItem -Name -Path $INC_DIR/*.ps1
-foreach ($item in $items) {
-    . $INC_DIR/$item
-}
 
+$_INC_DIRECTORIES = ('includes', 'optionals')
+
+foreach ($dir in $_INC_DIRECTORIES) {
+    $path = "$PWSH_CONFIG_DIR\$dir"
+    if (!(Test-Path -Path $path -PathType Container)) {
+        Write-Warning "Config path not found: $path"
+        continue
+    }
+
+    Get-ChildItem -Path $path -Filter *.ps1 | ForEach-Object {
+        try { . $_.FullName }
+        catch { Write-Warning "Failed to load $($_.Name): $_" }
+    }
+}

@@ -18,4 +18,4 @@ Set-Alias -value _open_with_editor -Name confvim
 Set-Alias -value _open_with_editor -Name confgit
 Set-Alias -value _open_with_editor -Name checkhistory
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :

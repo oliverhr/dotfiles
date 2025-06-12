@@ -47,4 +47,4 @@ function _rm {
 }
 Set-Alias -Name rm -Value _rm
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :

@@ -61,13 +61,17 @@ Set-PSReadLineOption @PSReadLineOptions
 ###############################################################################
 # Local stuff
 ###############################################################################
-$PWSH_CONFIG_DIR = "~/.config/pwsh"
-
-Test-Path -Path $PWSH_CONFIG_DIR\alias.ps1 && . $PWSH_CONFIG_DIR\alias.ps1
-Test-Path -Path $PWSH_CONFIG_DIR\loader.ps1 && . $PWSH_CONFIG_DIR\loader.ps1
-
+Set-Variable PWSH_CONFIG_DIR -Option ReadOnly -Value "~\.config\pwsh"
 if (Test-Path -Path $PWSH_CONFIG_DIR -PathType Container) {
-    . "$PWSH_CONFIG_DIR/local.ps1"
+    $files = 'alias', 'loader', 'local'
+    foreach ($file in $files) {
+        $path = "$PWSH_CONFIG_DIR\$file.ps1"
+        if (!(Test-Path -Path $path -PathType Leaf)) {
+            Write-Warning "Configuration file not found: $path"
+            continue
+        }
+        . $path
+    }
 }
 
 # -----------------------------------------------------------------------------
@@ -75,4 +79,4 @@ if (Test-Path -Path $PWSH_CONFIG_DIR -PathType Container) {
 # -----------------------------------------------------------------------------
 $env:PATH = "$env:USERPROFILE/.local/bin;$env:PATH"
 
-# vim: set ft=ps1 ts=4 sts=4 sw=4 noet :
+# vim: set ft=ps1 ts=4 sts=4 sw=4 et :
