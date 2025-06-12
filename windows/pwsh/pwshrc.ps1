@@ -42,7 +42,7 @@ $PSReadLineHistoryHandler = {
         '^touch[\s]'
         '^conf*', '^checkhistory'
         'exit', 'exot'
-        '^[g]?vi[m]?', '^pycharm', '^code', '^npp'
+        '^[gn]?vi[m]?', '^pycharm', '^code', '^npp'
         'clear', 'celar', 'claer'
         '^git\s', '^g[sa][ta]$', '^gsw', '^g[acfldp]$'
         '^:', '^\s'
