@@ -13,7 +13,7 @@ if [[ $0 == '-bash' ]]; then
 else # assuming zsh
 	alias confshell='view ~/.zshrc'
 	alias checkhistory='view ~/.zsh_history'
-	alias confomzsh="vim -R ~/.config/omz/conf.zsh"
+	alias confzsh="view ~/.config/zsh"
 fi
 
 # Edit Configs Alias
