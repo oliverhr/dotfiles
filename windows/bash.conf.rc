@@ -33,6 +33,7 @@ alias cd..='cd ..'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
 alias v='vim'
+alias vd='vimdiff'
 
 # Git alias
 alias g='git'
