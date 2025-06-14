@@ -24,9 +24,9 @@ set encoding=utf8
 # Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-# ======================= Plug Settings ==============================
-# set the runtime path to include Vundle and initialize
-call plug#begin()
+# ====================================================================
+# ---------------------------   Plugins   ----------------------------
+plug#begin()
 # - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf',
@@ -73,13 +73,7 @@ call plug#begin()
   Plug 'ryanoasis/vim-devicons'
 
 # All of your Plugins must be added before the following line
-call plug#end()            # required
-
-# You can revert the settings after the call like so:
-#   filetype indent off   # Disable file-type-specific indentation
-#   syntax off            # Disable syntax highlighting
-#
-# Put your non-Plugin stuff after this line
+plug#end()
 
 # -------------------------------------------------------------------
 # Plugins Settings
@@ -97,6 +91,7 @@ var NERDTreeRespectWildIgnore = 1
 # set rtp^='/Users/oliver/.opam/default/share/ocp-indent/vim'
 
 # ========================= General Settings ========================
+
 # Sets how many lines of history VIM has to remember
 set history=1000
 
