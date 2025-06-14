@@ -532,26 +532,4 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-# ================ Helper Functions ==================
-# Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-def <SID>BufcloseCloseIt()
-  l:currentBufNum = bufnr('%')
-  l:alternateBufNum = bufnr('#')
-
-  if buflisted(l:alternateBufNum)
-    buffer #
-  else
-    bnext
-  endif
-
-  if bufnr('%') == l:currentBufNum
-    new
-  endif
-
-  if buflisted(l:currentBufNum)
-    execute('bdelete! '.l:currentBufNum)
-  endif
-enddef
-
 # vim: set ts=2 sw=2 et :
