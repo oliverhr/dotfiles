@@ -387,6 +387,7 @@ set shiftwidth=4
 set tabstop=4
 
 if has('autocmd')
+  augroup filetypes
   autocmd FileType gitcommit setlocal spell
   autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
@@ -402,6 +403,7 @@ if has('autocmd')
 
   # XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
+  augroup END
 
   # Return to last edit position when opening files
   autocmd BufReadPost * {
@@ -414,10 +416,8 @@ if has('autocmd')
 
   # Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
-endif
 
 # Templates for new buffers
-if has('autocmd')
   augroup templates
     autocmd BufNewFile *.sh 0 read <sfile>:h/skeletons/bash.sh
     autocmd BufNewFile *.py 0 read <sfile>:h/skeletons/python.py
