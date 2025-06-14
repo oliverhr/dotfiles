@@ -9,7 +9,7 @@ fi
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
 	alias checkhistory='view ~/.bash_history'
-	alias confombsh="vim -R ~/.config/omb/conf.rc"
+	alias confombsh="view ~/.config/omb/conf.rc"
 else # assuming zsh
 	alias confshell='view ~/.zshrc'
 	alias checkhistory='view ~/.zsh_history'
@@ -24,6 +24,7 @@ alias confgit='view ~/.config/git'
 alias confignore='view ~/.config/git/excludes.gitconfig'
 
 # Commands
+alias vd='vimdiff'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
 
