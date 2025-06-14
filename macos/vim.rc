@@ -215,17 +215,17 @@ set laststatus=2
 syntax enable
 
 if has('autocmd')
-# Absolute number on view mode relative on insert mode
-augroup numbertoggle
-  # This is activated after 'set number'
-  autocmd!
+  # Absolute number on view mode relative on insert mode
+  augroup numbertoggle
+    # This is activated after 'set number'
+    autocmd!
     autocmd BufEnter,FocusLost,InsertEnter,WinLeave * {
       if &nu && mode() != 'i' | set rnu | endif
     }
     autocmd BufLeave,FocusGained,InsertLeave,WinEnter * {
       if &nu | set nornu | endif
     }
-augroup END
+  augroup END
 endif
 
 # Set more space on the left
@@ -388,21 +388,21 @@ set tabstop=4
 
 if has('autocmd')
   augroup filetypes
-  autocmd FileType gitcommit setlocal spell
-  autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
-  autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
-  autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-  autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
-  autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap
+    autocmd FileType gitcommit setlocal spell
+    autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
+    autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
+    autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
+    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
+    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap
 
-  # Shell files Indent with tabs, align with spaces
-  autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
+    # Shell files Indent with tabs, align with spaces
+    autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
 
-  # Go files Indent with tabs, align with spaces
-  autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
+    # Go files Indent with tabs, align with spaces
+    autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
 
-  # XML files Indent with tabs, align with spaces
-  autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
+    # XML files Indent with tabs, align with spaces
+    autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
   augroup END
 
   # Return to last edit position when opening files
@@ -417,7 +417,7 @@ if has('autocmd')
   # Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
 
-# Templates for new buffers
+  # Templates for new buffers
   augroup templates
     autocmd BufNewFile *.sh 0 read <sfile>:h/skeletons/bash.sh
     autocmd BufNewFile *.py 0 read <sfile>:h/skeletons/python.py
