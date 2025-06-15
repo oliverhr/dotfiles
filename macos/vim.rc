@@ -72,7 +72,6 @@ plug#begin()
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
 
-# All of your Plugins must be added before the following line
 plug#end()
 
 # -------------------------------------------------------------------
@@ -100,7 +99,7 @@ set autoread
 
 # -------------------------- Mappings -------------------------------
 # With a map leader it's possible to do extra key combinations
-ver mapleader = ','
+var mapleader = ','
 g:mapleader = ','
 
 # Look at vim config since we live here XD
