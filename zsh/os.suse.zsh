@@ -1,7 +1,7 @@
 # vim: set ft=zsh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
-# OpenSuse ZSH - opensuse-leap
+# OpenSuse Laap - ZSH specific stuff
 # -----------------------------------------------------------------------------
 
 # Since OpenSuse Leap is not Tumbleweed XD
