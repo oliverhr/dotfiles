@@ -2,8 +2,6 @@
 # Common Alias
 ###############################################################################
 
-Set-Alias -Name vd -Value vimdiff
-
 # Alias for start to open like macos
 Set-Alias -Name open -Value Start-Process
 

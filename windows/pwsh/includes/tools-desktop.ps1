@@ -14,4 +14,7 @@ function pycharm {
 # Notepad++ simple alias to allow pass args to npp
 Set-Alias -Name npp -Value "$env:HOMEPATH\scoop\shims\notepad++.exe"
 
+# Winmerge
+Set-Alias -Name wm -Value "$env:HOMEPATH\scoop\shims\winmergeu.exe"
+
 # vim: set ft=ps1 ts=4 sts=4 sw=4 et :

@@ -6,6 +6,9 @@
 # - environment variables
 #------------------------------------------------------------------------------
 
+# Vim
+Set-Alias -Name vd -Value vimdiff
+
 #------------------------------------------------------------------------------
 # Zoxide
 # https://github.com/ajeetdsouza/zoxide
