@@ -1,7 +1,9 @@
 # vim: set ft=zsh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
-# Linux RHEL based ZSH Settings
+# OpenSuse ZSH - opensuse-leap
 # -----------------------------------------------------------------------------
-# export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
+
+# Since OpenSuse Leap is not Tumbleweed XD
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
