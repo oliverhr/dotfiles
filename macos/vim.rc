@@ -62,6 +62,7 @@ plug#begin()
   Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
   Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'}
   Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'kaicataldo/material.vim',           { 'as': 'colors/material', 'branch': 'main' }
   Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
   Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
   Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
@@ -287,10 +288,15 @@ if ! has('gui_running')
         colorscheme tokyonight
     elseif match($ITERM_PROFILE, '\cMonokai') != -1
         colorscheme monokai
+    elseif match($ITERM_PROFILE, '\cMaterial') != -1
+        g:material_terminal_italics = 1
+        g:material_theme_style = 'default'
+        colorscheme material
+        highlight CursorLine guibg=#37474F
     elseif match($ITERM_PROFILE, '\cDark') != -1
         colorscheme PaperColor
         g:airline_theme = 'minimalist'
-    elseif match($ITERM_PROFILE ,'\cLight') != -1
+    elseif match($ITERM_PROFILE, '\cLight') != -1
         set notermguicolors
         set background=light
         colorscheme Solarized
