@@ -5,8 +5,8 @@
 #------------------------------------------------------------------------------
 Set-PsFzfOption `
     -PSReadlineChordProvider 'Ctrl+t' <# keyboard shortcut to start a search #>`
-    -PSReadlineChordReverseHistory 'Ctrl+r' <# shortcut to search on history #>`
-    -EnableAliasFuzzyEdit <# Enable command: fe #>
+    -PSReadlineChordReverseHistory 'Ctrl+r' <# shortcut to search on history #>
+    #-EnableAliasFuzzyEdit <# disable weird behavior command: fe #>
     #-EnableAliasFuzzySetLocation <# diasbled since got installed fd from scoop #>
 
 # Search with Fuzzy finder -> Vim
