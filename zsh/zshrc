@@ -3,9 +3,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+ZDOTDIR="$HOME/.config/zsh"
+
 # -----------------------------------------------------------------------------
-source ~/.config/zsh/rc.zsh
+source $ZDOTDIR/rc.zsh
+
 # -----------------------------------------------------------------------------
+source $ZDOTDIR/antidote/antidote.zsh
+antidote load $ZDOTDIR/antidote_zsh_plugins.conf
 
 # #############################################################################
 # Auto added conf
