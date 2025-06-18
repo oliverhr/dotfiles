@@ -2,18 +2,16 @@
 # My Custom Alias
 # --------------------------------------------------
 
-if [[ ! -f /usr/bin/view ]]; then
-	alias view="vim -R"
-fi
+alias view="vim -R"
 
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
+	alias confbash="view ~/.config/bash/ohmyba.sh"
 	alias checkhistory='view ~/.bash_history'
-	alias confombsh="view ~/.config/omb/conf.rc"
 else # assuming zsh
 	alias confshell='view ~/.zshrc'
-	alias checkhistory='view ~/.zsh_history'
 	alias confzsh="view ~/.config/zsh"
+	alias checkhistory='view ~/.zsh_history'
 fi
 
 # Edit Configs Alias

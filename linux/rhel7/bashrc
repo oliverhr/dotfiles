@@ -1,3 +1,4 @@
+# vim: set ft=sh ts=4 sw=4 noet :
 # .bashrc
 
 # Source global definitions
@@ -7,68 +8,13 @@ fi
 
 # Enable the subsequent settings only in interactive sessions
 case $- in
-  *i*) ;;
-    *) return;;
+	*i*) ;;
+	*) return;;
 esac
 
-# -----------------------------------------------------------------------------
-# Oh My Bash configuration
-# -----------------------------------------------------------------------------
-source $HOME/.config/omb/conf.rc
 
 # #############################################################################
 # User configuration
 # #############################################################################
+source ~/.config/bash/rc.sh
 
-# -----------------------------------------------------------------------------
-# Environment Variables
-# -----------------------------------------------------------------------------
-# export MANPATH="/usr/local/man:$MANPATH"
-export HISTCONTROL=ignoreboth
-export PATH=$PATH:/usr/local/bin:$HOME/.local/bin
-
-# You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# -----------------------------------------------------------------------------
-# Compilation flags
-# -----------------------------------------------------------------------------
-# export ARCHFLAGS="-arch x86_64"
-
-# -----------------------------------------------------------------------------
-# ALIAS
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-# -----------------------------------------------------------------------------
-alias edit='vim $(fzf)'
-# change configs
-alias confshell='vim -R ~/.bashrc'
-alias confvim='vim -R ~/.vim/vimrc'
-alias confgit='vim -R ~/.config/git/global.gitconfig'
-alias confomb='vim -R ~/.config/omb/config.rc'
-# Always prefix dnf/yum with sudo
-alias yum='sudo yum'
-alias dnf='sudo dnf'
-alias yum-config-manager='sudo yum-config-manager'
-# Containers related aliases
-alias containers='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
-alias images='docker image ls'
-
-# -----------------------------------------------------------------------------
-# Tools initialization
-# -----------------------------------------------------------------------------
-# export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
-
-# Direnv
-eval "$(direnv hook bash)"
-
-# Fuzzy finder fzf
-eval "$(fzf --bash)"
-
-# Zoxide
-eval "$(zoxide init bash)"
-
-# vim: set ft=bash ts=4 sw=4 noet :
