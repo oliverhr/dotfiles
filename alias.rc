@@ -6,7 +6,7 @@ alias view="vim -R"
 
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
-	alias confbash="view ~/.config/bash/ohmyba.sh"
+	alias confbash="view ~/.config/bash"
 	alias checkhistory='view ~/.bash_history'
 else # assuming zsh
 	alias confshell='view ~/.zshrc'
