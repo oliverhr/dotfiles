@@ -1,4 +1,4 @@
-# vim: set ft=sh : #
+# vim: set ft=bash sw=4 ts=4 noet :
 
 # ----------------------------------------------------------
 # Oh My Bash Configuration

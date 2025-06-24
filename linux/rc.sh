@@ -1,21 +1,26 @@
 # vim: set ft=sh ts=4 sw=4 noet :
+# .bashrc
+
+# Enable the subsequent settings only in interactive sessions
+case $- in
+  *i*) ;;
+    *) return;;
+esac
+
+# #############################################################################
+# User configuration
+# #############################################################################
+export PATH=$PATH:$HOME/.local/bin
+export HISTCONTROL=ignoreboth
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
 # -----------------------------------------------------------------------------
 source $HOME/.config/bash/ohmyba.sh
 
-# #############################################################################
-# User configuration
-# #############################################################################
-export HISTCONTROL=ignoreboth
-export PATH=$PATH:/usr/local/bin:$HOME/.local/bin
-
-# language environment vars
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
+# -----------------------------------------------------------------------------
 # Compilation flags
+# -----------------------------------------------------------------------------
 # export ARCHFLAGS="-arch x86_64"
 
 # -----------------------------------------------------------------------------
@@ -44,4 +49,8 @@ eval "$(fzf --bash)"
 
 # Zoxide
 eval "$(zoxide init bash)"
+
+# fnm
+PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env)"
 
