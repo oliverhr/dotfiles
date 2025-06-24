@@ -10,30 +10,22 @@ HISTTIMEFORMAT="%m/%d/%y %T "
 export HISTCONTROL=ignoredups:erasedups
 
 # ---------------------------------------------------------
-# My Custom Alias
+# Prompt
 # ---------------------------------------------------------
+# eval "$(starship init bash)"
 
-if [[ ! -f /usr/bin/view ]]; then
-	alias view="vim -R"
-fi
+# ---------------------------------------------------------
+# Custom Alias
+# ---------------------------------------------------------
+test -f ~/.alias.rc && . ~/.alias.rc
 
-# Edit cofigs
-alias confshell='view ~/.bashrc'
-alias checkhistory='view ~/.bash_history'
-alias confalias='view ~/.my_aliases.rc'
-alias confvim='view ~/.vim/vimrc'
-alias confssh='view ~/.ssh/config'
-alias confgit='view ~/.config/git/config'
-
-# Commands
+# CD alias
 alias ls='ls --color=always'
 alias ll='ls -l'
 alias la='ls -la'
 alias cd..='cd ..'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
-alias v='vim'
-alias vd='vimdiff'
 
 # Git alias
 alias g='git'
@@ -49,26 +41,13 @@ alias gsw='git switch'
 alias gd='git diff'
 
 # ---------------------------------------------------------
-# Composed commands ###
-# ---------------------------------------------------------
-git-remove-tag() {
-	TAG=$1
-	git tag -d $TAG
-	git push origin :refs/tags/$TAG
-}
-
-container-list() {
-	docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
-}
-
-# ---------------------------------------------------------
 # Appliction Initialization
 # ---------------------------------------------------------
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
+
 # ---------------------------------------------------------
 cd ~/Projects
 # ---------------------------------------------------------
-
 

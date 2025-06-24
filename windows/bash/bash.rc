@@ -1,0 +1,4 @@
+# vim: ft=bash :
+
+test -f ~/.config/bash/rc.bash && . ~/.config/bash/rc.bash
+
