@@ -111,7 +111,7 @@ g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'y
 map <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
-nnoremap <silent> <leader>fr :RG<cr>
+nnoremap <silent> <leader>fr :Rg<cr>
 nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fw :Windows<cr>

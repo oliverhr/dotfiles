@@ -125,7 +125,7 @@ $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 map <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
-nnoremap <silent> <leader>fr :RG<cr>
+nnoremap <silent> <leader>fr :Rg<cr>
 nnoremap <silent> <leader>ff :Files<cr>
 nnoremap <silent> <leader>fb :Buffers<cr>
 nnoremap <silent> <leader>fw :Windows<cr>
