@@ -37,8 +37,9 @@ git-remove-tag() {
 }
 
 # DOCKER
+alias dk='docker'
 alias dkps='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
-alias dkpf='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}"'
+alias dkpf='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
 alias dkim='docker image ls'
 alias dkif='docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
 
