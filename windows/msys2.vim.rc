@@ -68,12 +68,7 @@ call plug#begin()
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
-call plug#end()           # required
-
-# You can revert the settings after the call like so:
-#   filetype indent off   # Disable file-type-specific indentation
-#   syntax off            # Disable syntax highlighting
-# Put your non-Plugin stuff after this line
+call plug#end()
 
 # -------------------------------------------------------------------
 # Plugins Settings
