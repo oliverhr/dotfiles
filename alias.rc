@@ -23,6 +23,7 @@ alias confignore='view ~/.config/git/excludes.gitconfig'
 
 # Commands
 alias vd='vimdiff'
+alias lg='lazygit'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
 
