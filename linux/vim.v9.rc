@@ -22,6 +22,7 @@ set fileformats=unix,dos,mac
 # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
   # - - - Utilities - - -
+  Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
@@ -221,7 +222,7 @@ set clipboard=unnamed
 set mouse=a
 
 # == Color terminal related stuff ==
-set t_Co=256
+# set t_Co=256
 set termguicolors
 
 # Enable this only when terminal dislay weird chars

@@ -22,6 +22,7 @@ set fileformats=unix,dos,mac
 call plug#begin()
 
 " - - - Utilities - - -
+  Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
@@ -336,6 +337,7 @@ map k gk
 map <silent><leader>n :set number!<cr>
 
 " Smart way to move between windows
+" Overrided by tmux-navigator
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
