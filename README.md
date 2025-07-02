@@ -2,7 +2,7 @@
 
 ### Dot files
 
-* Vim (mac | windows | MSys | Vim[7|8])
+* Vim (mac | windows | MSys | Vim[7|8|9])
 * Zsh | Bash | Powershell
 * Aliases [zsh |bash]
 * Git global [config | ignore | alias]
