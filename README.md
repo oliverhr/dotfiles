@@ -33,3 +33,7 @@ git clone https://github.com/vim-airline/vim-airline-themes.git $ns_dir/start/ai
 git clone https://github.com/ryanoasis/vim-devicons $ns_dir/start/devicons
 git clone https://github.com/nordtheme/vim.git $ns_dir/opt/nord
 ```
+
+## Notes
+
+On windows `vim` included with `git-bash` support placing the configuration on `~/.config/git/` it work well except with `git difftool ...`. 
