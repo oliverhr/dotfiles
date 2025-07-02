@@ -48,9 +48,9 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
 
   # - - - Syntax - - -
-  Plug 'hashivim/vim-terraform'
-  Plug 'pearofducks/ansible-vim'
-  Plug 'yasuhiroki/github-actions-yaml.vim'
+  #Plug 'hashivim/vim-terraform'
+  #Plug 'pearofducks/ansible-vim'
+  #Plug 'yasuhiroki/github-actions-yaml.vim'
 
   # - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
