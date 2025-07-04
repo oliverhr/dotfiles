@@ -1,11 +1,12 @@
 return {
-  {
+
+  { -- Buffer Format
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre',      -- for format on save
     opts = require "configs.conform",
   },
 
-  {
+  { -- LSP configuration
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
@@ -15,7 +16,8 @@ return {
   -- test new blink
   { import = "nvchad.blink.lazyspec" },
 
-  { -- TreeSitter
+
+  { -- Treesitter
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
@@ -27,3 +29,4 @@ return {
     },
   },
 }
+
