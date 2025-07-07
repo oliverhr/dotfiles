@@ -20,7 +20,7 @@ set fileformats=unix,dos,mac
 # ======================= Plug Settings ===========================
 # set the runtime path to include Vundle and initialize
 # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin()
+plug#begin()
   # - - - Utilities - - -
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
@@ -63,7 +63,7 @@ call plug#begin()
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
-call plug#end()
+plug#end()
 
 # -------------------------------------------------------------------
 # Plugins Settings
@@ -72,6 +72,18 @@ var NERDTreeIgnore = ['.git$[[dir]]']
 g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
 var NERDTreeRespectWildIgnore = 1
+
+g:lsp_settings = {
+  'vim-language-server': { 'disabled': true }
+}
+
+g:lsp_document_code_action_signs_enabled = 0
+g:lsp_document_code_action_signs_hint = {'text': '⭲'}
+g:lsp_diagnostics_signs_warning = {'text': '⚠'}
+g:lsp_diagnostics_signs_error = {'text': '⌦'}
+g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
+
+
 
 # ========================= General Settings ========================
 # Sets how many lines of history VIM has to remember
@@ -334,7 +346,7 @@ if has('autocmd')
     endif
   }
   # But don't remember the cursor position in git commits
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  au FileType gitcommit au! BufEnter COMMIT_EDITMSG setpos('.', [0, 1, 1, 0])
 
   # Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
