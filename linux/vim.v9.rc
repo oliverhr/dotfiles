@@ -131,7 +131,7 @@ nnoremap <silent> <leader>fc :Commits<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-# ================ Shell buffet stay opened after exit ===============
+# ================ Shell buffer stays opened after exit ===============
 nnoremap <silent> <leader>t :ter ++noclose<cr>
 
 # ========================= User interface ===========================
@@ -375,11 +375,11 @@ map k gk
 # Toggle line numbers on/off
 map <silent><leader>n :set number!<cr>
 
-# Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+# Move between panes replace: vim-tmux-navigation
+# map <C-j> <C-W>j
+# map <C-k> <C-W>k
+# map <C-h> <C-W>h
+# map <C-l> <C-W>l
 
 # Quick open blank/new buffers
 map <leader>bh :enew<cr>
