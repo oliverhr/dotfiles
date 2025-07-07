@@ -8,3 +8,26 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- Migrated mamsp from vim with my old <leader> = ","
+map("n", "<Bslash>", "<cmd> NvimTreeToggle <cr>")
+map("n", ",ba",
+    "<cmd> %bdelete <cr>",
+    { desc = "Close all buffers" ,silent = true, noremap = true }
+)
+map("n", ",wb",
+    "<cmd> w <cr>",
+    { desc = "Write current buffer", noremap = true }
+)
+map("n", ",wa",
+    "<cmd> wa <cr>",
+    { desc = "Write all buffers", noremap = true }
+)
+map("n", ",x",
+  function()
+    vim.cmd.write()
+    require("nvchad.tabufline").close_buffer()
+  end,
+  { desc = "Write and Exit", noremap = true }
+)
+
