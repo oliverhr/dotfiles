@@ -76,6 +76,16 @@ g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
 var NERDTreeRespectWildIgnore = 1
 
+g:lsp_settings = {
+  'vim-language-server': { 'disabled': true }
+}
+
+g:lsp_document_code_action_signs_enabled = 0
+g:lsp_document_code_action_signs_hint = {'text': '⭲'}
+g:lsp_diagnostics_signs_warning = {'text': '⚠'}
+g:lsp_diagnostics_signs_error = {'text': '⌦'}
+g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
+
 # ========================= General Settings ========================
 # Sets how many lines of history VIM has to remember
 set history=1000
