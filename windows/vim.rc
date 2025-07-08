@@ -41,7 +41,7 @@ plug#begin()
 
   # LSP and Lint, Autocompletion and Formatting
   Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
+  Plug 'oliverhr/vim-lsp-settings', { 'branch': 'typlo' }
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
