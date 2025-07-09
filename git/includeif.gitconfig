@@ -12,11 +12,11 @@
 # ------------------------------------------------------------------------------
 
 # Personal projects just for fun
-[includeIf "gitdir:~/Documents/Projects/Personal/"]
+[includeIf "gitdir/i:~/Documents/Projects/Personal/"]
 	path = ./personal.gitconfig
 
 # Work projects aka Freelance
-[includeIf "gitdir:~/Documents/Projects/Work/"]
+[includeIf "gitdir/i:~/Documents/Projects/Work/"]
 	path = ~/Projects/Work/.work.gitconfig
 
 # Things for my job at a umbrella corporation ;)
