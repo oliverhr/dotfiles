@@ -31,4 +31,8 @@ map("n", ",x",
   end,
   { desc = "Write and Exit", noremap = true }
 )
+map("n", "<C-p>",
+    "<cmd>Telescope find_files<cr>",
+    { desc = "ControlP find files", noremap = true }
+)
 
