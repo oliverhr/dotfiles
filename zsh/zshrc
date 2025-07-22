@@ -1,8 +1,9 @@
 # vim: set ft=zsh ts=4 sw=4 noet :
 # -----------------------------------------------------------------------------
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+test -d $HOME/bin && export PATH=$HOME/bin:$PATH
+test -d $HOME/.local/bin && export PATH=$HOME/.local/bin:$PATH
 
+# -----------------------------------------------------------------------------
 ZDOTDIR="$HOME/.config/zsh"
 
 # -----------------------------------------------------------------------------
