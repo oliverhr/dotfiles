@@ -10,12 +10,14 @@ $PROFILE="~/.config/pwsh/pwshrc.ps1"
 
 #------------------------------------------------------------------------------
 # Some unix tools require this path to be set
+# https://github.com/adrg/xdg/blob/master/README.md#xdg-base-directory
 #------------------------------------------------------------------------------
-$env:XDG_CONFIG_HOME="$env:USERPROFILE/.config"
-$env:XDG_STATE_HOME="$env:LOCALAPPDATA"
-$env:XDG_CACHE_HOME="$env:LOCALAPPDATA/Temp"
-# Next line affects commands like `uv tools install / uv tools dir`
-# $env:XDG_DATA_HOME="$env:LOCALAPPDATA"
+$env:XDG_CONFIG_HOME = "$env:USERPROFILE/.config"
+$env:XDG_STATE_HOME = "$env:LOCALAPPDATA"
+$env:XDG_CACHE_HOME = "$env:LOCALAPPDATA/Temp"
+# Next lines affects commands like `uv tools install / uv tools dir`
+$env:XDG_DATA_HOME = "$env:USERPROFILE/.local/share"
+$env:XDG_BIN_HOME = "$env:USERPROFILE/.local/bin"       # non-standard XDG Base
 
 ###############################################################################
 # Custom Powershell profile
