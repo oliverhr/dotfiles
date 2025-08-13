@@ -104,7 +104,7 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 " Fuzzy finder
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
-map <silent> <C-p> :FZF!<cr>
+nnoremap <silent> <C-p> :FZF!<cr>
 
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>

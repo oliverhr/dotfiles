@@ -41,6 +41,7 @@ plug#begin()
 
   # LSP and Lint, Autocompletion and Formatting
   Plug 'prabirshrestha/vim-lsp'
+  # Plug 'mattn/vim-lsp-settings'
   Plug 'oliverhr/vim-lsp-settings', { 'branch': 'typlo' }
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -71,12 +72,20 @@ plug#end()
 # -------------------------------------------------------------------
 # Plugins Settings
 # -------------------------------------------------------------------
+# NerdTree
 var NERDTreeIgnore = ['.git$[[dir]]']
+var NERDTreeRespectWildIgnore = 1
 g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
-var NERDTreeRespectWildIgnore = 1
-
+autocmd BufEnter * {
+  # Exit Vim if NERDTree is the only window remaining in the only tab.
+  if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()
+    call feedkeys(':quit\<CR>:\<BS>')
+  endif
+}
+# Vim LSP Settings
 g:lsp_settings = {
+  # vim LSP has some issues with vim9script
   'vim-language-server': { 'disabled': true }
 }
 
@@ -118,7 +127,7 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 # Fuzzy finder
 $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
-map <silent> <C-p> :FZF!<cr>
+nnoremap <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>

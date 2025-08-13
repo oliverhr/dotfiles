@@ -123,7 +123,7 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 # Fuzzy finder
 $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
-map <silent> <C-p> :FZF!<cr>
+nnoremap <silent> <C-p> :FZF!<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
