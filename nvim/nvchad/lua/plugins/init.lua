@@ -28,5 +28,10 @@ return {
       },
     },
   },
+
+  { -- Fugitive
+    "tpope/vim-fugitive",
+    lazy = false,
+  }
 }
 
