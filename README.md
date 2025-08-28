@@ -40,30 +40,12 @@ On windows `vim` included with `git-bash` support placing the configuration on `
 
 ## Additional Tools to Install
 
-This tools are pretty useful but not available on EL or are too outdated
-- bandwhich
-- btm
-- choose
-- delta
-- doggo
-- dust
-- fd
-- git-graph
-- jaq
-- just
-- procs
-- sd
-- xh
-- bat
-- cheat
-- curlie
-- direnv
-- duf
-- eza
-- fzf
-- hyperfine
-- jq
-- mkcert
-- rg
-- task
-- zoxide
+This [tools](tools.md) are pretty useful but not available on EL or are too outdated
+```
+- direnv      - fzf
+- zoxide      - bat
+- rg          - delta
+- sd          - fd
+- procs       - xh
+- task        - ag
+```
