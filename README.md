@@ -37,3 +37,33 @@ git clone https://github.com/nordtheme/vim.git $ns_dir/opt/nord
 ## Notes
 
 On windows `vim` included with `git-bash` support placing the configuration on `~/.config/git/` it work well except with `git difftool ...`. 
+
+## Additional Tools to Install
+
+This tools are pretty useful but not available on EL or are too outdated
+- bandwhich
+- btm
+- choose
+- delta
+- doggo
+- dust
+- fd
+- git-graph
+- jaq
+- just
+- procs
+- sd
+- xh
+- bat
+- cheat
+- curlie
+- direnv
+- duf
+- eza
+- fzf
+- hyperfine
+- jq
+- mkcert
+- rg
+- task
+- zoxide
