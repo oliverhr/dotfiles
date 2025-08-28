@@ -40,7 +40,7 @@ On windows `vim` included with `git-bash` support placing the configuration on `
 
 ## Additional Tools to Install
 
-This [tools](tools.md) are pretty useful but not available on EL or are too outdated
+This [tools](tools.md) are pretty useful some a must. (_not all of them are available on (RH)EL or are too outdated_)
 ```
 - direnv      - fzf
 - zoxide      - bat
