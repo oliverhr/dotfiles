@@ -8,6 +8,7 @@ Manual installation proccess:
 curl -fLO https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.8/zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz
 tar xavf zoxide-0.9.8-x86_64-unknown-linux-musl.tar.gz
 sudo cp zoxide /usr/local/bin/
+
 ```
 
 | Command    | Description                                                  | Website                                       |
@@ -39,3 +40,6 @@ sudo cp zoxide /usr/local/bin/
 | xh         | Friendly and fast tool for sending HTTP requests             | https://github.com/ducaale/xh                 |
 | **zoxide** | A smarter cd command. Supports all major shells.             | https://github.com/ajeetdsouza/zoxide         |
 |            |                                                              |                                               |
+
+Note:
+- Most of these tools are new alternatives, some of the are written in go or rust.
