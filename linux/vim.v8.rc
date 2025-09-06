@@ -217,8 +217,8 @@ set clipboard=unnamed
 set mouse=a
 
 " == Color terminal related stuff ==
-set t_Co=256
-set termguicolors
+"set termguicolors
+set t_Co=24
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
@@ -226,8 +226,11 @@ set termguicolors
 set t_RV=
 
 " == ColorScheme
+let g:solarized_termcolors=24
+let g:solarized_termtrans=1
 set background=dark
-colorscheme sonokai
+colorscheme solarized
+" let g:airline_theme = 'solarized'
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
