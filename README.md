@@ -42,10 +42,5 @@ On windows `vim` included with `git-bash` support placing the configuration on `
 
 This [tools](tools.md) are pretty useful some a must. (_not all of them are available on (RH)EL or are too outdated_)
 ```
-- direnv      - fzf
-- zoxide      - bat
-- rg          - delta
-- sd          - fd
-- procs       - xh
-- task        - ag
+pacman -S base-devel curl vim tmux openssh git direnv bat fzf zoxide ripgrep git-delta the_silver_searcher nvim fd sd go-task xh procs zellij
 ```
