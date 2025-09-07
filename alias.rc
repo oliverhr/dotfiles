@@ -26,6 +26,7 @@ alias vd='vimdiff'
 alias lg='lazygit'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
+alias nv='nvim'
 
 ### Composed commands ###
 # GIT
@@ -41,8 +42,10 @@ git-remove-tag() {
 alias dk='docker'
 alias dkps='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 alias dkpf='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
+alias dkrmc='docker container rm'
 alias dkim='docker image ls'
 alias dkif='docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
+alias dkrmi='docker image rm'
 
 alias docker-clean-volumes='docker volume rm $(docker volume ls --quiet --filter "dangling=true")'
 alias docker-clean-images='docker image rm $(docker image ls --quiet --filter "dangling=true")'
