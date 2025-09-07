@@ -13,8 +13,7 @@
 			| sed 's/[\\^~].*//'; \
 		}; f"
 	worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
-	logs = !git --no-pager log --no-merges --stat --oneline
-	commits = !git --no-pager log --no-merges --stat --oneline
+	commits = !git --no-pager log --no-merges --stat --oneline --show-signature
 	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
 	clsp = "!f() { \
 			git clone --no-checkout --sparse ${1} ${2} && cd ${2}; \
