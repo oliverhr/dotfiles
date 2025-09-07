@@ -40,14 +40,14 @@ git-remove-tag() {
 
 # DOCKER
 alias dk='docker'
-alias dkps='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
-alias dkpf='docker container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
-alias dkrmc='docker container rm'
-alias dkim='docker image ls'
-alias dkif='docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
-alias dkrmi='docker image rm'
+alias dkps='dk container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
+alias dkpf='dk container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
+alias dkrc='dk container rm'
+alias dkim='dk image ls'
+alias dkif='dk image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
+alias dkri='dk image rm'
 
-alias docker-clean-volumes='docker volume rm $(docker volume ls --quiet --filter "dangling=true")'
-alias docker-clean-images='docker image rm $(docker image ls --quiet --filter "dangling=true")'
+alias dk-clean-volumes='dk volume rm $(docker volume ls --quiet --filter "dangling=true")'
+alias dk-clean-images='dk image rm $(docker image ls --quiet --filter "dangling=true")'
 
 # vim: ft=sh :
