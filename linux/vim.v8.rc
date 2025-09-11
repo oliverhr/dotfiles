@@ -27,9 +27,8 @@ call plug#begin()
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'LunarWatcher/auto-pairs'
+  Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
   Plug 'machakann/vim-sandwich'
-  Plug 'nanotee/zoxide.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
@@ -217,8 +216,8 @@ set clipboard=unnamed
 set mouse=a
 
 " == Color terminal related stuff ==
-"set termguicolors
-set t_Co=24
+set termguicolors
+"set t_Co=24
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
@@ -226,10 +225,10 @@ set t_Co=24
 set t_RV=
 
 " == ColorScheme
-let g:solarized_termcolors=24
-let g:solarized_termtrans=1
+"let g:solarized_termcolors=24
+"let g:solarized_termtrans=1
 set background=dark
-colorscheme solarized
+colorscheme catppuccin_macchiato
 " let g:airline_theme = 'solarized'
 
 " Set Tab bar color background to translucid and line to black
