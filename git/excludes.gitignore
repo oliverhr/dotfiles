@@ -2,6 +2,11 @@
 
 # --- My Custom files ---
 #_build.sh
+#_deploy.sh
+#_debug.sh
+#_destroy.sh
+#_local.env
+_toolkit/
 
 # --- Secrets ---
 *.pem
