@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------
 [core]
 	pager = delta
-	excludesfile = ./global.gitignore
+	excludesfile = ~/.config/git/excludes.gitignore
 [init]
 	defaultBranch = main
 [pull]
