@@ -38,7 +38,6 @@ plug#begin()
 
   # LSP and Lint, Autocompletion and Formatting
   Plug 'prabirshrestha/vim-lsp'
-  # Plug 'oliverhr/vim-lsp-settings', { 'branch': 'typlo' }
   Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -239,11 +238,12 @@ set termguicolors
 # Enable this only when terminal dislay weird chars
 # because of an issue with devicons & airline this
 # error mostly happen on Linux and WSL
-# set t_RV=
+set t_RV=
 
 # == ColorScheme
 set background=light
 colorscheme quiet
+# g:airline_theme = 'transparent'
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black

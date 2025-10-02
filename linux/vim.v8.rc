@@ -228,7 +228,8 @@ set t_RV=
 "let g:solarized_termcolors=24
 "let g:solarized_termtrans=1
 set background=dark
-colorscheme catppuccin_macchiato
+colorscheme deep-space
+highlight Normal guibg=NONE ctermbg=NONE
 " let g:airline_theme = 'solarized'
 
 " Set Tab bar color background to translucid and line to black
@@ -302,6 +303,9 @@ if has('autocmd')
 
   " XML files Indent with tabs, align with spaces
   autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
+
+  " Dockerfiles force tabs to use HereDocs on RUN commands
+  autocmd Filetype dockerfile set noexpandtab sw=4 ts=4 sts=4 nowrap
 
   " Return to last edit position when opening files
   autocmd BufReadPost *

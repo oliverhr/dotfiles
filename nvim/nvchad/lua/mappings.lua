@@ -31,6 +31,16 @@ map("n", ",x",
   end,
   { desc = "Write and Exit", noremap = true }
 )
+map("n", ",qb",
+  function()
+    require("nvchad.tabufline").close_buffer()
+  end,
+  { desc = "Quit the buffer discarding changes", noremap = true }
+)
+map("n", ",qa",
+    "<cmd> qa! <cr>",
+    { desc = "Discard any change and Quit", noremap = true }
+)
 map("n", "<C-p>",
     "<cmd>Telescope find_files<cr>",
     { desc = "ControlP find files", noremap = true }
