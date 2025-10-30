@@ -15,6 +15,8 @@ function pycharm {
 Set-Alias -Name npp -Value "$env:HOMEPATH\scoop\shims\notepad++.exe"
 
 # Winmerge
-Set-Alias -Name wm -Value "$env:HOMEPATH\scoop\shims\winmergeu.exe"
+Set-Alias -Name winmergeu -Value "$env:HOMEPATH\scoop\shims\winmergeu.exe"
+Set-Alias -Name winmerge -Value winmergeu
+Set-Alias -Name wm -Value winmergeu
 
 # vim: set ft=ps1 ts=4 sts=4 sw=4 et :

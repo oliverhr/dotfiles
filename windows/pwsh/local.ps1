@@ -2,7 +2,7 @@
 
 # ------------------------------------------------------------------------------
 # Local stuff
-# ##############################################################################
+# ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
 # Carapace-bin
@@ -11,6 +11,7 @@ Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression
 
+<#
 # ------------------------------------------------------------------------------
 # _cd_proj_by_name is defined on includes "dir_project_alias.ps1"
 # override projects directory path
