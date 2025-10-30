@@ -3,6 +3,14 @@
 #------------------------------------------------------------------------------
 
 function _git_worktree {
+    if ($args.Count -gt 0) {
+        $_cmd = $args[0]
+        $args[0] = switch($_cmd) {
+            ls { 'list' }
+            mv { 'move' }
+            rm { 'remove' }
+        }
+    }
     $cmd = switch($MyInvocation.InvocationName) {
         gwtls { 'list' }
         gwtmv { 'move' }
