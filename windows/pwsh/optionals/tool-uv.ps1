@@ -5,5 +5,5 @@
 # -----------------------------------------------------------------------------
 
 $env:UV_NATIVE_TLS=$true
-
+(& uv generate-shell-completion powershell) | Out-String | Invoke-Expression
 
