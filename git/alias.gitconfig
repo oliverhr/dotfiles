@@ -15,15 +15,30 @@
 	worked = !git log --graph --pretty=format:'%C(Cyan)[%cr]%Creset %C(Yellow)%h%Creset %B' --date=relative $(git parent-branch)...HEAD
 	commits = !git --no-pager log --no-merges --stat --oneline --show-signature
 	snip = !git branch --merged | egrep -v \"(^\\*|main|dev)\" | xargs git branch -d
+
 	clsp = "!f() { \
-			git clone --no-checkout --sparse ${1} ${2} && cd ${2}; \
-			git config core.sparseCheckout true; \
-			git config core.sparseCheckoutCone true; \
-			printf '\nNext do:\n'; \
-			printf '\tcd %s\n' ${2}; \
-			printf '\tgit checkout <branch>\n'; \
-			printf '\tgit sparse-checkout set <path_to_working_dir>\n'; \
-		}; f"
+		git clone --no-checkout --sparse ${1} ${2} && cd ${2}; \
+		git config core.sparseCheckout true; \
+		git config core.sparseCheckoutCone true; \
+		printf '\nNext do:\n'; \
+		printf '\tcd %s\n' ${2}; \
+		printf '\tgit checkout <branch>\n'; \
+		printf '\tgit sparse-checkout set <path_to_working_dir>\n'; \
+	}; f"
+
+	treeclone = "!f() { \
+		if (( $# != 2 )); then \
+			printf 'usage:\n\t git treeclone [repository url] [directory path]'; \
+			exit 0; \
+		fi; \
+		_repo=${1}; \
+		_path=${2}; \
+		mkdir $_path && cd $_path; \
+		git clone --bare $_repo .worktree; \
+		echo 'gitdir: ./.worktree' > .git;\
+		git config.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
+		git fetch; \
+	}; f"
 
 	# --- Difftastic
 	# `git log` with patches shown with difftastic.
