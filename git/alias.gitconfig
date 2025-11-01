@@ -36,7 +36,7 @@
 		mkdir $_path && cd $_path; \
 		git clone --bare $_repo .worktree; \
 		echo 'gitdir: ./.worktree' > .git;\
-		git config.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
+		git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
 		git fetch; \
 	}; f"
 
