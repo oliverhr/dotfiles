@@ -9,6 +9,8 @@ function _git_worktree {
             ls { 'list' }
             mv { 'move' }
             rm { 'remove' }
+            at { 'add' }
+            default { $args[0] }
         }
     }
     $cmd = switch($MyInvocation.InvocationName) {
