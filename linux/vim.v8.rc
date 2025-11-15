@@ -35,6 +35,12 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
+  " LSP and Lint, Autocompletion and Formatting
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
   " - - - Syntax - - -
   " Plug 'hashivim/vim-terraform'
   " Plug 'pearofducks/ansible-vim'

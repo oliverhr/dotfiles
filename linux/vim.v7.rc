@@ -32,6 +32,7 @@ call plug#begin()
   " Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
   " Plug 'nanotee/zoxide.vim'
   " #------------------------------------------------------#
+  Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
@@ -44,7 +45,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
 
   " - - - Syntax - - -
-  Plug 'hashivim/vim-terraform'
+  "Plug 'hashivim/vim-terraform'
 
   " - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
