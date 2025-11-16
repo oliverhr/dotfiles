@@ -1,0 +1,42 @@
+# ----------------------------------------------------------
+# Main Alacritty configuration
+# ----------------------------------------------------------
+[general]
+import = []
+working_directory = "$HOME/Documents/Projects"
+live_config_reload = true
+
+[window]
+dimensions = { columns = 130, lines = 35 }
+padding = { x = 5, y = 5 }
+startup_mode = "Windowed"
+decorations = "Transparent"
+decorations_theme_variant = "None"
+
+[scrolling]
+history = 15000
+multiplier = 3
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Propo", style = 'Regular' }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 16.0
+offset = { x = 0, y = 0 }
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+vi_mode_style = "Beam"
+
+[mouse]
+hide_when_typing = false
+
+[env]
+TERM_PROGRAM = "alacritty"
+SHELL = "/usr/local/bin/fish"
+
+[terminal.shell]
+program = "/usr/local/bin/tmux"
+args = ["new-session", "-A", "-s", "alacritty"]
+
