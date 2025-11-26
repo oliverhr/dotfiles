@@ -18,3 +18,4 @@ antidote load $ZDOTDIR/antidote_zsh_plugins.conf
 # #############################################################################
 
 
+# vim: set ft=zsh ts=4 sw=4 noet :
