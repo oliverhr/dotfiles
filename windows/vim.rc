@@ -273,6 +273,7 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 # Set extra options when running in GUI mode
 if has('gui_running')
+  # disable Visual Bell
   autocmd GUIEnter * set visualbell t_vb=
 
   highlight LineNr guifg=#333D60
