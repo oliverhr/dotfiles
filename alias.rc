@@ -24,6 +24,7 @@ alias confignore='view ~/.config/git/excludes.gitconfig'
 # Commands
 alias vd='vimdiff'
 alias lg='lazygit'
+alias lh='ls -lh'
 alias lsd='ls -ld */'
 alias lsh='ls -d .*'
 alias nv='nvim'
@@ -41,13 +42,16 @@ git-remove-tag() {
 # DOCKER
 alias dk='docker'
 alias dkps='dk container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
-alias dkpf='dk container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
-alias dkrc='dk container rm'
-alias dkim='dk image ls'
+alias dkcl='dk container ls --format "table {{.ID}}\t{{.Names}}\t{{.CreatedAt}}\t{{.State}}\t{{.Ports}}"'
+alias dkcr='dk container rm'
+alias dkil='dk image ls'
 alias dkif='dk image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
-alias dkri='dk image rm'
+alias dkir='dk image rm'
 
 alias dk-clean-volumes='dk volume rm $(docker volume ls --quiet --filter "dangling=true")'
 alias dk-clean-images='dk image rm $(docker image ls --quiet --filter "dangling=true")'
+
+# Utilities
+alias dt='date +"%Y-%m-%d_%H-%M-%S_%Z"'
 
 # vim: ft=sh :

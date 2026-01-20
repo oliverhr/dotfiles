@@ -34,7 +34,7 @@ plug#begin()
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
-  # Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline-themes'
 
   # LSP and Lint, Autocompletion and Formatting
   Plug 'prabirshrestha/vim-lsp'
@@ -49,16 +49,16 @@ plug#begin()
 
   # - - - Colorschemes - - -
   # Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
-  # Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
   # Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github'}
   # Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang'}
   # Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'}
-  # Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
   # Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'}
   # Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
   # Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
-  # Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
-  # Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
   # Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
 
   # - - - Loaded last - - -
@@ -241,8 +241,8 @@ set termguicolors
 set t_RV=
 
 # == ColorScheme
-set background=light
-colorscheme quiet
+set background=dark
+colorscheme tokyonight
 # g:airline_theme = 'transparent'
 
 # Set Tab bar color background to translucid and line to black

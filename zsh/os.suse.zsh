@@ -3,7 +3,9 @@
 # -----------------------------------------------------------------------------
 # OpenSuse Laap - ZSH specific stuff
 # -----------------------------------------------------------------------------
+export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u $USER)"
 
-# Since OpenSuse Leap is not Tumbleweed XD
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+alias zy='zypper'
+alias zyp='zypper'
