@@ -41,8 +41,7 @@ plug#begin()
 
   # LSP and Lint, Autocompletion and Formatting
   Plug 'prabirshrestha/vim-lsp'
-  # Plug 'mattn/vim-lsp-settings'
-  Plug 'oliverhr/vim-lsp-settings', { 'branch': 'typlo' }
+  Plug 'mattn/vim-lsp-settings'
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
@@ -144,7 +143,8 @@ set path+=**
 
 # ================= Shell from MS-DOS to PowerShell =================
 if has('win64')
-  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
+  nnoremap <silent> <leader>ts :ter ++close pwsh -nol<cr>
+  nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
 endif
 
 # ========================= User interface ===========================
@@ -273,6 +273,8 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 # Set extra options when running in GUI mode
 if has('gui_running')
+  autocmd GUIEnter * set visualbell t_vb=
+
   highlight LineNr guifg=#333D60
 
   set background=dark
