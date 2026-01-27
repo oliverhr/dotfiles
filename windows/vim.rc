@@ -145,6 +145,7 @@ set path+=**
 if has('win64')
   nnoremap <silent> <leader>ts :ter ++close pwsh -nol<cr>
   nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
+  nnoremap <silent> <leader>tb :ter ++close bash<cr>
 endif
 
 # ========================= User interface ===========================
