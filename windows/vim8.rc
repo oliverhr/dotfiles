@@ -1,12 +1,12 @@
-" ==================================================================
+" ====================================================================
 " Windows OS
 " instead of: !clear && python %
 " do: !clear; python %
 " set shell=powershell
 " :help powershell
-" ==================================================================
+" ====================================================================
 
-" ==================================================================
+" ====================================================================
 " VIMproved
 set nocompatible
 filetype plugin on
@@ -22,6 +22,7 @@ set fileformats=unix,dos,mac
 
 " ======================= Plug Settings ===========================
 " set the runtime path to include Vundle and initialize
+" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
   " - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
@@ -105,7 +106,6 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
 nnoremap <silent> <C-p> :FZF!<cr>
-
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
@@ -121,8 +121,9 @@ nnoremap <silent> <leader>fc :Commits<cr>
 set path+=**
 
 "================= Shell from MS-DOS to PowerShell ================
-if has("win64")
-  nnoremap <silent> <leader>t :ter ++close pwsh -nol<cr>
+if has('win64')
+  nnoremap <silent> <leader>ts :ter ++close pwsh -nol<cr>
+  nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
 endif
 
 " ========================= User interface ==========================
@@ -199,12 +200,14 @@ set laststatus=2
 syntax enable
 
 " Absolute number on view mode relative on insert mode
-augroup numbertoggle
-  " This is activated after 'set number'
-  autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
-  autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
-augroup END
+if has('autocmd')
+  augroup numbertoggle
+    " This is activated after 'set number'
+    autocmd!
+    autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
+    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
+  augroup END
+endif
 
 " Set more space on the left
 set nonumber     " Avoid gutter clutter if not necessary
@@ -279,25 +282,27 @@ match ExtraWhitespace /\s\+$/
 " Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
 " => File backups
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
 " => Persistent Undo
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
 " silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/vimfiles/undodir
 set undofile
 
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
+" Keep undo history across sessions, by storing in file.
 " => Text, tab and indent related
-" --------------------------------------------------------------
+" --------------------------------------------------------------------
+" Keep undo history across sessions, by storing in file.
 " Use spaces instead of tabs
 set expandtab
 " Be smart when using tabs ;)
