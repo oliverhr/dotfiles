@@ -1,0 +1,12 @@
+# ##########################################################
+# In case of errors ie. when setting systemd to true
+# ie. with openSUSETumbleweed
+# Place this on ~/.wslconfig
+#
+# Recent versions of systemd (256+) require pure cgroupv2,
+# but some WSL configurations default to a hybrid mode that
+# causes systemd to hang or crash on boot.
+# ##########################################################
+[wsl2]
+kernelCommandLine=cgroup_no_v1=all
+
