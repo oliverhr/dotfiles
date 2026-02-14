@@ -7,24 +7,34 @@ case $- in
     *) return;;
 esac
 
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:/usr/local/bin
+
+# if not set this on ~/.bashrc
+RCDOTDIR=${RCDOTDIR:-$HOME/.config/bash}
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
 # -----------------------------------------------------------------------------
-source $HOME/.config/bash/ohmyba.sh
+source $RCDOTDIR/ohmyba.sh
 
 # #############################################################################
 # User configuration
 # #############################################################################
 export HISTCONTROL=ignoreboth
-export PATH=$PATH:/usr/local/bin:$HOME/.local/bin
 
 # -----------------------------------------------------------------------------
-# Environment Variables
+# System Environment Variables
 # -----------------------------------------------------------------------------
-export WIN=/mnt/c/Users/P3280455/
-export WIN_PROJ=/mnt/c/Users/P3280455/Projects/
+export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u)"
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
+
+# -----------------------------------------------------------------------------
+# Load additional configuration RC/SH files
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 
 # -----------------------------------------------------------------------------
 # Compilation flags
@@ -43,11 +53,6 @@ alias edit='vim $(fzf)'
 # -----------------------------------------------------------------------------
 # Tools initialization
 # -----------------------------------------------------------------------------
-export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u)"
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_CACHE_HOME=$HOME/.cache
 
 # Direnv
 eval "$(direnv hook bash)"
