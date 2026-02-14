@@ -9,8 +9,7 @@ esac
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
-# if not set this on ~/.bashrc
-${RCDOTDIR:="$HOME/.config/bash"} && export RCDOTDIR
+[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/bash"
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
