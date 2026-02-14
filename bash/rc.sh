@@ -11,6 +11,8 @@ export PATH=$PATH:$HOME/.local/bin:/usr/local/bin
 
 # if not set this on ~/.bashrc
 RCDOTDIR=${RCDOTDIR:-$HOME/.config/bash}
+# Add to ~/.bashrc
+# test -s $RCDOTDIR/rc.sh
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
