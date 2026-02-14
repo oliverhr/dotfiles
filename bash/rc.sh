@@ -7,12 +7,10 @@ case $- in
     *) return;;
 esac
 
-export PATH=$PATH:$HOME/.local/bin:/usr/local/bin
+export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
 # if not set this on ~/.bashrc
-RCDOTDIR=${RCDOTDIR:-$HOME/.config/bash}
-# Add to ~/.bashrc
-# test -s $RCDOTDIR/rc.sh
+${RCDOTDIR:="$HOME/.config/bash"} && export RCDOTDIR
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
