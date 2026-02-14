@@ -18,5 +18,9 @@
 
 # Ocaml - Opam
 # export PATH="$PATH:/home/P3280455/.opam/default"
-# eval $(opam env)
+eval $(opam env)
+
+# pnpm
+# export PNPM_HOME="$HOME/.local/share/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
