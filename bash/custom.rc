@@ -1,8 +1,22 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
-# Custom / Local specific configuration
+# Environmente variable used as shortcuts on WSL
+# Convention is to name WSL users as Windows user
 # -----------------------------------------------------------------------------
-export WIN=/mnt/c/Users/$USER/
-export WIN_PROJ=/mnt/c/Users/$USER/Projects/
+#export WIN=/mnt/c/Users/$USER/
+#export WIN_PROJ=/mnt/c/Users/$USER/Projects/
+
+# UV
+#export UV_NATIVE_TLS=true
+#eval "$(uv generate-shell-completion bash)"
+#eval "$(uvx --generate-shell-completion bash)"
+
+# fnm
+#PATH="$HOME/.local/share/fnm:$PATH"
+#eval "$(fnm env)"
+
+# Ocaml - Opam
+# export PATH="$PATH:/home/P3280455/.opam/default"
+#eval $(opam env)
 
