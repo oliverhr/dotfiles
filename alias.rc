@@ -2,15 +2,16 @@
 # My Custom Alias
 # --------------------------------------------------
 
-alias view="vim -R"
+alias view='vim -R'
 
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
-	alias confbash="view ~/.config/bash"
+	alias confbash='view ~/.config/bash'
 	alias checkhistory='view ~/.bash_history'
-else # assuming zsh
+else
+	# assuming zsh
 	alias confshell='view ~/.zshrc'
-	alias confzsh="view ~/.config/zsh"
+	alias confzsh='view ~/.config/zsh'
 	alias checkhistory='view ~/.zsh_history'
 fi
 
@@ -33,7 +34,13 @@ alias nv='nvim'
 ### Composed commands ###
 # GIT
 alias git-clean_tags='git fetch --prune origin "+refs/tags/*:refs/tags/*r"'
-alias gfl='git flow'
+alias g='git'
+alias gst='git status'
+alias gf='git fetch'
+alias gl='git pull'
+alias gc='git commit -v'
+alias grs='git restore'
+
 git-remove-tag() {
 	TAG=$1
 	git tag -d $TAG

@@ -9,3 +9,7 @@ export UV_NATIVE_TLS=true
 eval "$(uv generate-shell-completion zsh)"
 alias pip='echo use\: \"uv pip\" instead.'
 
+# fnm
+PATH="$HOME/.local/share/fnm:$PATH"
+eval "$(fnm env)"
+

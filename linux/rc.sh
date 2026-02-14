@@ -50,7 +50,3 @@ eval "$(fzf --bash)"
 # Zoxide
 eval "$(zoxide init bash)"
 
-# fnm
-PATH="$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env)"
-
