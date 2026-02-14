@@ -22,7 +22,7 @@ alias confgit='view ~/.config/git'
 alias confignore='view ~/.config/git/excludes.gitconfig'
 
 # Commands
-alias _="sudo"
+alias _='sudo'
 alias vd='vimdiff'
 alias lg='lazygit'
 alias lh='ls -lh'
