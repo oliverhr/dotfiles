@@ -3,9 +3,14 @@
 # ie. with openSUSETumbleweed
 # Place this on ~/.wslconfig
 #
+# Start whe instance and run the below command then restart:
+#
+# sudo systemctl mask wsl-systemd-wait.service
+#
 # Recent versions of systemd (256+) require pure cgroupv2,
 # but some WSL configurations default to a hybrid mode that
 # causes systemd to hang or crash on boot.
+#
 # ##########################################################
 [wsl2]
 kernelCommandLine=cgroup_no_v1=all
