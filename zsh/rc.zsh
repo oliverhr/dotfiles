@@ -2,8 +2,8 @@
 # -----------------------------------------------------------------------------
 export SHELL='zsh'
 
-[[ -z $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
-[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
+[[ -n $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
+[[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------
 # Oh-My-ZSH
@@ -32,30 +32,7 @@ fi
 # export ARCHFLAGS="-arch $(uname -m)"
 
 # -----------------------------------------------------------------------------
-# ALIAS
-# For a full list of active aliases, run `alias`.
-test -s ~/.alias.rc && . ~/.alias.rc
-
+# Initialization
 # -----------------------------------------------------------------------------
-# OS Specific Configuration
-# -----------------------------------------------------------------------------
-test -s $RCDOTDIR/os.conf.rc && . $RCDOTDIR/os.conf.rc
-#
-# -----------------------------------------------------------------------------
-# Custom configuration (Needs to be created explicitly)
-# -----------------------------------------------------------------------------
-test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
-
-# -----------------------------------------------------------------------------
-# Tools initialization
-# -----------------------------------------------------------------------------
-
-# Direnv
-eval "$(direnv hook zsh)"
-
-# Fuzzy finder fzf
-source <(fzf --zsh)
-
-# Zoxide
-eval "$(zoxide init zsh)"
+test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 

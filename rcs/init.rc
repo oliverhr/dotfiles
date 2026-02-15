@@ -1,0 +1,36 @@
+# vim: set ft=sh ts=4 sw=4 noet :
+
+# -----------------------------------------------------------------------------
+# ALIAS
+# For a full list of active aliases, run `alias`.
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/alias.rc && . $RCDOTDIR/alias.rc
+
+# -----------------------------------------------------------------------------
+# OS Specific Configuration
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/os.conf.rc && . $RCDOTDIR/os.conf.rc
+
+# -----------------------------------------------------------------------------
+# Custom configuration (Needs to be created explicitly)
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
+
+# -----------------------------------------------------------------------------
+# Load additional tools configuration RC/SH files
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/tools.rc && . $RCDOTDIR/tools.rc || true
+
+# -----------------------------------------------------------------------------
+# [Must] Tools initialization
+# -----------------------------------------------------------------------------
+
+# Direnv
+eval "$(direnv hook $SHELL)"
+
+# Fuzzy finder fzf
+source <(fzf --$SHELL)
+
+# Zoxide
+eval "$(zoxide init $SHELL)"
+

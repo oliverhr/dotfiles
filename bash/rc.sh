@@ -34,33 +34,16 @@ export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 
 # -----------------------------------------------------------------------------
-# Load additional configuration RC/SH files
-# -----------------------------------------------------------------------------
-test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
-
-# -----------------------------------------------------------------------------
 # Compilation flags
-# -----------------------------------------------------------------------------
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
 # -----------------------------------------------------------------------------
 # ALIAS
 # For a full list of active aliases, run `alias`.
-# -----------------------------------------------------------------------------
-test -s ~/.alias.rc && . ~/.alias.rc || true
-
 alias edit='vim $(fzf)'
 
 # -----------------------------------------------------------------------------
-# Tools initialization
+# Initialization
 # -----------------------------------------------------------------------------
-
-# Direnv
-eval "$(direnv hook bash)"
-
-# Fuzzy finder fzf
-eval "$(fzf --bash)"
-
-# Zoxide
-eval "$(zoxide init bash)"
+test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 
