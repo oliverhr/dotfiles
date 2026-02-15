@@ -36,11 +36,17 @@ git clone https://github.com/nordtheme/vim.git $ns_dir/opt/nord
 
 ## Notes
 
-On windows `vim` included with `git-bash` support placing the configuration on `~/.config/git/` it work well except with `git difftool ...`. 
+On windows `vim` included with `git-bash` support placing the configuration on `~/.config/git/` it work well except with `git difftool ...`.
 
 ## Additional Tools to Install
 
 This [tools](tools.md) are pretty useful some a must. (_not all of them are available on (RH)EL or are too outdated_)
+
 ```
-pacman -S base-devel curl vim tmux openssh git direnv bat fzf zoxide ripgrep git-delta the_silver_searcher nvim fd sd go-task xh procs zellij
+pacman -S base-devel \
+  curl vim tmux openssh git \
+  direnv bat fzf zoxide ripgrep \
+  git-delta nvim fd sd \
+  xh procs zellij \
+  the_silver_searcher go-task
 ```
