@@ -1,9 +1,13 @@
 # vim: set ft=zsh ts=4 sw=4 noet :
 # -----------------------------------------------------------------------------
+export SHELL='zsh'
+
+[[ -z $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
+[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------
 # Oh-My-ZSH
-source ~/.config/zsh/ohmy.zsh
+source $ZDOTDIR/ohmy.zsh
 # -----------------------------------------------------------------------------
 
 # #############################################################################
@@ -35,12 +39,12 @@ test -s ~/.alias.rc && . ~/.alias.rc
 # -----------------------------------------------------------------------------
 # OS Specific Configuration
 # -----------------------------------------------------------------------------
-test -s ~/.config/zsh/os.conf.zsh && . ~/.config/zsh/os.conf.zsh
+test -s $RCDOTDIR/os.conf.rc && . $RCDOTDIR/os.conf.rc
 #
 # -----------------------------------------------------------------------------
 # Custom configuration (Needs to be created explicitly)
 # -----------------------------------------------------------------------------
-test -s ~/.config/zsh/custom.zsh && . ~/.config/zsh/custom.zsh || true
+test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 
 # -----------------------------------------------------------------------------
 # Tools initialization

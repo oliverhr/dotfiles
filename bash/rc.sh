@@ -1,6 +1,8 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 # .bashrc
 
+export SHELL='bash'
+
 # Enable the subsequent settings only in interactive sessions
 case $- in
   *i*) ;;
@@ -9,12 +11,13 @@ esac
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
-[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/bash"
+[[ -z $BSHDOTDIR ]] || export BSHDOTDIR="$HOME/.config/bash"
+[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
 # -----------------------------------------------------------------------------
-source $RCDOTDIR/ohmyba.sh
+source $BSHDOTDIR/ohmyba.sh
 
 # #############################################################################
 # User configuration
@@ -46,7 +49,6 @@ test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 # -----------------------------------------------------------------------------
 test -s ~/.alias.rc && . ~/.alias.rc || true
 
-alias confvim='view ~/.vim/vimrc'
 alias edit='vim $(fzf)'
 
 # -----------------------------------------------------------------------------

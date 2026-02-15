@@ -7,6 +7,13 @@
 # export WIN=/mnt/c/Users/$USER/
 # export WIN_PROJ=/mnt/c/Users/$USER/Projects/
 
+# -----------------------------------------------------------------------------
+# Extra tools
+# -----------------------------------------------------------------------------
+
+# mise
+# eval "$($HOME/.local/bin/mise activate $SHELL)"
+
 # UV
 # export UV_NATIVE_TLS=true
 # eval "$(uv generate-shell-completion bash)"
