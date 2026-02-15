@@ -11,13 +11,13 @@ esac
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
-[[ -z $BSHDOTDIR ]] || export BSHDOTDIR="$HOME/.config/bash"
-[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
+[[ -n $BSHDOTDIR ]] || export BSHDOTDIR="$HOME/.config/bash"
+[[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
 # -----------------------------------------------------------------------------
-source $BSHDOTDIR/ohmyba.sh
+test -s $BSHDOTDIR/ohmyba.sh && . $BSHDOTDIR/ohmyba.sh
 
 # #############################################################################
 # User configuration
