@@ -80,6 +80,8 @@ _ zypper in \
 Not available for opensuse package manager:
 
 - the_silver_searcher
+  - Nothing provides `libpcre.so.1()(64bit)` needed by the to be installed `the_silver_searcher-2.2.0-32.35.x86_64`
+  - https://github.com/ggreer/the_silver_searcher/issues/1539#issuecomment-2782264296
 - go-task
 
 ### Mise
