@@ -82,3 +82,15 @@ Not available for opensuse package manager:
 - the_silver_searcher
 - go-task
 
+### Mise
+
+```
+mise use --global \
+  aqua:go-task/task@latest \
+  fd@latest \
+  zellij@latest
+```
+
+Note:
+- The silver searcher repository does not provide binary packages releases.
+
