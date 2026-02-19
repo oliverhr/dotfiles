@@ -99,7 +99,7 @@ nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
 
-" Fast quit
+" Fast quit no save
 nnoremap <leader>q :q!<cr>
 nnoremap <silent> <leader>qa :qa!<cr>
 
