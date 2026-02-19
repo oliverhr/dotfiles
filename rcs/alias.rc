@@ -3,6 +3,7 @@
 # --------------------------------------------------
 
 alias view='vim -R'
+alias edit='vim $(fzf)'
 
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
@@ -15,13 +16,16 @@ else
 	alias checkhistory='view ~/.zsh_history'
 fi
 
-# Edit Configs Alias
-alias edit='vim $(fzf)'
-alias confalias='view ~/.config/rcs/alias.rc'
+# Conf - Alias
+alias confdir='cd ~/.config/;'
 alias confvim='view ~/.config/vim/vimrc'
 alias confssh='view ~/.ssh/config'
 alias confgit='view ~/.config/git'
 alias confignore='view ~/.config/git/excludes.gitconfig'
+
+alias confalias='view ~/.config/rcs/alias.rc'
+alias conftools='view ~/.config/rcs/tools.rc'
+alias confcustom='view ~/.config/rcs/custom.rc'
 
 # Commands
 alias _='sudo'
@@ -57,6 +61,12 @@ alias dkcr='dk container rm'
 alias dkil='dk image ls'
 alias dkif='dk image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.CreatedSince}}"'
 alias dkir='dk image rm'
+
+alias dkli='dkil'
+alias dklc='dkcl'
+
+alias compose='docker compose'
+alias buildx='docker buildx'
 
 alias dk-clean-volumes='dk volume rm $(docker volume ls --quiet --filter "dangling=true")'
 alias dk-clean-images='dk image rm $(docker image ls --quiet --filter "dangling=true")'
