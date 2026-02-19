@@ -16,6 +16,7 @@ else
 fi
 
 # Edit Configs Alias
+alias edit='vim $(fzf)'
 alias confalias='view ~/.alias.rc'
 alias confvim='view ~/.config/vim/vimrc'
 alias confssh='view ~/.ssh/config'
@@ -33,6 +34,7 @@ alias nv='nvim'
 
 ### Composed commands ###
 # GIT
+alias cdgr='cd $(git rev-parse --show-toplevel)'
 alias git-clean_tags='git fetch --prune origin "+refs/tags/*:refs/tags/*r"'
 alias g='git'
 alias gst='git status'

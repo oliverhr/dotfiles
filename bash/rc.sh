@@ -9,10 +9,11 @@ case $- in
     *) return;;
 esac
 
+export EDITOR='vim'
+
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
-[[ -n $BSHDOTDIR ]] || export BSHDOTDIR="$HOME/.config/bash"
-[[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
+[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/bash"
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
@@ -34,13 +35,15 @@ export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 
 # -----------------------------------------------------------------------------
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# Load additional configuration RC/SH files
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
+test -s $RCDOTDIR/tools.rc && . $RCDOTDIR/tools.rc || true
 
 # -----------------------------------------------------------------------------
-# ALIAS
-# For a full list of active aliases, run `alias`.
-alias edit='vim $(fzf)'
+# Compilation flags
+# -----------------------------------------------------------------------------
+# export ARCHFLAGS="-arch x86_64"
 
 # -----------------------------------------------------------------------------
 # Initialization
