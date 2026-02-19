@@ -17,7 +17,7 @@ fi
 
 # Edit Configs Alias
 alias edit='vim $(fzf)'
-alias confalias='view ~/.alias.rc'
+alias confalias='view ~/.config/rcs/alias.rc'
 alias confvim='view ~/.config/vim/vimrc'
 alias confssh='view ~/.ssh/config'
 alias confgit='view ~/.config/git'

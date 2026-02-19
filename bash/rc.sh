@@ -13,7 +13,7 @@ export EDITOR='vim'
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
-[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/bash"
+[[ -z $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------
 # Oh My Bash configuration
