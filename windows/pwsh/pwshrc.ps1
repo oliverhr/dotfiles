@@ -35,7 +35,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\$omptheme.omp.json" | Invok
 $PSReadLineHistoryHandler = {
     Param([string]$line)
     $patterns = @(
-        '^caet[\s]', 'exot', 'celar', 'claer'
+        '^caet[\s]', 'exot', 'celar', 'claer', 'cler'
         '^ls[\s]*', '^la[\s]*', '^ll[\s]*'
         '^cp[\s]'
         '^mv[\s]'
