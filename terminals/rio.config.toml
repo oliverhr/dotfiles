@@ -1,0 +1,42 @@
+# ----------------------------------------------------------
+# RIO Terminal Configuration
+# - https://raphamorim.io/rio/docs/config
+# ----------------------------------------------------------
+theme = "Tokyonight"
+#[adaptive-theme]
+#dark = "Belafonte Day"
+#light = "Belafonte Night"
+
+[fonts]
+family = "MesloLGS Nerd Font Mono"
+size = 18
+line-height = 1.2
+
+[editor]
+program = 'vim'
+args = []
+
+[shell]
+program = "/usr/local/bin/elvish"
+args = ["-l", "-i"]
+
+[cursor]
+shape = "block"
+blinking = true
+blinking-interval = 800
+vi_mode_style = "None"
+
+[keyboard]
+use-kitty-keyboard-protocol = true
+disable-ctlseqs-alt = true
+option-as-alt = "left"
+
+[window]
+macos-use-unified-titlebar = false
+decorations = "Transparent"
+mode = "Windowed"
+width = 1000
+height = 600
+opacity = 1.0
+blur = true
+
