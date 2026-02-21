@@ -36,3 +36,16 @@ fi
 # -----------------------------------------------------------------------------
 test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 
+# -----------------------------------------------------------------------------
+# Custom ZSH configuration (Needs to be created explicitly)
+# -----------------------------------------------------------------------------
+test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
+
+# tmux alias for zsh
+alias tmux='tmux new-session -A -s ZSH'
+
+# -----------------------------------------------------------------------------
+# Completion zsh style
+# -----------------------------------------------------------------------------
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+

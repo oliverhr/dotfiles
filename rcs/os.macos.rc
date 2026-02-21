@@ -1,11 +1,15 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
-# OS specific alias
+# -----------------------------------------------------------------------------
+# MacOS Custom stuff
+# -----------------------------------------------------------------------------
+
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+source <(carapace _carapace)
+
+# Markdown
 alias typora='open -a typora'
 
-# iTerm
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-#RubyEnv
-eval "$(rbenv init - zsh)"
+# Ocaml
+eval $(opam env)
 

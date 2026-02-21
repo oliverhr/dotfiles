@@ -12,14 +12,14 @@ test -s $RCDOTDIR/alias.rc && . $RCDOTDIR/alias.rc
 test -s $RCDOTDIR/os.conf.rc && . $RCDOTDIR/os.conf.rc
 
 # -----------------------------------------------------------------------------
-# Custom configuration (Needs to be created explicitly)
-# -----------------------------------------------------------------------------
-test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
-
-# -----------------------------------------------------------------------------
 # Load additional tools configuration RC/SH files
 # -----------------------------------------------------------------------------
 test -s $RCDOTDIR/tools.rc && . $RCDOTDIR/tools.rc || true
+
+# -----------------------------------------------------------------------------
+# Custom configuration (Needs to be created explicitly)
+# -----------------------------------------------------------------------------
+test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 
 # -----------------------------------------------------------------------------
 # [Must] Tools initialization
