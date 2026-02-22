@@ -1,0 +1,677 @@
+which nu
+vim ~/.config/wezterm/wezterm.lua
+exit
+vim $env.config
+clear
+exit
+$env.NU_LIB_DIRS
+$nu.default-config-dir
+$nu.env-path
+$nu.config-path
+vim $nu.config-path
+exit
+vim $nu.config-path
+clear
+$env.PATH
+vim $nu.env-path
+$env
+clear
+config env
+vim $nu.config-path
+config env
+exit
+config env
+vim $nu.config-path
+config nu
+config env
+$env.PATH
+exit
+brew update
+brew upgrade
+clear
+env
+config env
+ls ~/.vim/
+vim
+clear
+pwd
+cd .vim/
+ls
+ls autoload/
+ls undodir/
+clear
+ls
+cd plugged/
+ls
+vim ~/.vim/vimrc
+ls
+vim ~/.vim/vimrc
+ls
+tree vim-terraform/
+vim ~/.vim/vimrc
+vim
+clear
+cd
+clear
+config env
+config nu
+clear
+ls
+cd ~/.vim
+ls
+ls autoload/
+rm autoload/plug.vim.old
+clear
+vim autoload/plug.vim
+clear
+vim
+brew search volt
+brew info volt
+clear
+cd
+clear
+ls
+cd Documents/Projects/Personal/shell/
+ls
+cd bash/
+clear
+ls
+ls --help
+clear
+ls -la
+vim file.sh
+vim
+vim file.sh
+cat testing.sh
+vim file.sh
+bash --help
+clear
+vim file.sh
+clear
+vim ~/.config/wezterm/wezterm.lua
+vim ~/.vim/vimrc
+env
+vim ~/.vim/vimrc
+vim ~/.config/wezterm/wezterm.lua
+exit
+vim ~/.config/wezterm/wezterm.lua
+zsh
+vim ~/.config/wezterm/wezterm.lua
+exit
+config nu
+exit
+ls
+config nu
+vim ~/.config/wezterm/wezterm.lua
+vim ~/.vim/vimrc
+vim
+vim ~/.vim/vimrc
+vim
+cd
+cd Documents/Projects/Personal/
+cd dotfiles/
+clear
+ls
+git fetch
+git status
+git diff vimrc
+vim ~/.vim/vimrc
+smerge .
+clear
+vim ~/.vim/vimrc
+clear
+smerge .
+git status
+git comit -v
+git commit -v
+git push
+clear
+exit
+python --version
+pip --version
+pip
+which pip
+clear
+ls
+ls -la
+clear
+which python
+ls -la /usr/local/bin/python
+ls -la /usr/local/bin/python3
+exit
+cd dotfiles/
+ls
+clear
+ls
+cd Documents/Projects/Personal/
+ls
+cd c++/practices/
+clear
+vim functors.cpp
+exit
+cler
+clear
+node
+clart
+clear
+ext
+exit
+ls
+cd Documents/Projects/Personal/typescript/
+clear
+ls
+vim
+exit
+brew update
+brew upgrade -y
+brew upgrade
+exit
+brew update
+brew upgrade
+brew cleanup
+brew autoremove
+exit
+brew update
+brew upgrade
+config nu
+vim ~/Library/ApplicationSupport/nushell/env.nu
+$env.PWD
+$env.PWD | path relative-to $nu.home-path
+vim ~/Library/ApplicationSupport/nushell/env.nu
+clear
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+history
+config env
+exit
+config env
+ls
+cd Documents/
+config env
+exit
+cd Documents/
+ls
+exit
+brew update
+brew upgrade
+brew cleanup
+clear
+exit
+clear
+ls
+exit
+docker ps
+docker images
+docker image ps
+docker container ls
+docker image ls
+clear
+ls
+eit
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+exit
+clear
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+clear
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+clear
+exit
+vim ~/Library/ApplicationSupport/nushell/env.nu
+erxit
+exit
+vim /Users/oliver/Library/Application Support/nushell/config.nu:228
+vim /Users/oliver/Library/Application Support/nushell/config.nu
+vim `~/Library/Application Support/nushell/config.nu`
+exit
+pwd
+cd Documents/Projects/Personal/
+ls
+clear
+ls
+cd typescript/
+clear
+ls
+vim
+exit
+brew update
+brew upgrade
+clear
+exit
+pwd
+cd Documents/Projects/Personal/
+cd linux/rhel7/
+vagrant ssh
+cat Vagrantfile
+ping 192.168.33.10
+vagrant ssh
+vim Vagrantfile
+ls
+ls -la
+ls .vagrant/
+tree .vagrant/
+vagrant ssh
+ls
+vagrant ssh
+vagrant reload
+vagrant ssh
+clear
+vim Vagrantfile
+vagrant halt
+brew list
+brew cleanup
+which vagrant
+brew search vagrant
+clear
+cat Vagrantfile
+vim Vagrantfile
+vagrant status
+vagrant up
+vagrant ssh
+ls
+rm shared/
+clear
+ls
+open image.jpg
+clear
+ls
+open .
+exit
+claer
+clear
+exit
+ls
+exit
+brew update
+brew upgrade
+clear
+ls
+git config user.name
+git config --global user.name
+clear
+cd
+ls
+vim ~/.config/git
+clear
+ls
+docker image ls
+clear
+ls
+cd Documents/Projects/Personal/
+ls
+cd ansible/
+clear
+ls
+cd box1/
+ls
+vagrant destroy
+cd ../box2/
+vagrant destroy
+clear
+cd ..
+ls
+cd box1/
+ls
+cd ..
+diff box1/Vagrantfile box2/Vagrantfile
+clear
+ls
+cd ..
+ls
+clear
+ls
+pwd
+ls
+rm -rf gittest/
+clear
+gst
+ls
+cd dotfiles/
+gst
+clear
+ls
+cd ..
+ls
+cd dotfiles/
+git config user.name
+clear
+ls ~/.config/
+vi ~/.config/starship.toml
+vim ~/.config/wezterm/
+echo $0
+echo $/
+clear
+ehco $shel
+vim ~/Library/ApplicationSupport/nushell/
+vim ~/Library/ApplicationSupport/nushell/env.nu
+config n
+config nu
+exit
+echo $0
+clear
+exit
+clear
+ls
+exit
+cd Documents/Projects/Personal/linux/opensuse/
+vagrant ssh
+exit
+exit
+ls
+cd Documents/Projects/Personal/python/my-project/
+clear
+ls
+nvim
+ls
+clear
+ls
+cd ..
+ls
+cd ..
+ls
+cd python/
+clear
+ls
+cd exercises/
+ls
+nvim
+clear
+exit
+exit
+clear
+ls
+exit
+env
+mvim ~/.config/nvim/
+mvim ~/.config/vim
+clear
+exit
+z
+clear
+cd Documents/Projects/Personal/linux/
+ls
+cd rocky/
+clear
+ls
+vagrant ssh
+vagrant halt
+clear
+exit
+clear
+exit
+cd Documents/Projects/Personal/linux/
+ls
+cd arch/
+vagrant up && vagrant ssh
+vagrant up and vagrant ssh
+vagrant up; vagrant ssh
+vagrant ssh
+clear
+ll
+clear
+exit
+env
+clear
+ll
+ls
+clear
+ls -l
+clear
+ls  -l
+nvim ~/.config/wezterm/
+vim ~/.config/wezterm/
+cd ~/.config/wezterm/
+ls
+vim
+cd ..
+ls
+clear
+config nu
+exit
+clear
+ll
+ls -l
+exit
+echo $NU_LIB_DIRS
+echo $NU_PLUGIN_DIRS
+echo $nu.default-config-dir
+vim ~/.config/wezterm/
+vim ~/Library/ApplicationSupport/nushell/env.nu
+clear
+exit
+clcear
+clear
+exit
+echo $nu.env-path
+zoxide init nushell
+clear
+echo $nu.env-path
+cd ~/Library/Application Support/nushell/
+cd `~/Library/Application Support/nushell/`
+ls
+zoxide init nushell | save -f ./zoxide.nu
+ls
+echo $nu.env-path
+echo $nu.config-path
+vim config.nu
+config
+clear
+config
+config nu
+echo $nu.config-path
+echo $NU_LIB_DIRS
+echo $NU_PLUGIN_DIRS
+clear
+echo $nu.data-dir
+vim
+exit
+config
+clear
+config nu
+vim $nu.config-path
+clear
+exit
+cd `~/Library/Application Support/nushell/`
+ls
+vi history.txt
+clear
+ls
+vim config.nu
+config nu
+config
+exit
+config nu 
+cd `~/Library/Application Support/nushell/`
+cler
+ls
+clear
+ls
+vi config.nu
+exit
+config
+config nu
+exir
+exit
+config nu
+cler
+clear
+exit
+clear
+mkdir ~/.config/nushell
+echo $nu.data-dir
+echo $nu.env-path
+cd $nu.data-dir
+ls
+mv zoxide.nu ~/.config/nushell/
+cd
+clear
+ls
+source ~/.config/nushell/zoxide.nu
+clear
+z linux arch
+clear
+ll
+ls
+clear
+$nu.config-path
+vim $nu.config-path
+exit
+cler
+clear
+config nu 
+clear
+config nu 
+config env 
+echo $env
+cclear
+clear
+echo $env.PATH
+ls ~/.local/
+ls ~/.local/bin/
+config env 
+echo ~
+clear
+echo $HOME
+echo $env.HOME
+config env 
+echo $env.PATH
+exit
+echo $env.PATH
+uv --version
+clear
+open .
+config nu 
+clear
+exit
+ls
+z linux arch
+open .
+clear
+ls
+source ~/.alias.rc
+clear
+exit
+clear
+config nu 
+vi ~/.config/nushell/alias.nu
+exit
+z linux arch
+clear
+ls
+ll
+clear
+scope aliases 
+clear
+vi ~/.alias.rc
+clear
+ll
+pwd
+clear
+vagrant status
+vagrant up; vagrant ssh
+exit
+clear
+exit
+clear
+exit
+clear
+z portal
+clear
+ls
+gf
+git fetch
+clear
+la
+ls -la
+exit
+clear
+ls
+pwd
+exit
+clear
+ls
+exit
+clear
+exit
+tmux
+clear
+exit
+clear
+exit
+env
+exit
+clear
+exit
+clear
+ls
+exit
+clear
+exit
+exit 
+clear
+brew update
+brew upgrasw
+ls
+z linux
+clear
+ls
+brew upgrade
+cd ~/Library/Application Support/nushell/
+cd ~/Library/ApplicationSupport
+ls
+cd nushell/
+clear
+ls
+cat history.txt
+clear
+ls
+echo $nu.config-path
+vim config.nu
+cd ~/.config/nushell/
+ls
+vi alias.nu
+ls
+vi zoxide.nu
+clear
+cd
+z personal
+ls
+cd golang/
+clera
+ls
+vim
+ls
+z dotfiles
+clear
+ls
+vd
+vim ~/.config/nushell/alias.nu
+exit
+exit
+z golang
+ls
+vim
+ls
+vd ~/.config/vim/vimrc ~/Documents/Projects/Personal/dotfiles/macos/vim.rc
+clear
+z dotfiles
+gf
+git fetch
+ls
+git pull
+clear
+ls
+clera
+clear
+cd ~/.config/nushell/
+mkdir ~/Documents/Projects/Personal/dotfiles/nushell
+ls
+mkdir ~/Documents/Projects/Personal/dotfiles/nushell/dotconfig
+cp * ~/Documents/Projects/Personal/dotfiles/nushell/dotconfig
+cd $nu.data-dir
+ls
+mkdir ~/Documents/Projects/Personal/dotfiles/nushell/datadir
