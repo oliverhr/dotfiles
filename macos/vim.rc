@@ -27,8 +27,7 @@ set fileformats=unix,dos,mac
 # ====================================================================
 # ---------------------------   Plugins   ----------------------------
 plug#begin()
-# - - - Utilities - - -
-  Plug 'christoomey/vim-tmux-navigator'
+  # - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf',
   Plug 'junegunn/fzf.vim'
@@ -40,8 +39,10 @@ plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'luochen1990/rainbow'
 
   # - - - Syntax - - -
+  # Plug 'dmix/elvish.vim', { 'on_ft': ['elvish'] }
   # Plug 'elixir-editors/vim-elixir'
   # Plug 'elkasztano/nushell-syntax-vim'
   # Plug 'fatih/vim-go'
@@ -83,6 +84,9 @@ var NERDTreeIgnore = ['.git$[[dir]]']
 g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
 var NERDTreeRespectWildIgnore = 1
+
+# Enable using :RainbowToggle
+g:rainbow_active = 0
 
 # Format Terraform
 # g:terraform_fmt_on_save=1
@@ -247,8 +251,8 @@ if has('gui_running')
   colorscheme tokyonight
 
   g:airline_theme = 'tomorrow'
-  set lines=40 columns=110
-  set gfn=Hack\ Nerd\ Font\ Mono:h16
+  set lines=35 columns=110
+  set gfn=AdwaitaMonoNFP:h16
 
   set guioptions-=r # Hide rigth scrollbar
   set guioptions-=L # Hide left scrollbar
@@ -275,7 +279,8 @@ if ! has('gui_running')
     if !empty($VIM_COLOR)
       colorscheme $VIM_COLOR
     else
-      colorscheme onedark
+      set t_Co=24
+      colorscheme solarized
     endif
 
   # iTerm
@@ -310,8 +315,7 @@ if ! has('gui_running')
   # WezTerm
   elseif match($TERM_PROGRAM, '\cWezterm') != -1
     set background=dark
-    color tender
-    g:airline_theme = 'tenderplus'
+    colorscheme tokyonight
 
   # Rio
   elseif match($TERM_PROGRAM, '\cRio') != -1
@@ -325,8 +329,8 @@ if ! has('gui_running')
 
   # Ghostty
   elseif match($TERM_PROGRAM, '\cGhostty') != -1
-    color onedark
-    g:airline_theme = 'biogoo'
+    set background=dark
+    colorscheme catppuccin_macchiato
 
   # Alacritty
   elseif match($TERM_PROGRAM, '\cAlacritty') != -1
@@ -424,6 +428,9 @@ if has('autocmd')
 
     # XML files Indent with tabs, align with spaces
     autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
+
+    # OCAML
+    # set rtp^="/Users/oliver/.opam/default/share/ocp-indent/vim"
   augroup END
 
   # Return to last edit position when opening files
@@ -560,4 +567,4 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-# vim: set ft=vim ts=2 sw=2 et :
+# vim: set ts=2 sw=2 et :
