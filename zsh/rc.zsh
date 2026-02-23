@@ -1,6 +1,11 @@
 # vim: set ft=zsh ts=4 sw=4 noet :
 # -----------------------------------------------------------------------------
-export SHELL='zsh'
+
+export _SHELL='zsh'
+export SHELL=/bin/zsh
+
+# tmux alias for zsh
+alias tmux='tmux new-session -A -s ZSH'
 
 [[ -n $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
@@ -40,9 +45,6 @@ test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 # Custom ZSH configuration (Needs to be created explicitly)
 # -----------------------------------------------------------------------------
 test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
-
-# tmux alias for zsh
-alias tmux='tmux new-session -A -s ZSH'
 
 # -----------------------------------------------------------------------------
 # Completion zsh style

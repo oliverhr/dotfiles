@@ -1,7 +1,11 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 # .bashrc
 
-export SHELL='bash'
+export _SHELL='bash'
+export SHELL=/usr/local/bin/bash
+
+# tmux alias for bash
+alias tmux='tmux new-session -A -s BASH'
 
 # Enable the subsequent settings only in interactive sessions
 case $- in
@@ -48,9 +52,6 @@ test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 # Custom BASH configuration (Needs to be created explicitly)
 # -----------------------------------------------------------------------------
 test -s $BSHDOTDIR/custom.sh && . $BSHDOTDIR/custom.sh || true
-
-# tmux alias for bash
-alias tmux='tmux new-session -A -s BASH'
 
 # -----------------------------------------------------------------------------
 # Completion
