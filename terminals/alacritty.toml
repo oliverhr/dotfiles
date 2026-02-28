@@ -12,6 +12,7 @@ padding = { x = 5, y = 5 }
 startup_mode = "Windowed"
 decorations = "Transparent"
 decorations_theme_variant = "None"
+option_as_alt = "OnlyLeft"
 
 [scrolling]
 history = 15000
@@ -26,8 +27,8 @@ size = 16.0
 offset = { x = 0, y = 0 }
 
 [cursor]
-style = { shape = "Block", blinking = "On" }
-vi_mode_style = "Beam"
+style = { shape = "Block", blinking = "Always" }
+vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [mouse]
 hide_when_typing = false
