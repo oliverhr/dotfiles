@@ -1,3 +1,14 @@
+# ------------------------------------------------------------------------------
+# Friendly Interactive Shell configs
+#
+# Fisher:
+# ```
+#   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish \
+#       | source && fisher install jorgebucaran/fisher
+#   fisher update
+# ```
+# ------------------------------------------------------------------------------
+
 fish_add_path $HOME/.local/bin
 
 set -g fish_greeting
