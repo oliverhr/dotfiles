@@ -1,4 +1,4 @@
-# vim: set ft=bash sw=4 ts=4 noet :
+# vim: set ft=sh : #
 
 # ----------------------------------------------------------
 # Oh My Bash Configuration
@@ -11,7 +11,7 @@ export OSH="$HOME/.oh-my-bash"
 # it'll load a random theme each time that oh-my-bash is loaded.
 
 AG_NO_HIST=true
-OSH_THEME="absimple"
+OSH_THEME="purity"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
 # OMB_THEME_RANDOM_IGNORED=("powerbash10k" "wanelo")
