@@ -4,9 +4,6 @@
 # MacOS Custom stuff
 # -----------------------------------------------------------------------------
 
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-source <(carapace _carapace)
-
 # Markdown
 alias typora='open -a typora'
 
