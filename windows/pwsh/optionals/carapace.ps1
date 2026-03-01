@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 # Carapace-bin
 # -----------------------------------------------------------------------------
-$env:CARAPACE_BRIDGES = 'powershell,inshellisense'
+$env:CARAPACE_BRIDGES = 'powershell,bash,inshellisense'
 Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 carapace _carapace | Out-String | Invoke-Expression

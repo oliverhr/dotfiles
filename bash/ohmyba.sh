@@ -1,4 +1,4 @@
-# vim: set ft=sh : #
+# vim: set ft=sh sw=4 ts=4 noet :
 
 # ----------------------------------------------------------
 # Oh My Bash Configuration
@@ -9,8 +9,6 @@ export OSH="$HOME/.oh-my-bash"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-
-AG_NO_HIST=true
 OSH_THEME="purity"
 
 # If you set OSH_THEME to "random", you can ignore themes you don't like.
