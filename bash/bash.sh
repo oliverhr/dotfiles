@@ -1,6 +1,9 @@
 # vim: set ft=bash ts=4 sw=4 noet :
 # .bashrc
 
+# Stop loading configs if non interactive
+set -g status-right "#[fg=white] | %a %m-%d %H:%M"
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
