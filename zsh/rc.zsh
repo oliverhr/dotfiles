@@ -42,6 +42,11 @@ fi
 test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 
 # -----------------------------------------------------------------------------
+# OS ZSH specific configuration - symlink
+# -----------------------------------------------------------------------------
+test -s $ZDOTDIR/os.conf.zsh && . $ZDOTDIR/os.conf.zsh || true
+
+# -----------------------------------------------------------------------------
 # Custom ZSH configuration (Needs to be created explicitly)
 # -----------------------------------------------------------------------------
 test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
