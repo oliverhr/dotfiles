@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 
 # mise
-# eval "$($HOME/.local/bin/mise activate $SHELL)"
+# eval "$($HOME/.local/bin/mise activate $_SHELL)"
 
 # UV
 # export UV_NATIVE_TLS=true

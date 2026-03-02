@@ -16,6 +16,9 @@ else
 	alias checkhistory='view ~/.zsh_history'
 fi
 
+# Force 256 and unicode with a new session/attach
+alias tmux='tmux -2u new-session -A $_SHELL'
+
 # Conf - Alias
 alias confdir='cd ~/.config/;'
 alias confvim='view ~/.config/vim/vimrc'

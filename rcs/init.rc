@@ -26,11 +26,11 @@ test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 # -----------------------------------------------------------------------------
 
 # Direnv
-eval "$(direnv hook $SHELL)"
+eval "$(direnv hook $_SHELL)"
 
 # Fuzzy finder fzf
-source <(fzf --$SHELL)
+source <(fzf --$_SHELL)
 
 # Zoxide
-eval "$(zoxide init $SHELL)"
+eval "$(zoxide init $_SHELL)"
 

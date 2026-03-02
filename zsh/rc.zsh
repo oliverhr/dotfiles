@@ -4,9 +4,6 @@
 export _SHELL='zsh'
 export SHELL=/bin/zsh
 
-# tmux alias for zsh
-alias tmux='tmux new-session -A -s ZSH'
-
 [[ -n $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 

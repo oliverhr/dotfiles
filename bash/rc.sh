@@ -4,9 +4,6 @@
 export _SHELL='bash'
 export SHELL=/usr/local/bin/bash
 
-# tmux alias for bash
-alias tmux='tmux new-session -A -s BASH'
-
 export EDITOR='vim'
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
