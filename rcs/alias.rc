@@ -17,7 +17,7 @@ else
 fi
 
 # Force 256 and unicode with a new session/attach
-alias tmux='tmux -2u new-session -A $_SHELL'
+alias tmux="tmux -2u new-session -A "
 
 # Conf - Alias
 alias confdir='cd ~/.config/;'
