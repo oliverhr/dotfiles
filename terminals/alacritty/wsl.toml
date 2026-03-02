@@ -1,0 +1,55 @@
+# ----------------------------------------------------------
+# Alacritty configuration
+# https://alacritty.org/config-alacritty.html
+#
+# Themes: https://github.com/alacritty/alacritty-theme
+# ----------------------------------------------------------
+[general]
+working_directory = "None"
+live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
+]
+
+[terminal.shell]
+program = "wsl.exe"
+args = [
+    "--distribution", "OracleLinux_8_10",
+    "--shell-type", "login",
+    "--cd", "~"
+]
+
+[window]
+padding = { x = 5, y = 5 }
+decorations = "None"
+startup_mode = "Maximized"
+
+[scrolling]
+history = 15000
+multiplier = 3
+
+[font]
+size = 10.0
+normal = { family = "JetBrainsMono Nerd Font Propo", style = 'Regular' }
+offset = { x = 0, y = 0 }
+
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+vi_mode_style = { shape = "Beam", blinking = "On" }
+
+[mouse]
+hide_when_typing = false
+
+[keyboard]
+bindings = [
+
+    # Chars
+    { key = "Space",        mods = "Control",   chars = "\u0000" },
+    { key = "Space",        mods = "Shift",     chars = "\u001B" },
+    { key = "Slash",        mods = "Control",   chars = "\u001F" },
+    { key = "Backslash",    mods = "Control",   chars = "\u002C" },
+
+    # Actions
+    # { key = "Enter", mods = "Control|Shift", action = "ToggleMaximized" },
+]
+
