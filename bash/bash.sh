@@ -2,7 +2,7 @@
 # .bashrc
 
 # Stop loading configs if non interactive
-set -g status-right "#[fg=white] | %a %m-%d %H:%M"
+[[ $- != *i* ]] && return;
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
