@@ -4,6 +4,8 @@
 export _SHELL='zsh'
 export SHELL=/bin/zsh
 
+export EDITOR='vim'
+
 [[ -n $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 

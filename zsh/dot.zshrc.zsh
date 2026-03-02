@@ -1,3 +1,4 @@
+# vim: set ft=zsh ts=4 sw=4 noet :
 # #############################################################################
 test -d $HOME/bin && export PATH=$HOME/bin:$PATH
 test -d $HOME/.local/bin && export PATH=$HOME/.local/bin:$PATH
@@ -17,4 +18,3 @@ antidote load $ZDOTDIR/antidote_zsh_plugins.conf
 # #############################################################################
 
 
-# vim: set ft=zsh ts=4 sw=4 noet :
