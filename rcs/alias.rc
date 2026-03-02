@@ -53,8 +53,19 @@ alias lsh='ls -d .*'
 alias nv='nvim'
 
 ### Composed commands ###
+
+git-remove-tag() {
+	local TAG=$1
+	git tag -d $TAG
+	git push origin :refs/tags/$TAG
+}
+
+git-repo-root() {
+	local REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+	echo $REPO_ROOT
+}
 # GIT
-alias cdgr='cd $(git rev-parse --show-toplevel)'
+alias cdgr='cd $(git-repo-root)'
 alias git-clean_tags='git fetch --prune origin "+refs/tags/*:refs/tags/*r"'
 alias g='git'
 alias gst='git status'
@@ -62,12 +73,6 @@ alias gf='git fetch'
 alias gl='git pull'
 alias gc='git commit -v'
 alias grs='git restore'
-
-git-remove-tag() {
-	TAG=$1
-	git tag -d $TAG
-	git push origin :refs/tags/$TAG
-}
 
 # DOCKER
 alias dk='docker'
