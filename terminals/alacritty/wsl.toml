@@ -29,16 +29,15 @@ history = 15000
 multiplier = 3
 
 [font]
-size = 10.0
-normal = { family = "JetBrainsMono Nerd Font Propo", style = 'Regular' }
-offset = { x = 0, y = 0 }
+normal = { family = "JetBrainsMono Nerd Font Propo" }
+size = 11.25
 
 [cursor]
 style = { shape = "Block", blinking = "Always" }
 vi_mode_style = { shape = "Beam", blinking = "On" }
 
 [mouse]
-hide_when_typing = false
+hide_when_typing = true
 
 [keyboard]
 bindings = [
