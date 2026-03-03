@@ -1,10 +1,29 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
+# System Environment Variables
+# -----------------------------------------------------------------------------
+# XDG Environmenet variables
+export XDG_RUNTIME_DIR="/tmp/run/user/$(id -u)"
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
+
+# Language environment vars
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# -----------------------------------------------------------------------------
 # Update PATH with local bin directories
 # -----------------------------------------------------------------------------
-test -d $HOME/bin && export PATH=$HOME/bin:$PATH
-test -d $HOME/.local/bin && export PATH=$HOME/.local/bin:$PATH
+_2pth() {
+	local _dir=$1
+	[[ ":$PATH:" != *":$_dir:"* ]] && [ -d "$_dir" ] && export PATH="$_dir:$PATH"
+}
+_2pth /usr/local/bin
+_2pth $HOME/.local/bin
+_2pth $HOME/bin
 
 # -----------------------------------------------------------------------------
 # EDITOR
