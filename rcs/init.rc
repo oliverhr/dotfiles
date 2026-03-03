@@ -1,5 +1,8 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
+# _SHELL is defined on ~/.config/$_SHELL/rc.[sh|zsh]
+export SHELL=$(which $_SHELL)
+
 # -----------------------------------------------------------------------------
 # System Environment Variables
 # -----------------------------------------------------------------------------
@@ -15,7 +18,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # -----------------------------------------------------------------------------
-# Update PATH with local bin directories
+# Update PATH bin directories
 # -----------------------------------------------------------------------------
 _2pth() {
 	local _dir=$1
@@ -23,7 +26,6 @@ _2pth() {
 }
 _2pth /usr/local/bin
 _2pth $HOME/.local/bin
-_2pth $HOME/bin
 
 # -----------------------------------------------------------------------------
 # EDITOR

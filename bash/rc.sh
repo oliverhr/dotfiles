@@ -2,8 +2,8 @@
 # .bashrc
 
 export _SHELL='bash'
-export SHELL=/usr/local/bin/bash
 
+[[ -n $BSHDOTDIR ]] || export BSHDOTDIR="$HOME/.config/bash"
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
 
 # -----------------------------------------------------------------------------

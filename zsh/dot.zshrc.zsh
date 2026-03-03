@@ -11,8 +11,9 @@ ZDOTDIR="$HOME/.config/zsh"
 source $ZDOTDIR/rc.zsh
 
 # -----------------------------------------------------------------------------
-source $ZDOTDIR/antidote/antidote.zsh
-antidote load $ZDOTDIR/antidote_zsh_plugins.conf
+# Cleanup PATH (recommended to leave this as final step)
+# -----------------------------------------------------------------------------
+export PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!a[$0]++' | sed 's/:$//')
 
 # #############################################################################
 # Auto added conf

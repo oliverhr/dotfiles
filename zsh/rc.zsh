@@ -2,7 +2,6 @@
 # -----------------------------------------------------------------------------
 
 export _SHELL='zsh'
-export SHELL=/bin/zsh
 
 [[ -n $ZDOTDIR ]] || export ZDOTDIR="$HOME/.config/zsh"
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
@@ -40,4 +39,10 @@ test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
 # Completion zsh style
 # -----------------------------------------------------------------------------
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+
+# -----------------------------------------------------------------------------
+# ZSH Antidode plugin manager
+# -----------------------------------------------------------------------------
+source $ZDOTDIR/antidote/antidote.zsh
+antidote load $ZDOTDIR/antidote_zsh_plugins.conf
 
