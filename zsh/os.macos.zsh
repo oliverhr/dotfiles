@@ -11,6 +11,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 #RubyEnv
 eval "$(rbenv init - zsh)"
 
-# ---
-# Added by Antigravity
-export PATH="/Users/oliver/.antigravity/antigravity/bin:$PATH"
