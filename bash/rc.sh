@@ -4,8 +4,6 @@
 export _SHELL='bash'
 export SHELL=/usr/local/bin/bash
 
-export EDITOR='vim'
-
 export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
 [[ -n $RCDOTDIR ]] || export RCDOTDIR="$HOME/.config/rcs"
