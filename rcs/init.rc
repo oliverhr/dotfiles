@@ -1,6 +1,12 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
+# Update PATH with local bin directories
+# -----------------------------------------------------------------------------
+test -d $HOME/bin && export PATH=$HOME/bin:$PATH
+test -d $HOME/.local/bin && export PATH=$HOME/.local/bin:$PATH
+
+# -----------------------------------------------------------------------------
 # ALIAS
 # For a full list of active aliases, run `alias`.
 # -----------------------------------------------------------------------------
