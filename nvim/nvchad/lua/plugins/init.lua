@@ -32,6 +32,15 @@ return {
   { -- Fugitive
     "tpope/vim-fugitive",
     lazy = false,
+  },
+
+  { -- nvim tree
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = {
+        side = "right",
+      },
+    },
   }
 }
 
