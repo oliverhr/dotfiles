@@ -109,7 +109,7 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 " Fuzzy finder
 let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
-nnoremap <silent> <C-p> :FZF!<cr>
+nnoremap <silent> <C-p> :FZF<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
@@ -231,12 +231,13 @@ set termguicolors
 set t_RV=
 
 " == ColorScheme
-"let g:solarized_termcolors=24
-"let g:solarized_termtrans=1
-set background=dark
-colorscheme deep-space
-highlight Normal guibg=NONE ctermbg=NONE
+" let g:solarized_termcolors=24
+" let g:solarized_termtrans=1
 " let g:airline_theme = 'solarized'
+set background=dark
+colorscheme catppuccin_mocha
+" Set background translucid
+" highlight Normal guibg=NONE ctermbg=NONE
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -294,7 +295,6 @@ set shiftwidth=4
 set tabstop=4
 
 if has('autocmd')
-  autocmd FileType gitcommit setlocal spell
   autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
   autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
   autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
@@ -322,7 +322,9 @@ if has('autocmd')
     \   exe "normal! g`\"" |
     \ endif
   " But don't remember the cursor position in git commits
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  autocmd FileType gitcommit setlocal spell
+  autocmd BufWinLeave COMMIT_EDITMSG bwipeout
 
   " Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
@@ -410,6 +412,8 @@ set viminfo^=%
 " Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
+" In normal mode press ; to go to commamd mode ':'
+nnoremap ; :
 
 " WSL hack for block mode when ctrl-q does not work
 nnoremap <leader>vb <c-v>
