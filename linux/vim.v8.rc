@@ -72,6 +72,7 @@ call plug#end()
 let NERDTreeIgnore = ['.git$[[dir]]']
 let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
+let g:NERDTreeWinSize = 40
 let NERDTreeRespectWildIgnore = 1
 
 " Format Terraform
