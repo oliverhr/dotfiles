@@ -126,10 +126,6 @@ if has('win64')
   nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
 endif
 
-" ========================= User interface ==========================
-" Set 7 lines to the cursor - when moving vertically using j/k
-set scrolloff=7
-
 " ========================= WildOptions ==============================
 " Turn on the WiLd menu
 set wildmode=list:longest
@@ -144,9 +140,9 @@ set wildignore+=*DS_Store*
 set wildignore+=node_modules/**
 set wildignore+=bower_components/**
 set wildignore+=vendor/rails/**
-set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=__pycache__
+set wildignore+=.venv/**
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**

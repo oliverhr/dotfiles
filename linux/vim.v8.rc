@@ -128,10 +128,6 @@ set path+=**
 " ================ Shell buffet stay opened after exit ===============
 nnoremap <silent> <leader>t :ter ++noclose<cr>
 
-" ========================= User interface ==========================
-" Set 7 lines to the cursor - when moving vertically using j/k
-set scrolloff=7
-
 " ========================= WildOptions ==============================
 " Turn on the WiLd menu
 set wildmode=list:longest
@@ -146,9 +142,9 @@ set wildignore+=*DS_Store*
 set wildignore+=node_modules/**
 set wildignore+=bower_components/**
 set wildignore+=vendor/rails/**
-set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=__pycache__
+set wildignore+=.venv/**
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
@@ -315,7 +311,7 @@ if has('autocmd')
   autocmd Filetype dockerfile set noexpandtab sw=4 ts=4 sts=4 nowrap
 
   " Ocaml
-  " set rtp^="/home/P3280455/.opam/default/share/ocp-indent/vim"
+  set rtp^=~/.opam/default/share/ocp-indent/vim
 
   " Return to last edit position when opening files
   autocmd BufReadPost *
