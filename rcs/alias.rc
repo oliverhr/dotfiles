@@ -3,7 +3,6 @@
 # --------------------------------------------------
 
 alias view='vim -R'
-alias edit='vim $(fzf)'
 
 if [[ $0 == '-bash' ]]; then
 	alias confshell='view ~/.bashrc'
@@ -15,22 +14,6 @@ else
 	alias confzsh='view ~/.config/zsh'
 	alias checkhistory='view ~/.zsh_history'
 fi
-
-tmx () {
-	local _session_name="$1"
-	if [ -z $_session_name ]; then
-		_session_name=$(shuf -n 1 /usr/share/dict/words)
-	fi
-
-	local _sh=
-	if [[ -n "$ZSH_VERSION" ]]; then
-		_sh=$(which zsh)
-	elif [[ -n "$BASH_VERSION"  ]]; then
-		_sh=$(which bash)
-	fi
-	# Force 256 and unicode with a new session/attach
-	tmux -2u new-session -A -s "$_session_name" $_sh
-}
 
 # Conf - Alias
 alias confdir='cd ~/.config/;'
@@ -54,18 +37,8 @@ alias nv='nvim'
 
 ### Composed commands ###
 
-git-remove-tag() {
-	local TAG=$1
-	git tag -d $TAG
-	git push origin :refs/tags/$TAG
-}
-
-git-repo-root() {
-	local REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-	echo $REPO_ROOT
-}
 # GIT
-alias cdgr='cd $(git-repo-root)'
+alias cdgr='cd $(git rev-parse --show-toplevel 2>/dev/null)'
 alias git-clean_tags='git fetch --prune origin "+refs/tags/*:refs/tags/*r"'
 alias g='git'
 alias gst='git status'

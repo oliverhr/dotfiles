@@ -1,0 +1,37 @@
+# vim: set ft=sh ts=4 sw=4 noet :
+# --------------------------------------------------
+# My Custom Alias
+# --------------------------------------------------
+
+tmx () {
+	local _session_name="$1"
+	if [ -z $_session_name ]; then
+		_session_name=$(shuf -n 1 /usr/share/dict/words)
+	fi
+
+	local _sh=
+	if [[ -n "$ZSH_VERSION" ]]; then
+		_sh=$(which zsh)
+	elif [[ -n "$BASH_VERSION"  ]]; then
+		_sh=$(which bash)
+	fi
+	# Force 256 and unicode with a new session/attach
+	tmux -2u new-session -A -s "$_session_name" $_sh
+}
+
+ed() {
+	local _file=$(fzf --height 50% --reverse --preview "bat --color=always --style=numbers --line-range=:500 {}")
+	[ -n "$_file" ] && $EDITOR "$_file"
+}
+
+git-remove-tag() {
+	local TAG=$1
+	git tag -d $TAG
+	git push origin :refs/tags/$TAG
+}
+
+git-repo-root() {
+	local REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+	echo $REPO_ROOT
+}
+
