@@ -1,7 +1,9 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
 if (( $# != 2 )); then
-	printf 'usage:\n\t git %s [repository url] [directory path]' "$GIT_ALIAS"
+	printf '%3sUsage:\n\t git %s %s\n' ''\
+		"$GIT_ALIAS" \
+		'[repository url] [directory path]'
 	exit 0;
 fi
 
