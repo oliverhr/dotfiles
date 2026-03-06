@@ -8,6 +8,8 @@ $PROFILE="~/.config/pwsh/pwshrc.ps1"
 # https://poshcode.gitbook.io/powershell-practice-and-style/style-guide/code-layout-and-formatting
 #------------------------------------------------------------------------------
 
+$env:HOME = $env:USERPROFILE
+
 #------------------------------------------------------------------------------
 # Some unix tools require this path to be set
 # https://github.com/adrg/xdg/blob/master/README.md#xdg-base-directory
