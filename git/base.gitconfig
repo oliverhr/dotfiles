@@ -25,12 +25,15 @@
 # - A syntax-highlighting pager for git, diff, and grep output
 # - https://github.com/dandavison/delta
 # ------------------------------------------------------------------------------
+;[include]
+	;path = ~/.local/share/delta/themes.gitconfig
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	dark = true      # or light = true, or omit for auto-detection
 	line-numbers = true
 	true-color = always
 	side-by-side = true
+	;features = chameleon
 [interactive]
 	diffFilter = delta --color-only
 
