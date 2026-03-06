@@ -30,20 +30,7 @@
 		printf '\tgit sparse-checkout set <path_to_working_dir>\n'; \
 	}; f"
 
-	treeclone = "!f() { \
-		if (( $# != 2 )); then \
-			printf 'usage:\n\t git treeclone [repository url] [directory path]'; \
-			exit 0; \
-		fi; \
-		local _repo=${1}; \
-		local _path=${2}; \
-		local _wtd='.worktree.git'; \
-		mkdir $_path && cd $_path; \
-		git clone --bare $_repo $_wtd; \
-		printf 'gitdir: %s' ${_wtd} > .git ; \
-		git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
-		git fetch origin --quiet; \
-	}; f"
+	treeclone = !GIT_ALIAS='treeclone' sh ${XDG_CONFIG_HOME:-$HOME/.config}/git/shfn/treeclone.sh
 
 	# --- Difftastic
 	# `git log` with patches shown with difftastic.
