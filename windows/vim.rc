@@ -342,8 +342,8 @@ if has('autocmd')
     autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
     autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
     autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
-    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap
+    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap lbr nu
+    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap nu
 
     # Shell files Indent with tabs, align with spaces
     autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
