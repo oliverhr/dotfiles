@@ -3,6 +3,10 @@
 # Custom aliases
 # ------------------------------------------------------------------------------
 [alias]
+	root = !git rev-parse --show-toplevel
+	home = "!f() { \
+		cd $(git rev-parse --show-toplevel); \
+	}; f"
 	ignored = !git ls-files -v | grep "^[[:lower:]]"
 	parent-branch = "!f() { \
 		git show-branch \
@@ -31,13 +35,14 @@
 			printf 'usage:\n\t git treeclone [repository url] [directory path]'; \
 			exit 0; \
 		fi; \
-		_repo=${1}; \
-		_path=${2}; \
+		local _repo=${1}; \
+		local _path=${2}; \
+		local _wtd='.worktree.git'; \
 		mkdir $_path && cd $_path; \
-		git clone --bare $_repo .worktree; \
-		echo 'gitdir: ./.worktree' > .git;\
+		git clone --bare $_repo $_wtd; \
+		printf 'gitdir: %s' ${_wtd} > .git ; \
 		git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
-		git fetch; \
+		git fetch origin --quiet; \
 	}; f"
 
 	# --- Difftastic
