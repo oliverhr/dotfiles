@@ -82,6 +82,7 @@ autocmd BufEnter * {
     call feedkeys(':quit\<CR>:\<BS>')
   endif
 }
+
 # Vim LSP Settings
 g:lsp_settings = {
   # vim LSP has some issues with vim9script
@@ -467,7 +468,7 @@ inoremap <S-Down> <Esc>:m+<cr>
 
 # --------------------------------------------------------------------
 # => Spell checking
-# --------------------------------------------------------------------
+# --------------------------------------------------------------
 # Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 # Move between errors
@@ -478,9 +479,9 @@ map <leader>sa zg
 # Suggest correction
 map <leader>ss z=
 
-# --------------------------------------------------------------------
+# --------------------------------------------------------------
 # => Misc
-# --------------------------------------------------------------------
+# --------------------------------------------------------------
 # Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
