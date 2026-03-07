@@ -1,5 +1,5 @@
 vim9script
-# =============================================================================
+# ====================================================================
 # Msys2 / Git Bash
 #
 # Msys2 and Git on terminal has specific issues with
@@ -8,9 +8,9 @@ vim9script
 # Since in msysw the $TERM_PROGRAM env var is set
 # we can customize not like mac or linux since
 # still some extra configuration is achivable
-# =============================================================================
+# ====================================================================
 
-# ==================================================================
+# ====================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -29,10 +29,10 @@ set fileformats=unix,dos,mac
 #   TODO: check about vim config modularization
 # endif
 
-# ======================= Plug Settings ===========================
+# ======================= Plug Settings ==============================
 # set the runtime path to include Vundle and initialize
 # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin()
+plug#begin()
   # - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
@@ -47,10 +47,16 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
+  # LSP and Lint, Autocompletion and Formatting
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
   # - - - Syntax - - -
-  #Plug 'hashivim/vim-terraform'
-  #Plug 'pearofducks/ansible-vim'
-  #Plug 'yasuhiroki/github-actions-yaml.vim'
+  # Plug 'hashivim/vim-terraform'
+  # Plug 'pearofducks/ansible-vim'
+  # Plug 'yasuhiroki/github-actions-yaml.vim'
 
   # - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
@@ -68,15 +74,34 @@ call plug#begin()
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
-call plug#end()
+plug#end()
 
 # -------------------------------------------------------------------
 # Plugins Settings
 # -------------------------------------------------------------------
+# NerdTree
 var NERDTreeIgnore = ['.git$[[dir]]']
+var NERDTreeRespectWildIgnore = 1
 g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
-var NERDTreeRespectWildIgnore = 1
+autocmd BufEnter * {
+  # Exit Vim if NERDTree is the only window remaining in the only tab.
+  if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()
+    call feedkeys(':quit\<CR>:\<BS>')
+  endif
+}
+
+# Vim LSP Settings
+g:lsp_settings = {
+  # vim LSP has some issues with vim9script
+  'vim-language-server': { 'disabled': true }
+}
+
+g:lsp_document_code_action_signs_enabled = 0
+g:lsp_document_code_action_signs_hint = {'text': '⭲'}
+g:lsp_diagnostics_signs_warning = {'text': '⚠'}
+g:lsp_diagnostics_signs_error = {'text': '⌦'}
+g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
 
 # ========================= General Settings ========================
 # Sets how many lines of history VIM has to remember
@@ -110,7 +135,7 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 # Fuzzy finder
 $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
 g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
-map <silent> <C-p> :FZF!<cr>
+nnoremap <silent> <C-p> :FZF<cr>
 nnoremap <silent> <leader>fz :FZ<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
@@ -127,10 +152,6 @@ nnoremap <silent> <leader>t :ter<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-# ========================= User interface ==========================
-# Set 7 lines to the cursor - when moving vertically using j/k
-set scrolloff=7
-
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
 set wildmode=list:longest
@@ -145,9 +166,9 @@ set wildignore+=*DS_Store*
 set wildignore+=node_modules/**
 set wildignore+=bower_components/**
 set wildignore+=vendor/rails/**
-set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=__pycache__
+set wildignore+=.venv/**
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
@@ -215,8 +236,8 @@ if has('autocmd')
 endif
 
 # Set more space on the left
-set nonumber      # Avoid gutter clutter if not necessary
-set foldcolumn=4  # max 12
+set nonumber       # Avoid gutter clutter if not necessary
+set foldcolumn=4   # max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
@@ -237,7 +258,7 @@ set termguicolors
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
-
+# Set translucid background on term for special
 highlight SpecialKey guibg=bg ctermbg=none
 
 # Spelling mistakes will be colored up red.
@@ -272,25 +293,25 @@ match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # => File backups
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # => Persistent Undo
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
 # silent !mkdir -p ~/.config/vim/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # => Text, tab and indent related
-# -------------------------------------------------------------------
+# --------------------------------------------------------------------
 # Use spaces instead of tabs
 set expandtab
 # Be smart when using tabs ;)
@@ -306,8 +327,8 @@ if has('autocmd')
     autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
     autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
     autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap
-    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap
+    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap lbr nu
+    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap nu
 
     # Shell files Indent with tabs, align with spaces
     autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
@@ -345,9 +366,9 @@ set foldmethod=indent   # fold based on indent
 set foldnestmax=3       # deepest fold is 3 levels
 set nofoldenable        # dont fold by default
 
-# --------------------------------------------------------------
+# --------------------------------------------------------------------
 # => Moving around, tabs, windows and buffers
-# --------------------------------------------------------------
+# --------------------------------------------------------------------
 # Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -365,10 +386,14 @@ map <C-l> <C-W>l
 map <leader>bh :enew<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
+
 # Close the current buffer
-map <silent><leader>bd :bdel<cr>
+map <silent><leader>bd :bdel!<cr>
+map <leader>bx :w \| :bdel<cr>
+
 # Close all the buffers
 map <silent><leader>ba :%bdelete<cr>
+
 # Move between bufferrs
 map <silent><leader>bn :bnext<cr>
 map <silent><leader>bp :bprevious<cr>
@@ -425,9 +450,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-# --------------------------------------------------------------
+# --------------------------------------------------------------------
 # => Spell checking
-# --------------------------------------------------------------
+# --------------------------------------------------------------------
 # Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 # Move between errors
