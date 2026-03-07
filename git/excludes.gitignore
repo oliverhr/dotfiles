@@ -11,6 +11,10 @@ _toolkit/
 # --- Secrets ---
 *.pem
 
+# --- Task runners ---
+**/taskfile.*.yml
+**/Taskfile.*.yml
+
 # --- OSX ---
 .DS_Store
 .AppleDouble
