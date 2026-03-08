@@ -326,12 +326,25 @@ if has('autocmd')
 
     " Return to last edit position when opening files
     autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
+      \ if &filetype != 'gitcommit'
+      \   && line("'\"") > 1
+      \   && line("'\"") <= line("$")
+      \   | execute "normal! g`\""
+      \ | endif
 
     " Remove all traling whitespace at buffer saving
     autocmd BufWritePre * call CleanTrailingWhitespace()
+  augroup END
+
+  augroup GitCommitSettings
+    autocmd!
+
+    " Always start on the first line
+    autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+    " Standard commit settings
+    autocmd FileType gitcommit setlocal spell nofoldenable textwidth=72
+    " Clean up buffer on leave
+    autocmd BufWinLeave COMMIT_EDITMSG bdelete
   augroup END
 
   augroup FileTypeSettings
@@ -358,17 +371,6 @@ if has('autocmd')
 
     " Ocaml
     set rtp^=~/.opam/default/share/ocp-indent/vim
-  augroup END
-
-  augroup GitCommitSettings
-    autocmd!
-
-    " Always start on the first line
-    autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-    " Standard commit settings
-    autocmd FileType gitcommit setlocal spell nofoldenable textwidth=72
-    " Clean up buffer on leave
-    autocmd BufWinLeave COMMIT_EDITMSG bdelete
   augroup END
 endif
 

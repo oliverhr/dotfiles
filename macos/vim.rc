@@ -414,6 +414,37 @@ set shiftwidth=4
 set tabstop=4
 
 if has('autocmd')
+  augroup GeneralEditorBehavior
+    autocmd!
+
+    # Return to last edit position when opening files
+    autocmd BufReadPost * {
+      if &filetype != 'gitcommit'
+        if line("'\"") > 0 && line("'\"") <= line('$')
+          exe "normal! g`\""
+        endif
+      endif
+    }
+
+    # Auto-cleanup for all traling whitespace on buffer saving
+    autocmd BufWritePre * {
+        var curr_view = winsaveview()
+        keeppatterns :%s/\s\+$//e
+        winrestview(curr_view)
+    }
+  augroup END
+
+  augroup GitCommitSettings
+    autocmd!
+
+    # Set local options and move cursor to line 1, column 1
+    autocmd FileType gitcommit {
+        setlocal spell nofoldenable textwidth=72
+        cursor(1, 1)
+    }
+    autocmd BufWinLeave COMMIT_EDITMSG bdelete
+  augroup END
+
   augroup FileTypeSettings
     autocmd!
 
@@ -438,35 +469,6 @@ if has('autocmd')
 
     # OCAML
     # set rtp^=~/.opam/default/share/ocp-indent/vim
-  augroup END
-
-  augroup GitCommitSettings
-    autocmd!
-
-    # Set local options and move cursor to line 1, column 1
-    autocmd FileType gitcommit {
-        setlocal spell nofoldenable textwidth=72
-        cursor(1, 1)
-    }
-    autocmd BufWinLeave COMMIT_EDITMSG bdelete
-  augroup END
-
-  augroup GeneralEditorBehavior
-    autocmd!
-
-    # Return to last edit position when opening files
-    autocmd BufReadPost * {
-      if line("'\"") > 0 && line("'\"") <= line('$')
-        exe "normal! g`\""
-      endif
-    }
-
-    # Auto-cleanup for all traling whitespace on buffer saving
-    autocmd BufWritePre * {
-        var curr_view = winsaveview()
-        keeppatterns :%s/\s\+$//e
-        winrestview(curr_view)
-    }
   augroup END
 
   # Templates for new buffers
