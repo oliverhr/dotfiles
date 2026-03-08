@@ -48,18 +48,21 @@ plug#begin()
   # Plug 'yasuhiroki/github-actions-yaml.vim'
 
   # - - - Colorschemes - - -
-  # Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
-  Plug 'catppuccin/vim',                      { 'as': 'colors/catppuccin' }
-  # Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
-  # Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
-  # Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
-  Plug 'ghifarit53/tokyonight-vim',           { 'as': 'colors/tokyonight'}
-  # Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
-  # Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
-  # Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
-  Plug 'NLKNguyen/papercolor-theme',          { 'as': 'colors/papercolor' }
-  Plug 'nordtheme/vim',                       { 'as': 'colors/nord' }
-  # Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
+  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'kaicataldo/material.vim',           { 'as': 'colors/material', 'branch': 'main' }
+  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'rakr/vim-two-firewatch',            { 'as': 'colors/two-fire-watch' }
+  Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf' }
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -68,13 +71,15 @@ plug#end()
 # -------------------------------------------------------------------
 # Plugins Settings
 # -------------------------------------------------------------------
+# NerdTree
 var NERDTreeIgnore = ['.git$[[dir]]']
+var NERDTreeRespectWildIgnore = 1
 g:NERDTreeQuitOnOpen = 3
 g:NERDTreeWinPos = 'right'
-var NERDTreeRespectWildIgnore = 1
 
 # --- Language Protocol Server
 g:lsp_settings = {
+  # vim LSP has some issues with vim9script
   'vim-language-server': { 'disabled': true }
 }
 
@@ -100,9 +105,9 @@ g:mapleader = ','
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 # Fast saving
-nnoremap <leader>w :w<cr>
+nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
-nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
 
 # Fast quit
@@ -129,8 +134,10 @@ nnoremap <silent> <leader>fc :Commits<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-# ================ Shell buffer stays opened after exit ===============
-nnoremap <silent> <leader>t :ter ++noclose<cr>
+# ====== Open a shell (stays opened after session is closed) ========
+if has('linux')
+  nnoremap <silent> <leader>tp :ter ++noclose<cr>
+endif
 
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
@@ -184,9 +191,6 @@ set mat=2
 
 # No beep on errors on terminal still visual
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
 set timeoutlen=500
 
 # Scrolling
@@ -202,12 +206,18 @@ set laststatus=2
 syntax enable
 
 # Absolute number on view mode relative on insert mode
-augroup numbertoggle
-  # This is activated after 'set number'
-  autocmd!
-  autocmd BufEnter,FocusLost,InsertEnter,WinLeave   * if &nu && mode() != 'i' | set rnu   | endif
-  autocmd BufLeave,FocusGained,InsertLeave,WinEnter * if &nu                  | set nornu | endif
-augroup END
+if has('autocmd')
+  augroup numbertoggle
+    autocmd!
+    # This is activated after 'set number'
+    autocmd BufEnter,FocusLost,InsertEnter,WinLeave * {
+      if &nu && mode() != 'i' | set rnu | endif
+    }
+    autocmd BufLeave,FocusGained,InsertLeave,WinEnter * {
+      if &nu | set nornu | endif
+    }
+  augroup END
+endif
 
 # Set more space on the left
 set nonumber       # Avoid gutter clutter if not necessary
@@ -239,7 +249,7 @@ set t_RV=
 # == ColorScheme
 set background=dark
 colorscheme tokyonight
-# g:airline_theme = 'transparent'
+g:airline_theme = 'tokyonight'
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -254,6 +264,9 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 # Set extra options when running in GUI mode
 if has('gui_running')
+  # disable Visual Bell
+  autocmd GUIEnter * set visualbell t_vb=
+
   highlight LineNr guifg=#333D60
 
   set background=dark
@@ -434,6 +447,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 # Opens a new tab with the current buffer's relative path
 map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
+
 # Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
@@ -465,10 +479,12 @@ set viminfo^=%
 # Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
+# In normal mode press ; to go to commamd mode ':'
+nnoremap ; :
 
 # Insert date time pressing <f7> key
-:nnoremap <F7> '=strftime('%c')<cr>P
-:inoremap <F7> <C-R>=strftime('%c')<cr>
+nnoremap <silent> <F7> A<C-R>=strftime('%Y-%m-%d %H:%M:%S ')<cr>
+inoremap <silent> <F7> <C-R>=strftime('%c ')<cr>
 
 # Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>

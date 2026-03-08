@@ -10,7 +10,7 @@ vim9script
 # still some extra configuration is achivable
 # ====================================================================
 
-# ====================================================================
+# ==============================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -24,16 +24,12 @@ set encoding=utf8
 # Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-# ================= Shell from MS-Dos to PowerShell ==================
-# if has('win32unix')
-#   TODO: check about vim config modularization
-# endif
-
-# ======================= Plug Settings ==============================
+# ======================= Plug Settings ===========================
 # set the runtime path to include Vundle and initialize
 # https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 plug#begin()
   # - - - Utilities - - -
+  #Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
@@ -59,18 +55,21 @@ plug#begin()
   # Plug 'yasuhiroki/github-actions-yaml.vim'
 
   # - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
-  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
-  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github'}
-  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang'}
-  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'}
-  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight'}
-  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'}
-  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
-  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
-  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
-  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
-  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace'}
+  # Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim',                      { 'as': 'colors/catppuccin' }
+  # Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
+  # Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
+  # Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
+  Plug 'ghifarit53/tokyonight-vim',           { 'as': 'colors/tokyonight' }
+  # Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  # Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'kaicataldo/material.vim',             { 'as': 'colors/material', 'branch': 'main' }
+  # Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',          { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                       { 'as': 'colors/nord' }
+  Plug 'rakr/vim-two-firewatch',              { 'as': 'colors/two-fire-watch' }
+  Plug 'sonph/onehalf',                       { 'as': 'colors/onehalf' }
+  Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -91,7 +90,7 @@ autocmd BufEnter * {
   endif
 }
 
-# Vim LSP Settings
+# --- Language Protocol Server
 g:lsp_settings = {
   # vim LSP has some issues with vim9script
   'vim-language-server': { 'disabled': true }
@@ -119,9 +118,9 @@ g:mapleader = ','
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 # Fast saving
-nnoremap <leader>w :w<cr>
+nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
-nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
 
 # Fast quit
@@ -145,8 +144,6 @@ nnoremap <silent> <leader>fg :GitFiles?<cr>
 nnoremap <silent> <leader>fl :Lines<cr>
 nnoremap <silent> <leader>fs :BLines<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
-
-nnoremap <silent> <leader>t :ter<cr>
 
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
@@ -203,9 +200,6 @@ set mat=2
 
 # No beep on errors on terminal still visual
 set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
 set timeoutlen=500
 
 # Scrolling
@@ -223,10 +217,10 @@ syntax enable
 # Absolute number on view mode relative on insert mode
 if has('autocmd')
   augroup numbertoggle
-    # This is activated after 'set number'
     autocmd!
+    # This is activated after 'set number'
     autocmd BufEnter,FocusLost,InsertEnter,WinLeave * {
-      if &nu && mode() != 'i' | set rnu   | endif
+      if &nu && mode() != 'i' | set rnu | endif
     }
     autocmd BufLeave,FocusGained,InsertLeave,WinEnter * {
       if &nu | set nornu | endif
@@ -252,6 +246,7 @@ set cursorline
 set clipboard=unnamed
 set mouse=a
 
+# == Color terminal related stuff ==
 # set t_Co=256
 set termguicolors
 
@@ -269,14 +264,19 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 # ================= Color and Style ================
 # MSYS2 detects the env as 'unix' and 'win32unix'
 # Cygwin as 'win32unix' only
+# TODO: check about vim config modularization
 if has('win32unix')
   set background=dark
   colorscheme onedark
   g:airline_theme = 'lucius'
+  if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+  endif
 endif
 
 # Airline settings
 g:airline_powerline_fonts = 1
+# Airline customization
 if !exists('g:airline_symbols')
   g:airline_symbols = {}
 endif
@@ -292,25 +292,25 @@ match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => File backups
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => Persistent Undo
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
 # silent !mkdir -p ~/.config/vim/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => Text, tab and indent related
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Use spaces instead of tabs
 set expandtab
 # Be smart when using tabs ;)
@@ -398,9 +398,9 @@ if has('autocmd')
   augroup END
 endif
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Moving around, tabs, windows and buffers
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -408,7 +408,7 @@ map k gk
 # Toggle line numbers on/off
 map <silent><leader>n :set number!<cr>
 
-# Smart way to move between windows
+# Move between panes replace: vim-tmux-navigation
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -437,6 +437,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 # Opens a new tab with the current buffer's relative path
 map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
+
 # Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
@@ -468,10 +469,12 @@ set viminfo^=%
 # Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
+# In normal mode press ; to go to commamd mode ':'
+nnoremap ; :
 
 # Insert date time pressing <f7> key
-:nnoremap <F7> '=strftime('%c')<cr>P
-:inoremap <F7> <C-R>=strftime('%c')<cr>
+nnoremap <silent> <F7> A<C-R>=strftime('%Y-%m-%d %H:%M:%S ')<cr>
+inoremap <silent> <F7> <C-R>=strftime('%c ')<cr>
 
 # Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
@@ -482,9 +485,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Spell checking
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 # Move between errors
@@ -495,9 +498,9 @@ map <leader>sa zg
 # Suggest correction
 map <leader>ss z=
 
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Misc
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
