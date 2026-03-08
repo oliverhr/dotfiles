@@ -29,7 +29,6 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
   Plug 'machakann/vim-sandwich'
-  Plug 'nanotee/zoxide.vim', { 'commit': '87dc53b' }
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
