@@ -119,9 +119,9 @@ g:mapleader = ','
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 # Fast saving
-nnoremap <leader>w :w<cr>
+nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
-nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>x :x<cr>
 nnoremap <silent> <leader>wx :xa<cr>
 
 # Fast quit
@@ -441,8 +441,17 @@ if has('autocmd')
       exe "normal! g`\""
     endif
   }
-  # But don't remember the cursor position in git commits
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG setpos('.', [0, 1, 1, 0])
+
+  augroup GitCommitSettings
+    autocmd!
+    # Set local options and move cursor to line 1, column 1
+    autocmd FileType gitcommit {
+        setlocal spell nofoldenable textwidth=72
+        cursor(1, 1)
+    }
+    # Clean up buffer on leave
+    autocmd BufWinLeave COMMIT_EDITMSG bdelete
+  augroup END
 
   # Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
