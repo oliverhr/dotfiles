@@ -10,7 +10,7 @@ vim9script
 # a variable with the inicial profile name.
 # ==============================================================================
 
-# ====================================================================
+# ==============================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -24,8 +24,9 @@ set encoding=utf8
 # Use Unix as the standard file type
 set fileformats=unix,dos,mac
 
-# ====================================================================
-# ---------------------------   Plugins   ----------------------------
+# ======================= Plug Settings ===========================
+# set the runtime path to include Vundle and initialize
+# https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 plug#begin()
   # - - - Utilities - - -
   Plug 'editorconfig/editorconfig-vim'
@@ -78,7 +79,6 @@ plug#begin()
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
-
 plug#end()
 
 # -------------------------------------------------------------------
@@ -96,6 +96,7 @@ g:rainbow_active = 0
 g:lsp_settings = {
   'vim-language-server': { 'disabled': true }
 }
+
 g:lsp_document_code_action_signs_enabled = 0
 g:lsp_document_code_action_signs_hint = {'text': '⭲'}
 g:lsp_diagnostics_signs_warning = {'text': '⚠'}
@@ -237,8 +238,8 @@ if has('autocmd')
 endif
 
 # Set more space on the left
-set nonumber        # Avoid gutter clutter if not necessary
-set foldcolumn=4    # max 12
+set nonumber       # Avoid gutter clutter if not necessary
+set foldcolumn=4   # max 12
 set wrapmargin=4
 highlight! link FoldColumn Normal
 
@@ -385,25 +386,25 @@ match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => File backups
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set noswapfile
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => Persistent Undo
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
 # silent !mkdir -p ~/.config/vim/{undodir,autoload} > /dev/null 2>&1
 set undodir=~/.config/vim/undodir
 set undofile
 
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # => Text, tab and indent related
-# --------------------------------------------------------------------
+# -------------------------------------------------------------------
 # Use spaces instead of tabs
 set expandtab
 # Be smart when using tabs ;)
@@ -442,7 +443,7 @@ if has('autocmd')
     endif
   }
   # But don't remember the cursor position in git commits
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  au FileType gitcommit au! BufEnter COMMIT_EDITMSG setpos('.', [0, 1, 1, 0])
 
   # Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
@@ -467,9 +468,9 @@ set foldmethod=indent   # fold based on indent
 set foldnestmax=3       # deepest fold is 3 levels
 set nofoldenable        # dont fold by default
 
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Moving around, tabs, windows and buffers
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -477,7 +478,7 @@ map k gk
 # Toggle line numbers on/off
 map <silent><leader>n :set number!<cr>
 
-# Smart way to move between windows
+# Move between panes replace: vim-tmux-navigation
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -487,10 +488,14 @@ map <C-l> <C-W>l
 map <leader>bh :enew<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
+
 # Close the current buffer
-map <silent><leader>bd :bdel<cr>
+map <silent><leader>bd :bdel!<cr>
+map <leader>bx :w \| :bdel<cr>
+
 # Close all the buffers
 map <silent><leader>ba :%bdelete<cr>
+
 # Move between bufferrs
 map <silent><leader>bn :bnext<cr>
 map <silent><leader>bp :bprevious<cr>
@@ -547,9 +552,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Spell checking
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 # Move between errors
@@ -560,13 +565,13 @@ map <leader>sa zg
 # Suggest correction
 map <leader>ss z=
 
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # => Misc
-# --------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-# vim: set ts=2 sw=2 et :
+# vim: set ft=vim ts=2 sw=2 et :
