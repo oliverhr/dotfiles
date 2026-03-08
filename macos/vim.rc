@@ -566,8 +566,8 @@ nmap <S-Space> i
 nnoremap ; :
 
 # Insert date time pressing <f7> key
-:nnoremap <F7> '=strftime('%c')<cr>P
-:inoremap <F7> <C-R>=strftime('%c')<cr>
+nnoremap <silent> <F7> A<C-R>=strftime('%Y-%m-%d %H:%M:%S ')<cr>
+inoremap <silent> <F7> <C-R>=strftime('%c ')<cr>
 
 # Clear search higlight pressing enter same as :noh
 :nnoremap <silent> <CR> :nohlsearch<cr><cr>
