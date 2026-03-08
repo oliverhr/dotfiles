@@ -314,9 +314,16 @@ if has('autocmd')
     \   exe "normal! g`\"" |
     \ endif
   " But don't remember the cursor position in git commits
-  autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-  autocmd FileType gitcommit setlocal spell
-  autocmd BufWinLeave COMMIT_EDITMSG bwipeout
+
+  augroup GitCommitSettings
+    autocmd!
+    " Always start on the first line
+    autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+    " Standard commit settings
+    autocmd FileType gitcommit setlocal spell nofoldenable textwidth=72
+    " Clean up buffer on leave
+    autocmd BufWinLeave COMMIT_EDITMSG bdelete
+  augroup END
 
   " Remove all traling whitespace at buffer saving
   autocmd BufWrite * :%s/\s\+$//ge
