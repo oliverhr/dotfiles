@@ -320,38 +320,6 @@ set shiftwidth=4
 # width of the TAB character
 set tabstop=4
 
-if has('autocmd')
-  augroup filetypes
-    autocmd FileType gitcommit setlocal spell
-    autocmd Filetype c,cpp set noexpandtab sw=4 ts=4 cinoptions+=L0
-    autocmd Filetype python,ruby,php set expandtab sw=4 ts=4
-    autocmd Filetype json,javascript,typescript,html set expandtab sw=2 ts=2
-    autocmd Filetype markdown set expandtab sw=2 ts=2 wrap lbr nu
-    autocmd Filetype yaml set expandtab sw=2 ts=2 sts=2 wrap nu
-
-    # Shell files Indent with tabs, align with spaces
-    autocmd FileType sh,bash set noet ci pi sts=0 sw=4 ts=4
-
-    # Go files Indent with tabs, align with spaces
-    autocmd FileType go set noet ci pi sts=0 sw=4 ts=4
-
-    # XML files Indent with tabs, align with spaces
-    autocmd FileType xml set noet ci pi sts=0 sw=2 ts=2
-  augroup end
-
-  # Return to last edit position when opening files
-  autocmd BufReadPost * {
-    if line("'\"") > 0 && line("'\"") <= line('$')
-      exe "normal! g`\""
-    endif
-  }
-  # But don't remember the cursor position in git commits
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-  # Remove all traling whitespace at buffer saving
-  autocmd BufWrite * :%s/\s\+$//ge
-endif
-
 # Linebreak on 500 characters
 set linebreak
 set textwidth=500
@@ -364,6 +332,69 @@ set nowrap        # Wrap lines
 set foldmethod=indent   # fold based on indent
 set foldnestmax=3       # deepest fold is 3 levels
 set nofoldenable        # dont fold by default
+
+if has('autocmd')
+  augroup GeneralEditorBehavior
+    autocmd!
+
+    # Return to last edit position when opening files
+    autocmd BufReadPost * {
+      if line("'\"") > 0 && line("'\"") <= line('$')
+        exe "normal! g`\""
+      endif
+    }
+
+    # Auto-cleanup for all traling whitespace on buffer saving
+    autocmd BufWritePre * {
+        var curr_view = winsaveview()
+        keeppatterns :%s/\s\+$//e
+        winrestview(curr_view)
+    }
+  augroup END
+
+  augroup FileTypeSettings
+    autocmd!
+
+    # C/C++
+    autocmd Filetype c,cpp setlocal noexpandtab sw=4 ts=4 cinoptions+=L0
+
+    # Four spaces
+    autocmd Filetype python,ruby,php setlocal expandtab sw=4 ts=4
+
+    # Two spaces
+    autocmd Filetype json,javascript,typescript,html setlocal expandtab sw=2 ts=2
+
+    # These are better with wraps
+    autocmd Filetype yaml setlocal expandtab sw=2 ts=2 sts=2 wrap
+    autocmd Filetype markdown setlocal expandtab sw=2 ts=2 wrap linebreak
+
+    # Real tabs
+    autocmd FileType sh,bash,go setlocal noexpandtab ci pi sts=0 sw=4 ts=4
+
+    # XML files Indent with tabs, align with spaces
+    autocmd FileType xml setlocal noet ci pi sts=0 sw=2 ts=2
+
+    # OCAML
+    # set rtp^=~/.opam/default/share/ocp-indent/vim
+  augroup END
+
+  augroup GitCommitSettings
+    autocmd!
+
+    # Set local options and move cursor to line 1, column 1
+    autocmd FileType gitcommit {
+        setlocal spell nofoldenable textwidth=72
+        cursor(1, 1)
+    }
+    autocmd BufWinLeave COMMIT_EDITMSG bdelete
+  augroup END
+
+  # Templates for new buffers
+  augroup templates
+    autocmd BufNewFile *.sh 0 read <sfile>:h/skeletons/bash.sh
+    autocmd BufNewFile *.py 0 read <sfile>:h/skeletons/python.py
+  augroup END
+endif
 
 # --------------------------------------------------------------------
 # => Moving around, tabs, windows and buffers
