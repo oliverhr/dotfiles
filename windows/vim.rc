@@ -151,7 +151,7 @@ endif
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
 set wildmode=list:longest
-# enable ctrl-n and ctrl-p to scroll thru matches
+# enable ctrl-n and ctrl-p to scroll trough matches
 set wildmenu
 
 # stuff to ignore when tab completing

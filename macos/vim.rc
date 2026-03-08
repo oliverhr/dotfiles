@@ -157,7 +157,7 @@ endif
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
 set wildmode=list:longest
-# enable ctrl-n and ctrl-p to scroll thru matches
+# enable ctrl-n and ctrl-p to scroll trough matches
 set wildmenu
 
 # stuff to ignore when tab completing
@@ -506,6 +506,7 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 # Opens a new tab with the current buffer's relative path
 map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
+
 # Shift+ arrow -> <-
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
@@ -537,6 +538,8 @@ set viminfo^=%
 # Works on terminal and GUI in windows, in macos only with GUI
 imap <S-Space> <Esc>
 nmap <S-Space> i
+# In normal mode press ; to go to commamd mode ':'
+nnoremap ; :
 
 # Insert date time pressing <f7> key
 :nnoremap <F7> '=strftime('%c')<cr>P
