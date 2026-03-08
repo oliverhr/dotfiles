@@ -48,12 +48,12 @@ call plug#begin()
   "Plug 'hashivim/vim-terraform'
 
   " - - - Colorschemes - - -
-  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
-  Plug 'crusoexia/vim-monokai',       { 'as': 'colors/monokai' }
-  Plug 'jacoborus/tender.vim',        { 'as': 'colors/tender' }
-  Plug 'joshdick/onedark.vim',        { 'as': 'colors/onedark' }
-  Plug 'nanotech/jellybeans.vim',     { 'as': 'colors/jellybeans' }
-  Plug 'NLKNguyen/papercolor-theme',  { 'as': 'colors/papercolor' }
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized'  }
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai'    }
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender'     }
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark'    }
+  Plug 'nanotech/jellybeans.vim',           { 'as': 'colors/jellybeans' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
 
   " - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
