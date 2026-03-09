@@ -27,7 +27,7 @@ call plug#begin()
   Plug 'godlygeek/tabular'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'LunarWatcher/auto-pairs', { 'tag': 'v2.0.0' }
+  Plug 'cohama/lexima.vim'
   Plug 'machakann/vim-sandwich'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
