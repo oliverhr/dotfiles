@@ -72,6 +72,7 @@ let g:NERDTreeQuitOnOpen = 3
 let g:NERDTreeWinPos = 'right'
 let g:NERDTreeWinSize = 40
 let NERDTreeRespectWildIgnore = 1
+
 " ========================= General Settings ========================
 " Sets how many lines of history VIM has to remember
 set history=1000
@@ -211,8 +212,8 @@ set clipboard=unnamed
 set mouse=a
 
 " == Color terminal related stuff ==
-set termguicolors
-"set t_Co=24
+"set termguicolors
+set t_Co=256
 
 " Enable this only when terminal dislay weird chars
 " because of an issue with devicons & airline this
@@ -220,11 +221,17 @@ set termguicolors
 set t_RV=
 
 " == ColorScheme
-" let g:solarized_termcolors=24
-" let g:solarized_termtrans=1
-" let g:airline_theme = 'solarized'
 set background=dark
-colorscheme catppuccin_mocha
+let g:solarized_termtrans=1
+colorscheme solarized
+
+" Airline settings
+let g:airline_theme = 'solarized'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
 " Set background translucid
 " highlight Normal guibg=NONE ctermbg=NONE
 
@@ -237,12 +244,6 @@ hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
-
-" Airline settings
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
 
 " Set Gutter column translucid - only work at start
 highlight clear FoldColumn
