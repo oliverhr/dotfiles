@@ -22,6 +22,10 @@ set fileformats=unix,dos,mac
 call plug#begin()
 
 " - - - Utilities - - -
+  " #------------------------------------------------------#
+  " # ############ NOT COMPATIBLE WITH VIM8 ############# #
+  " Plug 'nanotee/zoxide.vim'
+  " #------------------------------------------------------#
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
