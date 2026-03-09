@@ -1,0 +1,15 @@
+vim9script
+
+g:MYVIMDIR = ''
+
+if has('win32') || has('win64')
+    # Ajuste específico para Windows
+    $MYVIMDIR = expand('~/vimfiles')
+else
+    # Ajuste para Linux/Unix
+    $MYVIMDIR = expand('~/.vim')
+endif
+
+g:MYVIMDIR = $MYVIMDIR
+
+source $MYVIMDIR/config/init.vim

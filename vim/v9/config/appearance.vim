@@ -25,28 +25,24 @@ set wrapmargin=4
 highlight! link FoldColumn Normal
 
 # Line number column transparent on colorscheme change its overriden
-highlight clear LineNr
+# highlight clear LineNr
 # Highlight current line
 set cursorline
 
 # Set options only for GUI
 if has('gui_running')
-  set lines=35 columns=110
-
-  set guioptions-=r # Hide rigth scrollbar
-  set guioptions-=L # Hide left scrollbar
-  set guioptions-=e # Set gui-tabs as terminal
+  set guioptions-=r     # Hide rigth scrollbar
+  set guioptions-=L     # Hide left scrollbar
+  set guioptions-=e     # Set gui-tabs as terminal
   set guitablabel=%M\ %t
 endif
 
-# RUNNING ON A TERMINAL
+# Running on a terminal
 if ! has('gui_running')
   # Enable yanked to system clipboard
   set clipboard=unnamed
   set mouse=a
-  set termguicolors
 
-  # --
   highlight SpecialKey guibg=bg ctermbg=none
 
   # Spelling mistakes will be colored up red.
@@ -71,5 +67,7 @@ highlight clear SignColumn
 # Colorize right extra white tab or space chars
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
+

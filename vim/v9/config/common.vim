@@ -95,7 +95,7 @@ set noswapfile
 # => Persistent Undo
 # -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
-set undodir=~/vimfiles/undodir
+set undodir=$MYVIMDIR/undodir
 set undofile
 
 # -------------------------------------------------------------------
@@ -198,3 +198,4 @@ endtry
 
 # Remember info about open buffers on close
 set viminfo^=%
+

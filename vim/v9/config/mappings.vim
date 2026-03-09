@@ -24,7 +24,6 @@ nnoremap <silent> <leader>l :NERDTreeFind<cr>
 
 # Fuzzy finder
 $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden'
-g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 0.5 } }
 nnoremap <silent> <leader>fz :FZF<cr>
 nnoremap <silent> <leader>fa :Ag<cr>
 nnoremap <silent> <leader>fr :Rg<cr>
@@ -136,3 +135,4 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
