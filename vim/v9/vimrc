@@ -1,15 +1,18 @@
 vim9script
 
-g:MYVIMDIR = ''
+source ./vimrc.d/common.vim
+source ./vimrc.d/plugins.vim
+source ./vimrc.d/mappings.vim
+source ./vimrc.d/appearance.vim
 
-if has('win32') || has('win64')
-    # Ajuste específico para Windows
-    $MYVIMDIR = expand('~/vimfiles')
+if has('win64')
+  source ./vimrc.d/os.windows.vim
+elseif has('osx')
+  source ./vimrc.d/os.macos.vim
 else
-    # Ajuste para Linux/Unix
-    $MYVIMDIR = expand('~/.vim')
+  source ./vimrc.d/os.linux.vim
 endif
 
-g:MYVIMDIR = $MYVIMDIR
+# Patch to unify bgcolor for number and fold column
+highlight clear FoldColumn
 
-source $MYVIMDIR/config/init.vim
