@@ -1,0 +1,17 @@
+" vim: set ft=vim ts=2 sw=2 et :
+
+if !exists('$MYVIMDIR')
+ " Get the directory containing your .vimrc
+  let $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
+endif
+
+source $MYVIMDIR/vimrc.d/settings.vim
+source $MYVIMDIR/vimrc.d/plugins.vim
+source $MYVIMDIR/vimrc.d/mappings.vim
+source $MYVIMDIR/vimrc.d/appearance.vim
+source $MYVIMDIR/vimrc.d/autocmds.vim
+source $MYVIMDIR/vimrc.d/functions.vim
+
+" Patch to unify bgcolor for number and fold column
+highlight clear FoldColumn
+
