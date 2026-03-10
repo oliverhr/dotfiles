@@ -1,16 +1,21 @@
 vim9script
 
-source ./vimrc.d/common.vim
-source ./vimrc.d/plugins.vim
-source ./vimrc.d/mappings.vim
-source ./vimrc.d/appearance.vim
+if !exists('$MYVIMDIR')
+  # Get the directory containing your .vimrc
+  var $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
+endif
+
+source $MYVIMDIR/vimrc.d/common.vim
+source $MYVIMDIR/vimrc.d/plugins.vim
+source $MYVIMDIR/vimrc.d/mappings.vim
+source $MYVIMDIR/vimrc.d/appearance.vim
 
 if has('win64')
-  source ./vimrc.d/os.windows.vim
+  source $MYVIMDIR/vimrc.d/os.windows.vim
 elseif has('osx')
-  source ./vimrc.d/os.macos.vim
+  source $MYVIMDIR/vimrc.d/os.macos.vim
 else
-  source ./vimrc.d/os.linux.vim
+  source $MYVIMDIR/vimrc.d/os.linux.vim
 endif
 
 # Patch to unify bgcolor for number and fold column
