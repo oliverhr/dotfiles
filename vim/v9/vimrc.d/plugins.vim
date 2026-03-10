@@ -46,17 +46,17 @@ plug#begin()
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
   Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
   Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
-  # Plug 'croaker/mustang-vim',             { 'as': 'colors/mustang' }
-  # Plug 'crusoexia/vim-monokai',           { 'as': 'colors/monokai' }
+  Plug 'croaker/mustang-vim',             { 'as': 'colors/mustang' }
+  Plug 'crusoexia/vim-monokai',           { 'as': 'colors/monokai' }
   Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
-  # Plug 'jacoborus/tender.vim',            { 'as': 'colors/tender' }
-  # Plug 'joshdick/onedark.vim',            { 'as': 'colors/onedark' }
+  Plug 'jacoborus/tender.vim',            { 'as': 'colors/tender' }
+  Plug 'joshdick/onedark.vim',            { 'as': 'colors/onedark' }
   Plug 'kaicataldo/material.vim',           { 'as': 'colors/material', 'branch': 'main' }
-  # Plug 'morhetz/gruvbox',                 { 'as': 'colors/gruvbox' }
+  Plug 'morhetz/gruvbox',                 { 'as': 'colors/gruvbox' }
   Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
-  # Plug 'nordtheme/vim',                   { 'as': 'colors/nord' }
-  # Plug 'rakr/vim-two-firewatch',          { 'as': 'colors/two-fire-watch' }
-  # Plug 'sonph/onehalf',                   { 'as': 'colors/onehalf' }
+  Plug 'nordtheme/vim',                   { 'as': 'colors/nord' }
+  Plug 'rakr/vim-two-firewatch',          { 'as': 'colors/two-fire-watch' }
+  Plug 'sonph/onehalf',                   { 'as': 'colors/onehalf' }
   Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   # - - - Loaded last - - -
