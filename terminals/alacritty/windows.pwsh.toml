@@ -45,8 +45,5 @@ bindings = [
     { key = "Space",        mods = "Shift",     chars = "\u001B" },
     { key = "Slash",        mods = "Control",   chars = "\u001F" },
     { key = "Backslash",    mods = "Control",   chars = "\u002C" },
-
-    # Actions
-    # { key = "Enter", mods = "Control|Shift", action = "ToggleMaximized" },
 ]
 
