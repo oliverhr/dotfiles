@@ -52,6 +52,6 @@ sudo cp zoxide /usr/local/bin/
 
 Note:
 
-- Most of these tools are new alternatives, the majority of the are written in go or rust.
+- Most of these tools are new alternatives, the majority of them are written either in go or rust.
 - Some omissions are not here because are almost ubiquitous, like`tmux`, `vim` and `neovim`
 
