@@ -7,9 +7,6 @@
 [general]
 working_directory = "None"
 live_config_reload = true
-import = [
-    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
-]
 
 [terminal.shell]
 program = "pwsh"
@@ -43,7 +40,6 @@ hide_when_typing = true
 
 [keyboard]
 bindings = [
-
     # Chars
     { key = "Space",        mods = "Control",   chars = "\u0000" },
     { key = "Space",        mods = "Shift",     chars = "\u001B" },
