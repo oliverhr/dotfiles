@@ -75,7 +75,7 @@ plug#begin()
   Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
   Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
   Plug 'rakr/vim-two-firewatch',            { 'as': 'colors/two-fire-watch' }
-  Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf' }
+  Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf', 'rtp': 'vim/' }
   Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   # - - - Loaded last - - -
