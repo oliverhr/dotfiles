@@ -16,7 +16,7 @@ args = ["-NoLogo"]
 TERM_PROGRAM = "alacritty"
 
 [window]
-padding = { x = 5, y = 5 }
+padding = { x = 0, y = 0 }
 decorations = "Full"
 startup_mode = "Windowed"
 decorations_theme_variant = "None"
@@ -45,8 +45,5 @@ bindings = [
     { key = "Space",        mods = "Shift",     chars = "\u001B" },
     { key = "Slash",        mods = "Control",   chars = "\u001F" },
     { key = "Backslash",    mods = "Control",   chars = "\u002C" },
-
-    # Actions
-    # { key = "Enter", mods = "Control|Shift", action = "ToggleMaximized" },
 ]
 
