@@ -7,10 +7,14 @@
 [general]
 working_directory = "None"
 live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
+]
 
 [terminal.shell]
-program = "pwsh"
-args = ["-NoLogo"]
+# With scoop use sh instead of bash
+program = "sh"
+args = ["--login"]
 
 [env]
 TERM_PROGRAM = "alacritty"
