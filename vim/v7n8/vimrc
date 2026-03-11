@@ -1,7 +1,7 @@
 " vim: set ft=vim ts=2 sw=2 et :
 
 if !exists('$MYVIMDIR')
- " Get the directory containing your .vimrc
+  " Get the directory containing .vimrc
   let $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
 endif
 
