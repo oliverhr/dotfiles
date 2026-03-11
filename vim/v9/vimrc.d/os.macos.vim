@@ -93,8 +93,10 @@ if ! has('gui_running')
   # Override all and set color dynamically
   if !empty($VIM_COLOR)
     execute "colorscheme" $VIM_COLOR
+    g:airline_theme = $VIM_COLOR
   else
     color zaibatsu
+    g:airline_theme = 'zibatsu'
   endif
 endif
 
