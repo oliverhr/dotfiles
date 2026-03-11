@@ -80,7 +80,7 @@ if ! has('gui_running')
   elseif match($TERM_PROGRAM, '\cTmux') != -1
     set background=dark
     color onedark
-    g:airline_theme = 'zenburn'
+    g:airline_theme = 'seagull'
 
   else
     set background=dark
@@ -90,17 +90,19 @@ if ! has('gui_running')
 
   endif
 
-
   # Override all and set color dynamically
   if !empty($VIM_COLOR)
-    colorscheme $VIM_COLOR
+    execute "colorscheme" $VIM_COLOR
+  else
+    color zaibatsu
   endif
 endif
 
+
 # Set options only for GUI
 if has('gui_running')
-  set lines=35 columns=110
-  set gfn=AdwaitaMonoNFP:h16
+  set lines=30 columns=120
+  set gfn=AdwaitaMonoNFP:h18
 
   set background=dark
   colorscheme tokyonight
