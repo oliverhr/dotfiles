@@ -26,7 +26,7 @@ normal = { family = "JetBrainsMono Nerd Font Propo", style = 'Regular' }
 bold = { style = "Bold" }
 italic = { style = "Italic" }
 bold_italic = { style = "Bold Italic" }
-size = 16.0
+size = 20.0
 offset = { x = 0, y = 0 }
 
 [cursor]
@@ -44,3 +44,11 @@ SHELL = "/usr/local/bin/fish"
 program = "/usr/local/bin/tmux"
 args = ["new-session", "-A", "-s", "alacritty", "-e", "VIM_COLOR=tokyonight"]
 
+[keyboard]
+bindings = [
+    # Chars
+    { key = "Space",        mods = "Control",   chars = "\u0000" },
+    { key = "Space",        mods = "Shift",     chars = "\u001B" },
+    { key = "Slash",        mods = "Control",   chars = "\u001F" },
+    { key = "Backslash",    mods = "Control",   chars = "\u002C" },
+]
