@@ -2,16 +2,19 @@
 # Main Alacritty configuration
 # ----------------------------------------------------------
 [general]
-import = []
 working_directory = "$HOME/Documents/Projects"
 live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/themes/tokyo_night.toml"
+]
 
 [window]
 dimensions = { columns = 130, lines = 35 }
 padding = { x = 5, y = 5 }
 startup_mode = "Windowed"
-decorations = "Transparent"
-decorations_theme_variant = "None"
+decorations_theme_variant = "Dark"
+decorations = "Full"
+title = ""
 option_as_alt = "OnlyLeft"
 
 [scrolling]
@@ -39,5 +42,5 @@ SHELL = "/usr/local/bin/fish"
 
 [terminal.shell]
 program = "/usr/local/bin/tmux"
-args = ["new-session", "-A", "-s", "alacritty"]
+args = ["new-session", "-A", "-s", "alacritty", "-e", "VIM_COLOR=tokyonight"]
 
