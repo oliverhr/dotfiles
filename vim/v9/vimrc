@@ -21,3 +21,4 @@ endif
 # Patch to unify bgcolor for number and fold column
 highlight clear FoldColumn
 
+# vim: set ft=vim ts=2 sw=2 et :

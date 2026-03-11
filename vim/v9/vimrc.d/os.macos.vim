@@ -109,3 +109,4 @@ if has('gui_running')
   g:airline_theme = 'tokyonight'
 endif
 
+# vim: set ft=vim ts=2 sw=2 et :

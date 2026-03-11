@@ -199,3 +199,4 @@ endtry
 # Remember info about open buffers on close
 set viminfo^=%
 
+# vim: set ft=vim ts=2 sw=2 et :

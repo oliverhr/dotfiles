@@ -97,3 +97,4 @@ g:lsp_diagnostics_signs_warning = {'text': '⚠'}
 g:lsp_diagnostics_signs_error = {'text': '⌦'}
 g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
 
+# vim: set ft=vim ts=2 sw=2 et :

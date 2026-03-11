@@ -71,3 +71,4 @@ match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
+# vim: set ft=vim ts=2 sw=2 et :

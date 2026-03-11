@@ -137,3 +137,4 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+# vim: set ft=vim ts=2 sw=2 et :
