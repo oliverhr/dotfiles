@@ -54,7 +54,8 @@ set t_RV=
 
 " == ColorScheme
 set background=dark
-let g:solarized_termcolors = 24
+let g:solarized_termcolors = 16
+let g:solarized_contrast='high'
 colorscheme solarized
 
 " Airline settings
