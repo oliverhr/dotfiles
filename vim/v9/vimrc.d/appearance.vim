@@ -36,7 +36,7 @@ match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
 set list listchars=tab:\|\ ,trail:·
 
-" ================= Color for Terminal, Scheme and Statusbar =================
+# ================= Color for Terminal, Scheme and Statusbar =================
 # Set options only for GUI
 if has('gui_running')
   set guioptions-=r     # Hide rigth scrollbar
