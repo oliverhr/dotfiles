@@ -12,7 +12,7 @@ nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <silent> <leader>xa :xa<cr>
 
 " Fast quit no save
 nnoremap <leader>q :q!<cr>

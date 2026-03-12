@@ -1,6 +1,5 @@
 " vim: set ft=vim ts=2 sw=2 et :
 
-" ========================= Font & Color's ===========================
 " Enable syntax highlighting
 syntax enable
 
@@ -20,35 +19,13 @@ highlight! link FoldColumn Normal
 
 " Line number column transparent on colorscheme change its overriden
 highlight clear LineNr
+
 " Highlight current line
 set cursorline
+
 " Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
-
-" == Color terminal related stuff ==
-"set termguicolors
-set t_Co=256
-
-" Enable this only when terminal dislay weird chars
-" because of an issue with devicons & airline this
-" error mostly happen on Linux and WSL
-set t_RV=
-
-" == ColorScheme
-set background=dark
-let g:solarized_termtrans=1
-colorscheme solarized
-
-" Airline settings
-let g:airline_theme = 'solarized'
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" Set background translucid
-" highlight Normal guibg=NONE ctermbg=NONE
 
 " Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -60,13 +37,38 @@ hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
+" Colorize right extra white tab or space chars
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\|\ ,trail:·
+
+" ================= Color for Terminal, Scheme and Statusbar =================
+set notermguicolors
+
+" Enable this only when terminal dislay weird chars
+" because of an issue with devicons & airline this
+" error mostly happen on Linux and WSL
+set t_RV=
+
+" == ColorScheme
+set background=dark
+let g:solarized_termcolors = 24
+colorscheme solarized
+
+" Airline settings
+let g:airline_theme = 'solarized'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" Set background translucid
+"highlight Normal guibg=NONE ctermbg=NONE
+
 " Set Gutter column translucid - only work at start
 highlight clear FoldColumn
 highlight clear Folded
 highlight clear SignColumn
 
-" Colorize right extra white tab or space chars
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-" Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·

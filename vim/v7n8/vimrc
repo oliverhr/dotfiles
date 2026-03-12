@@ -12,6 +12,3 @@ source $MYVIMDIR/vimrc.d/appearance.vim
 source $MYVIMDIR/vimrc.d/autocmds.vim
 source $MYVIMDIR/vimrc.d/functions.vim
 
-" Patch to unify bgcolor for number and fold column
-highlight clear FoldColumn
-
