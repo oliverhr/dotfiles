@@ -1,6 +1,5 @@
 vim9script
 
-# ========================= Font & Color's ===========================
 # Enable syntax highlighting
 syntax enable
 
@@ -25,10 +24,19 @@ set wrapmargin=4
 highlight! link FoldColumn Normal
 
 # Line number column transparent on colorscheme change its overriden
-# highlight clear LineNr
+highlight clear LineNr
+
 # Highlight current line
 set cursorline
 
+# Colorize right extra white tab or space chars
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+# Display tabs and trailing spaces visually
+set list listchars=tab:\|\ ,trail:·
+
+" ================= Color for Terminal, Scheme and Statusbar =================
 # Set options only for GUI
 if has('gui_running')
   set guioptions-=r     # Hide rigth scrollbar
@@ -63,12 +71,5 @@ endif
 highlight clear FoldColumn
 highlight clear Folded
 highlight clear SignColumn
-
-# Colorize right extra white tab or space chars
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-# Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
 
 # vim: set ft=vim ts=2 sw=2 et :
