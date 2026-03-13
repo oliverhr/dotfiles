@@ -10,7 +10,7 @@ vim9script
 # still some extra configuration is achivable
 # ====================================================================
 
-# ==============================================================================
+# ====================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -55,20 +55,20 @@ plug#begin()
   # Plug 'yasuhiroki/github-actions-yaml.vim'
 
   # - - - Colorschemes - - -
-  # Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
-  Plug 'catppuccin/vim',                      { 'as': 'colors/catppuccin' }
-  # Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
-  # Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
-  # Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
-  Plug 'ghifarit53/tokyonight-vim',           { 'as': 'colors/tokyonight' }
-  # Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
-  # Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
-  Plug 'kaicataldo/material.vim',             { 'as': 'colors/material', 'branch': 'main' }
-  # Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
-  Plug 'NLKNguyen/papercolor-theme',          { 'as': 'colors/papercolor' }
-  Plug 'nordtheme/vim',                       { 'as': 'colors/nord' }
-  Plug 'rakr/vim-two-firewatch',              { 'as': 'colors/two-fire-watch' }
-  Plug 'sonph/onehalf',                       { 'as': 'colors/onehalf' }
+  Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
+  Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
+  Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
+  Plug 'crusoexia/vim-monokai',             { 'as': 'colors/monokai' }
+  Plug 'ghifarit53/tokyonight-vim',         { 'as': 'colors/tokyonight' }
+  Plug 'jacoborus/tender.vim',              { 'as': 'colors/tender' }
+  Plug 'joshdick/onedark.vim',              { 'as': 'colors/onedark' }
+  Plug 'kaicataldo/material.vim',           { 'as': 'colors/material', 'branch': 'main' }
+  Plug 'morhetz/gruvbox',                   { 'as': 'colors/gruvbox' }
+  Plug 'NLKNguyen/papercolor-theme',        { 'as': 'colors/papercolor' }
+  Plug 'nordtheme/vim',                     { 'as': 'colors/nord' }
+  Plug 'rakr/vim-two-firewatch',            { 'as': 'colors/two-fire-watch' }
+  Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf', 'rtp': 'vim/' }
   Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
 
   # - - - Loaded last - - -
@@ -121,7 +121,7 @@ nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <silent> <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <silent> <leader>xa :xa<cr>
 
 # Fast quit
 nnoremap <leader>q :q!<cr>
@@ -148,9 +148,16 @@ nnoremap <silent> <leader>fc :Commits<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
+# ======================= Open a default shell =======================
+if has('win32unix')
+  nnoremap <silent> <leader>ts :ter ++close pwsh -nol<cr>
+  nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
+  nnoremap <silent> <leader>tb :ter ++close<cr>
+endif
+
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
-set wildmode=list:longest
+set wildmode=longest:list,full
 # enable ctrl-n and ctrl-p to scroll trough matches
 set wildmenu
 
@@ -199,8 +206,7 @@ set showmatch
 set mat=2
 
 # No beep on errors on terminal still visual
-set noerrorbells visualbell t_vb=
-set timeoutlen=500
+set noerrorbells visualbell t_vb= timeoutlen=500
 
 # Scrolling
 set scrolloff=8         # Start scrolling when we're 8 lines away from margins
@@ -240,15 +246,23 @@ highlight clear LineNr
 set cursorline
 
 # ---------------------------------------------------------
-# RUNNING ON A TERMINAL
+# Style and visuals configuration
 # ---------------------------------------------------------
 # Enable yanked to system clipboard
 set clipboard=unnamed
 set mouse=a
 
 # == Color terminal related stuff ==
-# set t_Co=256
 set termguicolors
+
+if match($TERM_PROGRAM, '\cAlacritty') != -1
+  set background=dark
+  colorscheme tokyonight
+else
+  set background=dark
+  colorscheme onedark
+  g:airline_theme = 'lucius'
+endif
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -261,17 +275,23 @@ hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
-# ================= Color and Style ================
-# MSYS2 detects the env as 'unix' and 'win32unix'
-# Cygwin as 'win32unix' only
-# TODO: check about vim config modularization
-if has('win32unix')
+# Set extra options when running in GUI mode
+if has('gui_running')
+  highlight LineNr guifg=#333D60
+
   set background=dark
-  colorscheme onedark
-  g:airline_theme = 'lucius'
-  if has('autocmd')
-    autocmd GUIEnter * set visualbell t_vb=
-  endif
+  colorscheme nord
+  g:airline_theme = 'nord'
+
+  set gfn=JetBrainsMono_NFM:h12
+  set lines=25 columns=100
+
+  # set guioptions-=m    # Hide menu
+  set guioptions-=T      # Hide toolbar
+  set guioptions-=r      # Hide rigth scrollbar
+  set guioptions-=L      # Hide left scrollbar
+  set guioptions-=e      # Set gui-tabs as terminal
+  set guitablabel=%M\ %t
 endif
 
 # Airline settings
@@ -304,8 +324,9 @@ set noswapfile
 # => Persistent Undo
 # -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
-# silent !mkdir -p ~/.config/vim/{undodir,autoload} > /dev/null 2>&1
-set undodir=~/.vim/undodir
+# silent !mkdir -p ~/$MYVIMDIR/{undodir,autoload} > /dev/null 2>&1
+var _myvimdir = fnamemodify($MYVIMRC, ':h')
+&undodir = _myvimdir .. '/undodir'
 set undofile
 
 # -------------------------------------------------------------------

@@ -1,13 +1,15 @@
 vim9script
-# ==============================================================================
+# ====================================================================
 # Windows OS
+#
 # instead of: !clear && python %
 # do: !clear; python %
 # set shell=powershell
+#
 # :help powershell
-# ==============================================================================
+# ====================================================================
 
-# ==============================================================================
+# ====================================================================
 # VIMproved
 set nocompatible
 filetype plugin on
@@ -37,6 +39,7 @@ plug#begin()
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'tpope/vim-fugitive'
+  Plug 'luochen1990/rainbow'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
@@ -50,6 +53,7 @@ plug#begin()
   # Plug 'hashivim/vim-terraform'
   # Plug 'pearofducks/ansible-vim'
   # Plug 'yasuhiroki/github-actions-yaml.vim'
+  Plug 'liquidz/elin'
 
   # - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
@@ -99,6 +103,8 @@ g:lsp_diagnostics_signs_warning = {'text': '⚠'}
 g:lsp_diagnostics_signs_error = {'text': '⌦'}
 g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
 
+g:rainbow_active = 0
+
 # ========================= General Settings ========================
 # Sets how many lines of history VIM has to remember
 set history=1000
@@ -118,7 +124,7 @@ nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <silent> <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <silent> <leader>xa :xa<cr>
 
 # Fast quit
 nnoremap <leader>q :q!<cr>
@@ -145,16 +151,16 @@ nnoremap <silent> <leader>fc :Commits<cr>
 # Search down for folders and tab-completition for all file related tasks
 set path+=**
 
-# ================= Shell from MS-DOS to PowerShell =================
+# ======================= Open a default shell =======================
 if has('win64')
   nnoremap <silent> <leader>ts :ter ++close pwsh -nol<cr>
   nnoremap <silent> <leader>tp :ter ++close powershell -nol<cr>
-  nnoremap <silent> <leader>tb :ter ++close bash<cr>
+  nnoremap <silent> <leader>tb :ter ++close sh<cr>
 endif
 
 # ========================= WildOptions ==============================
 # Turn on the WiLd menu
-set wildmode=list:longest
+set wildmode=longest:list,full
 # enable ctrl-n and ctrl-p to scroll trough matches
 set wildmenu
 
@@ -203,8 +209,7 @@ set showmatch
 set mat=2
 
 # No beep on errors on terminal still visual
-set noerrorbells visualbell t_vb=
-set timeoutlen=500
+set noerrorbells visualbell t_vb= timeoutlen=500
 
 # Scrolling
 set scrolloff=8         # Start scrolling when we're 8 lines away from margins
@@ -251,12 +256,16 @@ set clipboard=unnamed
 set mouse=a
 
 # == Color terminal related stuff ==
-# set t_Co=256
 set termguicolors
 
-set background=dark
-colorscheme PaperColor
-g:airline_theme = 'transparent'
+if match($TERM_PROGRAM, '\cAlacritty') != -1
+  set background=dark
+  colorscheme tokyonight
+else
+  set background=dark
+  colorscheme PaperColor
+  g:airline_theme = 'transparent'
+endif
 
 # Set Tab bar color background to translucid and line to black
 highlight TabLineFill ctermfg=Black
@@ -271,14 +280,11 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 # Set extra options when running in GUI mode
 if has('gui_running')
-  # disable Visual Bell
-  autocmd GUIEnter * set visualbell t_vb=
-
   highlight LineNr guifg=#333D60
 
   set background=dark
-  colorscheme nord
-  g:airline_theme = 'nord'
+  colorscheme PaperColor
+  g:airline_theme = 'transparent'
 
   set gfn=JetBrainsMono_NFM:h12
   set lines=25 columns=100
@@ -321,8 +327,9 @@ set noswapfile
 # => Persistent Undo
 # -------------------------------------------------------------------
 # Keep undo history across sessions, by storing in file.
-# silent !mkdir -p ~/vimfiles/{undodir,autoload} > /dev/null 2>&1
-set undodir=~/vimfiles/undodir
+# silent !mkdir -p ~/$MYVIMDIR/{undodir,autoload} > /dev/null 2>&1
+var _myvimdir = fnamemodify($MYVIMRC, ':h')
+&undodir = _myvimdir .. '/undodir'
 set undofile
 
 # -------------------------------------------------------------------
