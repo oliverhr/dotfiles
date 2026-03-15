@@ -125,7 +125,7 @@ nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <silent> <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <silent> <leader>xa :xa<cr>
 
 # Fast quit
 nnoremap <leader>q :q!<cr>
@@ -253,7 +253,7 @@ if has('gui_running')
   set background=light
   colorscheme tokyonight
 
-  g:airline_theme = 'tomorrow'
+  g:airline_theme = 'tokyonight'
   set lines=35 columns=110
   set gfn=AdwaitaMonoNFP:h16
 
@@ -289,30 +289,30 @@ if ! has('gui_running')
   # iTerm
   elseif match($TERM_PROGRAM, '\ciTerm') != -1
     if match($ITERM_PROFILE, '\cCatpuccino') != -1
-        colorscheme catppuccin_macchiato
-        g:airline_theme = 'catppuccin_macchiato'
-        highlight Normal ctermbg=none
+      colorscheme catppuccin_macchiato
+      g:airline_theme = 'catppuccin_macchiato'
+      highlight Normal ctermbg=none
     elseif match($ITERM_PROFILE, '\cTokyonight') != -1
-        g:tokyonight_style = 'night' # available: night, storm
-        g:tokyonight_enable_italic = 1
-        colorscheme tokyonight
+      g:tokyonight_style = 'night' # available: night, storm
+      g:tokyonight_enable_italic = 1
+      colorscheme tokyonight
     elseif match($ITERM_PROFILE, '\cMonokai') != -1
-        colorscheme monokai
+      colorscheme monokai
     elseif match($ITERM_PROFILE, '\cMaterial') != -1
-        g:material_terminal_italics = 1
-        g:material_theme_style = 'default'
-        colorscheme material
-        highlight CursorLine guibg=#37474F
+      g:material_terminal_italics = 1
+      g:material_theme_style = 'default'
+      colorscheme material
+      highlight CursorLine guibg=#37474F
     elseif match($ITERM_PROFILE, '\cDark') != -1
-        colorscheme PaperColor
-        g:airline_theme = 'minimalist'
+      colorscheme PaperColor
+      g:airline_theme = 'minimalist'
     elseif match($ITERM_PROFILE, '\cLight') != -1
-        set notermguicolors
-        set background=light
-        colorscheme Solarized
+      set notermguicolors
+      set background=light
+      colorscheme Solarized
     else
-        set background=light
-        colorscheme quiet
+      set background=light
+      colorscheme quiet
     endif
 
   # WezTerm
