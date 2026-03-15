@@ -29,13 +29,6 @@ highlight clear LineNr
 # Highlight current line
 set cursorline
 
-# Colorize right extra white tab or space chars
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-# Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
-
 # ================= Color for Terminal, Scheme and Statusbar =================
 # Set options only for GUI
 if has('gui_running')
@@ -50,8 +43,6 @@ if ! has('gui_running')
   # Enable yanked to system clipboard
   set clipboard=unnamed
   set mouse=a
-
-  highlight SpecialKey guibg=bg ctermbg=none
 
   # Spelling mistakes will be colored up red.
   hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
@@ -71,5 +62,13 @@ endif
 highlight clear FoldColumn
 highlight clear Folded
 highlight clear SignColumn
+
+# Some colorschemes highlight tabs one the left - I don't like that
+highlight SpecialKey guibg=bg ctermbg=none
+# Colorize right extra white tab or space chars
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+# Display tabs and trailing spaces visually
+set list listchars=tab:\|\ ,trail:·
 
 # vim: set ft=vim ts=2 sw=2 et :
