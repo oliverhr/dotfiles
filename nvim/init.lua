@@ -4,173 +4,173 @@
 -- Bare configuration no plugins
 -- ---------------------------------------------------------------------------
 
--- Configuración básica
-vim.o.encoding = 'utf-8'
-vim.o.fileformats = 'unix,dos,mac'
+local opt = vim.opt
 
--- Historial y autoread
-vim.o.history = 1000
-vim.o.autoread = true
+-- Interfaz y Visualización
+opt.termguicolors = true   -- Colores reales de 24 bits
+opt.cursorline = true      -- Resalta la línea actual
+opt.number = false         -- Desactiva números (como pediste)
+opt.laststatus = 2         -- Siempre mostrar la barra de estado
+opt.ruler = true           -- Mostrar regla (línea/columna) en la parte inferior
+opt.cmdheight = 0          -- Espacio para mensajes de comandos
+opt.showmatch = true       -- Resalta brevemente el paréntesis/llave de cierre
+opt.matchtime = 5          -- Décimas de segundo para mostrar el match
+opt.scrolloff = 8          -- Mantiene 8 líneas de margen al hacer scroll vertical
+opt.sidescrolloff = 15     -- Mantiene 15 columnas de margen al hacer scroll horizontal
+opt.sidescroll = 1         -- Scroll horizontal más fluido (1 columna a la vez)
 
--- Visuals
-vim.o.cursorline = true
-vim.o.number = false
+-- Splits
+opt.splitright = true      -- Split Vertical a la derecha
+opt.splitbelow = true      -- Split Horizontal abajo
 
--- Status bar
-vim.o.laststatus = 2
+-- Campanas (Bells)
+opt.errorbells = false     -- Sin sonido de error
+opt.visualbell = true      -- Destello visual en lugar de pitido
 
--- Muestra linea y coumna del cursor
-vim.o.ruler = true
--- Height of the command bar
-vim.o.cmdheight = 2
+-- Archivos y Persistencia
+opt.backup = false         -- No crear backups
+opt.writebackup = false    -- No crear backup antes de sobreescribir
+opt.swapfile = false       -- No usar archivos swap
+-- Dónde guardar los undos
+local undodir = vim.fn.stdpath('config') .. '/undodir'
+if vim.fn.isdirectory(undodir) == 0 then
+    vim.fn.mkdir(undodir, "p")
+end
+opt.undodir = undodir
+opt.undofile = true        -- Guardar historial de "undo" en un archivo
 
--- Cuando un buffer es abandonado buffer se marca como hidden
-vim.o.hidden = true
+-- Folds (Plegado de código)
+opt.foldmethod = 'indent'  -- Plegar basado en la indentación
+opt.foldnestmax = 3        -- Máximo 3 niveles de profundidad
+opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
+opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
+
+-- Comportamiento de Búsqueda
+opt.ignorecase = true      -- Ignorar mayúsculas al buscar...
+opt.smartcase = true       -- ...a menos que se use una mayúscula explícita
+opt.path:append('**')      -- Permite buscar en subdirectorios (fuzzer nativo)
+opt.wildmenu = true                 -- Menú visual para sugerencias
+opt.wildmode = 'longest:full,full'  -- Completa hasta lo más largo y luego abre el menú
+-- Ignora basura
+opt.wildignore:append({ '*.pyc', '__pycache__', '.git', 'node_modules/*', '.venv/*', '**/undodir/**' })
+
+-- Otros
+opt.wrapmargin = 8         -- Margen de caracteres antes de envolver línea
+opt.clipboard = 'unnamed'  -- Usa el portapapeles del sistema (regis. "*")
+opt.mouse = 'a'            -- Soporte total de ratón
 
 -- Configure backspace so it acts as it should act
-vim.o.backspace = 'eol,start,indent'
-vim.o.whichwrap = vim.o.whichwrap .. '<,>,h,l'
+opt.backspace = { 'eol', 'indent', 'start' }
+-- Permite que h, l, las flechas y Espacio salten a la línea anterior/siguiente
+opt.whichwrap:append('<,>,[,]')
 
--- Searching
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hlsearch = true
-vim.o.incsearch = true
--- Search path
-vim.o.path = vim.o.path .. ',**'
-
--- For regular expressions turn magic on
-vim.o.magic = true
-
--- Brackets indicator
-vim.o.showmatch = true
-vim.o.matchtime = 5
-
--- Error indicators
-vim.o.errorbells = false
-vim.o.visualbell = true
-
--- Scrolling
-vim.o.scrolloff = 8
-vim.o.sidescrolloff = 15
-vim.o.sidescroll = 1
-
--- Backup and undo
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.swapfile = false
-vim.o.undodir = vim.fn.stdpath('config') .. '/undodir'
-vim.o.undofile = true
-
--- Folding
-vim.o.foldmethod = 'indent'
-vim.o.foldnestmax = 3
-vim.o.foldenable = false
-
--- Draw a foldculumn with a fixed number of columns
-vim.o.foldcolumn = '2'
--- Number of characters from the right window border where wrapping
-vim.o.wrapmargin = 8
-
--- Clipboard and mouse
-vim.o.clipboard = 'unnamed'
-vim.o.mouse = 'a'
-
-vim.o.termguicolors = true
-
--- Set ColorScheme
-vim.cmd("colorscheme retrobox")
-
-vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red", ctermbg = "red" })
+-- Highlight Trailing whitespace
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'red', ctermbg = 'red' })
 vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
-vim.o.list = true
-vim.opt.listchars = {
+opt.list = true
+opt.listchars = {
   tab = '| ',
   trail = '·'
 }
 
--- Time in milliseconds to wait for a mapped sequence to complete.
-vim.o.timeoutlen = 500
+-- Set ColorScheme
+vim.cmd('colorscheme retrobox')
 
 -- Mappings
-vim.api.nvim_set_keymap('n', ';', ':',  { noremap = true })
-vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true })
-vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true })
-
--- Shift + space map to esc
-vim.api.nvim_set_keymap('i', '<S-Space>', '<Esc>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<S-Space>', 'i',     { noremap = true })
-
--- Window navigation
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-W>j', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-W>k', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-W>h', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-W>l', { noremap = true })
-
--- Clear search highlight with Enter
-vim.api.nvim_set_keymap('n', '<CR>', ':nohlsearch<CR><CR>', { noremap = true, silent = true })
-
--- Move lines with Shift+Up/Down
-vim.api.nvim_set_keymap('n', '<S-Up>',   ':m-2<CR>',      { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<S-Down>', ':m+<CR>',       { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<S-Up>',   '<Esc>:m-2<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<S-Down>', '<Esc>:m+<CR>',  { noremap = true, silent = true })
+-- Time in milliseconds to wait for a mapped sequence to complete.
+-- Comportamiento y Tiempos
+opt.timeoutlen = 500       -- Tiempo de espera para mapeos (ms)
+opt.updatetime = 300       -- Tiempo para disparar eventos (buena práctica)
 
 -- Leader Mapping to spacebar
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-vim.api.nvim_set_keymap('n', '<leader>n', ':set nu! rnu!<CR>', { noremap = true, silent = true })
+-- Semicolon to enter command mode (más rápido que Shift + :)
+vim.keymap.set('n', ';', ':')
 
--- Buffers
-vim.api.nvim_set_keymap('n', '<leader>bh', ':enew<CR>',         { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bv', ':vnew<CR>',         { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bt', ':tabnew<CR>',       { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bdelete!<CR>',     { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>bx', ':w | bdelete<CR>',  { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ba', ':%bdelete<CR>',     { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<CR>',        { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>bp', ':bprevious<CR>',    { noremap = true, silent = true })
+-- Shift + Space para alternar entre Insert y Normal
+vim.keymap.set('i', '<S-Space>', '<Esc>')
+vim.keymap.set('n', '<S-Space>', 'i')
+
+-- Treat long lines as visual lines instead of logic lines
+-- si hay un "count" (ej. 5j), usa j normal, si no, usa gj.
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
+-- Navegación de ventanas (Se quita el Ctrl+W para ganar velocidad)
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+-- Limpiar resaltado de búsqueda con Enter
+vim.keymap.set('n', '<CR>', '<cmd>nohlsearch<CR>', { silent = true })
+
+-- Mover líneas con Shift+Up/Down (Normal mode)
+vim.keymap.set('n', '<S-Up>', '<cmd>m-2<CR>==', { silent = true })
+vim.keymap.set('n', '<S-Down>', '<cmd>m+<CR>==', { silent = true })
+-- Mover líneas con Shift+Up/Down (Insert mode)
+vim.keymap.set('i', '<S-Up>', '<Esc><cmd>m-2<CR>==gi', { silent = true })
+vim.keymap.set('i', '<S-Down>', '<Esc><cmd>m+<CR>==gi', { silent = true })
+-- Mover líneas con Shift+Up/Down (Visual mode)
+vim.keymap.set('v', '<S-Up>', ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true })
+
+-- Toggle numbers
+vim.keymap.set('n', '<leader>n', '<cmd>set nu! rnu!<CR>', { silent = true, desc = 'Toggle line numbers' })
+
+-- Buffer management
+vim.keymap.set('n', '<leader>bh', '<cmd>new<CR>',          { silent = true, desc = 'New horizontal buffer' })
+vim.keymap.set('n', '<leader>bv', '<cmd>vnew<CR>',         { silent = true, desc = 'New vertical buffer' })
+vim.keymap.set('n', '<leader>bt', '<cmd>tabnew<CR>',       { silent = true, desc = 'New tab' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<CR>',      { silent = true, desc = 'Delete current buffer' })
+vim.keymap.set('n', '<leader>bx', '<cmd>w | bdelete<CR>',  { silent = true, desc = 'Write and close current buffer' })
+vim.keymap.set('n', '<leader>ba', '<cmd>%bdelete<CR>',     { silent = true, desc = 'Delete all buffers' })
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>',        { silent = true, desc = 'Go to next buffer' })
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<CR>',    { silent = true, desc = 'Go to previous buffer' })
 
 -- Tabs
-vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<CR>',   { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>to', ':tabonly<CR>',  { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>tm', ':tabmove<CR>',  { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>te', ':tabedit <C-R>=expand("%:~:.:h")<CR>/', { noremap = true })
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>',   { desc = 'New Tab' })
+vim.keymap.set('n', '<leader>to', ':tabonly<CR>',  { desc = 'Leave current tab open and close the rest' })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close current tab' })
+vim.keymap.set('n', '<leader>tm', ':tabmove<CR>',  { desc = 'Move the current tab to after tab page N' })
 
 vim.api.nvim_set_keymap('n', '<S-Right>', ':tabnext<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-Left>',  ':tabprevious<CR>', { noremap = true })
 
--- Splits
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.api.nvim_set_keymap('n', '<leader>sv', ':vsplit <C-R>=expand("%:~:.:h")<CR>/', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sh', ':split <C-R>=expand("%:~:.:h")<CR>/', { noremap = true })
+-- Go to cmd mode in current file path to open on vertical or horizontal split
+vim.keymap.set('n', '<leader>oh', ':split <C-R>=expand("%:~:.:h")<CR>/',    { desc = 'Edit a file on a hsplit ...' })
+vim.keymap.set('n', '<leader>ov', ':vsplit <C-R>=expand("%:~:.:h")<CR>/',   { desc = 'Edit a file on a vsplit ...' })
+vim.keymap.set('n', '<leader>ot', ':tabedit <C-R>=expand("%:~:.:h")<CR>/',  { desc = 'Edit a file on a new tab ...' })
 
 -- Change directory to buffer's directory
-vim.api.nvim_set_keymap('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { desc = 'CD to the current open buffer container dir' })
 
--- Reload vimrc
-vim.api.nvim_set_keymap('n', '<leader>rc', ':view $MYVIMRC<CR>', { noremap = true, silent = true })
+-- Open vimrc in read mode
+vim.keymap.set('n', '<leader>rc', ':view $MYVIMRC<CR>', { silent = true, desc = 'Open MYVIMRC in view mode' })
 
 -- Save and quit
-vim.api.nvim_set_keymap('n', '<leader>w',   ':w<CR>',   { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>wa',  ':wa<CR>',  { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>x',   ':x<CR>',   { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>xa',  ':xa<CR>',  { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>w',   ':w<CR>',   { silent = true, desc = 'Write buffer' })
+vim.keymap.set('n', '<leader>wa',  ':wa<CR>',  { silent = true, desc = 'Write all buffers' })
+vim.keymap.set('n', '<leader>x',   ':x<CR>',   { silent = true, desc = 'Write current buffer and exit' })
+vim.keymap.set('n', '<leader>xa',  ':xa<CR>',  { silent = true, desc = 'Write all the buffers en exit' })
 
-vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true , silent = true })
-vim.api.nvim_set_keymap('n', '<leader>qa', ':qa!<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>q',  ':q!<CR>',  { silent = true, desc = 'No save close the current window if last exit vim' })
+vim.keymap.set('n', '<leader>qa', ':qa!<CR>', { silent = true, desc = 'No save close all the windows and exit vim'})
 
 -- Spell checking
-vim.api.nvim_set_keymap('n', '<leader>sl', ':setlocal spell!<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sn', ']s', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sp', '[s', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sa', 'zg', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ss', 'z=', { noremap = true })
+vim.keymap.set('n', '<leader>sl', ':setlocal spell!<CR>', { desc = 'Toggle spell check for current buffer' })
+vim.keymap.set('n', '<leader>sn', ']s', { desc = 'Move to the next misspelled word' })
+vim.keymap.set('n', '<leader>sp', '[s', { desc = 'Move to the previous misspelled word' })
+vim.keymap.set('n', '<leader>sa', 'zg', { desc = 'Add misspelles word as good to the spellfile' })
+vim.keymap.set('n', '<leader>ss', 'z=', { desc = 'Find a suggestion for current misspelled word' })
 
 -- Misc
-vim.api.nvim_set_keymap('n', '<leader>pp', ':setlocal paste!<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>pp', ':setlocal paste!<CR>', { desc = 'Toggle local paste' })
+
+-- Buscar archivos en subcarpetas de forma rápida
+vim.keymap.set('n', '<leader>f', ':find *', { desc = "Find files (native)" })
 
 -- Filetype based configurations
 vim.cmd([[
@@ -211,7 +211,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group = aug_GeneralSettings,
   pattern = '*',
   callback = function(ev)
-    if vim.bo[ev.buf].filetype == "gitcommit" then return end
+    if vim.bo[ev.buf].filetype == 'gitcommit' then return end
 
     local mark = vim.api.nvim_buf_get_mark(ev.buf, '"')
     local line_count = vim.api.nvim_buf_line_count(ev.buf)
