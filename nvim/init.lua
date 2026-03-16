@@ -248,13 +248,13 @@ local _bg_r = "#fb4934"
 local _bg_s = "#3c3836"
 
 local mode_colors = {
-    n      = { bg = _bg_n, fg = _fg_a }, -- Normal (Aqua/Verde azulado)
-    i      = { bg = _bg_i, fg = _fg_a }, -- Insert (Azul)
-    v      = { bg = _bg_i, fg = _fg_a }, -- Visual (Naranja)
+    n      = { bg = _bg_n, fg = _fg_a }, -- Normal
+    i      = { bg = _bg_i, fg = _fg_a }, -- Insert
+    v      = { bg = _bg_i, fg = _fg_a }, -- Visual
     V      = { bg = _bg_i, fg = _fg_a }, -- V-Line
     ['']   = { bg = _bg_i, fg = _fg_a }, -- V-Block
-    c      = { bg = _bg_c, fg = _fg_a }, -- Command (Amarillo)
-    R      = { bg = _bg_r, fg = _fg_a }, -- Replace (Rojo)
+    c      = { bg = _bg_c, fg = _fg_a }, -- Command
+    R      = { bg = _bg_r, fg = _fg_a }, -- Replace
 }
 
 function MyStatusLine()
