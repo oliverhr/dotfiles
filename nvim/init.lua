@@ -82,7 +82,7 @@ vim.o.termguicolors = true
 vim.cmd("colorscheme retrobox")
 
 vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red", ctermbg = "red" })
-vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
+vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
 vim.o.list = true
 vim.opt.listchars = {
   tab = '| ',
@@ -185,6 +185,41 @@ vim.cmd([[
     autocmd FileType xml setlocal noet ci pi sts=0 sw=2 ts=2
   augroup END
 ]])
+
+local aug_GeneralSettings = vim.api.nvim_create_augroup('GeneralSettings', { clear = true })
+
+-- Trim Trailing Whitespace (but excluded fts on map)
+local ignore_ft_clean_trailing = {
+  markdown = true,
+  gitcommit = true,
+}
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = aug_GeneralSettings,
+  pattern = '*',
+  callback = function(ev)
+    local ft = vim.bo[ev.buf].filetype
+    if ignore_ft_clean_trailing[ft] then return end
+
+    local current_view = vim.fn.winsaveview()
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
+    vim.fn.winrestview(current_view)
+  end,
+})
+
+-- Return to last edit position on files (except gitcommit)
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = aug_GeneralSettings,
+  pattern = '*',
+  callback = function(ev)
+    if vim.bo[ev.buf].filetype == "gitcommit" then return end
+
+    local mark = vim.api.nvim_buf_get_mark(ev.buf, '"')
+    local line_count = vim.api.nvim_buf_line_count(ev.buf)
+    if mark[1] > 0 and mark[1] <= line_count then
+      vim.api.nvim_win_set_cursor(0, mark)
+    end
+  end,
+})
 
 -- Open Explore on a floating window
 local function open_floating_explorer()
