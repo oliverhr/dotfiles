@@ -1,4 +1,3 @@
--- vim: set ft=lua ts=2 sw=2 sts=2 noet
 -- ---------------------------------------------------------------------------
 -- NEOVIM
 -- ---------------------------------------------------------------------------
@@ -180,15 +179,12 @@ vim.cmd([[
     autocmd Filetype c,cpp setlocal noexpandtab sw=4 ts=4 cinoptions+=L0
     autocmd FileType sh,bash,go setlocal noexpandtab ci pi sts=0 sw=4 ts=4
     autocmd Filetype python,ruby,php setlocal expandtab sw=4 ts=4
-    autocmd Filetype json,javascript,typescript,html setlocal expandtab sw=2 ts=2 sts=2
+    autocmd Filetype lua,json,javascript,typescript,html setlocal expandtab sw=2 ts=2 sts=2
     autocmd Filetype yaml setlocal expandtab sw=2 ts=2 sts=2 wrap
     autocmd Filetype markdown setlocal expandtab sw=2 ts=2 co=120 wrap linebreak
     autocmd FileType xml setlocal noet ci pi sts=0 sw=2 ts=2
   augroup END
 ]])
-
--- Syntax
-vim.cmd('syntax on')
 
 -- Open Explore on a floating window
 local function open_floating_explorer()
@@ -207,3 +203,4 @@ local function open_floating_explorer()
 end
 vim.keymap.set('n', '<leader>E', open_floating_explorer)
 
+-- vim: set ft=lua ts=2 sw=2 sts=2 et:
