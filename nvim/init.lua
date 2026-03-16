@@ -238,4 +238,43 @@ local function open_floating_explorer()
 end
 vim.keymap.set('n', '<leader>E', open_floating_explorer)
 
+-- Status Bar colors
+local _fg_a = '#282828'
+local _bg_n = '#83a598'
+local _bg_i = "#8ec07c"
+local _bg_v = "#fe8019"
+local _bg_c = "#fabd2f"
+local _bg_r = "#fb4934"
+local _bg_s = "#3c3836"
+
+local mode_colors = {
+    n      = { bg = _bg_n, fg = _fg_a }, -- Normal (Aqua/Verde azulado)
+    i      = { bg = _bg_i, fg = _fg_a }, -- Insert (Azul)
+    v      = { bg = _bg_i, fg = _fg_a }, -- Visual (Naranja)
+    V      = { bg = _bg_i, fg = _fg_a }, -- V-Line
+    ['']   = { bg = _bg_i, fg = _fg_a }, -- V-Block
+    c      = { bg = _bg_c, fg = _fg_a }, -- Command (Amarillo)
+    R      = { bg = _bg_r, fg = _fg_a }, -- Replace (Rojo)
+}
+
+function MyStatusLine()
+    local mode = vim.api.nvim_get_mode().mode
+    local colors = mode_colors[mode] or mode_colors.n
+
+    vim.api.nvim_set_hl(0, "StatusLineMode", { fg = colors.fg, bg = colors.bg, bold = true })
+    vim.api.nvim_set_hl(0, "StatusLineFile", { fg = colors.bg, bg = _bg_s })
+
+    local sections = {
+        "%#StatusLineMode# ",
+        string.upper(vim.fn.mode()),    -- Muestra el modo
+        " %#StatusLineFile# %f %m%r",   -- Archivo y estado
+        "%=",                           -- Separador central
+        "%#StatusLineFile# %Y ",        -- Tipo de archivo
+        "%#StatusLineMode# %l/%L:%c ",  -- Posición
+    }
+    return table.concat(sections)
+end
+
+vim.opt.statusline = "%!v:lua.MyStatusLine()"
+
 -- vim: set ft=lua ts=2 sw=2 sts=2 et:
