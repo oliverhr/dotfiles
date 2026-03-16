@@ -1,3 +1,4 @@
+-- vim: set ft=lua ts=2 sw=2 sts=2 noet
 -- ---------------------------------------------------------------------------
 -- NEOVIM
 -- ---------------------------------------------------------------------------
@@ -14,16 +15,17 @@ vim.o.autoread = true
 
 -- Visuals
 vim.o.cursorline = true
-vim.o.number = true
+vim.o.number = false
 
 -- Status bar
 vim.o.laststatus = 2
--- Always show current position
+
+-- Muestra linea y coumna del cursor
 vim.o.ruler = true
 -- Height of the command bar
 vim.o.cmdheight = 2
 
--- A buffer becomes hidden when it is abandoned
+-- Cuando un buffer es abandonado buffer se marca como hidden
 vim.o.hidden = true
 
 -- Configure backspace so it acts as it should act
@@ -80,10 +82,13 @@ vim.o.termguicolors = true
 -- Set ColorScheme
 vim.cmd("colorscheme retrobox")
 
-vim.cmd([[highlight ExtraWhitespace ctermbg=red guibg=red]])
-vim.cmd([[match ExtraWhitespace /\s\+$/]])
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { bg = "red", ctermbg = "red" })
+vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
 vim.o.list = true
-vim.o.listchars = 'tab:| ,trail:·'
+vim.opt.listchars = {
+  tab = '| ',
+  trail = '·'
+}
 
 -- Time in milliseconds to wait for a mapped sequence to complete.
 vim.o.timeoutlen = 500
@@ -115,7 +120,7 @@ vim.api.nvim_set_keymap('i', '<S-Down>', '<Esc>:m+<CR>',  { noremap = true, sile
 -- Leader Mapping to spacebar
 vim.g.mapleader = ' '
 
-vim.api.nvim_set_keymap('n', '<leader>n', ':set number!<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>n', ':set nu! rnu!<CR>', { noremap = true, silent = true })
 
 -- Buffers
 vim.api.nvim_set_keymap('n', '<leader>bh', ':enew<CR>',         { noremap = true })
@@ -150,12 +155,12 @@ vim.api.nvim_set_keymap('n', '<leader>cd', ':cd %:p:h<CR>:pwd<CR>', { noremap = 
 vim.api.nvim_set_keymap('n', '<leader>rc', ':view $MYVIMRC<CR>', { noremap = true, silent = true })
 
 -- Save and quit
-vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>wa', ':wa<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>x', ':x<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>xa', ':xa<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>w',   ':w<CR>',   { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>wa',  ':wa<CR>',  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>x',   ':x<CR>',   { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>xa',  ':xa<CR>',  { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q!<CR>', { noremap = true , silent = true })
 vim.api.nvim_set_keymap('n', '<leader>qa', ':qa!<CR>', { noremap = true, silent = true })
 
 -- Spell checking
@@ -177,10 +182,28 @@ vim.cmd([[
     autocmd Filetype python,ruby,php setlocal expandtab sw=4 ts=4
     autocmd Filetype json,javascript,typescript,html setlocal expandtab sw=2 ts=2 sts=2
     autocmd Filetype yaml setlocal expandtab sw=2 ts=2 sts=2 wrap
-    autocmd Filetype markdown setlocal expandtab sw=2 ts=2 wrap linebreak
+    autocmd Filetype markdown setlocal expandtab sw=2 ts=2 co=120 wrap linebreak
     autocmd FileType xml setlocal noet ci pi sts=0 sw=2 ts=2
   augroup END
 ]])
 
 -- Syntax
-vim.cmd([[syntax on]])
+vim.cmd('syntax on')
+
+-- Open Explore on a floating window
+local function open_floating_explorer()
+  local buf = vim.api.nvim_create_buf(false, true)
+  local opts = {
+    relative = 'editor',
+    width = math.floor(vim.o.columns * 0.8),
+    height = math.floor(vim.o.lines * 0.8),
+    col = math.floor(vim.o.columns * 0.1),
+    row = math.floor(vim.o.lines * 0.1),
+    style = 'minimal',
+    border = 'rounded',
+  }
+  vim.api.nvim_open_win(buf, true, opts)
+  vim.cmd('Ex') -- Open netrw
+end
+vim.keymap.set('n', '<leader>E', open_floating_explorer)
+
