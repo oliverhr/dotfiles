@@ -32,7 +32,7 @@ opt.backup = false         -- No crear backups
 opt.writebackup = false    -- No crear backup antes de sobreescribir
 opt.swapfile = false       -- No usar archivos swap
 -- Dónde guardar los undos
-local undodir = vim.fn.stdpath('config') .. '/undodir'
+local undodir = vim.fn.stdpath('state') .. '/undodir'
 if vim.fn.isdirectory(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
