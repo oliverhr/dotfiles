@@ -118,6 +118,10 @@ vim.keymap.set('i', '<S-Down>', '<Esc><cmd>m+<CR>==gi', { silent = true })
 vim.keymap.set('v', '<S-Up>', ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true })
 
+-- Toggle explorer
+vim.g.netrw_banner = false
+vim.keymap.set('n', '<Bslash>', '<cmd>25Lexplore!<CR>', { silent= true, desc = 'Toggle file explorer' })
+
 -- Toggle numbers
 vim.keymap.set('n', '<leader>n', '<cmd>set nu! rnu!<CR>', { silent = true, desc = 'Toggle line numbers' })
 
