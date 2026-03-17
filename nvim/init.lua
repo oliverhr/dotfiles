@@ -44,6 +44,8 @@ opt.foldmethod = 'indent'  -- Plegar basado en la indentación
 opt.foldnestmax = 3        -- Máximo 3 niveles de profundidad
 opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
 opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
+-- Formato para al gutter (agrega espacios entre los numbers y el editor)
+opt.statuscolumn = '%s%=%C%l  '
 
 -- Comportamiento de Búsqueda
 opt.ignorecase = true      -- Ignorar mayúsculas al buscar...
@@ -54,15 +56,14 @@ opt.wildmode = 'longest:full,full'  -- Completa hasta lo más largo y luego abre
 -- Ignora basura
 opt.wildignore:append({ '*.pyc', '__pycache__', '.git', 'node_modules/*', '.venv/*', '**/undodir/**' })
 
--- Otros
-opt.wrapmargin = 8         -- Margen de caracteres antes de envolver línea
-opt.clipboard = 'unnamed'  -- Usa el portapapeles del sistema (regis. "*")
-opt.mouse = 'a'            -- Soporte total de ratón
-
 -- Configure backspace so it acts as it should act
 opt.backspace = { 'eol', 'indent', 'start' }
 -- Permite que h, l, las flechas y Espacio salten a la línea anterior/siguiente
 opt.whichwrap:append('<,>,[,]')
+opt.wrapmargin = 8         -- Margen de caracteres antes del wrap a una línea
+
+opt.clipboard = 'unnamed'  -- Usa el portapapeles del sistema
+opt.mouse = 'a'            -- Soporte total de ratón
 
 -- Highlight Trailing whitespace
 vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'red', ctermbg = 'red' })
