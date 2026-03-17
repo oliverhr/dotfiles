@@ -120,6 +120,7 @@ vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true })
 
 -- Toggle explorer
 vim.g.netrw_banner = false
+vim.g.netrw_liststyle = 3
 vim.keymap.set('n', '<Bslash>', '<cmd>25Lexplore!<CR>', { silent= true, desc = 'Toggle file explorer' })
 
 -- Toggle numbers
