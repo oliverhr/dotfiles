@@ -36,13 +36,13 @@ test -s $ZDOTDIR/os.conf.zsh && . $ZDOTDIR/os.conf.zsh || true
 test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
 
 # -----------------------------------------------------------------------------
-# Completion zsh style
-# -----------------------------------------------------------------------------
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
-
-# -----------------------------------------------------------------------------
 # ZSH Antidode plugin manager
 # -----------------------------------------------------------------------------
 source $ZDOTDIR/antidote/antidote.zsh
 antidote load $ZDOTDIR/antidote_zsh_plugins.conf
 
+# -----------------------------------------------------------------------------
+# Completion zsh style
+# -----------------------------------------------------------------------------
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m' add-space false
+zstyle ':fzf-tab:*' query-string ''

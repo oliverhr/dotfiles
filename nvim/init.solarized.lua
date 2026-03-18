@@ -7,6 +7,7 @@
 local opt = vim.opt
 
 opt.termguicolors = false  -- Colores reales de 24 bits
+opt.background = 'light'
 vim.cmd('colorscheme solarized')
 
 -- Interfaz y Visualización
