@@ -27,10 +27,6 @@ set cursorline
 set clipboard=unnamed
 set mouse=a
 
-" Set Tab bar color background to translucid and line to black
-highlight TabLineFill ctermfg=Black
-highlight SpecialKey guibg=bg ctermbg=none
-
 " Spelling mistakes will be colored up red.
 hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
 hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
@@ -42,7 +38,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
+set list listchars=tab:⫶\ ,trail:·
 
 " ================= Color for Terminal, Scheme and Statusbar =================
 set notermguicolors
@@ -73,3 +69,6 @@ highlight clear FoldColumn
 highlight clear Folded
 highlight clear SignColumn
 
+" Set Tab bar color background to translucid and line to black
+highlight TabLineFill ctermbg=0 ctermfg=10
+highlight SpecialKey guibg=bg ctermbg=none ctermfg=10
