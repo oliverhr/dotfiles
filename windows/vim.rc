@@ -71,6 +71,7 @@ plug#begin()
   Plug 'rakr/vim-two-firewatch',            { 'as': 'colors/two-fire-watch' }
   Plug 'sonph/onehalf',                     { 'as': 'colors/onehalf', 'rtp': 'vim/' }
   Plug 'tyrannicaltoucan/vim-deep-space',   { 'as': 'colors/deepspace' }
+  Plug 'dunstontc/vim-vscode-theme',        { 'as': 'colors/vim-vscode' }
 
   # - - - Loaded last - - -
   Plug 'ryanoasis/vim-devicons'
@@ -260,7 +261,7 @@ set termguicolors
 
 if match($TERM_PROGRAM, '\cAlacritty') != -1
   set background=dark
-  colorscheme tokyonight
+  colorscheme dark_plus
 else
   set background=dark
   colorscheme PaperColor
@@ -283,8 +284,8 @@ if has('gui_running')
   highlight LineNr guifg=#333D60
 
   set background=dark
-  colorscheme PaperColor
-  g:airline_theme = 'transparent'
+  colorscheme deep-space
+  g:airline_theme = 'deep_space'
 
   set gfn=JetBrainsMono_NFM:h12
   set lines=25 columns=100
