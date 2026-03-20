@@ -92,8 +92,10 @@ if ! has('gui_running')
 
   # Override all and set color dynamically
   if !empty($VIM_COLOR)
-    execute "colorscheme" $VIM_COLOR
+    &background = $VIM_BG ?? 'dark'
+    execute "colorscheme" "$VIM_COLOR"
     g:airline_theme = $VIM_COLOR
+    highlight Comment cterm=NONE      # when tmux is set to screen-256color
   endif
 endif
 
