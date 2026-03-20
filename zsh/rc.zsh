@@ -31,6 +31,11 @@ test -s $RCDOTDIR/init.rc && . $RCDOTDIR/init.rc || true
 test -s $ZDOTDIR/os.conf.zsh && . $ZDOTDIR/os.conf.zsh || true
 
 # -----------------------------------------------------------------------------
+# Tools configuration for ZSH only
+# -----------------------------------------------------------------------------
+test -s $ZDOTDIR/tools.zsh && . $ZDOTDIR/tools.zsh || true
+
+# -----------------------------------------------------------------------------
 # Custom ZSH configuration (Needs to be created explicitly)
 # -----------------------------------------------------------------------------
 test -s $ZDOTDIR/custom.zsh && . $ZDOTDIR/custom.zsh || true
