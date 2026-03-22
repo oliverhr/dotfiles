@@ -10,9 +10,9 @@ tmx () {
 	fi
 
 	local _sh=
-	if [[ -n "$ZSH_VERSION" ]]; then
+	if [ -n "$ZSH_VERSION" ]; then
 		_sh=$(which zsh)
-	elif [[ -n "$BASH_VERSION"  ]]; then
+	elif [ -n "$BASH_VERSION" ]; then
 		_sh=$(which bash)
 	fi
 	# Force 256 and unicode with a new session/attach
