@@ -64,7 +64,7 @@ if ! has('gui_running')
   # Kitty
   elseif match($TERM_PROGRAM, '\cKitty') != -1
     set background=dark
-    colorscheme tokyonight
+    colorscheme gruvbox
 
   # Ghostty
   elseif match($TERM_PROGRAM, '\cGhostty') != -1

@@ -71,6 +71,10 @@ set showmatch
 # How many tenths of a second to blink when matching brackets
 set mat=2
 
+# Splits prefer to the right and below
+set splitright
+set splitbelow
+
 # No beep on errors on terminal still visual
 set noerrorbells visualbell t_vb=
 set timeoutlen=500
