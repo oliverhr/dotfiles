@@ -86,6 +86,10 @@ set sidescroll=1
 
 # Show status line
 set laststatus=2
+# Show mode below cmd disabled
+set noshowmode
+# Show tabline when more than one tab is open
+set showtabline=1
 
 # -------------------------------------------------------------------
 # => File backups
