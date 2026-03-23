@@ -1,6 +1,6 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
-# _SHELL is defined on ~/.config/$_SHELL/rc.[sh|zsh]
+# _SHELL - defined on ~/.config/$_SHELL/rc.[sh|zsh]
 export SHELL=$(which $_SHELL)
 
 # -----------------------------------------------------------------------------

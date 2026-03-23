@@ -83,9 +83,6 @@ map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
 
-# Splits prefer to the right and below
-set splitright
-set splitbelow
 # Open a vertical split with the current buffer's relative path
 map <leader>sv :vsplit <c-r>=expand('%:~:.:h')<cr>/
 # Open a horizontal split with the current buffer's relative path

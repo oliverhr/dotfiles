@@ -4,16 +4,21 @@
 
 alias view='vim -R'
 
-if [[ $0 == '-bash' ]]; then
-	alias confshell='view ~/.config/bash'
-	alias confbash='view ~/.config/bash/dot.bashrc.sh'
-	alias checkhistory='view ~/.bash_history'
-else
-	# assuming zsh
-	alias confshell='view ~/.config/zsh'
-	alias confzsh='view ~/.config/zsh/dot.zshrc.zsh'
-	alias checkhistory='view ~/.zsh_history'
-fi
+# _SHELL - defined on ~/.config/$_SHELL/rc.[sh|zsh]
+case "$_SHELL" in
+	bash)
+		alias confshell='view ~/.config/bash'
+		alias confbash='view ~/.config/bash/dot.bashrc.sh'
+		alias checkhistory='view ~/.bash_history'
+		;;
+	zsh)
+		alias confshell='view ~/.config/zsh'
+		alias confzsh='view ~/.config/zsh/dot.zshrc.zsh'
+		alias checkhistory='view ~/.zsh_history'
+		;;
+	*)
+		echo "Unknown shell '$_SHELL'"
+esac
 
 # Conf - Alias
 alias confdir='cd ~/.config/;'
