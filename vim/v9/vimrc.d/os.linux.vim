@@ -6,7 +6,6 @@ nnoremap <silent> <leader>ts :ter ++noclose<cr>
 nnoremap <silent> <leader>tp :ter ++close<cr>
 
 # == Color terminal related stuff ==
-# set t_Co=256
 set termguicolors
 
 # Enable this only when terminal dislay weird chars
@@ -17,6 +16,7 @@ set t_RV=
 # Colors
 set background=dark
 colorscheme tokyonight
+highlight Comment cterm=NONE
 g:airline_theme = 'tokyonight'
 
 if has('gui_running')
