@@ -35,9 +35,6 @@ nnoremap <silent> <leader>fl :Lines<cr>
 nnoremap <silent> <leader>fs :BLines<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 
-" Search down for folders and tab-completition for all file related tasks
-set path+=**
-
 " ================ Shell buffet stay opened after exit ===============
 nnoremap <silent> <leader>t :ter ++noclose<cr>
 
@@ -98,17 +95,6 @@ map <leader>sh :split <c-r>=expand('%:~:.:h')<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-  " nothing for the moment
-endtry
-
-" Remember info about open buffers on close
-set viminfo^=%
-
 " ================ Custom Mappings ==================
 " Additional way to go to toggle from insert and nomal mode
 " Works on terminal and GUI in windows, in macos only with GUI
@@ -121,11 +107,11 @@ nnoremap ; :
 nnoremap <leader>vb <c-v>
 
 " Insert date time pressing <f7> key
-:nnoremap <F7> "=strftime('%c')<cr>P
-:inoremap <F7> <C-R>=strftime('%c')<cr>
+nnoremap <F7> "=strftime('%c')<cr>P
+inoremap <F7> <C-R>=strftime('%c')<cr>
 
 " Clear search higlight pressing enter same as :noh
-:nnoremap <silent> <CR> :nohlsearch<cr><cr>
+nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 " Move a line of text using SHIFT+[jk]
 nnoremap <S-Up> :m-2<cr>

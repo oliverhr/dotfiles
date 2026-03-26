@@ -45,12 +45,13 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.zip,*.exe,*.pdb  " Windows
 
+" Search down for folders and tab-completition for all file related tasks
+set path+=**
+
 " Always show current position
 set ruler
 " Height of the command bar
 set cmdheight=2
-" A buffer becomes hidden when it is abandoned
-set hidden
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -70,6 +71,19 @@ set magic
 set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
+
+" A buffer becomes hidden when it is abandoned
+set hidden
+" Specify the behavior when switching between buffers
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+  " nothing for the moment
+endtry
+
+" Remember info about open buffers on close
+set viminfo^=%
 
 " No annoying sound on errors
 set noerrorbells
