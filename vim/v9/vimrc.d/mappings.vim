@@ -12,9 +12,9 @@ nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
 nnoremap <silent> <leader>x :x<cr>
-nnoremap <silent> <leader>wx :xa<cr>
+nnoremap <silent> <leader>xa :xa<cr>
 
-# Fast quit
+# Fast quit no save
 nnoremap <leader>q :q!<cr>
 nnoremap <silent> <leader>qa :qa!<cr>
 
@@ -35,9 +35,6 @@ nnoremap <silent> <leader>fl :Lines<cr>
 nnoremap <silent> <leader>fs :BLines<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 
-# Search down for folders and tab-completition for all file related tasks
-set path+=**
-
 # -----------------------------------------------------------------------------
 # => Moving around, tabs, windows and buffers
 # -----------------------------------------------------------------------------
@@ -55,7 +52,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 # Quick open blank/new buffers
-map <leader>bh :enew<cr>
+map <leader>bw :enew<cr>
+map <leader>bh :new<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 
@@ -99,12 +97,8 @@ nmap <S-Space> i
 # In normal mode press ; to go to commamd mode ':'
 nnoremap ; :
 
-# Insert date time pressing <f7> key
-nnoremap <silent> <F7> A<C-R>=strftime('%Y-%m-%d %H:%M:%S ')<cr>
-inoremap <silent> <F7> <C-R>=strftime('%c ')<cr>
-
 # Clear search higlight pressing enter same as :noh
-:nnoremap <silent> <CR> :nohlsearch<cr><cr>
+nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
 # Move a line of text using SHIFT+[jk]
 nnoremap <S-Up> :m-2<cr>
@@ -133,5 +127,9 @@ noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 # Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+# Insert date time pressing <f7> key
+nnoremap <silent> <F7> A<C-R>=strftime('%Y-%m-%d %H:%M:%S ')<cr>
+inoremap <silent> <F7> <C-R>=strftime('%c ')<cr>
 
 # vim: set ft=vim ts=2 sw=2 et :

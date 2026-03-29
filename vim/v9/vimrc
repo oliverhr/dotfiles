@@ -5,7 +5,7 @@ if !exists('$MYVIMDIR')
   var $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
 endif
 
-source $MYVIMDIR/vimrc.d/common.vim
+source $MYVIMDIR/vimrc.d/settings.vim
 source $MYVIMDIR/vimrc.d/plugins.vim
 source $MYVIMDIR/vimrc.d/mappings.vim
 source $MYVIMDIR/vimrc.d/appearance.vim
@@ -17,6 +17,8 @@ elseif has('osx')
 else
   source $MYVIMDIR/vimrc.d/os.linux.vim
 endif
+
+source $MYVIMDIR/vimrc.d/autocmds.vim
 
 # Patch to unify bgcolor for number and fold column
 highlight clear FoldColumn
