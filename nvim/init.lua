@@ -6,9 +6,10 @@
 
 local opt = vim.opt
 
-opt.termguicolors = true   -- Colores reales de 24 bits
+opt.termguicolors = true -- Colores reales de 24 bits
 opt.background = 'dark'
-vim.cmd('colorscheme retrobox')
+vim.cmd.colorscheme 'retrobox'
+
 --
 -- Status Bar colors
 local _bg   = "#3c3836"
@@ -24,6 +25,7 @@ opt.number = true          -- Desactiva números
 opt.relativenumber = true  -- Desactiva números relativos
 opt.cursorline = true      -- Resalta la línea actual
 opt.laststatus = 2         -- Siempre mostrar la barra de estado
+opt.showmode = false       -- No mostrar mode, ya se muestra en la barra de estado
 opt.ruler = true           -- Mostrar regla (línea/columna) en la parte inferior
 opt.cmdheight = 1          -- Espacio para mensajes de comandos
 opt.showmatch = true       -- Resalta brevemente el paréntesis/llave de cierre
@@ -47,7 +49,7 @@ opt.swapfile = false       -- No usar archivos swap
 -- Dónde guardar los undos
 local undodir = vim.fn.stdpath('state') .. '/undodir'
 if vim.fn.isdirectory(undodir) == 0 then
-    vim.fn.mkdir(undodir, "p")
+  vim.fn.mkdir(undodir, 'p')
 end
 opt.undodir = undodir
 opt.undofile = true        -- Guardar historial de "undo" en un archivo
@@ -60,6 +62,8 @@ opt.wildmenu = true                 -- Menú visual para sugerencias
 opt.wildmode = 'longest:full,full'  -- Completa hasta lo más largo y luego abre el menú
 -- Ignora basura
 opt.wildignore:append({ '*.pyc', '__pycache__', '.git', 'node_modules/*', '.venv/*', '**/undodir/**' })
+-- Preview substitutions while typing
+opt.inccommand = 'split'
 
 -- Configure backspace so it acts as it should act
 opt.backspace = { 'eol', 'indent', 'start' }
@@ -76,24 +80,25 @@ vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
 opt.list = true
 opt.listchars = {
   tab = '| ',
-  trail = '·'
+  trail = '·',
 }
 
 -- Folds (Plegado de código)
 opt.foldmethod = 'indent'  -- Plegar basado en la indentación
 opt.foldnestmax = 3        -- Máximo 3 niveles de profundidad
 opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
-opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
+opt.foldcolumn = '2'       -- Mostrar columna lateral de folds
 
 -- Format for columns: number, fold and foldsign
+opt.signcolumn = true
 opt.statuscolumn = '%=%{v:relnum == 0 ? v:lnum : "   " .. v:relnum}   '
-vim.api.nvim_set_hl(0, 'LineNr', { fg = _bg, bg = none })
+vim.api.nvim_set_hl(0, 'LineNr',       { fg = _bg, bg = none })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = _bg_r, fg = _bg_c, bold = true })
 
 -- Mappings
 -- Time in milliseconds to wait for a mapped sequence to complete.
 -- Comportamiento y Tiempos
-opt.timeoutlen = 500       -- Tiempo de espera para mapeos (ms)
+opt.timeoutlen = 400       -- Tiempo de espera para mapeos (ms)
 opt.updatetime = 300       -- Tiempo para disparar eventos (buena práctica)
 
 -- Leader Mapping to spacebar
@@ -134,12 +139,13 @@ vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true })
 -- Toggle explorer
 vim.g.netrw_banner = false
 vim.g.netrw_liststyle = 3
-vim.keymap.set('n', '<Bslash>', '<cmd>25Lexplore!<CR>', { silent= true, desc = 'Toggle file explorer' })
+vim.keymap.set('n', '<Bslash>', '<cmd>25Lexplore!<CR>', { silent = true, desc = 'Toggle file explorer' })
 
 -- Toggle numbers
 vim.keymap.set('n', '<leader>n', '<cmd>set nu! rnu!<CR>', { silent = true, desc = 'Toggle line numbers' })
 
 -- Buffer management
+vim.keymap.set('n', '<leader>bw', '<cmd>enew<CR>',         { silent = true, desc = 'New buffer' })
 vim.keymap.set('n', '<leader>bh', '<cmd>new<CR>',          { silent = true, desc = 'New horizontal buffer' })
 vim.keymap.set('n', '<leader>bv', '<cmd>vnew<CR>',         { silent = true, desc = 'New vertical buffer' })
 vim.keymap.set('n', '<leader>bt', '<cmd>tabnew<CR>',       { silent = true, desc = 'New tab' })
@@ -189,7 +195,7 @@ vim.keymap.set('n', '<leader>ss', 'z=', { desc = 'Find a suggestion for current 
 vim.keymap.set('n', '<leader>pp', ':setlocal paste!<CR>', { desc = 'Toggle local paste' })
 
 -- Buscar archivos en subcarpetas de forma rápida
-vim.keymap.set('n', '<leader>f', ':find *', { desc = "Find files (native)" })
+vim.keymap.set('n', '<leader>f', ':find *', { desc = 'Find files (native)' })
 
 -- Filetype based configurations
 vim.cmd([[
@@ -268,21 +274,21 @@ local mode_colors = {
 }
 
 function MyStatusLine()
-    local mode = vim.api.nvim_get_mode().mode
-    local colors = mode_colors[mode] or mode_colors.n
+  local mode = vim.api.nvim_get_mode().mode
+  local colors = mode_colors[mode] or mode_colors.n
 
-    vim.api.nvim_set_hl(0, "StatusLineMode", { fg = colors.fg, bg = colors.bg, bold = true })
-    vim.api.nvim_set_hl(0, "StatusLineFile", { fg = colors.bg, bg = _bg })
+  vim.api.nvim_set_hl(0, 'StatusLineMode', { fg = colors.fg, bg = colors.bg, bold = true })
+  vim.api.nvim_set_hl(0, 'StatusLineFile', { fg = colors.bg, bg = _bg })
 
-    local sections = {
-        "%#StatusLineMode# ",
-        string.upper(mode),             -- Muestra el modo
-        " %#StatusLineFile# %f %m%r",   -- Archivo y estado
-        "%=|",                          -- Separador central
-        "%#StatusLineFile# %Y ",        -- Tipo de archivo
-        "%#StatusLineMode# %l/%L:%c ",  -- Posición
-    }
-    return table.concat(sections)
+  local sections = {
+    '%#StatusLineMode# ',
+    string.upper(mode),             -- Muestra el modo
+    ' %#StatusLineFile# %f %m%r',   -- Archivo y estado
+    '%=|',                          -- Separador central
+    '%#StatusLineFile# %Y ',        -- Tipo de archivo
+    '%#StatusLineMode# %l/%L:%c ',  -- Posición
+  }
+  return table.concat(sections)
 end
 
 vim.opt.statusline = "%!v:lua.MyStatusLine()"
