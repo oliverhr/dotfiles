@@ -8,7 +8,7 @@ local opt = vim.opt
 
 opt.termguicolors = false  -- Colores reales de 24 bits
 opt.background = 'light'
-vim.cmd('colorscheme morning')
+vim.cmd('colorscheme solarized')
 
 -- https://github.com/altercation/vim-colors-solarized?tab=readme-ov-file#the-values
 -- Status Bar colors
