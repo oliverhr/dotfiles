@@ -13,7 +13,7 @@ return {
   },
   lazy = false,
   keys = {
-    { '<Bslash>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<Bslash>', ':Neotree toggle<CR>', desc = 'NeoTree toogle', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
@@ -28,3 +28,5 @@ return {
     },
   },
 }
+
+-- vim: ts=2 sts=2 sw=2 et

@@ -18,3 +18,5 @@ return { -- Highlight todo, notes, etc in comments
   ---@diagnostic disable-next-line: missing-fields
   opts = { signs = false },
 }
+
+-- vim: ts=2 sts=2 sw=2 et

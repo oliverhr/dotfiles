@@ -1,20 +1,20 @@
 local map = vim.keymap.set
 
 --Buffer Actions mappings
-map('n', '<leader>bw', '<cmd>enew<CR><Esc>', { desc = 'Buffer New' })
-map('n', '<leader>bh', '<cmd>new<CR><Esc>', { desc = 'Buffer Horizontal New' })
-map('n', '<leader>bv', '<cmd>vnew<CR><Esc>', { desc = 'Buffer New Vertical' })
-map('n', '<leader>bt', '<cmd>tabnew<CR><Esc>', { desc = 'Buffer New Tab' })
+map('n', '<leader>bw', '<cmd>enew<CR><Esc>', { desc = 'New buffer' })
+map('n', '<leader>bh', '<cmd>new<CR><Esc>', { desc = 'New horizontal buffer' })
+map('n', '<leader>bv', '<cmd>vnew<CR><Esc>', { desc = 'New vertical buffer' })
+map('n', '<leader>bt', '<cmd>tabnew<CR><Esc>', { desc = 'New tab' })
 
-map('n', '<leader>bw', '<cmd>write<CR>', { desc = 'Buffer Write' })
-map('n', '<leader>bs', '<cmd>wall<CR>', { desc = 'Buffer Write/Save All' })
-map('n', '<leader>bx', '<cmd>w | bdelete<CR>', { desc = 'Buffer Write and Exit' })
-map('n', '<leader>bq', '<cmd>wqall<CR>', { desc = 'Buffer Write All and Quit' })
-map('n', '<leader>bd', '<cmd>bdelete<CR><Esc>', { desc = 'Buffer Delete' })
-map('n', '<leader>ba', '<cmd>%bdelete<CR><Esc>', { desc = 'Buffer Delete All' })
+map('n', '<leader>bw', '<cmd>write<CR>', { desc = 'Buffer write' })
+map('n', '<leader>bs', '<cmd>wall<cr>', { desc = 'Buffer write/save all' })
+map('n', '<leader>bx', '<cmd>w | bdelete<CR>', { desc = 'Buffer write and close' })
+map('n', '<leader>bq', '<cmd>wqall<CR>', { desc = 'Buffer write all and quit' })
+map('n', '<leader>bd', '<cmd>bdelete<CR><Esc>', { desc = 'Buffer delete' })
+map('n', '<leader>ba', '<cmd>%bdelete<CR><Esc>', { desc = 'Buffer delete all' })
 
-map('n', '<leader>bn', '<cmd>bnext<CR><Esc>', { desc = 'Buffer Next' })
-map('n', '<leader>bp', '<cmd>bprevious<CR><Esc>', { desc = 'Buffer Previous' })
+map('n', '<leader>bn', '<cmd>bnext<CR><Esc>', { desc = 'Buffer next' })
+map('n', '<leader>bp', '<cmd>bprevious<CR><Esc>', { desc = 'Buffer previous' })
 
 -- Tabs
 map('n', '<leader>to', ':tabonly<CR>', { desc = 'Leave current tab open and close the rest' })
@@ -63,3 +63,5 @@ map('n', '<leader>ss', 'z=', { desc = 'Find a suggestion for current misspelled 
 
 -- Avoid weird behavior when pasting
 map('n', '<leader>pp', ':setlocal paste!<CR>', { desc = 'Toggle local paste' })
+
+-- vim: ts=2 sts=2 sw=2 et

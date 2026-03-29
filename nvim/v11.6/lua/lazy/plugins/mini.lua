@@ -16,6 +16,12 @@ return { -- Collection of various small independent plugins/modules
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
+    -- Comment lines of code
+    --
+    -- - gc    - Comment on normal and visual mode
+    -- - gcc   - Toggle comment on current line
+    require('mini.comment').setup()
+
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
     --  and try some other statusline plugin
@@ -33,3 +39,5 @@ return { -- Collection of various small independent plugins/modules
     --  Check out: https://github.com/nvim-mini/mini.nvim
   end,
 }
+
+-- vim: ts=2 sts=2 sw=2 et
