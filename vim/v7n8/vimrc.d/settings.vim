@@ -72,6 +72,10 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+" Splits prefer to the right and below
+set splitright
+set splitbelow
+
 " A buffer becomes hidden when it is abandoned
 set hidden
 " Specify the behavior when switching between buffers
@@ -98,6 +102,10 @@ set sidescroll=1
 
 " Show status line
 set laststatus=2
+" Show mode below cmd disabled
+set noshowmode
+" Show tabline when more than one tab is open
+set showtabline=1
 
 " -------------------------------------------------------------------
 " => File backups
@@ -111,7 +119,6 @@ set noswapfile
 " => Persistent Undo
 " -------------------------------------------------------------------
 " Keep undo history across sessions, by storing in file.
-" silent !mkdir ~/.vim/undodir > /dev/null 2>&1
 set undodir=~/.vim/undodir
 set undofile
 

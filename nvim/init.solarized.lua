@@ -8,11 +8,27 @@ local opt = vim.opt
 
 opt.termguicolors = false  -- Colores reales de 24 bits
 opt.background = 'light'
-vim.cmd('colorscheme solarized')
+vim.cmd('colorscheme morning')
+
+-- https://github.com/altercation/vim-colors-solarized?tab=readme-ov-file#the-values
+-- Status Bar colors
+local _bg_d = 0     -- dark
+local _bg_l = 10    -- light
+
+local _blue    = 33
+local _green   = 64
+local _magenta = 125
+local _orange  = 166
+local _red     = 160
+local _white   = 230
+local _yellow  = 136
+
+local _bg   = _bg_d
+local _fg   = _white
 
 -- Interfaz y Visualización
-opt.number = true          -- Desactiva números (como pediste)
-opt.relativenumber = true  -- Desactiva números (como pediste)
+opt.number = true          -- Desactiva números
+opt.relativenumber = true  -- Desactiva números relativos
 opt.cursorline = true      -- Resalta la línea actual
 opt.laststatus = 2         -- Siempre mostrar la barra de estado
 opt.ruler = true           -- Mostrar regla (línea/columna) en la parte inferior
@@ -78,9 +94,8 @@ opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
 
 -- Format for columns: number, fold and foldsign
 opt.statuscolumn = '%=%{v:relnum == 0 ? v:lnum : "   " .. v:relnum}   '
-vim.api.nvim_set_hl(0, 'LineNr', { ctermfg = 10, ctermbg = none })
--- Solarized [ white: 130, yellow: 136 ]
-vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = 136, ctermfg = 230, bold = true })
+vim.api.nvim_set_hl(0, 'LineNr', { ctermfg = _bg_l, ctermbg = none })
+vim.api.nvim_set_hl(0, 'CursorLineNr', { ctermbg = _yellow, ctermfg = _fg, bold = true })
 
 -- Mappings
 -- Time in milliseconds to wait for a mapped sequence to complete.
@@ -249,23 +264,14 @@ local function open_floating_explorer()
 end
 vim.keymap.set('n', '<leader>E', open_floating_explorer)
 
--- Status Bar colors
--- https://github.com/altercation/vim-colors-solarized?tab=readme-ov-file#the-values
-local _fg   = 230   -- white
-local _bg_n = 64    -- Green
-local _bg_i = 33    -- Blue
-local _bg_v = 125   -- Magenta
-local _bg_c = 166   -- Orange
-local _bg_r = 160   -- Red
-
 local mode_colors = {
-    n       = { bg = _bg_n, fg = _fg }, -- Normal
-    i       = { bg = _bg_i, fg = _fg }, -- Insert
-    v       = { bg = _bg_v, fg = _fg }, -- Visual
-    V       = { bg = _bg_v, fg = _fg }, -- V-Line
-    ['\22'] = { bg = _bg_v, fg = _fg }, -- V-Block
-    c       = { bg = _bg_c, fg = _fg }, -- Command
-    R       = { bg = _bg_r, fg = _fg }, -- Replace
+    n       = { bg = _green,    fg = _fg }, -- Normal
+    i       = { bg = _blue,     fg = _fg }, -- Insert
+    v       = { bg = _magenta,  fg = _fg }, -- Visual
+    V       = { bg = _magenta,  fg = _fg }, -- V-Line
+    ['\22'] = { bg = _magenta,  fg = _fg }, -- V-Block
+    c       = { bg = _orange,   fg = _fg }, -- Command
+    R       = { bg = _red,      fg = _fg }, -- Replace
 }
 
 function MyStatusLine()
@@ -273,7 +279,7 @@ function MyStatusLine()
     local colors = mode_colors[mode] or mode_colors.n
 
     vim.api.nvim_set_hl(0, "StatusLineMode", { ctermfg = colors.fg, ctermbg = colors.bg, bold = true })
-    vim.api.nvim_set_hl(0, "StatusLineFile", { ctermfg = 230,  ctermbg = 0 })
+    vim.api.nvim_set_hl(0, "StatusLineFile", { ctermfg = _fg,  ctermbg = _bg })
 
     local sections = {
         "%#StatusLineMode# ",

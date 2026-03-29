@@ -352,7 +352,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quick open blank/new buffers
-map <leader>bh :enew<cr>
+map <leader>bw :enew<cr>
+map <leader>bh :new<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 

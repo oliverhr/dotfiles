@@ -6,13 +6,26 @@
 
 local opt = vim.opt
 
--- Interfaz y Visualización
 opt.termguicolors = true   -- Colores reales de 24 bits
+opt.background = 'dark'
+vim.cmd('colorscheme retrobox')
+--
+-- Status Bar colors
+local _bg   = "#3c3836"
+local _fg   = '#282828'
+local _bg_n = '#83a598'
+local _bg_i = "#8ec07c"
+local _bg_v = "#fe8019"
+local _bg_c = "#fabd2f"
+local _bg_r = "#fb4934"
+
+-- Interfaz y Visualización
+opt.number = true          -- Desactiva números
+opt.relativenumber = true  -- Desactiva números relativos
 opt.cursorline = true      -- Resalta la línea actual
-opt.number = false         -- Desactiva números (como pediste)
 opt.laststatus = 2         -- Siempre mostrar la barra de estado
 opt.ruler = true           -- Mostrar regla (línea/columna) en la parte inferior
-opt.cmdheight = 0          -- Espacio para mensajes de comandos
+opt.cmdheight = 1          -- Espacio para mensajes de comandos
 opt.showmatch = true       -- Resalta brevemente el paréntesis/llave de cierre
 opt.matchtime = 5          -- Décimas de segundo para mostrar el match
 opt.scrolloff = 8          -- Mantiene 8 líneas de margen al hacer scroll vertical
@@ -38,14 +51,6 @@ if vim.fn.isdirectory(undodir) == 0 then
 end
 opt.undodir = undodir
 opt.undofile = true        -- Guardar historial de "undo" en un archivo
-
--- Folds (Plegado de código)
-opt.foldmethod = 'indent'  -- Plegar basado en la indentación
-opt.foldnestmax = 3        -- Máximo 3 niveles de profundidad
-opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
-opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
--- Formato para al gutter (agrega espacios entre los numbers y el editor)
-opt.statuscolumn = '%s%=%C%l  '
 
 -- Comportamiento de Búsqueda
 opt.ignorecase = true      -- Ignorar mayúsculas al buscar...
@@ -74,8 +79,16 @@ opt.listchars = {
   trail = '·'
 }
 
--- Set ColorScheme
-vim.cmd('colorscheme retrobox')
+-- Folds (Plegado de código)
+opt.foldmethod = 'indent'  -- Plegar basado en la indentación
+opt.foldnestmax = 3        -- Máximo 3 niveles de profundidad
+opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
+opt.foldcolumn = "2"       -- Mostrar columna lateral de folds
+
+-- Format for columns: number, fold and foldsign
+opt.statuscolumn = '%=%{v:relnum == 0 ? v:lnum : "   " .. v:relnum}   '
+vim.api.nvim_set_hl(0, 'LineNr', { fg = _bg, bg = none })
+vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = _bg_r, fg = _bg_c, bold = true })
 
 -- Mappings
 -- Time in milliseconds to wait for a mapped sequence to complete.
@@ -244,23 +257,14 @@ local function open_floating_explorer()
 end
 vim.keymap.set('n', '<leader>E', open_floating_explorer)
 
--- Status Bar colors
-local _fg_a = '#282828'
-local _bg_n = '#83a598'
-local _bg_i = "#8ec07c"
-local _bg_v = "#fe8019"
-local _bg_c = "#fabd2f"
-local _bg_r = "#fb4934"
-local _bg_s = "#3c3836"
-
 local mode_colors = {
-    n      = { bg = _bg_n, fg = _fg_a }, -- Normal
-    i      = { bg = _bg_i, fg = _fg_a }, -- Insert
-    v      = { bg = _bg_i, fg = _fg_a }, -- Visual
-    V      = { bg = _bg_i, fg = _fg_a }, -- V-Line
-    ['']   = { bg = _bg_i, fg = _fg_a }, -- V-Block
-    c      = { bg = _bg_c, fg = _fg_a }, -- Command
-    R      = { bg = _bg_r, fg = _fg_a }, -- Replace
+    n       = { bg = _bg_n, fg = _fg }, -- Normal
+    i       = { bg = _bg_i, fg = _fg }, -- Insert
+    v       = { bg = _bg_v, fg = _fg }, -- Visual
+    V       = { bg = _bg_v, fg = _fg }, -- V-Line
+    ['\22'] = { bg = _bg_v, fg = _fg }, -- V-Block
+    c       = { bg = _bg_c, fg = _fg }, -- Command
+    R       = { bg = _bg_r, fg = _fg }, -- Replace
 }
 
 function MyStatusLine()
@@ -268,13 +272,13 @@ function MyStatusLine()
     local colors = mode_colors[mode] or mode_colors.n
 
     vim.api.nvim_set_hl(0, "StatusLineMode", { fg = colors.fg, bg = colors.bg, bold = true })
-    vim.api.nvim_set_hl(0, "StatusLineFile", { fg = colors.bg, bg = _bg_s })
+    vim.api.nvim_set_hl(0, "StatusLineFile", { fg = colors.bg, bg = _bg })
 
     local sections = {
         "%#StatusLineMode# ",
-        string.upper(vim.fn.mode()),    -- Muestra el modo
+        string.upper(mode),             -- Muestra el modo
         " %#StatusLineFile# %f %m%r",   -- Archivo y estado
-        "%=",                           -- Separador central
+        "%=|",                          -- Separador central
         "%#StatusLineFile# %Y ",        -- Tipo de archivo
         "%#StatusLineMode# %l/%L:%c ",  -- Posición
     }

@@ -9,9 +9,9 @@ let g:mapleader = ','
 nnoremap <silent> <leader>rc :view $MYVIMRC<cr>
 
 " Fast saving
-nnoremap <leader>w :w<cr>
+nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent> <leader>wa :wa<cr>
-nnoremap <leader>x :x<cr>
+nnoremap <silent> <leader>x :x<cr>
 nnoremap <silent> <leader>xa :xa<cr>
 
 " Fast quit no save
@@ -35,12 +35,9 @@ nnoremap <silent> <leader>fl :Lines<cr>
 nnoremap <silent> <leader>fs :BLines<cr>
 nnoremap <silent> <leader>fc :Commits<cr>
 
-" ================ Shell buffet stay opened after exit ===============
-nnoremap <silent> <leader>t :ter ++noclose<cr>
-
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " => Moving around, tabs, windows and buffers
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -48,15 +45,15 @@ map k gk
 " Toggle line numbers on/off
 map <silent><leader>n :set number!<cr>
 
-" Smart way to move between windows
-" Overrided by tmux-navigator
+" Move between panes replace: vim-tmux-navigation
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Quick open blank/new buffers
-map <leader>bh :enew<cr>
+map <leader>bw :enew<cr>
+map <leader>bh :new<cr>
 map <leader>bv :vnew<cr>
 map <leader>bt :tabnew<cr>
 
@@ -84,9 +81,6 @@ map <leader>te :tabedit <c-r>=expand('%:~:.:h')<cr>/
 nnoremap <S-RIGHT> :tabnext<cr>
 nnoremap <S-LEFT> :tabprevious<cr>
 
-" Splits prefer to the right and below
-set splitright
-set splitbelow
 " Open a vertical split with the current buffer's relative path
 map <leader>sv :vsplit <c-r>=expand('%:~:.:h')<cr>/
 " Open a horizontal split with the current buffer's relative path
@@ -103,13 +97,6 @@ nmap <S-Space> i
 " In normal mode press ; to go to commamd mode ':'
 nnoremap ; :
 
-" WSL hack for block mode when ctrl-q does not work
-nnoremap <leader>vb <c-v>
-
-" Insert date time pressing <f7> key
-nnoremap <F7> "=strftime('%c')<cr>P
-inoremap <F7> <C-R>=strftime('%c')<cr>
-
 " Clear search higlight pressing enter same as :noh
 nnoremap <silent> <CR> :nohlsearch<cr><cr>
 
@@ -119,9 +106,9 @@ nnoremap <S-Down> :m+<cr>
 inoremap <S-Up> <Esc>:m-2<cr>
 inoremap <S-Down> <Esc>:m+<cr>
 
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " => Spell checking
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " Pressing <leader>sl will toggle and turn toggle spell checking
 map <leader>sl :setlocal spell!<cr>
 " Move between errors
@@ -132,12 +119,22 @@ map <leader>sa zg
 " Suggest correction
 map <leader>ss z=
 
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " => Misc
-" --------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>rw mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
+" Insert date time pressing <f7> key
+nnoremap <F7> "=strftime('%c')<cr>P
+inoremap <F7> <C-R>=strftime('%c')<cr>
+
+" Open a buffer with a shell who stays opened after exit
+nnoremap <silent> <leader>t :ter ++noclose<cr>
+
+" WSL hack for block mode when ctrl-q does not work
+nnoremap <leader>vb <c-v>
 
