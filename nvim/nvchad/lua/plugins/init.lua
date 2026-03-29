@@ -13,7 +13,7 @@ return {
     end,
   },
 
-  -- test new blink
+  -- Blink
   { import = "nvchad.blink.lazyspec" },
 
   { -- Treesitter
@@ -41,5 +41,6 @@ return {
       },
     },
   }
+
 }
 
