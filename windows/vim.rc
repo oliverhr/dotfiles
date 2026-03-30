@@ -209,8 +209,14 @@ set showmatch
 # How many tenths of a second to blink when matching brackets
 set mat=2
 
+# Time to waint on keymap combination (ms)
+set timeoutlen = 400
+# Time to wait for events (ms)
+set updatetime = 300
+
 # No beep on errors on terminal still visual
-set noerrorbells visualbell t_vb= timeoutlen=500
+set noerrorbells
+set novisualbell
 
 # Scrolling
 set scrolloff=8         # Start scrolling when we're 8 lines away from margins
