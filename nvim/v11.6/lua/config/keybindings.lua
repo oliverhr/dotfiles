@@ -23,12 +23,11 @@ map('n', '<leader>tm', ':tabmove<CR>', { desc = 'Move the current tab to after t
 map('n', '<leader>tn', ':tabnext<CR>', { desc = 'Next Tab' })
 map('n', '<leader>tp', ':tabprevious<CR>', { desc = 'Previous Tab' })
 
--- Semicolon to enter command mode (más rápido que Shift + :)
-map('n', ';', ':')
-
--- Shift + Space para alternar entre Insert y Normal
-map('i', '<S-Space>', '<Esc>')
-map('n', '<S-Space>', 'i')
+-- Semicolon to enter command mode
+map('n', ';', ':', { desc = 'To command mode' })
+-- Shift + Space to alternate between Insert and Normal mode
+map('i', '<S-Space>', '<Esc>', { desc = 'To normal mode' })
+map('n', '<S-Space>', 'i', { desc = 'To insert mode' })
 
 -- Treat long lines as visual lines instead of logic lines
 -- with a counter (ie. 5j), use j as usual, otherwise use gj
@@ -39,14 +38,14 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', '<CR>', '<cmd>nohlsearch<CR>', { silent = true })
 
 -- Move línes Shift+Up/Down (Normal mode)
-map('n', '<S-Up>', '<cmd>m-2<CR>==', { silent = true })
-map('n', '<S-Down>', '<cmd>m+<CR>==', { silent = true })
+map('n', '<S-Up>', '<cmd>m-2<CR>==', { silent = true, desc = 'Move lines up' })
+map('n', '<S-Down>', '<cmd>m+<CR>==', { silent = true, desc = 'Move lines down' })
 -- Move línes Shift+Up/Down (Insert mode)
-map('i', '<S-Up>', '<Esc><cmd>m-2<CR>==gi', { silent = true })
-map('i', '<S-Down>', '<Esc><cmd>m+<CR>==gi', { silent = true })
+map('i', '<S-Up>', '<Esc><cmd>m-2<CR>==gi', { silent = true, desc = 'Move lines up' })
+map('i', '<S-Down>', '<Esc><cmd>m+<CR>==gi', { silent = true, desc = 'Move lines down' })
 -- Move línes Shift+Up/Down (Visual mode)
-map('v', '<S-Up>', ":m '<-2<CR>gv=gv", { silent = true })
-map('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true })
+map('v', '<S-Up>', ":m '<-2<CR>gv=gv", { silent = true, desc = 'Move lines up' })
+map('v', '<S-Down>', ":m '>+1<CR>gv=gv", { silent = true, desc = 'Move lines down' })
 
 -- Toggle numbers
 map('n', '<leader>n', '<cmd>set nu! rnu!<CR>', { silent = true, desc = 'Toggle line numbers' })
