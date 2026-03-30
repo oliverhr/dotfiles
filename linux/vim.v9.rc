@@ -190,8 +190,7 @@ set showmatch
 set mat=2
 
 # No beep on errors on terminal still visual
-set noerrorbells visualbell t_vb=
-set timeoutlen=500
+set noerrorbells visualbell t_vb= timeoutlen=500
 
 # Scrolling
 set scrolloff=8         # Start scrolling when we're 8 lines away from margins
@@ -238,7 +237,6 @@ set clipboard=unnamed
 set mouse=a
 
 # == Color terminal related stuff ==
-# set t_Co=256
 set termguicolors
 
 # Enable this only when terminal dislay weird chars
