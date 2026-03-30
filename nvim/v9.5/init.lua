@@ -90,7 +90,7 @@ opt.foldenable = false     -- Que los archivos no se abran plegados por defecto
 opt.foldcolumn = '2'       -- Mostrar columna lateral de folds
 
 -- Format for columns: number, fold and foldsign
-opt.signcolumn = true
+opt.signcolumn = 'yes'
 opt.statuscolumn = '%=%{v:relnum == 0 ? v:lnum : "   " .. v:relnum}   '
 vim.api.nvim_set_hl(0, 'LineNr',       { fg = _bg, bg = none })
 vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = _bg_r, fg = _bg_c, bold = true })
