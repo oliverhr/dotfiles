@@ -8,6 +8,8 @@
 #_local.env
 _toolkit/
 
+**.dist.*
+
 # --- Secrets ---
 *.pem
 
