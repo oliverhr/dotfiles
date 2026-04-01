@@ -4,6 +4,18 @@
 # ------------------------------------------------------------------------------
 # This is useful to set configurations for all local repositories per path
 # For specific values on a repo still can be set with: `git --local config...`
+#
+# Include files Path can be an absolute or relative, also can be relative
+# to the "current" configuration file.
+#
+# ;Include by absolute path
+# path = /path/to/foo.inc
+#
+# ;Find "foo.inc" relative to the current file
+# path = foo.inc
+#
+# ;Find "foo.inc" in your `$HOME` directory
+# path = ~/foo.inc
 # ------------------------------------------------------------------------------
 # - [user]:   {name, email, signingkey}
 # - [gpg]:    {format, program}
@@ -20,6 +32,8 @@
 	path = ~/Projects/Work/.work.gitconfig
 
 # Things for my job at a umbrella corporation ;)
-[includeIf "hasconfig:remote.*.url:git@git.umbrella.evil:raccoon-city/**"]
+[includeIf "hasconfig:remote.*.url:git@*.umbrella.evil:*/**"]
 	path = /home/curtis.miller/Encrypted/Tyrant/.inc.profile.gitconfig
+[includeIf "hasconfig:remote.*.url:https://*.umbrella.evil/*/**"]
+	path = ./racoon-city.gitconfig
 
