@@ -55,3 +55,9 @@ Note:
 - Most of these tools are new alternatives, the majority of them are written either in go or rust.
 - Some omissions are not here because are almost ubiquitous, like`tmux`, `vim` and `neovim`
 
+## Use mise:
+
+```
+mise use -g bat carapace delta direnv fzf gomplate lazygit ripgrep task uv zoxide aqua:neovim/neovim
+```
+
