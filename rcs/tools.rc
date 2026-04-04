@@ -1,11 +1,25 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
 # -----------------------------------------------------------------------------
+# [Must] Tools initialization
+# -----------------------------------------------------------------------------
+# mise
+# curl https://mise.run | sh
+eval "$($HOME/.local/bin/mise activate $_SHELL)"
+
+# Direnv
+eval "$(direnv hook $_SHELL)"
+
+# Fuzzy finder fzf
+source <(fzf --$_SHELL)
+
+# Zoxide
+eval "$(zoxide init $_SHELL)"
+
+
+# -----------------------------------------------------------------------------
 # Extra tools
 # -----------------------------------------------------------------------------
-
-# mise
-# eval "$($HOME/.local/bin/mise activate $_SHELL)"
 
 # UV
 # export UV_NATIVE_TLS=true

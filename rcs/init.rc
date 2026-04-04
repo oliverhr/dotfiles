@@ -63,16 +63,3 @@ test -s $RCDOTDIR/tools.rc && . $RCDOTDIR/tools.rc || true
 # -----------------------------------------------------------------------------
 test -s $RCDOTDIR/custom.rc && . $RCDOTDIR/custom.rc || true
 
-# -----------------------------------------------------------------------------
-# [Must] Tools initialization
-# -----------------------------------------------------------------------------
-
-# Direnv
-eval "$(direnv hook $_SHELL)"
-
-# Fuzzy finder fzf
-source <(fzf --$_SHELL)
-
-# Zoxide
-eval "$(zoxide init $_SHELL)"
-
