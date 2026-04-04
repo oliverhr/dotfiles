@@ -82,19 +82,20 @@ autocmd BufEnter * {
   endif
 }
 
+# --- Rainbow
 # Enable using :RainbowToggle
 g:rainbow_active = 0
 
 # --- Language Protocol Server
-g:lsp_settings = {
-  # vim LSP has some issues with vim9script
-  'vim-language-server': { 'disabled': true }
-}
-
 g:lsp_document_code_action_signs_enabled = 0
 g:lsp_document_code_action_signs_hint = {'text': '⭲'}
 g:lsp_diagnostics_signs_warning = {'text': '⚠'}
 g:lsp_diagnostics_signs_error = {'text': '⌦'}
 g:lsp_diagnostics_signs_hint = {'text': 'ℹ'}
+
+g:lsp_settings = {
+  'vim-language-server': { 'disabled': true }  # vim LSP has some issues with vim9script
+}
+g:lsp_settings_filetype_python = ['ty', 'ruff']
 
 # vim: set ft=vim ts=2 sw=2 et :
