@@ -31,11 +31,8 @@ eval "$(zoxide init $_SHELL)"
 # export PATH="$HOME/.local/share/fnm:$PATH"
 # eval "$(fnm env)"
 
-# Ocaml - Opam
-# export PATH="$PATH:/home/P3280455/.opam/default"
-# eval $(opam env)
-
 # pnpm
 # export PNPM_HOME="$HOME/.local/share/pnpm"
 # export PATH="$PNPM_HOME:$PATH"
+
 
