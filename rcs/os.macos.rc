@@ -7,6 +7,3 @@
 # Markdown
 alias typora='open -a typora'
 
-# Ocaml
-eval $(opam env)
-
