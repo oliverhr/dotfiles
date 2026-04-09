@@ -53,6 +53,8 @@ set background=dark
 let g:solarized_termcolors = 16
 let g:solarized_contrast='high'
 colorscheme solarized
+" Vertical Pane divisions with solarized looks ugly
+highlight VertSplit ctermbg=NONE
 
 " Airline settings
 let g:airline_theme = 'solarized'
