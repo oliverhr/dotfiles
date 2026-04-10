@@ -44,6 +44,7 @@ plug#begin()
 
   # - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
+  Plug 'lifepillar/vim-solarized8',         { 'as': 'colors/solareight' }
   Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
   Plug 'cormacrelf/vim-colors-github',      { 'as': 'colors/github' }
   Plug 'croaker/mustang-vim',               { 'as': 'colors/mustang' }
