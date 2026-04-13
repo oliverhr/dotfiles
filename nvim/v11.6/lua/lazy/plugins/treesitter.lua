@@ -1,9 +1,13 @@
-return { -- Highlight, edit, and navigate code
+-- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
+--
+-- Highlight, edit, and navigate code
+
+return {
   'nvim-treesitter/nvim-treesitter',
   lazy = false,
   build = ':TSUpdate',
   branch = 'main',
-  -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
+
   config = function()
     local parsers = {
       'bash',
