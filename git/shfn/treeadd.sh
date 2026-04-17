@@ -1,10 +1,10 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
-if (( $# != 2 )); then
-	printf '%3sUsage:\n\t git %s %s\n' ''\
+if [ "$#" -ne 2 ]; then
+	printf '%2s Usage:\n\t git %s %s\n' ''\
 		"$GIT_ALIAS" \
-		'[worktree path] [remote branch]'
-	exit 0;
+		'[worktree path] [remote branch]' >&2
+	exit 1;
 fi
 
 _worktree=${1}

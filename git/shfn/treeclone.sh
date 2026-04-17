@@ -1,10 +1,10 @@
 # vim: set ft=sh ts=4 sw=4 noet :
 
-if (( $# != 2 )); then
-	printf '%3sUsage:\n\t git %s %s\n' ''\
+if [ "$#" -ne 2 ]; then
+	printf '%2s Usage:\n\t git %s %s\n' '' \
 		"$GIT_ALIAS" \
-		'[repository url] [directory path]'
-	exit 0;
+		'[repository url] [directory path]' >&2
+	exit 1;
 fi
 
 _repo=${1}
