@@ -9,6 +9,7 @@ $PROFILE="~/.config/pwsh/pwshrc.ps1"
 #------------------------------------------------------------------------------
 
 $env:HOME = $env:USERPROFILE
+$env:SHELL = 'pwsh'
 
 #------------------------------------------------------------------------------
 # Some unix tools require this path to be set
