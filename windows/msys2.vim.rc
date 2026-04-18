@@ -50,11 +50,6 @@ plug#begin()
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-  # - - - Syntax - - -
-  # Plug 'hashivim/vim-terraform'
-  # Plug 'pearofducks/ansible-vim'
-  # Plug 'yasuhiroki/github-actions-yaml.vim'
-
   # - - - Colorschemes - - -
   Plug 'altercation/vim-colors-solarized',  { 'as': 'colors/solarized' }
   Plug 'catppuccin/vim',                    { 'as': 'colors/catppuccin' }
