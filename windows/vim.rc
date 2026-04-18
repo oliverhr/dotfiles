@@ -210,9 +210,9 @@ set showmatch
 set mat=2
 
 # Time to waint on keymap combination (ms)
-set timeoutlen = 400
+set timeoutlen=400
 # Time to wait for events (ms)
-set updatetime = 300
+set updatetime=300
 
 # No beep on errors on terminal still visual
 set noerrorbells
@@ -320,7 +320,7 @@ highlight clear SignColumn
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 # Display tabs and trailing spaces visually
-set list listchars=tab:\|\ ,trail:·
+set list listchars=tab:⫶\ ,trail:·
 
 # -------------------------------------------------------------------
 # => File backups
