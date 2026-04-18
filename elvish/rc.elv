@@ -22,6 +22,9 @@ eval (zoxide init elvish | slurp)
 # Requires external tools like uutils-coreutils | busybox
 # ----------------------------------------------------------------------------
 
+# -- Windows tools
+fn open {|app @args| cmd /c start $app $@args }
+
 # --- bat
 fn cat {|@args| e:bat $@args }
 
