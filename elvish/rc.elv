@@ -13,17 +13,21 @@ set paths = [
 set-env ELVISH_CONF_DIR $E:APPDATA/elvish
 set-env ELVISH_CONF_FILE $E:ELVISH_CONF_DIR/rc.elv
 
-# --- Prompt
-eval (starship init elvish)
-
-# --- Tools Initialization
-eval (zoxide init elvish | slurp)
+# Subtring matching with case insisitive
+set edit:completion:matcher[''] = {|seed|
+    edit:match-substr $seed &ignore-case=$true
+}
 
 # ----------------------------------------------------------------------------
 # Elvish does not come with batteries
 # ----------------------------------------------------------------------------
 # Requires external tools like uutils-coreutils | busybox
 # ----------------------------------------------------------------------------
+# --- Prompt
+eval (starship init elvish)
+
+# --- Tools Initialization
+eval (zoxide init elvish | slurp)
 
 # --- Windows tools
 fn open {|app @args| cmd /c start $app $@args }
