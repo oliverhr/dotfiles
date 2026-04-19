@@ -11,6 +11,10 @@ fn g {|@args|
 }
 
 fn a {|@args|
+  e:git add $@args
+}
+
+fn aa {|@args|
   e:git add --all $@args
 }
 

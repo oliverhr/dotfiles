@@ -10,6 +10,9 @@ set paths = [
     $@paths
 ]
 
+set-env ELVISH_CONF_DIR $E:APPDATA/elvish
+set-env ELVISH_CONF_FILE $E:ELVISH_CONF_DIR/rc.elv
+
 # --- Prompt
 eval (starship init elvish)
 
@@ -22,8 +25,10 @@ eval (zoxide init elvish | slurp)
 # Requires external tools like uutils-coreutils | busybox
 # ----------------------------------------------------------------------------
 
-# -- Windows tools
+# --- Windows tools
 fn open {|app @args| cmd /c start $app $@args }
+
+fn vd {|@args| e:vimdiff @args }
 
 # --- bat
 fn cat {|@args| e:bat $@args }
@@ -42,4 +47,5 @@ fn ll {|@args| e:lsd -l $@args }
 # ----------------------------------------------------------------------------
 # --- Git alias
 use git g
+use cnf conf
 
