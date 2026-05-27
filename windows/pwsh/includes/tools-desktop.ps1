@@ -33,7 +33,7 @@ function chromap {
     )
 
     $host_rule = '--host-rules="MAP {0} 127.0.0.1"' -f $domain
-    $args = @(
+    $_args = @(
         $host_rule
          "--window-size=1440,880"
          "--incognito"
@@ -41,7 +41,7 @@ function chromap {
          $url
     )
 
-    Start-Process -FilePath $browser -ArgumentList $args
+    Start-Process -FilePath $browser -ArgumentList $_args
 }
 
 # vim: set ft=ps1 ts=4 sts=4 sw=4 et :
