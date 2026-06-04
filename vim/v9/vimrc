@@ -2,7 +2,7 @@ vim9script
 
 if !exists('$MYVIMDIR')
   # Get the directory containing your .vimrc
-  var $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
+  $MYVIMDIR = fnamemodify($MYVIMRC, ':h')
 endif
 
 source $MYVIMDIR/vimrc.d/settings.vim
