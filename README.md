@@ -10,11 +10,11 @@
 
 ### Zsh theme Geekster - a zsh theme
 
-A minimal theme that shows git information for current dir.
+A minimal theme that shows git information for current directory.
 
 ### iTerm 2 confs and theme
 
-- Chido Dark is a Dark Blue color scheme for iterm 2
+- Chido Dark is a Dark Blue color scheme for iTerm2
 
 - Darkerized is a solarized theme clone with a darkest background and black color light because some problems
 on non ips displays.
@@ -61,7 +61,7 @@ _ apt install -y build-essential \
   sd xh procs silversearcher-ag \
 ```
 
-Not availble on debian repositories:
+Not available on debian repositories:
 - fd
 - zellij
 - task
