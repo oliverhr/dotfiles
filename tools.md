@@ -58,6 +58,6 @@ Note:
 ## Use mise:
 
 ```shell
-mise use -g bat carapace delta direnv fd fzf go gomplate lazygit ripgrep rust sd tree-sitter uv xh zellij zoxide aqua:got-task/task aqua:neovim/neovim
+mise use -g bat carapace delta direnv fd fzf go gomplate lazygit ripgrep rust sd tree-sitter uv xh zellij zoxide aqua:go-task/task aqua:neovim/neovim
 ```
 
